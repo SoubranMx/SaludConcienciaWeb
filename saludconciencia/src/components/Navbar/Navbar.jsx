@@ -16,7 +16,7 @@ import '../../css/style.css'
 const Navbar = () => {
     return (
         <header className="header">
-            <img src={nav_logo} alt="Salud Conciencia logo" class="logo" />
+            <img src={nav_logo} alt="Salud Conciencia logo" className="logo" />
             <nav className="user-nav">
                 <div ><NavLink className="user-nav__link" to="/" >Inicio</NavLink></div>
                 <div ><NavLink className="user-nav__link" to="/blog" >Blog</NavLink></div>
