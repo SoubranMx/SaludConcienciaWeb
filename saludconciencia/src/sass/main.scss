@@ -1,7 +1,20 @@
+@import "./base";
+@import "./components";
+@import "./layout";
 /*
     BOOTSTRAP CHANGE
 */
 
+$color-primary-green: #00BE00;
+$color-primary-blue: #0070BA;
+$color-primary-gray: #444242;
+$color-primary-black: #020023;
+
+$textGreen: $color-primary-green;
+$textBlue:  $color-primary-blue;
+$textNormal: $color-primary-gray;
+$textNormalBold: $color-primary-black;
+$scGray: #c1c1c1;
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 
@@ -9,9 +22,6 @@
 ///////////////////     CODIGO NUEVO   ////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
-@import "./base";
-@import "./components";
-@import "./layout";
 
 
 $variable: #000;
