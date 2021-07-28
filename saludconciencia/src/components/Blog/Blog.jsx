@@ -139,30 +139,32 @@ const Blog = () => {
     },[clipBlogs])
 
     return (
-        <div className="d-flex flex-column">
-            <RecentBlogs 
-                key={DUMMY_BLOGS[0].id}
-                urlUno={DUMMY_BLOGS[0].url}
-                titleUno={DUMMY_BLOGS[0].title}
-                authorUno={DUMMY_BLOGS[0].author}
-                dateUno={DUMMY_BLOGS[0].date}
-                tagsUno={DUMMY_BLOGS[0].tags}
-                urlDos={DUMMY_BLOGS[1].url}
-                titleDos={DUMMY_BLOGS[1].title}
-                authorDos={DUMMY_BLOGS[1].author}
-                dateDos={DUMMY_BLOGS[1].date}
-                tagsDos={DUMMY_BLOGS[1].tags}
-            />
-            {
-                latestBlog ? (
-                    <LatestBlogs items={latestBlog} />
-                ) : (
-                    "Cargando..."
-                )
-            }
-            
+        <div className="container-md container-sm-fluid mt-3" data-bs-spy="scroll" data-bs-target="#navbar-spy">
+            <div className="d-flex flex-column">
+                <RecentBlogs 
+                    key={DUMMY_BLOGS[0].id}
+                    urlUno={DUMMY_BLOGS[0].url}
+                    titleUno={DUMMY_BLOGS[0].title}
+                    authorUno={DUMMY_BLOGS[0].author}
+                    dateUno={DUMMY_BLOGS[0].date}
+                    tagsUno={DUMMY_BLOGS[0].tags}
+                    urlDos={DUMMY_BLOGS[1].url}
+                    titleDos={DUMMY_BLOGS[1].title}
+                    authorDos={DUMMY_BLOGS[1].author}
+                    dateDos={DUMMY_BLOGS[1].date}
+                    tagsDos={DUMMY_BLOGS[1].tags}
+                />
+                {
+                    latestBlog ? (
+                        <LatestBlogs items={latestBlog} />
+                    ) : (
+                        "Cargando..."
+                    )
+                }
+                
 
-            <button className="masBlogs mt-3">Cargar más</button>
+                <button className="masBlogs mt-3">Cargar más</button>
+            </div>
         </div>
     )
 }

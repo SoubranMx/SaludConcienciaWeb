@@ -69,34 +69,6 @@ html {
     .user__icons-item-icon-youtube:hover {
       fill: red; }
 
-/*
-    -webkit-box-flex: 0;
-    -ms-flex: 0 0 40%;
-    flex: 0 0 40%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-
-    input
-        font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    background-color: var(--color-grey-light-2);
-    border: none;
-    padding: .7rem 2rem;
-    border-radius: 100px;
-    width: 90%;
-    -webkit-transition: all .2s;
-    transition: all .2s;
-    margin-right: -3.25rem;
-}
-*/
 .search {
   margin-right: 2rem;
   display: flex;
@@ -214,6 +186,92 @@ html {
   .card-image__img {
     height: 100%; }
 
+.side-nav {
+  font-size: 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: auto;
+  margin-top: 2rem; }
+  .side-nav__item {
+    position: relative; }
+    .side-nav__item:not(:last-child) {
+      margin-bottom: .5rem; }
+  .side-nav__item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #00BE00;
+    transform: scaleY(0);
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s, background-color 0.1s; }
+  .side-nav__item:hover::before, .side-nav__item--active::before {
+    transform: scaleY(1);
+    width: 100%; }
+  .side-nav__item:active::before {
+    background-color: #00d800; }
+  .side-nav__link:link, .side-nav__link:visited {
+    color: #faf9f9;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    padding: 1.5rem 3rem;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center; }
+  .side-nav__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    stroke: currentColor;
+    stroke-width: 2px; }
+    .side-nav__icon-article {
+      width: 1.75rem;
+      height: 1.75rem;
+      margin-right: 2rem;
+      stroke: none;
+      fill: currentColor; }
+
+.sidebar__header {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-around; }
+  .sidebar__header-logo {
+    height: 3rem; }
+    .sidebar__header-logo-sm {
+      height: 3rem;
+      display: none; }
+  .sidebar__header-icon {
+    cursor: pointer; }
+    .sidebar__header-icon-item {
+      height: 2.25rem;
+      width: 2.25rem;
+      fill: none;
+      stroke: #00BE00;
+      stroke-width: 2px; }
+      .sidebar__header-icon-item:hover {
+        stroke: #00d800; }
+
+.legal {
+  font-size: 1.2rem;
+  color: #f0eeee;
+  text-align: center;
+  padding: 2.5rem; }
+
+.settings__modal__sidebarSetting {
+  display: flex; }
+  .settings__modal__sidebarSetting__checkbox-icon {
+    cursor: pointer;
+    height: 2.25rem;
+    width: 2.25rem;
+    fill: #333;
+    stroke-width: 2px; }
+    .settings__modal__sidebarSetting__checkbox-icon:hover {
+      fill: #00BE00; }
+
 .header {
   font-family: "Poppins", sans-serif;
   font-size: 1.86rem;
@@ -232,6 +290,40 @@ html {
   @media screen and (max-width: 992px) {
     .navbar-collapse {
       flex-wrap: wrap; } }
+
+.content {
+  height: 100vh;
+  display: flex;
+  margin: 0;
+  padding: 0; }
+  .content__main {
+    flex: 1; }
+
+.sidebar {
+  background-color: #333;
+  flex: 0 0 18%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: sticky; }
+  .sidebar:not(:hover) {
+    flex: 0 0 5%; }
+    .sidebar:not(:hover) > :only-of-type span {
+      display: none; }
+    .sidebar:not(:hover) > :only-of-type a {
+      padding: 1.5rem 0;
+      justify-content: center; }
+    .sidebar:not(:hover) .side-nav {
+      display: flex;
+      flex-direction: column; }
+      .sidebar:not(:hover) .side-nav__icon {
+        margin: 0; }
+    .sidebar:not(:hover) .legal {
+      display: none; }
+    .sidebar:not(:hover) .sidebar__header-logo {
+      display: none; }
+      .sidebar:not(:hover) .sidebar__header-logo-sm {
+        display: block; }
 
 /*
     BOOTSTRAP CHANGE
