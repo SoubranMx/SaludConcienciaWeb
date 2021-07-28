@@ -11,9 +11,9 @@ const DUMMY_BLOGS = [
         url: "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2021/07/pokemon_go_eevee.jpg?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Comida"},
+            {id: "t2", name:"Ejercicio"},
+            {id: "t3", name:"Bienestar"}
         ]
     },
     {
@@ -23,9 +23,9 @@ const DUMMY_BLOGS = [
         url: "https://i1.wp.com/mynintendonews.com/wp-content/uploads/2019/08/3ds_family.jpg?resize=920%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Ejercicio"},
+            {id: "t2", name:"Bienestar"},
+            {id: "t2", name:"Bienestar"},
         ]
     },
     {
@@ -35,9 +35,10 @@ const DUMMY_BLOGS = [
         url: "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2021/07/animal_crossing_new_horizons_fireworks.jpeg?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Comida"},
+            {id: "t2", name:"Diversión"},
+            {id: "t3", name:"Bienestar"},
+            {id: "t4", name:"Salud"},
         ]
     },
     {
@@ -47,9 +48,9 @@ const DUMMY_BLOGS = [
         url: "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2021/07/monster_hunter_rise_okami.jpeg?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Salud Mental"},
+            {id: "t2", name:"Diversión"},
+            {id: "t3", name:"Rutinas"}
         ]
     },
     {
@@ -59,9 +60,8 @@ const DUMMY_BLOGS = [
         url: "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2017/10/reggie_techcrunch.png?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Salud"},
+            {id: "t2", name:"Bienestar"},
         ]
     },
     {
@@ -71,9 +71,10 @@ const DUMMY_BLOGS = [
         url: "https://i2.wp.com/mynintendonews.com/wp-content/uploads/2021/06/pokemon_unite-2.png?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Bienestar"},
+            {id: "t2", name:"Comida"},
+            {id: "t3", name:"Rutinas"},
+            {id: "t4", name:"Ejercicio"},
         ]
     },
     {
@@ -83,9 +84,9 @@ const DUMMY_BLOGS = [
         url: "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2021/04/Streets_of_Rage_4_Mr_X_Nightmare.jpg?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Psicología"},
+            {id: "t2", name:"Depresión"},
+            {id: "t3", name:"Rutinas"}
         ]
     },
     {
@@ -95,9 +96,9 @@ const DUMMY_BLOGS = [
         url: "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2021/02/zelda_skyward_sword_hd-1.jpg?resize=2000%2C1000&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Ejercicio"},
+            {id: "t2", name:"Comida"},
+            {id: "t3", name:"Rutinas"}
         ]
     },
     {
@@ -107,9 +108,9 @@ const DUMMY_BLOGS = [
         url: "https://i2.wp.com/mynintendonews.com/wp-content/uploads/2021/07/baldo_the_guardian_owls.jpg?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Planeación"},
+            {id: "t2", name:"Futuro"},
+            {id: "t3", name:"Rutinas"}
         ]
     },
     {
@@ -119,9 +120,9 @@ const DUMMY_BLOGS = [
         url: "https://i0.wp.com/mynintendonews.com/wp-content/uploads/2021/07/bulbasaur.jpg?resize=980%2C460&ssl=1",
         date: 525252,
         tags: [
-            {id: "t1", name:"Tag 1"},
-            {id: "t2", name:"Tag 2"},
-            {id: "t3", name:"Tag 3"}
+            {id: "t1", name:"Ejercicio"},
+            {id: "t2", name:"Rutinas"},
+            {id: "t3", name:"Rutinas"}
         ]
     },
 ]

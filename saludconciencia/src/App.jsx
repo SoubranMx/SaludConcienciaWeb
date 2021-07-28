@@ -18,7 +18,7 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <div className="container mt-3">
+      <div className="container-md container-sm-fluid mt-3">
         <Switch>
           <Route path='/asesorias'>
             <Asesorias />
