@@ -4,6 +4,10 @@
 .logo {
     height: 3.25rem;
     margin-left: 2rem;
+    @media screen and (max-width: 206px) {
+        height: 2rem;
+        margin: 0;
+    }
 }
 
 ///////////////////////////////////////////////////////
@@ -15,8 +19,24 @@
     align-self: stretch;
     justify-content: center;
     flex: 0 0 40%;
-    //Temporal FIX!!
-    flex-wrap: wrap;
+
+    @media screen and (max-width: 1200px) {
+        flex: 0 0 auto;
+    }
+
+    @media screen and (max-width: 992px) {
+        //order: -1;
+        flex: 0 0 100%;
+        justify-content: space-evenly;
+        padding: 1rem 0;
+    }
+
+    //Navbar collapse
+    @media screen and (max-width: 768px) {
+        display: block;
+        padding-top: 2rem;
+        padding-bottom: 0;
+    }
 
     & > * {
         padding: 0 2rem;
@@ -24,6 +44,15 @@
         height: 100%;
         display: flex;
         align-items: center;
+
+        @media screen and (max-width: 1200px) {
+            //padding: 1rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            justify-content: center;
+        }
+
         &:hover {
             background-color: $color-gray-light-2;
         }
@@ -47,37 +76,123 @@
     justify-content: space-evenly;
 
     //Temporal FIX!!
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
 
-    &-item-icon {
-        height: 2.25rem;
-        width: 2.25rem;
-        fill: $color-primary-green;
-
-        &-twitter:hover {
-            fill: $color-primary-blue;
-        }
-        &-tiktok:hover {
-            fill: $color-primary-black;
-        }
-        &-instagram:hover {
-            fill: #833AB4;
-        }
-        &-youtube:hover {
-            fill: red;
-        }
+    @media screen and (max-width: 768px) {
+        justify-content: space-evenly;
+        padding: 2rem;
     }
+
+    @media screen and (max-width: 992px) {
+        flex: 1;
+    }
+
     &-item {
-        padding: 0 2rem;
+        //padding: 0 2rem;
+        @media screen and (min-width: 992px) {
+            //padding: 0 1rem;
+        }
+        &-icon {
+            height: 2.25rem;
+            width: 2.25rem;
+            fill: $color-primary-green;
+    
+            &-twitter:hover {
+                fill: $color-primary-blue;
+            }
+            &-tiktok:hover {
+                fill: $color-primary-black;
+            }
+            &-instagram:hover {
+                fill: #833AB4;
+            }
+            &-youtube:hover {
+                fill: red;
+            }
+        }
     }
 }
 
 ///////////////////////////////////////////////////////
 // SEARCH
+/*
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 40%;
+    flex: 0 0 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 
+    input
+        font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    margin-right: -3.25rem;
+}
+*/
 .search {
-    margin-left: auto;
     margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+    &__form {
+        @media screen and (max-width: 768px) {
+            display: flex;
+            flex: 0 0 40%;
+            justify-content: center;
+        }
+    }
+
+    &__input {
+        //width: inherit;
+        background-color: darken($color-gray-light-3, 7%);
+        border: none;
+        padding: .7rem 2rem;
+        border-radius: 100px;
+        width: 90%;
+        margin-right: -3.25rem;
+        transition: all .2s;
+
+        &:focus {
+            outline: none;
+            width: 100%;
+            background-color: darken($color-gray-light-3,4%);
+        }
+    }
+
+    &__input:focus + &__button {
+        background-color: darken($color-gray-light-3,4%);
+    }
+
+    &__button {
+        border: none;
+        background-color: darken($color-gray-light-3, 7%);
+        padding: 0;
+        transition: all .2s;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            transform: translateY(2px);
+        }
+    }
 }
 
 
@@ -137,7 +252,7 @@
                 border-radius: 10px;
                 cursor: pointer;
                 color: #fff;
-                margin-top: .7rem;
+                margin-top: .5rem;
                 
                 &:not(:last-child) {
                     margin-right: 2rem;
@@ -181,28 +296,31 @@
     width: 100%;
     object-fit: cover;
 }
+    ///////////////////////////////////////////////////////
+    // Tags y cards
+    .card-image {
+        position: relative;
+        min-height: 15rem;
 
-.card-image {
-    position: relative;
-    min-height: 15rem;
+        @media screen and (max-width: 768px) {
+            max-height: 34rem;
+        }
 
-    @media screen and (max-width: 768px) {
-        max-height: 34rem;
-    }
+        &__tags {
+            display: flex;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            align-content: flex-end;
 
-    &__tags {
-        display: flex;
-        align-items: flex-end;
-        flex-wrap: wrap;
-        align-content: flex-end;
+            &-item {
+                margin-right: 1rem;
+            }
+        }
 
-        &-item {
-            margin-right: 1rem;
-            margin-top: .7rem;
+        &__img {
+            height: 100%;
         }
     }
 
-    &__img {
-        height: 100%;
-    }
-}
+///////////////////////////////////////////////////////
+// BLOGS RECIENTES

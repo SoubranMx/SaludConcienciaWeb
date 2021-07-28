@@ -27,10 +27,10 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <nav className="user-nav">
-                        <div ><NavLink className="user-nav__link" to="/" >Inicio</NavLink></div>
-                        <div ><NavLink className="user-nav__link" to="/blog" >Blog</NavLink></div>
-                        <div ><NavLink className="user-nav__link" to="/podcast" >Podcast</NavLink></div>
-                        <div ><NavLink className="user-nav__link" to="/para-ti" >Para ti</NavLink></div>
+                        <NavLink className="user-nav__link" to="/" >Inicio</NavLink>
+                        <NavLink className="user-nav__link" to="/blog" >Blog</NavLink>
+                        <NavLink className="user-nav__link" to="/podcast" >Podcast</NavLink>
+                        <NavLink className="user-nav__link" to="/para-ti" >Para ti</NavLink>
                     </nav>
                     <div className="user__icons">
                         <div className="user__icons-item"><NavLink to="/"><FaTwitter className="user__icons-item-icon user__icons-item-icon-twitter"/></NavLink></div>
@@ -38,13 +38,13 @@ const Navbar = () => {
                         <div className="user__icons-item"><NavLink to="/"><FaInstagram className="user__icons-item-icon user__icons-item-icon-instagram"/></NavLink></div>
                         <div className="user__icons-item"><NavLink to="/"><FaYoutube className="user__icons-item-icon user__icons-item-icon-youtube"/></NavLink></div>
                     </div>
-                    <form action="#" className="search">
-                        <input type="text" className="search__input" placeholder="Buscar"/>
-                        <button className="search__button">
-                            <BiSearch className="user__icons-item-icon"/>
-                        </button>
-                    </form>
-
+                    
+                        <form action="#" className="search search__form">
+                            <input type="text" className="search__input" placeholder="Buscar"/>
+                            <button className="search__button">
+                                <BiSearch className="user__icons-item-icon"/>
+                            </button>
+                        </form>
                 </div>                
             </div>
         </nav>

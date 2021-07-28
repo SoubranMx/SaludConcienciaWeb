@@ -4,20 +4,39 @@ html {
 .logo {
   height: 3.25rem;
   margin-left: 2rem; }
+  @media screen and (max-width: 206px) {
+    .logo {
+      height: 2rem;
+      margin: 0; } }
 
 .user-nav {
   display: flex;
   align-items: center;
   align-self: stretch;
   justify-content: center;
-  flex: 0 0 40%;
-  flex-wrap: wrap; }
+  flex: 0 0 40%; }
+  @media screen and (max-width: 1200px) {
+    .user-nav {
+      flex: 0 0 auto; } }
+  @media screen and (max-width: 992px) {
+    .user-nav {
+      flex: 0 0 100%;
+      justify-content: space-evenly;
+      padding: 1rem 0; } }
+  @media screen and (max-width: 768px) {
+    .user-nav {
+      display: block;
+      padding-top: 2rem;
+      padding-bottom: 0; } }
   .user-nav > * {
     padding: 0 2rem;
     cursor: pointer;
     height: 100%;
     display: flex;
     align-items: center; }
+    @media screen and (max-width: 768px) {
+      .user-nav > * {
+        justify-content: center; } }
     .user-nav > *:hover {
       background-color: #f4f2f2; }
   .user-nav__link:link, .user-nav__link:visited {
@@ -29,8 +48,14 @@ html {
   display: flex;
   align-items: center;
   align-self: stretch;
-  justify-content: space-evenly;
-  flex-wrap: wrap; }
+  justify-content: space-evenly; }
+  @media screen and (max-width: 768px) {
+    .user__icons {
+      justify-content: space-evenly;
+      padding: 2rem; } }
+  @media screen and (max-width: 992px) {
+    .user__icons {
+      flex: 1; } }
   .user__icons-item-icon {
     height: 2.25rem;
     width: 2.25rem;
@@ -43,12 +68,68 @@ html {
       fill: #833AB4; }
     .user__icons-item-icon-youtube:hover {
       fill: red; }
-  .user__icons-item {
-    padding: 0 2rem; }
 
+/*
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 40%;
+    flex: 0 0 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    input
+        font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    margin-right: -3.25rem;
+}
+*/
 .search {
-  margin-left: auto;
-  margin-right: 2rem; }
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media screen and (max-width: 768px) {
+    .search__form {
+      display: flex;
+      flex: 0 0 40%;
+      justify-content: center; } }
+  .search__input {
+    background-color: #dfdbdb;
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    margin-right: -3.25rem;
+    transition: all .2s; }
+    .search__input:focus {
+      outline: none;
+      width: 100%;
+      background-color: #e6e3e3; }
+  .search__input:focus + .search__button {
+    background-color: #e6e3e3; }
+  .search__button {
+    border: none;
+    background-color: #dfdbdb;
+    padding: 0;
+    transition: all .2s; }
+    .search__button:focus {
+      outline: none; }
+    .search__button:active {
+      transform: translateY(2px); }
 
 .image-container {
   min-height: 30rem;
@@ -91,7 +172,7 @@ html {
         border-radius: 10px;
         cursor: pointer;
         color: #fff;
-        margin-top: .7rem; }
+        margin-top: .5rem; }
         .image-container__info-tags-item:not(:last-child) {
           margin-right: 2rem; }
         .image-container__info-tags-item:first-child {
@@ -129,8 +210,7 @@ html {
     flex-wrap: wrap;
     align-content: flex-end; }
     .card-image__tags-item {
-      margin-right: 1rem;
-      margin-top: .7rem; }
+      margin-right: 1rem; }
   .card-image__img {
     height: 100%; }
 
@@ -143,6 +223,15 @@ html {
   border-bottom: 1px solid #000;
   display: flex;
   align-items: center; }
+
+.navbar-collapse {
+  width: inherit; }
+  @media screen and (max-width: 768px) {
+    .navbar-collapse {
+      border-top: 1px solid black; } }
+  @media screen and (max-width: 992px) {
+    .navbar-collapse {
+      flex-wrap: wrap; } }
 
 /*
     BOOTSTRAP CHANGE

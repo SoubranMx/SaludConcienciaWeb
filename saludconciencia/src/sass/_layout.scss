@@ -12,3 +12,14 @@
     //temporal fix!!!
     //flex-wrap: wrap;
 }
+
+.navbar-collapse {
+    width: inherit;
+    @media screen and (max-width: 768px) {
+        border-top: 1px solid black;
+    }
+
+    @media screen and (max-width: 992px) {
+        flex-wrap: wrap;
+    }
+}
