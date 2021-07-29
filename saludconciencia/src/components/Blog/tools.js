@@ -30,7 +30,7 @@ export const EDITOR_JS_TOOLS = {
   marker: Marker,
   delimiter: Delimiter,
   simpleImage: SimpleImage,
-  nestedlist: NestedList,
+  nestedList: NestedList,
   dragDrop: DragDrop
 }
 

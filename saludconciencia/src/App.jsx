@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from 'react-router-dom';
 
@@ -19,9 +18,9 @@ const App = () => {
 
   const [firebaseUser, setFirebaseUser] = useState(true);
 
-  const goAdmin = () => {
-    setFirebaseUser(!firebaseUser);
-  }
+  // const goAdmin = () => {
+  //   setFirebaseUser(!firebaseUser);
+  // }
 
   return (
     <Router>

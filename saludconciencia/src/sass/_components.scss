@@ -451,59 +451,6 @@
 
 ////////////////////////////////////////
 // FORM HEADER TITLE
-/*
-.search {
-    margin-right: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    
-    &__form {
-        @media screen and (max-width: 768px) {
-            display: flex;
-            flex: 0 0 40%;
-            justify-content: center;
-        }
-    }
-
-    &__input {
-        //width: inherit;
-        background-color: darken($color-gray-light-3, 7%);
-        border: none;
-        padding: .7rem 2rem;
-        border-radius: 100px;
-        width: 90%;
-        margin-right: -3.25rem;
-        transition: all .2s;
-
-        &:focus {
-            outline: none;
-            width: 100%;
-            background-color: darken($color-gray-light-3,4%);
-        }
-    }
-
-    &__input:focus + &__button {
-        background-color: darken($color-gray-light-3,4%);
-    }
-
-    &__button {
-        border: none;
-        background-color: darken($color-gray-light-3, 7%);
-        padding: 0;
-        transition: all .2s;
-
-        &:focus {
-            outline: none;
-        }
-
-        &:active {
-            transform: translateY(2px);
-        }
-    }
-}
-*/
 .blogForm{
     display: flex;
     flex-direction: column;
@@ -511,7 +458,7 @@
 .headerTitle {
     padding: 3rem 1.5rem;
     border: 1px solid black;
-    font-family: "Poppins", sans-serif;
+    font-family: "Lexend", sans-serif;
     &__title {
         flex: 1;
         display: flex;
@@ -599,7 +546,7 @@
 
 .tags {
     &__show {
-        font-size: 2rem;
+        font-size: 1.6rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -710,16 +657,18 @@
 ////////////////////////////////////////
 // FOOTER BUTTONS
 .footerButtons {
+    margin-bottom: 3rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     &__btn{
+        padding: .5rem 1.5rem;
+        margin: 0 5rem;
         font-size: 1.5rem;
-        font-weight: 400;
+        font-weight: 600;
         text-transform: uppercase;
         border-radius: 100px;
         border: none;
-        padding: .5rem 1.5rem;
         color: #fff;
 
         display: flex;  //Para ajustar altura tanto del icono como del texto
@@ -743,5 +692,38 @@
         &-icon {
             margin-right: 1rem;
         }
+    }
+}
+
+////////////////////////////////////////
+// EDITOR JS
+
+.editorJS__container{
+    background: #fff;
+    padding: 7rem 1rem;
+}
+
+.editorJS {
+    font-family: "Lexend", "Poppins", sans-serif;
+    font-size: 1.5rem;
+    & > :only-of-type h1, h2, h3, h4, h5, h6 {
+        //font-size: 2.5rem;
+        font-weight: 600;
+    }
+    min-height: 85rem;
+    padding: 3rem 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.codex-editor {
+    &__redactor {
+        //padding-bottom: 10rem !important;
+    }
+}
+
+.ce-block {
+    &__content {
+        //border-radius: 100px;
     }
 }
