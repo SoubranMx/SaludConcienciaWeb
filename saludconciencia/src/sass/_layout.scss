@@ -47,8 +47,9 @@
 
     //transition: flex-basis .2s;
 
+    //Animacion esconder sidebar
     &:not(:hover) {
-        flex: 0 0 5%;
+        flex: 0 0 4%;
         
         & > :only-of-type span {
             display: none;
@@ -69,6 +70,10 @@
             }
         }
 
+        .icon-settings {
+            display: none;
+        }
+
         .legal{
             display: none;
         }
@@ -82,3 +87,16 @@
     }
 }
 
+
+.blogContainer {
+    background-image: linear-gradient(to right bottom, #FF3366, #BA265D);
+    min-height: 100vh;
+    display: flex;
+}
+
+.contenedorPrincipal {
+    margin: 2.5rem 3.5rem;
+    flex: 1;
+    background-color: #fff;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}

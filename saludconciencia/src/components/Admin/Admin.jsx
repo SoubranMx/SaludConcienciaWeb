@@ -40,11 +40,11 @@ const Admin = (props) => {
     return (
         <div className="content">
             <Sidebar_Admin />
-            <nav id="navbar-spy" className="overflow-scroll content__main">
+            <div id="navbar-spy" className="overflow-scroll content__main">
             {
                 contenido ? contenido : null
             }
-            </nav>
+            </div>
         </div>
     )
 }

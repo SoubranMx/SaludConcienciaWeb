@@ -447,3 +447,140 @@
         }
     }
 }
+
+
+////////////////////////////////////////
+// FORM HEADER TITLE
+/*
+.search {
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+    &__form {
+        @media screen and (max-width: 768px) {
+            display: flex;
+            flex: 0 0 40%;
+            justify-content: center;
+        }
+    }
+
+    &__input {
+        //width: inherit;
+        background-color: darken($color-gray-light-3, 7%);
+        border: none;
+        padding: .7rem 2rem;
+        border-radius: 100px;
+        width: 90%;
+        margin-right: -3.25rem;
+        transition: all .2s;
+
+        &:focus {
+            outline: none;
+            width: 100%;
+            background-color: darken($color-gray-light-3,4%);
+        }
+    }
+
+    &__input:focus + &__button {
+        background-color: darken($color-gray-light-3,4%);
+    }
+
+    &__button {
+        border: none;
+        background-color: darken($color-gray-light-3, 7%);
+        padding: 0;
+        transition: all .2s;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            transform: translateY(2px);
+        }
+    }
+}
+*/
+.blogForm{
+    display: flex;
+    flex-direction: column;
+}
+.headerTitle {
+    padding: 3rem 1.5rem;
+    border: 1px solid black;
+    &__title {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        &-title{
+            flex: 0 0 20%;
+            align-self: center;
+            font-size: 2rem;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 2.5rem;
+        }
+
+        &-input{
+            font-size: 2rem;
+            text-align: center;
+            //flex: 0 0 70%;
+            background-color: $color-gray-light-3;
+            border: none;
+            padding: .7rem 2rem;
+            border-radius: 100px;
+            width: 80%;
+
+            //Animacion de engrandecimiento no funcionando.
+            //transition: all .2s;
+
+            // &:focus {
+            //     outline: none;
+            //     width: 100%;
+            //     background-color: darken($color-gray-light-3,4%);
+            // }
+        }
+    }
+}
+
+////////////////////////////////////////
+// FOOTER BUTTONS
+.footerButtons {
+    display: flex;
+    justify-content: space-between;
+
+    &__btn{
+        font-size: 1.5rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        border-radius: 100px;
+        border: none;
+        padding: .5rem 1.5rem;
+        color: #fff;
+
+        display: flex;  //Para ajustar altura tanto del icono como del texto
+        align-items: center;
+        
+        &-save {
+            background-color: lighten($color-primary-blue, 10%);
+        }
+
+        &-publish {
+            background-color: $color-primary-green;
+        }
+    }
+
+    &__save {
+        &-icon {
+            margin-right: 1rem;
+        }
+    }
+    &__publish {
+        &-icon {
+            margin-right: 1rem;
+        }
+    }
+}
