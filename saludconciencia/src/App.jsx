@@ -13,6 +13,7 @@ import Podcast from './components/Pages/Podcast'
 import Blog from './components/Blog/Blog'
 import Inicio from './components/Pages/Inicio'
 import Admin from './components/Admin/Admin';
+import Ejemplo from './Ejemplo';
 
 const App = () => {
 
@@ -28,17 +29,14 @@ const App = () => {
         firebaseUser ? null : <Navbar />
       }
       <Switch>
-        <Route path='/admin/blogs'>
+        <Route path='/admin/blog/:anio/:mes/:dia/:titulo'>
           <Admin item="blog" />
         </Route>
-        <Route path='/admin/crearBlog'>
-          <Admin item="crear-blog" />
+        <Route path='/admin/:ruta'>
+          <Admin />
         </Route>
-        <Route path='/admin/crearPodcast'>
-          <Admin item="crear-podcast" />
-        </Route>
-        <Route path='/admin/guardados'>
-          <Admin item="guardados" />
+        <Route path='/blog/:anio/:mes/:dia/:titulo'>
+          <Ejemplo />
         </Route>
         <Route path='/asesorias'>
           <Asesorias />
@@ -46,7 +44,7 @@ const App = () => {
         <Route path='/podcast'>
           <Podcast />
         </Route>
-        <Route path='/blog' exact>
+        <Route path='/blog'>
           <Blog />
         </Route>
         <Route path='/para-ti'>

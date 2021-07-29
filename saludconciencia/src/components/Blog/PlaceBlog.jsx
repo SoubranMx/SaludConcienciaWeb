@@ -25,8 +25,8 @@ const PlaceBlog = (props) => {
                     <p className="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus magnam quia nesciunt, odit obcaecati dicta molestiae ullam, quam omnis saepe illo veniam placeat ipsum vel iste quas voluptatum.</p>
                     <a href="#" className="btn btn-outline-primary">Leer</a>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                <div className="card-footer">
+                    <small className="text-muted">Last updated 3 mins ago</small>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, withRouter, useParams} from 'react-router-dom';
 
 import {
     FaYoutube,
@@ -14,11 +14,33 @@ import {RiArticleLine} from 'react-icons/ri';
 import logo from '../../resources/nav-logo.png';
 import logo_sm from '../../resources/nav-logo-sm.png';
 
-const Sidebar_Admin = () => {
-    const [linkActivo1, setLinkActivo1] = useState("");
-    const [linkActivo2, setLinkActivo2] = useState("");
-    const [linkActivo3, setLinkActivo3] = useState("");
-    const [linkActivo4, setLinkActivo4] = useState("");
+const SidebarAdmin = () => {
+    const [linkActivo, setLinkActivo] = useState(["","","",""]);
+    const [params, setParams] = useState();
+    let rutas = useParams();
+
+    const itemActivo = {
+        crearBlog: "createBlog",
+        guardado: "guardados",
+        podcast: "crearPodcast",
+        blog: "blog"
+    }
+
+    useEffect(()=>{
+        if(rutas !== undefined ) {
+            rutas = rutas.ruta
+            setParams(rutas)
+            setLinkActivo(["","","",""])
+            rutas === itemActivo.crearBlog && setLinkActivo(["side-nav__item--active","","",""])
+            rutas === itemActivo.guardado && setLinkActivo(["","side-nav__item--active","",""])
+            rutas === itemActivo.podcast && setLinkActivo(["","","side-nav__item--active",""])
+            rutas === itemActivo.blog && setLinkActivo(["","","","side-nav__item--active"])
+        } else {
+            setParams(null);
+            setLinkActivo(["","","",""]);
+        }
+    },[rutas])
+
     return (
         <>
             <nav className="sidebar">
@@ -30,73 +52,26 @@ const Sidebar_Admin = () => {
                     </div>
                 </div>
                 <ul className="side-nav">
-                    <li className={`side-nav__item ${linkActivo1}`}>
-                        <NavLink 
-                            isActive={(match,location)=>{
-                                if(!match){
-                                    return false;
-                                }
-                                setLinkActivo1("side-nav__item--active");
-                                setLinkActivo2("");
-                                setLinkActivo3("");
-                                setLinkActivo4("");
-                            }} 
-                            to="/admin/crearBlog" 
-                            className="side-nav__link">
+                    <li className={`side-nav__item ${linkActivo[0]}`}>
+                        <NavLink to="/admin/crearBlog" className={`side-nav__link`}>
                             <MdCreate className="side-nav__icon"/>
                             <span>Crear Blog</span>
                         </NavLink>
                     </li>
-                    <li className={`side-nav__item ${linkActivo2}`}>
-                        <NavLink 
-                            isActive={(match,location)=>{
-                                if(!match){
-                                    return false;
-                                }
-                                setLinkActivo2("side-nav__item--active");
-                                setLinkActivo1("");
-                                setLinkActivo3("");
-                                setLinkActivo4("");
-                            }} 
-                            to="/admin/guardados" 
-                            className="side-nav__link"
-                        >
+                    <li className={`side-nav__item ${linkActivo[1]}`}>
+                    <NavLink to="/admin/guardados" className={`side-nav__link`}>
                             <FiSave className="side-nav__icon"/>
                             <span>Guardados</span>
                         </NavLink>
                     </li>
-                    <li className={`side-nav__item ${linkActivo3}`}>
-                        <NavLink 
-                            isActive={(match,location)=>{
-                                if(!match){
-                                    return false;
-                                }
-                                setLinkActivo3("side-nav__item--active");
-                                setLinkActivo1("");
-                                setLinkActivo2("");
-                                setLinkActivo4("");
-                            }} 
-                            to="/admin/crearPodcast"
-                            className="side-nav__link"
-                        >
+                    <li className={`side-nav__item ${linkActivo[2]}`}>
+                    <NavLink to="/admin/crearPodcast" className={`side-nav__link`}>
                             <FaYoutube className="side-nav__icon"/>
                             <span>Crear Podcast</span>
                         </NavLink>
                     </li>
-                    <li className={`side-nav__item ${linkActivo4}`}>
-                        <NavLink 
-                            isActive={(match,location)=>{
-                                if(!match){
-                                    return false;
-                                }
-                                setLinkActivo4("side-nav__item--active");
-                                setLinkActivo2("");
-                                setLinkActivo3("");
-                                setLinkActivo1("");
-                            }} 
-                            to="/admin/blogs"
-                            className="side-nav__link"
-                        >
+                    <li className={`side-nav__item ${linkActivo[3]}`}>
+                    <NavLink to="/admin/blog" className={`side-nav__link`}>
                             <RiArticleLine className="side-nav__icon side-nav__icon-article"/>
                             <span>Blogs</span>
                         </NavLink>
@@ -122,4 +97,4 @@ const Sidebar_Admin = () => {
     )
 }
 
-export default withRouter(Sidebar_Admin);
+export default withRouter(SidebarAdmin);
