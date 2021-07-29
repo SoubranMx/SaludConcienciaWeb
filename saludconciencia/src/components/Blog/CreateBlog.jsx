@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import EditorJS from '@editorjs/editorjs';
+import { db } from '../../firebase';
 
 import { EDITOR_JS_TOOLS } from './tools';
 import ButtonMain from '../shared/UIElements/ButtonMain';
@@ -37,15 +38,32 @@ const CreateBlog = () => {
     const [title, setTitle] = useState("")
     const [imgPortada, setImgPortada] = useState("")
     const [dataEditorJS, setDataEditorJS] = useState({})
+    const [dataFinal, setDataFinal] = useState({})
+    const [buttonSubmitType, setButtonSubmitType] = useState(null)
+    const [editorData, setEditorData] = useState(DEFAULT_INITIAL_DATA);
 
     const ejInstance = useRef();
-    const [editorData, setEditorData] = useState(DEFAULT_INITIAL_DATA);
     useEffect(() => {
         if (!ejInstance.current) {
             initEditor();
         }
     }, [ejInstance]);
 
+    useEffect(()=>{
+        const salvar = async(coleccion) => {
+            try {
+                // si se guarda en una variable, esa variable tiene el id que firebase le pone
+                await db.collection(coleccion).add({...dataFinal})
+            } catch (error) {
+                console.log("Error Firebase: ",error)
+            }
+        }
+        if(buttonSubmitType === 0){ //Guardar
+            salvar('guardados')
+        } else if (buttonSubmitType === 1) { //Publicar
+            salvar('blogs')
+        }
+    },[dataFinal, buttonSubmitType])
     //funciones
     // const initEditor = () => {
     //     const editor = new EditorJS({
@@ -161,17 +179,40 @@ const CreateBlog = () => {
         });
     }
 
-    const saveBlogHandler = (event) => {
-        event.preventDefault();
+
+    const createDataToFirebase = async() => {
+        let contenidoEditor;
+        try {
+            contenidoEditor = await ejInstance.current.saver.save();
+            setDataFinal({
+                titulo: title,
+                imgPortada: imgPortada,
+                tags: tags,
+                fecha: Date.now(),
+                editor: contenidoEditor
+            })   
+        } catch (error) {
+            console.log("Error de guardado en EditorJs",error)
+        }
+    }
+    
+    const saveBlogHandler = async(tipo) => {
+        console.log("SaveBlogHandlerBefore")
+        try {
+            await createDataToFirebase();
+            setButtonSubmitType(tipo);
+        } catch (error) {
+            console.log("Error saveBlogHandler: ",error)
+        }
     }
 
-    const publishBlogHandler = () => {
-        
+    const publishBlogHandler = (tipo) => {
+        createDataToFirebase();
+        setButtonSubmitType(tipo);
     }
     
 
     const addTagsHandler = (tagsProp) => {
-        //setTags([...tags, tagsProp])
         setTags([...tagsProp])
     }
 
@@ -187,12 +228,16 @@ const CreateBlog = () => {
         setImgPortada(img)
     }
 
+    const submitHandler = (e) => {
+        e.preventDefault();
+    }
+
 
     //variables
     return (
         <div className="blogContainer">
             <div className="contenedorPrincipal">
-                <form action="#" className="blogForm" onSubmit={saveBlogHandler}>
+                <form className="blogForm" onSubmit={submitHandler}>
                     <div className="headerTitle">
                         <Title onAddTitle={addTitleHandler} onAddImgPortada={addImgUrlHandler}/>
                         <TagsCreate onAddTags={addTagsHandler} onDeleteTags={deleteTagsHandler}/>
