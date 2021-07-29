@@ -511,14 +511,16 @@
 .headerTitle {
     padding: 3rem 1.5rem;
     border: 1px solid black;
+    font-family: "Poppins", sans-serif;
     &__title {
         flex: 1;
         display: flex;
         justify-content: flex-start;
         &-title{
-            flex: 0 0 20%;
+            flex: 1;
             align-self: center;
-            font-size: 2rem;
+            font-size: 2.5rem;
+            font-weight: 600;
             text-transform: uppercase;
             text-align: center;
             padding: 0 2.5rem;
@@ -527,23 +529,83 @@
         &-input{
             font-size: 2rem;
             text-align: center;
-            //flex: 0 0 70%;
+            flex: 0 0 70%;
             background-color: $color-gray-light-3;
             border: none;
             padding: .7rem 2rem;
+            margin-right: 15rem;
             border-radius: 100px;
             width: 80%;
 
             //Animacion de engrandecimiento no funcionando.
-            //transition: all .2s;
+            transition: all .2s;
 
-            // &:focus {
-            //     outline: none;
+            &:focus {
+                outline: none;
             //     width: 100%;
-            //     background-color: darken($color-gray-light-3,4%);
-            // }
+                background-color: darken($color-gray-light-3,4%);
+            }
         }
     }
+
+    &__imgPortada {
+        display: flex;
+        flex-direction: column;
+        &-top {
+            display: flex;
+            flex: 1;
+            justify-content: flex-start;
+            margin: 1.5rem 0;
+        }
+
+        &-title{
+            flex: 1;
+            align-self: center;
+            font-size: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 2.5rem;
+        }
+
+        &-input{
+            font-size: 2rem;
+            text-align: center;
+            flex: 0 0 70%;
+            align-self: center;
+            background-color: $color-gray-light-3;
+            border: none;
+            padding: .7rem 2rem;
+            margin-right: 15rem;
+            border-radius: 100px;
+            width: 80%;
+
+            //Animacion de engrandecimiento no funcionando.
+            transition: all .2s;
+
+            &:focus {
+                outline: none;
+                width: 100%;
+                background-color: darken($color-gray-light-3,4%);
+            }
+        }
+    }
+}
+
+.preview{
+    &-off {
+        display: none;
+    }
+
+    &-on {
+        display: block;
+        align-self: center;
+    }
+}
+
+.imgPreview {
+    height: 32rem;
+    width: 48rem;
 }
 
 ////////////////////////////////////////
