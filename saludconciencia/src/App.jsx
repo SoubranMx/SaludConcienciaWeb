@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from 'react-router-dom';
+
+import {db} from './firebase';
 
 import Navbar from './components/Navbar/Navbar';
 import Asesorias from './components/Pages/Asesorias'
@@ -18,10 +20,25 @@ import Ejemplo from './Ejemplo';
 const App = () => {
 
   const [firebaseUser, setFirebaseUser] = useState(true);
+  const [fsEjemplo, setFsEjemplo] = useState([])
 
   // const goAdmin = () => {
   //   setFirebaseUser(!firebaseUser);
   // }
+  useEffect(()=>{
+    const obtenerDatos = async () => {
+      try {
+        const data = await db.collection('blogs').get();
+        const arrayData = data.docs.map(doc => ({id: doc.id, ...doc.data()}))
+        setFsEjemplo(arrayData)
+        console.log(fsEjemplo)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    obtenerDatos()
+  },[])
 
   return (
     <Router>

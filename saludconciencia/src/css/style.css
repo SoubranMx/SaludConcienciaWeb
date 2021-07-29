@@ -360,7 +360,7 @@ html {
       padding: .3rem 2rem;
       color: #fff;
       position: relative; }
-      .tags__show__carrousel__item:not(:last-child) {
+      .tags__show__carrousel__item-overflow:not(:last-child) {
         margin-bottom: 2rem; }
       .tags__show__carrousel__item:not(:last-child) {
         margin-right: 2rem; }

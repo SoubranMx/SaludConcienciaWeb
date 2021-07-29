@@ -16,7 +16,6 @@ import logo_sm from '../../resources/nav-logo-sm.png';
 
 const SidebarAdmin = () => {
     const [linkActivo, setLinkActivo] = useState(["","","",""]);
-    const [params, setParams] = useState();
     let rutas = useParams();
 
     const itemActivo = {
@@ -29,14 +28,12 @@ const SidebarAdmin = () => {
     useEffect(()=>{
         if(rutas !== undefined ) {
             rutas = rutas.ruta
-            setParams(rutas)
             setLinkActivo(["","","",""])
             rutas === itemActivo.crearBlog && setLinkActivo(["side-nav__item--active","","",""])
             rutas === itemActivo.guardado && setLinkActivo(["","side-nav__item--active","",""])
             rutas === itemActivo.podcast && setLinkActivo(["","","side-nav__item--active",""])
             rutas === itemActivo.blog && setLinkActivo(["","","","side-nav__item--active"])
         } else {
-            setParams(null);
             setLinkActivo(["","","",""]);
         }
     },[rutas])

@@ -1,24 +1,39 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {IoAddCircle, IoCloseSharp} from 'react-icons/io5';
 
 const TagsCreate = (props) => {
     const [cantidadTags,setCantidadTags] = useState([]);
-
     const [valorTag, setValorTag] = useState("");
+    const [estilosFix,setEstilosFix] = useState("")
+
+    useEffect(()=>{
+        if(cantidadTags.length > 5) {
+            setEstilosFix("tags__show__carrousel__item-overflow")
+        } else {
+            setEstilosFix("")
+        }
+    },[cantidadTags])
+
+    useEffect(()=>{
+        props.onAddTags(cantidadTags)
+    },[cantidadTags])
 
     const addTargetHandler = () => {
-        if(cantidadTags.length === 0) {
-            setCantidadTags([...cantidadTags, valorTag]);
-            setValorTag("");
-        } else {
-            if(cantidadTags.filter(tagABuscar => tagABuscar === valorTag).length !== 0){ // Encontro tag?
-                return;
-            } else {    //No encontro el tag, continua
-                setCantidadTags([...cantidadTags, valorTag]);
-                setValorTag("");
+        if(valorTag !== ""){
+            if(cantidadTags.length === 0) {
+                setCantidadTags([...cantidadTags, valorTag])
+            } else {
+                if(cantidadTags.filter(tagABuscar => tagABuscar === valorTag).length !== 0){ // Encontro tag?
+                    return;
+                } else {    //No encontro el tag, continua
+                    setCantidadTags([...cantidadTags, valorTag]);
+                }
             }
         }
+        //props.onAddTags(valorTag)
+        setValorTag("")
+            //props.onAddTags(cantidadTags)
     }
 
     const tagValueHandler = (e) => {
@@ -34,7 +49,7 @@ const TagsCreate = (props) => {
         let tags = [...cantidadTags];
         let tagEliminado = tags.splice(index,1);
         setCantidadTags(tags);
-        console.log("Tags finales de State", cantidadTags)
+        //props.onDeleteTags(cantidadTags)
     }
 
 
@@ -46,7 +61,7 @@ const TagsCreate = (props) => {
                     {
                         cantidadTags.length !== 0 ? (
                             cantidadTags.map((tag, index)=>(
-                                <div className="tags__show__carrousel__item" key={index}>
+                                <div className={`tags__show__carrousel__item ${estilosFix}`} key={index}>
                                     {tag}
                                     <div className="tags__show__carrousel__item-delete" onClick={()=>{deleteTagHandler(index)}}>
                                         <IoCloseSharp className="tags__show__carrousel__item-icon" />

@@ -31,7 +31,13 @@ const CreateBlog = () => {
             ]
         }
     }
+    
     //hooks
+    const [tags, setTags] = useState([])
+    const [title, setTitle] = useState("")
+    const [imgPortada, setImgPortada] = useState("")
+    const [dataEditorJS, setDataEditorJS] = useState({})
+
     const ejInstance = useRef();
     const [editorData, setEditorData] = useState(DEFAULT_INITIAL_DATA);
     useEffect(() => {
@@ -163,14 +169,33 @@ const CreateBlog = () => {
         
     }
     
+
+    const addTagsHandler = (tagsProp) => {
+        //setTags([...tags, tagsProp])
+        setTags([...tagsProp])
+    }
+
+    const deleteTagsHandler = (tagsProp) => {
+        setTags([...tagsProp])
+    }
+
+    const addTitleHandler = (title) => {
+        setTitle(title)
+    }
+
+    const addImgUrlHandler = (img) => {
+        setImgPortada(img)
+    }
+
+
     //variables
     return (
         <div className="blogContainer">
             <div className="contenedorPrincipal">
                 <form action="#" className="blogForm" onSubmit={saveBlogHandler}>
                     <div className="headerTitle">
-                        <Title />
-                        <TagsCreate />
+                        <Title onAddTitle={addTitleHandler} onAddImgPortada={addImgUrlHandler}/>
+                        <TagsCreate onAddTags={addTagsHandler} onDeleteTags={deleteTagsHandler}/>
                     </div>
                     <div className="editorJS__container">
                         <div className="editorJS" id={EDITOR_HOLDER_ID}></div>

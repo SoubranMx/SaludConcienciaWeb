@@ -3,22 +3,33 @@ import React, { useState } from 'react'
 const Title = (props) => {
     const [showPreview, setShowPreview] = useState("preview-off");
     const [urlImagen, setUrlImagen] = useState("")
+    //const [tituloState, setTituloState] = useState("")
 
     const showPreviewHandler = (e) => {
         if(e.target.value) {
             setShowPreview("preview-on")
             setUrlImagen(e.target.value)
+            props.onAddImgPortada(e.target.value)
         } else {
             setShowPreview('preview-off');
             setUrlImagen("")
+            props.onAddImgPortada(e.target.value)
         }
+    }
+
+    const addTitle = (titulo) => {
+        props.onAddTitle(titulo.target.value)
     }
 
     return (
         <div>
             <div className="headerTitle__title">
                 <span className="headerTitle__title-title">Título</span>
-                <input type="text" className="headerTitle__title-input" />
+                <input 
+                    type="text"
+                    className="headerTitle__title-input"
+                    onChange={item=>addTitle(item)}
+                />
             </div>
             <div className="headerTitle__imgPortada">
                 <div className="headerTitle__imgPortada-top">
