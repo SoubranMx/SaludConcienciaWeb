@@ -30,7 +30,7 @@ const Title = (props) => {
                     />
                 </div>
                 <div className={`headerTitle__imgPortada-down ${showPreview}`}>
-                    <img src={urlImagen} alt="Img Preview" class="imgPreview"/>
+                    <img src={urlImagen} alt="Img Preview" className="imgPreview"/>
                 </div>
             </div>
         </div>

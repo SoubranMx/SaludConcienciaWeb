@@ -21,7 +21,7 @@ const CreateBlog = () => {
     return (
         <div className="blogContainer">
             <div className="contenedorPrincipal">
-                <form action="#" class="blogForm" onSubmit={saveBlogHandler}>
+                <form action="#" className="blogForm" onSubmit={saveBlogHandler}>
                     <div className="headerTitle">
                         <Title />
                         <TagsCreate />

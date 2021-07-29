@@ -590,6 +590,105 @@
             }
         }
     }
+
+    &__tags {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.tags {
+    &__show {
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__title {
+            margin: 2.5rem 2.5rem;
+        }
+
+        &__carrousel {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+
+            &__item {
+                background-color: $color-primary-blue;
+                border-radius: 100px;
+                padding: .3rem 2rem;
+                &:not(:last-child){
+                    margin-bottom: 2rem;
+                }
+                color: #fff;
+                position: relative;
+
+                &:not(:last-child) {
+                    margin-right: 2rem;
+                }
+
+                &-delete {
+                    background-color: red;
+                    border-radius: 100px;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    
+                    position: absolute;
+                    top: -10px;
+                    right: -15px;
+
+                    & > * {
+                        padding: 0;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &__add {
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__icon {
+            height: 3rem;
+            width: 3rem;
+            fill: $color-primary-green;
+        }
+
+        &__btn {
+            padding: 0 2rem;
+            cursor: pointer;
+
+            &:hover {
+                & > * {
+                    fill: lighten($color-primary-green, 2%);
+                }
+            }
+        }
+
+        &__title {
+            margin-right: 2rem;
+        }
+
+        &__input {
+            font-size: 1.5rem;
+            text-align: center;
+            background-color: $color-gray-light-2;
+            border: none;
+            padding: 0;
+            border-radius: 100px;
+
+            &:focus {
+                outline: none;
+                background-color: darken($color-gray-light-2, 5%);
+            }
+        }
+    }
 }
 
 .preview{
