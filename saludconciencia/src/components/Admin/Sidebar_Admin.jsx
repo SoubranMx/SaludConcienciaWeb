@@ -19,7 +19,7 @@ const SidebarAdmin = () => {
     let rutas = useParams();
 
     const itemActivo = {
-        crearBlog: "createBlog",
+        crearBlog: "crearBlog",
         guardado: "guardados",
         podcast: "crearPodcast",
         blog: "blog"

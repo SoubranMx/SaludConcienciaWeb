@@ -1,24 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Title = (props) => {
     const [showPreview, setShowPreview] = useState("preview-off");
     const [urlImagen, setUrlImagen] = useState("")
-    //const [tituloState, setTituloState] = useState("")
 
-    const showPreviewHandler = (e) => {
-        if(e.target.value) {
+    useEffect(()=>{
+        if(props.showImg === true) {
             setShowPreview("preview-on")
-            setUrlImagen(e.target.value)
-            props.onAddImgPortada(e.target.value)
+            setUrlImagen(props.imagenInput)
         } else {
-            setShowPreview('preview-off');
+            setShowPreview("preview-off")
             setUrlImagen("")
-            props.onAddImgPortada(e.target.value)
         }
-    }
+    },[props.showImg])
+
+    useEffect(()=>{
+        setShowPreview("preview-off")
+        setUrlImagen("")
+    },[props.clean])
 
     const addTitle = (titulo) => {
         props.onAddTitle(titulo.target.value)
+    }
+    
+    const addImg = (img) => {
+        props.onAddImgPortada(img.target.value)
+        setUrlImagen(img.target.value)
     }
 
     const addDescripcionHandler = (descripcion) => {
@@ -33,6 +40,7 @@ const Title = (props) => {
                     type="text"
                     className="headerTitle__title-input"
                     onChange={item=>addTitle(item)}
+                    value={props.tituloInput}
                 />
             </div>
             <div className="headerTitle__imgPortada">
@@ -41,7 +49,8 @@ const Title = (props) => {
                     <input 
                         type="text"
                         className="headerTitle__imgPortada-input"
-                        onChange={showPreviewHandler}
+                        onChange={addImg}
+                        value={props.imagenInput}
                     />
                 </div>
                 <div className={`headerTitle__imgPortada-down ${showPreview}`}>
@@ -57,6 +66,7 @@ const Title = (props) => {
                     type="text"
                     className="headerTitle__title-input"
                     onChange={item=>addDescripcionHandler(item)}
+                    value={props.descripcionInput}
                 />
             </div>
             

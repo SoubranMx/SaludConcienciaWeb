@@ -13,7 +13,7 @@ const ButtonMain = (props) => {
     return (
         <div className="footerButtons">
             <div className="footerButtons__save" onClick={saveHandler}>
-                <button className="footerButtons__btn footerButtons__btn-save" type="submit">
+                <button className="footerButtons__btn footerButtons__btn-save" type="button">
                     <FiSave className="footerButtons__save-icon" />
                     Guardar
                 </button>

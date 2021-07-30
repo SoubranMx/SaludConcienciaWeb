@@ -7,17 +7,19 @@ const TagsCreate = (props) => {
     const [valorTag, setValorTag] = useState("");
     const [estilosFix,setEstilosFix] = useState("")
 
-    useEffect(()=>{
-        if(cantidadTags.length > 5) {
-            setEstilosFix("tags__show__carrousel__item-overflow")
-        } else {
-            setEstilosFix("")
-        }
-    },[cantidadTags])
+    // useEffect(()=>{
+    //     if(cantidadTags.length > 5) {
+    //         //setEstilosFix("tags__show__carrousel__item-overflow")
+    //     } else {
+    //         setEstilosFix("")
+    //     }
+    // },[cantidadTags])
 
     useEffect(()=>{
         props.onAddTags(cantidadTags)
     },[cantidadTags])
+
+    useEffect(()=>{if(props.clean){cleanTagsHandler()}},[props.clean])
 
     const addTargetHandler = () => {
         if(valorTag !== ""){
@@ -31,9 +33,7 @@ const TagsCreate = (props) => {
                 }
             }
         }
-        //props.onAddTags(valorTag)
         setValorTag("")
-            //props.onAddTags(cantidadTags)
     }
 
     const tagValueHandler = (e) => {
@@ -49,9 +49,12 @@ const TagsCreate = (props) => {
         let tags = [...cantidadTags];
         let tagEliminado = tags.splice(index,1);
         setCantidadTags(tags);
-        //props.onDeleteTags(cantidadTags)
     }
 
+    const cleanTagsHandler = () => {
+        setCantidadTags([])
+        setValorTag("")
+    }
 
     return (
         <div className="headerTitle__tags">
@@ -74,7 +77,12 @@ const TagsCreate = (props) => {
             </div>
             <div className="tags__add">
                 <span className="tags__add__title">Tag: </span>
-                <input type="text" className="tags__add__input" value={valorTag} onChange={tagValueHandler} />
+                <input 
+                    type="text"
+                    className="tags__add__input"
+                    value={valorTag}
+                    onChange={tagValueHandler}
+                />
                 <div className="tags__add__btn" onClick={addTargetHandler}>
                     <IoAddCircle className="tags__add__icon" />
                 </div>

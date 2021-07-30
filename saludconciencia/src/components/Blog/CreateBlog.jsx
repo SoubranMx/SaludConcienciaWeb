@@ -35,15 +35,23 @@ const CreateBlog = () => {
     
     //hooks
     const [dataEditorJS, setDataEditorJS] = useState({})
-    const [tags, setTags] = useState([])
+    //Titulo
     const [title, setTitle] = useState("")
+    //Imagen
     const [imgPortada, setImgPortada] = useState("")
+    const [showImage, setShowImage] = useState(false)
+    //Descripcion
     const [descripcion, setDescripcion] = useState("")
+    //Tags
+    const [tags, setTags] = useState([])
+    //Otros
+    const [cleanAll, setCleanAll] = useState(false)
     const [dataFinal, setDataFinal] = useState({})
     const [buttonSubmitType, setButtonSubmitType] = useState(null)
     const [editorData, setEditorData] = useState(DEFAULT_INITIAL_DATA);
 
     const ejInstance = useRef();
+
     useEffect(() => {
         if (!ejInstance.current) {
             initEditor();
@@ -64,70 +72,16 @@ const CreateBlog = () => {
         } else if (buttonSubmitType === 1) { //Publicar
             salvar('blogs')
         }
-    },[dataFinal, buttonSubmitType])
-    //funciones
-    // const initEditor = () => {
-    //     const editor = new EditorJS({
-    //         holder: EDITOR_HOLDER_ID,
-    //         logLevel: "ERROR",
-    //         data: editorData,
-    //         onReady: () => {
-    //             ejInstance.current = editor;
-    //             new EDITOR_JS_TOOLS.dragDrop(editor);
-    //         },
-    //         autofocus: true,
-    //         tools: {
-    //             header: {
-    //                 class: EDITOR_JS_TOOLS.header,
-    //                 inlineToolbar: true
-    //             },
-    //             list: {
-    //                 class: EDITOR_JS_TOOLS.nestedList,
-    //                 inlineToolbar: true
-    //             },
-    //             embed: {
-    //                 class: EDITOR_JS_TOOLS.embed,
-    //                 inlineToolbar: true,
-    //                 config: {
-    //                     services: {
-    //                         youtube: true
-    //                     }
-    //                 },
-    //             },
-    //             image: EDITOR_JS_TOOLS.simpleImage,
-    //             quote: {
-    //                 class: EDITOR_JS_TOOLS.quote,
-    //                 inlineToolbar: true,
-    //                 config: {
-    //                     quotePlaceholder: 'Escribe una cita',
-    //                     captionPlaceholder: 'Autor de la cita',
-    //                 }
-    //             },
-    //             table: {
-    //                 class: EDITOR_JS_TOOLS.table,
-    //                 inlineToolbar: true
-    //             },
-    //             marker: {
-    //                 class: EDITOR_JS_TOOLS.marker,
-    //                 inlineToolbar: true,
-    //                 shortcut: 'CMD+SHIFT+M',
-    //             },
-    //             delimiter: {
-    //                 class: EDITOR_JS_TOOLS.delimiter,
-    //             },
-    //             paragraph: {
-    //                 class: EDITOR_JS_TOOLS.paragraph,
-    //                 inlineToolbar: true,
-    //             },
-    //         }, 
-    //     });
-    // };
 
+        
+    },[dataFinal, buttonSubmitType])
+
+   
     const initEditor = () => {
         const editor = new EditorJS({
             holder: 'editorjs',
             placeholder: "Escribe algo!",
-
+    
             onReady: () => {
                 ejInstance.current = editor;
                 new EDITOR_JS_TOOLS.dragDrop(editor);
@@ -180,7 +134,6 @@ const CreateBlog = () => {
         });
     }
 
-
     const createDataToFirebase = async() => {
         let contenidoEditor;
         try {
@@ -208,10 +161,13 @@ const CreateBlog = () => {
     }
     
     const saveBlogHandler = async(tipo) => {
-        console.log("SaveBlogHandlerBefore")
         try {
             await createDataToFirebase();
             setButtonSubmitType(tipo);
+            setButtonSubmitType(null)
+            
+            //Borramos todos los campos excepto Editor, pues la instancia no encuentra el metodo clean.
+            cleanMethod()
         } catch (error) {
             console.log("Error saveBlogHandler: ",error)
         }
@@ -221,7 +177,6 @@ const CreateBlog = () => {
         createDataToFirebase();
         setButtonSubmitType(tipo);
     }
-    
 
     const addTagsHandler = (tagsProp) => {
         setTags([...tagsProp])
@@ -237,6 +192,11 @@ const CreateBlog = () => {
 
     const addImgUrlHandler = (img) => {
         setImgPortada(img)
+        if(!img.trim()){    //Campo imagen esta vacio?
+            setShowImage(false)
+        } else {
+            setShowImage(true)
+        }
     }
 
     const submitHandler = (e) => {
@@ -247,22 +207,72 @@ const CreateBlog = () => {
         setDescripcion(descripcion)
     }
 
+    const cleanMethod = () => {
+        setCleanAll(true)
+
+        /* 
+            Por su naturaleza, estos tengo que eliminarlos manualmente
+            debido a que se estan pasando como valores default de los input
+            en <Title/> con los props:
+            tituloInput={title}
+            imagenInput={imgPortada}
+            descripcionInput={descripcion}
+
+            Ademas, mando otro prop para que el preview de la Imagen se esconda:
+            showImg={showImage}
+
+            tags se eliminan debido al estado cleanAll, pues se manda como prop:
+            clean={cleanAll}
+
+            Dentro de <tags/> esta un useEffect que esta observando el valor del prop
+            clean, y cuando este es true, manda a llamar otra funcion para pasar sus estados
+            <tags/>.setCantidadTags([]) y <tags/>.setValorTag(""), los cuales luego se cachan
+            en <CreateBlog/> debido al binding que tienen.
+            Por ello, setTags no esta siendo modificado aqui.
+
+            Faltaria hacer clean al editor, pero por alguna razon la instancia no tiene acceso al
+            metodo clean.
+
+            Esto probablemente esta evitando que se logre subir a firebase debido a que tanto 
+            titulo como imagen estan en este punto vacios.
+        */
+        setDescripcion("")
+        setTitle("")
+        setImgPortada("")
+        setShowImage(false)
+
+        //Finalmente, hacemos clenaAll false
+        setCleanAll(false)
+    }
     //variables
     return (
         <div className="blogContainer">
             <div className="contenedorPrincipal">
                 <form className="blogForm" onSubmit={submitHandler}>
                     <div className="headerTitle">
-                        <Title 
+                        <Title
+                            //Titulo
                             onAddTitle={addTitleHandler}
+                            tituloInput={title}
+                            //Imagen
                             onAddImgPortada={addImgUrlHandler}
+                            imagenInput={imgPortada}
+                            showImg={showImage}
+                            //Descripcion
                             onAddDescripcion={addDescricpionHandler}
+                            descripcionInput={descripcion}
                         />
-                        <TagsCreate onAddTags={addTagsHandler} onDeleteTags={deleteTagsHandler}/>
+                        <TagsCreate 
+                            onAddTags={addTagsHandler}
+                            onDeleteTags={deleteTagsHandler}
+
+                            clean={cleanAll}
+                        />
                     </div>
                     <div className="editorJS__container">
                         <div className="editorJS" id={EDITOR_HOLDER_ID}></div>
                     </div>
+                    <button onClick={cleanMethod}>Clean</button>
                     <ButtonMain onSave={saveBlogHandler} onPublish={publishBlogHandler}/>
                 </form>
             </div>
