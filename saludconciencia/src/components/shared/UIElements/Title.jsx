@@ -21,6 +21,10 @@ const Title = (props) => {
         props.onAddTitle(titulo.target.value)
     }
 
+    const addDescripcionHandler = (descripcion) => {
+        props.onAddDescripcion(descripcion.target.value)
+    }
+
     return (
         <div>
             <div className="headerTitle__title">
@@ -44,6 +48,18 @@ const Title = (props) => {
                     <img src={urlImagen} alt="Img Preview" className="imgPreview"/>
                 </div>
             </div>
+            <div className="headerTitle__descripcion">
+                <span className="headerTitle__descripcion-title">
+                    <span>Descripción</span> 
+                    <span className="headerTitle__descripcion-title-op">Opcional</span>
+                </span>
+                <textarea 
+                    type="text"
+                    className="headerTitle__title-input"
+                    onChange={item=>addDescripcionHandler(item)}
+                />
+            </div>
+            
         </div>
     )
 }

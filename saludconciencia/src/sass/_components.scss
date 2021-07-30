@@ -538,6 +538,48 @@
         }
     }
 
+    &__descripcion {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+        &-title{
+            flex: 1;
+            align-self: center;
+            font-size: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 2.5rem;
+
+            display: flex;
+            flex-direction: column;
+            &-op {
+                font-size: 1rem;
+                color: #ccc;
+            }
+        }
+
+        &-input{
+            font-size: 2rem;
+            text-align: center;
+            flex: 0 0 70%;
+            background-color: $color-gray-light-3;
+            border: none;
+            padding: .7rem 2rem;
+            margin-right: 15rem;
+            border-radius: 100px;
+            width: 80%;
+
+            //Animacion de engrandecimiento no funcionando.
+            transition: all .2s;
+
+            &:focus {
+                outline: none;
+            //     width: 100%;
+                background-color: darken($color-gray-light-3,4%);
+            }
+        }
+    }
     &__tags {
         display: flex;
         flex-direction: column;

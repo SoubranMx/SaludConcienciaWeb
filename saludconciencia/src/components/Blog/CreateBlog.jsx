@@ -34,10 +34,11 @@ const CreateBlog = () => {
     }
     
     //hooks
+    const [dataEditorJS, setDataEditorJS] = useState({})
     const [tags, setTags] = useState([])
     const [title, setTitle] = useState("")
     const [imgPortada, setImgPortada] = useState("")
-    const [dataEditorJS, setDataEditorJS] = useState({})
+    const [descripcion, setDescripcion] = useState("")
     const [dataFinal, setDataFinal] = useState({})
     const [buttonSubmitType, setButtonSubmitType] = useState(null)
     const [editorData, setEditorData] = useState(DEFAULT_INITIAL_DATA);
@@ -184,13 +185,23 @@ const CreateBlog = () => {
         let contenidoEditor;
         try {
             contenidoEditor = await ejInstance.current.saver.save();
-            setDataFinal({
-                titulo: title,
-                imgPortada: imgPortada,
-                tags: tags,
-                fecha: Date.now(),
-                editor: contenidoEditor
-            })   
+            if(!title.trim()){
+                console.log("Titulo vacio")
+                //Estilos para input vacio
+            } else if (!imgPortada.trim()){
+                console.log("Imagen Vacia")
+                //Estilos para input vacio
+            } else {
+                console.log("Ready to go!")
+                setDataFinal({
+                    titulo: title,
+                    imgPortada: imgPortada,
+                    descripcion: descripcion,
+                    tags: tags,
+                    fecha: Date.now(),
+                    editor: contenidoEditor
+                })
+            }
         } catch (error) {
             console.log("Error de guardado en EditorJs",error)
         }
@@ -232,6 +243,9 @@ const CreateBlog = () => {
         e.preventDefault();
     }
 
+    const addDescricpionHandler = (descripcion) => {
+        setDescripcion(descripcion)
+    }
 
     //variables
     return (
@@ -239,7 +253,11 @@ const CreateBlog = () => {
             <div className="contenedorPrincipal">
                 <form className="blogForm" onSubmit={submitHandler}>
                     <div className="headerTitle">
-                        <Title onAddTitle={addTitleHandler} onAddImgPortada={addImgUrlHandler}/>
+                        <Title 
+                            onAddTitle={addTitleHandler}
+                            onAddImgPortada={addImgUrlHandler}
+                            onAddDescripcion={addDescricpionHandler}
+                        />
                         <TagsCreate onAddTags={addTagsHandler} onDeleteTags={deleteTagsHandler}/>
                     </div>
                     <div className="editorJS__container">

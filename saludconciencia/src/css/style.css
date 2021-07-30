@@ -338,6 +338,37 @@ html {
         outline: none;
         width: 100%;
         background-color: #e6e3e3; }
+  .headerTitle__descripcion {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; }
+    .headerTitle__descripcion-title {
+      flex: 1;
+      align-self: center;
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 2.5rem;
+      display: flex;
+      flex-direction: column; }
+      .headerTitle__descripcion-title-op {
+        font-size: 1rem;
+        color: #ccc; }
+    .headerTitle__descripcion-input {
+      font-size: 2rem;
+      text-align: center;
+      flex: 0 0 70%;
+      background-color: #f0eeee;
+      border: none;
+      padding: .7rem 2rem;
+      margin-right: 15rem;
+      border-radius: 100px;
+      width: 80%;
+      transition: all .2s; }
+      .headerTitle__descripcion-input:focus {
+        outline: none;
+        background-color: #e6e3e3; }
   .headerTitle__tags {
     display: flex;
     flex-direction: column; }
