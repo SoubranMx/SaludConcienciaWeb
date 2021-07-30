@@ -241,6 +241,7 @@ const CreateBlog = () => {
         setImgPortada("")
         setShowImage(false)
 
+        ejInstance.current.blocks.clear()
         //Finalmente, hacemos clenaAll false
         setCleanAll(false)
     }
