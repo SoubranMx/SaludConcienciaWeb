@@ -6,8 +6,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import {db} from './firebase';
-import { Provider } from 'react-redux';
-import generateStore from './redux/store';
+
 
 
 import Navbar from './components/Navbar/Navbar';
@@ -42,53 +41,50 @@ const App = () => {
     obtenerDatos()
   },[])
 
-  //Redux store
-  const store = generateStore();
+  
 
   return (
-    <Provider store={store}>
-      <Router>
-        {
-          firebaseUser ? null : <Navbar />
-        }
-        <Switch>
-          <Route path='/admin/blog/:anio/:mes/:dia/:titulo'>
-            <Admin item="blog" />
-          </Route>
-          <Route path='/admin/:ruta'>
-            <Admin />
-          </Route>
-          <Route path='/blog/:anio/:mes/:dia/:titulo'>
-            <Ejemplo />
-          </Route>
-          <Route path='/asesorias'>
-            <Asesorias />
-          </Route>
-          <Route path='/podcast'>
-            <Podcast />
-          </Route>
-          <Route path='/blog'>
-            <Blog />
-          </Route>
-          <Route path='/para-ti'>
-            <ParaTi />
-          </Route>
-          <Route path='/login'>
-            Login
-          </Route>
-          <Route path='/admin'>
-            <Admin/>
-          </Route>
-          <Route path='/reset'>
-            reset
-          </Route>
-          <Route path='/' exact>
-            <Inicio />
-          </Route>
-          <Redirect to="/" />
-        </Switch>
-      </Router>
-    </Provider>
+    <Router>
+      {
+        firebaseUser ? null : <Navbar />
+      }
+      <Switch>
+        <Route path='/admin/blog/:anio/:mes/:dia/:titulo'>
+          <Admin item="blog" />
+        </Route>
+        <Route path='/admin/:ruta'>
+          <Admin />
+        </Route>
+        <Route path='/blog/:anio/:mes/:dia/:titulo'>
+          <Ejemplo />
+        </Route>
+        <Route path='/asesorias'>
+          <Asesorias />
+        </Route>
+        <Route path='/podcast'>
+          <Podcast />
+        </Route>
+        <Route path='/blog'>
+          <Blog />
+        </Route>
+        <Route path='/para-ti'>
+          <ParaTi />
+        </Route>
+        <Route path='/login'>
+          Login
+        </Route>
+        <Route path='/admin'>
+          <Admin/>
+        </Route>
+        <Route path='/reset'>
+          reset
+        </Route>
+        <Route path='/' exact>
+          <Inicio />
+        </Route>
+        <Redirect to="/" />
+      </Switch>
+    </Router>
   );
 }
 
