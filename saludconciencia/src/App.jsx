@@ -3,9 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  Redirect,
+  withRouter
 } from 'react-router-dom';
-import {db} from './firebase';
+import {auth, db} from './firebase';
 
 
 
@@ -17,39 +18,45 @@ import Blog from './components/Blog/Blog'
 import Inicio from './components/Pages/Inicio'
 import Admin from './components/Admin/Admin';
 import Ejemplo from './Ejemplo';
+import Login from './components/Admin/Login';
+import { useSelector } from 'react-redux';
 
-const App = () => {
+const App = (props) => {
 
-  const [firebaseUser, setFirebaseUser] = useState(true);
-  const [fsEjemplo, setFsEjemplo] = useState([])
+  const [firebaseUser, setFirebaseUser] = useState(false);
 
-  // const goAdmin = () => {
-  //   setFirebaseUser(!firebaseUser);
-  // }
   useEffect(()=>{
-    const obtenerDatos = async () => {
-      try {
-        const data = await db.collection('blogs').get();
-        const arrayData = data.docs.map(doc => ({id: doc.id, ...doc.data()}))
-        setFsEjemplo(arrayData)
-        console.log(fsEjemplo)
-      } catch (error) {
-        console.log(error)
+    const fetchUser = () => {
+      auth.onAuthStateChanged(user => {
+        console.log(user)
+        if(user){
+          setFirebaseUser(user)
+        } else {
+          setFirebaseUser(null)
+        }
+      })
+    }
+    fetchUser()
+  },[])
+
+  useEffect(()=>{
+    const redirigir = () => {
+      if(firebaseUser){
+        props.history.push('/admin')
       }
     }
-
-    obtenerDatos()
-  },[])
+    redirigir()
+  },[firebaseUser])
 
   
 
-  return (
-    <Router>
+  return firebaseUser !== false ? (
+    <div>
       {
         firebaseUser ? null : <Navbar />
       }
       <Switch>
-        <Route path='/admin/blog/:anio/:mes/:dia/:titulo'>
+        <Route path='/admin/blog/:anio/:mes/:dia/:titulo' >
           <Admin item="blog" />
         </Route>
         <Route path='/admin/:ruta'>
@@ -71,10 +78,10 @@ const App = () => {
           <ParaTi />
         </Route>
         <Route path='/login'>
-          Login
+          <Login />
         </Route>
-        <Route path='/admin'>
-          <Admin/>
+        <Route path='/admin' >
+          <Admin />
         </Route>
         <Route path='/reset'>
           reset
@@ -84,8 +91,10 @@ const App = () => {
         </Route>
         <Redirect to="/" />
       </Switch>
-    </Router>
+    </div>
+  ) : (
+    <div>Cargando ... </div>
   );
 }
 
-export default App;
+export default withRouter(App);

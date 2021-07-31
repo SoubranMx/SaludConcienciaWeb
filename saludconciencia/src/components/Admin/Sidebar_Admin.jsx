@@ -13,6 +13,7 @@ import {RiArticleLine} from 'react-icons/ri';
 
 import logo from '../../resources/nav-logo.png';
 import logo_sm from '../../resources/nav-logo-sm.png';
+import { BiLogOut } from 'react-icons/bi';
 
 const SidebarAdmin = () => {
     const [linkActivo, setLinkActivo] = useState(["","","",""]);
@@ -56,21 +57,27 @@ const SidebarAdmin = () => {
                         </NavLink>
                     </li>
                     <li className={`side-nav__item ${linkActivo[1]}`}>
-                    <NavLink to="/admin/guardados" className={`side-nav__link`}>
+                        <NavLink to="/admin/guardados" className={`side-nav__link`}>
                             <FiSave className="side-nav__icon"/>
                             <span>Guardados</span>
                         </NavLink>
                     </li>
                     <li className={`side-nav__item ${linkActivo[2]}`}>
-                    <NavLink to="/admin/crearPodcast" className={`side-nav__link`}>
+                        <NavLink to="/admin/crearPodcast" className={`side-nav__link`}>
                             <FaYoutube className="side-nav__icon"/>
                             <span>Crear Podcast</span>
                         </NavLink>
                     </li>
                     <li className={`side-nav__item ${linkActivo[3]}`}>
-                    <NavLink to="/admin/blog" className={`side-nav__link`}>
+                        <NavLink to="/admin/blog" className={`side-nav__link`}>
                             <RiArticleLine className="side-nav__icon side-nav__icon-article"/>
                             <span>Blogs</span>
+                        </NavLink>
+                    </li>
+                    <li className={`side-nav__item`}>
+                        <NavLink to="/admin" className={`side-nav__link`}>
+                            <BiLogOut className="side-nav__icon side-nav__icon-article"/>
+                            <span>Cerrar Sesión</span>
                         </NavLink>
                     </li>
                 </ul>

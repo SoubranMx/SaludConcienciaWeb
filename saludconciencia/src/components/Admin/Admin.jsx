@@ -1,17 +1,22 @@
 import React, {useState} from 'react';
-import { withRouter, useParams } from 'react-router-dom';
+import { withRouter, useParams, Redirect } from 'react-router-dom';
 
 import CreateBlog from '../Blog/CreateBlog';
 import CrearPodcast from '../Podcast/CrearPodcast';
 import Guardados from '../Utilities/Guardados';
 import SidebarAdmin from './Sidebar_Admin';
 import Blog from '../Blog/Blog';
+import { useEffect } from 'react';
+import AdminIndex from './AdminIndex';
+
 
 
 
 const Admin = (props) => {
     
     const [contenido,setContenido] = useState(null);
+    
+
     
     let rutas = useParams();
 
@@ -39,10 +44,13 @@ const Admin = (props) => {
                         break;
                     
                     default:
-                        setContenido(null)
+                        //setContenido(null)
+                        setContenido((<AdminIndex />))
                         break;
                 }
             }
+        } else {
+            setContenido((<AdminIndex />))
         }
     },[rutas])
 

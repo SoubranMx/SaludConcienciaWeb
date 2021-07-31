@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import EditorJS from '@editorjs/editorjs';
-import { db } from '../../firebase';
+import {db} from '../../firebase'
 
 import { EDITOR_JS_TOOLS } from './tools';
 import ButtonMain from '../shared/UIElements/ButtonMain';
