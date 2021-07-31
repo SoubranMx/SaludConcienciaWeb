@@ -7,6 +7,19 @@ const TagsCreate = (props) => {
     const [valorTag, setValorTag] = useState("");
     const [estilosFix,setEstilosFix] = useState("")
 
+    // useEffect(()=>{
+    //     if(cantidadTags.length > 5) {
+    //         //setEstilosFix("tags__show__carrousel__item-overflow")
+    //     } else {
+    //         setEstilosFix("")
+    //     }
+    // },[cantidadTags])
+
+    useEffect(()=>{
+        props.onAddTags(cantidadTags)
+    },[cantidadTags])
+
+    useEffect(()=>{if(props.clean){cleanTagsHandler()}},[props.clean])
 
     const addTargetHandler = () => {
         if(valorTag !== ""){
@@ -36,6 +49,11 @@ const TagsCreate = (props) => {
         let tags = [...cantidadTags];
         let tagEliminado = tags.splice(index,1);
         setCantidadTags(tags);
+    }
+
+    const cleanTagsHandler = () => {
+        setCantidadTags([])
+        setValorTag("")
     }
 
     return (

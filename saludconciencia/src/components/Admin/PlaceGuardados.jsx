@@ -13,13 +13,13 @@ const PlaceGuardados = (props) => {
 
     const editarBlogHandler = () => {
         const blogACargar = {
-            uid: props.uid,
+            tipo: "guardado",
             data: {
                 uid: props.uid,
                 titulo: props.titulo,
                 descripcion: props.descripcion,
                 tags: [...props.tags],
-                imgPortada: props.imgPortada,
+                imgPortada: props.imgUrl,
                 fecha: props.fecha,
                 editor: props.editor
             }

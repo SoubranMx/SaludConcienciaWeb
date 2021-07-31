@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { updateDescripcionAccion, updateImagenAccion, updateTituloAccion } from '../../../redux/blogsDucks';
 
 const Title = (props) => {
     const [showPreview, setShowPreview] = useState("preview-off");
     const [urlImagen, setUrlImagen] = useState("")
 
-    useEffect(()=>{
-        if(props.showImg === true) {
-            setShowPreview("preview-on")
-            setUrlImagen(props.imagenInput)
-        } else {
+    const dispatch = useDispatch()
+
+    const addTitleBlur = (e) => {
+        console.log(e.target.value)
+        dispatch(updateTituloAccion(e.target.value))
+    }
+
+    const addImgBlur = (e) => {
+        console.log(e.target.value)
+        dispatch(updateImagenAccion(e.target.value))
+        setUrlImagen(e.target.value)
+        if(!e.target.value.trim()){
             setShowPreview("preview-off")
-            setUrlImagen("")
+        } else {
+            setShowPreview("preview-on")
         }
-    },[props.showImg])
-
-    useEffect(()=>{
-        setShowPreview("preview-off")
-        setUrlImagen("")
-    },[props.clean])
-
-    const addTitle = (titulo) => {
-        props.onAddTitle(titulo.target.value)
-    }
-    
-    const addImg = (img) => {
-        props.onAddImgPortada(img.target.value)
-        setUrlImagen(img.target.value)
     }
 
-    const addDescripcionHandler = (descripcion) => {
-        props.onAddDescripcion(descripcion.target.value)
+    const addDescripcionBlur = (e) => {
+        console.log(e.target.value)
+        dispatch(updateDescripcionAccion(e.target.value))
     }
 
     return (
@@ -39,8 +36,8 @@ const Title = (props) => {
                 <input 
                     type="text"
                     className="headerTitle__title-input"
-                    onChange={item=>addTitle(item)}
-                    value={props.tituloInput}
+                    onBlur={addTitleBlur}
+                    defaultValue={props.tituloInput}
                 />
             </div>
             <div className="headerTitle__imgPortada">
@@ -49,8 +46,8 @@ const Title = (props) => {
                     <input 
                         type="text"
                         className="headerTitle__imgPortada-input"
-                        onChange={addImg}
-                        value={props.imagenInput}
+                        onBlur={addImgBlur}
+                        defaultValue={props.imagenInput}
                     />
                 </div>
                 <div className={`headerTitle__imgPortada-down ${showPreview}`}>
@@ -65,8 +62,8 @@ const Title = (props) => {
                 <textarea 
                     type="text"
                     className="headerTitle__title-input"
-                    onChange={item=>addDescripcionHandler(item)}
-                    value={props.descripcionInput}
+                    onBlur={addDescripcionBlur}
+                    defaultValue={props.descripcionInput}
                 />
             </div>
             

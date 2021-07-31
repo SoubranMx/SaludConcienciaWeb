@@ -3,13 +3,16 @@ import { db } from "../firebase";
 //Constantes
 
 const dataInicial = {
-    titulo: "",
-    imgPortada: "",
-    descripcion: "",
-    tags: [],
-    fecha: 0,
-    editor: {},
-    uid: ""
+    blog: {
+        uid: "",
+        autor: "Julián Uriarte",
+        titulo: "",
+        descripcion: "",
+        tags: [],
+        imgPortada: "",
+        fecha: 0,
+        editor: {}
+    }
 }
 
     //types
@@ -20,25 +23,52 @@ const dataInicial = {
     const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";    // Para updatear blogs en firebase cuando se selecciono un blog posteado
     const PUBLICAR_BLOG_EXITO = "PUBLICAR_BLOG_EXITO";          // Para subir un blog en firebase cuando se selecciona publicar
     const CARGAR_MAS_BLOGS = "CARGAR_MAS_BLOGS";                // Para cargar mas blogs cuando se presiona el boton "cargar mas" en /blogs o /admin/blogs
-//Reducer
+    const CARGAR_BLOG_INFO_UPDATE_SAVED = "CARGAR_BLOG_INFO_UPDATE_SAVED";  // Para cuando se manda a llamar Editar en guardados
 
+    const UPDATE_TITULO_EXITO = "UPDATE_TITULO_EXITO";
+    //const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO";
+    const UPDATE_DESCRIPCION_EXITO = "UPDATE_DESCRIPCION_EXITO";
+    const UPDATE_TAGS_EXITO = "UPDATE_TAGS_EXITO";
+    const UPDATE_IMAGEN_EXITO = "UPDATE_IMAGEN_EXITO";
+    const UPDATE_FECHA_EXITO = "UPDATE_FECHA_EXITO";
+    const UPDATE_EDITOR_EXITO = "UPDATE_EDITOR_EXITO";
+    const UPDATE_UID_EXITO = "UPDATE_UID_EXITO";
+    
+//Reducer
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
         case GUARDAR_BLOGS_EXITO:
             return {...state, }
         case LEER_BLOGS_EXITO:
             return {...state, blogs: action.payload}
-        case UPDATE_TO_SAVE_EXITO:
+        case CARGAR_BLOG_INFO_UPDATE_SAVED:
             return {
                 ...state,
-                 uid: action.payload.uid,
-                 titulo: action.payload.blog.titulo,
-                 descripcion: action.payload.blog.descripcion,
-                 tags: action.payload.blog.tags,
-                 imgPortada: action.payload.blog.imgPortada,
-                 fecha: action.payload.blog.fecha,
-                 editor: action.payload.blog.editor
+                blogUpdate: {
+                    tipo: action.payload.tipo,
+                    uid: action.payload.blog.uid,
+                    titulo: action.payload.blog.titulo,
+                    descripcion: action.payload.blog.descripcion,
+                    tags: action.payload.blog.tags,
+                    imgPortada: action.payload.blog.imgPortada,
+                    fecha: action.payload.blog.fecha,
+                    editor: action.payload.blog.editor
+                }
             }
+        case UPDATE_TITULO_EXITO:
+            return {...state, blog: {...state.blog, titulo: action.payload}}
+        case UPDATE_DESCRIPCION_EXITO:
+            return {...state, blog: {...state.blog, descripcion: action.payload}}
+        case UPDATE_IMAGEN_EXITO:
+            return {...state, blog: {...state.blog, imgPortada: action.payload}}
+        case UPDATE_FECHA_EXITO:
+            return {...state, blog: {...state.blog, fecha: action.payload}}
+        case UPDATE_UID_EXITO:
+            return {...state, blog: {...state.blog, uid: action.payload}}
+        case UPDATE_EDITOR_EXITO:
+            return {...state, blog: {...state.blog, editor: {...action.payload}}}
+        case UPDATE_TAGS_EXITO:
+            return {...state, blog: {...state.blog, tags: [...action.payload]}}
         default:
             return state;
     }
@@ -74,10 +104,59 @@ export const leerBlogsAccion = (coleccion) => async(dispatch) => {
 export const editarBlogGuardadoAccion = (blogCargado) => dispatch => {
     console.log("Blog antes del dispatch => ", blogCargado)
     dispatch({
-        type: UPDATE_TO_SAVE_EXITO,
+        type: CARGAR_BLOG_INFO_UPDATE_SAVED,
         payload: {
-            uid: blogCargado.uid,
+            tipo: blogCargado.tipo,
             blog: {...blogCargado.data}
         }
+    })
+}
+
+export const updateTituloAccion = (tituloUpdate) => dispatch => {
+    dispatch({
+        type: UPDATE_TITULO_EXITO,
+        payload: tituloUpdate
+    })
+}
+
+export const updateImagenAccion = (imagenUpdate) => dispatch => {
+    dispatch({
+        type: UPDATE_IMAGEN_EXITO,
+        payload: imagenUpdate
+    })
+}
+
+export const updateDescripcionAccion = (descripcionUpdate) => dispatch => {
+    dispatch({
+        type: UPDATE_DESCRIPCION_EXITO,
+        payload: descripcionUpdate
+    })
+}
+
+export const updateFechaAccion = (fechaUpdate) => dispatch => {
+    dispatch({
+        type: UPDATE_FECHA_EXITO,
+        payload: fechaUpdate
+    })
+}
+
+export const updateUidAccion = (uidUpdate) => dispatch => {
+    dispatch({
+        type: UPDATE_UID_EXITO,
+        payload: uidUpdate
+    })
+}
+
+export const updateEditorAccion = (editorUpdate) => dispatch => {
+    dispatch({
+        type: UPDATE_EDITOR_EXITO,
+        payload: {...editorUpdate}
+    })
+}
+
+export const updateTagsAccion = (tagsUpdate) => dispatch => {
+    dispatch({
+        type: UPDATE_TAGS_EXITO,
+        payload: [...tagsUpdate]
     })
 }
