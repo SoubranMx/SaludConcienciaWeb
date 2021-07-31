@@ -28,7 +28,6 @@ const App = (props) => {
   useEffect(()=>{
     const fetchUser = () => {
       auth.onAuthStateChanged(user => {
-        console.log(user)
         if(user){
           setFirebaseUser(user)
         } else {
@@ -48,6 +47,25 @@ const App = (props) => {
     redirigir()
   },[firebaseUser])
 
+  //const RutaPrivada = ({component, path, ...rest}) => {
+  // const RutaPrivada = ({component, path,  ...rest}) => {
+  //   const storage = localStorage.getItem('admin')
+  //   console.log("Antes 1er if: ", storage)
+  //   if(localStorage.getItem('admin')){
+  //     const usuarioStorage = JSON.parse(localStorage.getItem('admin'))
+  //     console.log("antes de verificar localstorage y firbease")
+  //     if(usuarioStorage.uid === firebaseUser.uid){
+  //       console.log("Antes de mandar la ruta")
+  //       return <Route component={component} path={path} {...rest} />
+  //     }else{
+  //       console.log("1er redirect")
+  //       return <Redirect to="/" {...rest} />
+  //     }
+  //   } else {
+  //     console.log("2o redirect")
+  //     return <Redirect to="/" {...rest}/>
+  //   }
+  // }
   
 
   return firebaseUser !== false ? (
@@ -57,8 +75,9 @@ const App = (props) => {
       }
       <Switch>
         <Route path='/admin/blog/:anio/:mes/:dia/:titulo' >
-          <Admin item="blog" />
+          <Admin />
         </Route>
+        {/* <RutaPrivada component={Admin} path="/admin/:ruta" /> */}
         <Route path='/admin/:ruta'>
           <Admin />
         </Route>
@@ -80,6 +99,7 @@ const App = (props) => {
         <Route path='/login'>
           <Login />
         </Route>
+        {/* <RutaPrivada component={Admin} path="/admin" exact /> */}
         <Route path='/admin' >
           <Admin />
         </Route>

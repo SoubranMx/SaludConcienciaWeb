@@ -17,7 +17,6 @@ const Login = (props) => {
     const activo = useSelector(store=>store.admin.activo)
 
     useEffect(()=>{
-        //console.log(activo)
         if(activo){
             props.history.push('/admin')
         }
@@ -37,8 +36,8 @@ const Login = (props) => {
         //Listo
         setError(null)
         dispatch(loginAdminAccion(email, pass))
-
     }
+    
     return (
         <div className = "mt-5">
             <h3 className="text-center">Acceso a Admin</h3>

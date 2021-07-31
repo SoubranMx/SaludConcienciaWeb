@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import { withRouter, useParams, Redirect } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { withRouter, useParams } from 'react-router-dom';
 
 import CreateBlog from '../Blog/CreateBlog';
 import CrearPodcast from '../Podcast/CrearPodcast';
 import Guardados from '../Utilities/Guardados';
 import SidebarAdmin from './Sidebar_Admin';
 import Blog from '../Blog/Blog';
-import { useEffect } from 'react';
 import AdminIndex from './AdminIndex';
+import { auth } from '../../firebase';
 
 
 
@@ -15,7 +15,11 @@ import AdminIndex from './AdminIndex';
 const Admin = (props) => {
     
     const [contenido,setContenido] = useState(null);
-    
+    useEffect(()=>{
+        if(!auth.currentUser){
+            props.history.push('/')
+        }
+    },[props.history])
 
     
     let rutas = useParams();
