@@ -8,7 +8,8 @@ const dataInicial = {
     descripcion: "",
     tags: [],
     fecha: 0,
-    editor: {}
+    editor: {},
+    uid: ""
 }
 
     //types
@@ -27,6 +28,17 @@ export default function blogsReducer (state = dataInicial, action){
             return {...state, }
         case LEER_BLOGS_EXITO:
             return {...state, blogs: action.payload}
+        case UPDATE_TO_SAVE_EXITO:
+            return {
+                ...state,
+                 uid: action.payload.uid,
+                 titulo: action.payload.blog.titulo,
+                 descripcion: action.payload.blog.descripcion,
+                 tags: action.payload.blog.tags,
+                 imgPortada: action.payload.blog.imgPortada,
+                 fecha: action.payload.blog.fecha,
+                 editor: action.payload.blog.editor
+            }
         default:
             return state;
     }
@@ -50,7 +62,6 @@ export const leerBlogsAccion = (coleccion) => async(dispatch) => {
         res.forEach((doc)=>{
             blogs.push({docId: doc.id, data: doc.data()})
         })
-        console.log("blogs => ", blogs)
         dispatch({
             type: LEER_BLOGS_EXITO,
             payload: blogs
@@ -58,4 +69,15 @@ export const leerBlogsAccion = (coleccion) => async(dispatch) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+export const editarBlogGuardadoAccion = (blogCargado) => dispatch => {
+    console.log("Blog antes del dispatch => ", blogCargado)
+    dispatch({
+        type: UPDATE_TO_SAVE_EXITO,
+        payload: {
+            uid: blogCargado.uid,
+            blog: {...blogCargado.data}
+        }
+    })
 }

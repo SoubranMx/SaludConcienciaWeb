@@ -1,9 +1,33 @@
 import React from 'react'
-import Tags from '../Tags/Tags'
 import moment from 'moment'
 import 'moment/locale/es-mx'
+import { useDispatch } from 'react-redux'
+
+import Tags from '../Tags/Tags'
+import { editarBlogGuardadoAccion } from '../../redux/blogsDucks'
+import { useHistory } from 'react-router-dom'
 
 const PlaceGuardados = (props) => {
+    let history = useHistory();
+    const dispatch = useDispatch()
+
+    const editarBlogHandler = () => {
+        const blogACargar = {
+            uid: props.uid,
+            data: {
+                uid: props.uid,
+                titulo: props.titulo,
+                descripcion: props.descripcion,
+                tags: [...props.tags],
+                imgPortada: props.imgPortada,
+                fecha: props.fecha,
+                editor: props.editor
+            }
+        }
+        dispatch(editarBlogGuardadoAccion(blogACargar))
+        history.push('/admin/crearBlog')
+    }
+
     return (
         <div className="col-12 col-md-6 col-lg-4 mb-2">
             <div className="card h-100">
@@ -21,10 +45,10 @@ const PlaceGuardados = (props) => {
                     </div>
                 </div>
                 <div className="card-body">
-                    <h5 className="card-title">{props.title}</h5>
+                    <h5 className="card-title">{props.titulo}</h5>
                     <h6 className="card-subtitle text-muted mb-2">{props.autor}</h6>
                     <p className="card-text">{props.descripcion}</p>
-                    <a href="#" className="btn btn-outline-primary">Editar</a>
+                    <button className="btn btn-outline-primary" onClick={editarBlogHandler}>Editar</button>
                 </div>
                 <div className="card-footer">
                     <small className="text-muted">Fecha Guardado: {moment(props.fecha).format("dddd, DD[/]MM[/]YY")}</small>

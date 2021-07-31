@@ -90,8 +90,8 @@ const App = (props) => {
     </div>
   ) : (
     <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
-      <div class="spinner-border" role="status" style={{width: "3rem", height: "3rem"}}>
-        <span class="visually-hidden">Cargando...</span>
+      <div className="spinner-border" role="status" style={{width: "3rem", height: "3rem"}}>
+        <span className="visually-hidden">Cargando...</span>
       </div>
     </div>
   );
