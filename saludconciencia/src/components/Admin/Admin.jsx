@@ -3,7 +3,7 @@ import { withRouter, useParams } from 'react-router-dom';
 
 import CreateBlog from '../Blog/CreateBlog';
 import CrearPodcast from '../Podcast/CrearPodcast';
-import Guardados from '../Utilities/Guardados';
+import Guardados from './Guardados';
 import SidebarAdmin from './Sidebar_Admin';
 import Blog from '../Blog/Blog';
 import AdminIndex from './AdminIndex';
@@ -15,6 +15,7 @@ import { auth } from '../../firebase';
 const Admin = (props) => {
     
     const [contenido,setContenido] = useState(null);
+    
     useEffect(()=>{
         if(!auth.currentUser){
             props.history.push('/')
@@ -25,6 +26,7 @@ const Admin = (props) => {
     let rutas = useParams();
 
     React.useEffect( () => {
+        console.log("ruta Admin => ",rutas)
         if (rutas !== null){
             if (rutas.anio !== undefined) {
                 //setContenido => showblog component
