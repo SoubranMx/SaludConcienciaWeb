@@ -1,5 +1,7 @@
 import React from 'react'
 import Tags from '../Tags/Tags'
+import moment from 'moment'
+import 'moment/locale/es-mx'
 
 const PlaceGuardados = (props) => {
     return (
@@ -25,7 +27,7 @@ const PlaceGuardados = (props) => {
                     <a href="#" className="btn btn-outline-primary">Editar</a>
                 </div>
                 <div className="card-footer">
-                    <small className="text-muted">Fecha Guardado: {props.fecha}</small>
+                    <small className="text-muted">Fecha Guardado: {moment(props.fecha).format("dddd, DD[/]MM[/]YY")}</small>
                 </div>
             </div>
         </div>
