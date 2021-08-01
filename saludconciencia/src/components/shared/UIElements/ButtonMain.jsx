@@ -31,6 +31,20 @@ const ButtonMain = (props) => {
 
     const publishHandler = () => {
         //props.onPublish(1)
+        if(!blogAValidar.titulo.trim()){
+            console.log("Titulo vacio")
+            //Titulo vacio
+        } else {
+            if(!blogAValidar.imgPortada.trim()){
+                console.log("Imagen Vacia")
+            }else{
+                console.log("Ready to go!")
+                dispatch(updateFechaAccion(Date.now()))
+                uidNano = nanoid();
+                dispatch(updateUidAccion(uidNano))
+                dispatch(guardarNuevoBlogAccion(uidNano))
+            }
+        }
     }
 
 

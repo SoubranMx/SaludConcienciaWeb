@@ -24,6 +24,7 @@ const dataInicial = {
     const PUBLICAR_BLOG_EXITO = "PUBLICAR_BLOG_EXITO";          // Para subir un blog en firebase cuando se selecciona publicar
     const CARGAR_MAS_BLOGS = "CARGAR_MAS_BLOGS";                // Para cargar mas blogs cuando se presiona el boton "cargar mas" en /blogs o /admin/blogs
     const CARGAR_BLOG_INFO_UPDATE_SAVED = "CARGAR_BLOG_INFO_UPDATE_SAVED";  // Para cuando se manda a llamar Editar en guardados
+    const CLEAR_DATA = "CLEAR_DATA"
 
     const UPDATE_TITULO_EXITO = "UPDATE_TITULO_EXITO";
     //const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO";
@@ -38,6 +39,8 @@ const dataInicial = {
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
         case GUARDAR_BLOGS_EXITO:
+            return {...dataInicial}
+        case CLEAR_DATA:
             return {...dataInicial}
         case LEER_BLOGS_EXITO:
             return {...state, blogs: action.payload}
@@ -55,6 +58,8 @@ export default function blogsReducer (state = dataInicial, action){
                     editor: action.payload.blog.editor
                 }
             }
+        case PUBLICAR_BLOG_EXITO:
+            return {...dataInicial}
 
         case UPDATE_TITULO_EXITO:
             return {...state, blog: {...state.blog, titulo: action.payload}}
@@ -84,7 +89,19 @@ export const guardarNuevoBlogAccion = (id) => async(dispatch, getState) => {
             type: GUARDAR_BLOGS_EXITO
         })
     } catch (error) {
-        console.log(error)
+        console.log("Error al guardar :x ", error)
+    }
+}
+
+export const publicarNuevoBlogAccion = (id) => async(dispatch, getState) => {
+    const blogAPublicar = getState().blogs.blog
+    try {
+        await db.collection('guardados').doc(id).set(blogAPublicar)
+        dispatch({
+            type: PUBLICAR_BLOG_EXITO
+        })
+    } catch (error) {
+        console.log("Error al publicar >:c ", error)
     }
 }
 
@@ -161,5 +178,11 @@ export const updateTagsAccion = (tagsUpdate) => dispatch => {
     dispatch({
         type: UPDATE_TAGS_EXITO,
         payload: [...tagsUpdate]
+    })
+}
+
+export const clearAllAccion = () => dispatch => {
+    dispatch({
+        type: CLEAR_DATA
     })
 }

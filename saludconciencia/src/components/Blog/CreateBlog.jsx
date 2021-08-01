@@ -7,7 +7,7 @@ import { EDITOR_JS_TOOLS } from './tools';
 import ButtonMain from '../shared/UIElements/ButtonMain';
 import TagsCreate from '../shared/UIElements/TagsCreate';
 import Title from '../shared/UIElements/Title';
-import { updateEditorAccion } from '../../redux/blogsDucks';
+import { clearAllAccion, updateEditorAccion } from '../../redux/blogsDucks';
 
 
 
@@ -106,6 +106,11 @@ const CreateBlog = () => {
         }
     }
 
+    const cleanAll = () => {
+        dispatch(clearAllAccion())
+        setBlogUsable(null)
+    }
+
     //variables
     return blogUsable !== null ? (
         <div className="blogContainer">
@@ -126,7 +131,7 @@ const CreateBlog = () => {
                             onBlur={addEditorHandler}
                         ></div>
                     </div>
-                    <button className="btn btn-success btn-lg">Limpiar todo</button>
+                    <button className="btn btn-success btn-lg" onClick={cleanAll}>Limpiar todo</button>
                     <ButtonMain tipo={blogUsable.tipo} />
                 </form>
             </div>
