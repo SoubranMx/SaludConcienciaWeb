@@ -38,7 +38,7 @@ const dataInicial = {
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
         case GUARDAR_BLOGS_EXITO:
-            return {...state, }
+            return {...dataInicial}
         case LEER_BLOGS_EXITO:
             return {...state, blogs: action.payload}
         case CARGAR_BLOG_INFO_UPDATE_SAVED:
@@ -55,6 +55,7 @@ export default function blogsReducer (state = dataInicial, action){
                     editor: action.payload.blog.editor
                 }
             }
+
         case UPDATE_TITULO_EXITO:
             return {...state, blog: {...state.blog, titulo: action.payload}}
         case UPDATE_DESCRIPCION_EXITO:
@@ -75,10 +76,12 @@ export default function blogsReducer (state = dataInicial, action){
 }
 //Acciones
 
-export const guardarNuevoBlogAccion = () => async(dispatch, getState) => {
+export const guardarNuevoBlogAccion = (id) => async(dispatch, getState) => {
+    const blogAGuardar = getState().blogs.blog
     try {
+        await db.collection('guardados').doc(id).set(blogAGuardar)
         dispatch({
-            type: GUARDAR_BLOGS_EXITO,
+            type: GUARDAR_BLOGS_EXITO
         })
     } catch (error) {
         console.log(error)

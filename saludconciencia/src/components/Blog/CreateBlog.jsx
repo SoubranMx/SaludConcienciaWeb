@@ -7,6 +7,7 @@ import { EDITOR_JS_TOOLS } from './tools';
 import ButtonMain from '../shared/UIElements/ButtonMain';
 import TagsCreate from '../shared/UIElements/TagsCreate';
 import Title from '../shared/UIElements/Title';
+import { updateEditorAccion } from '../../redux/blogsDucks';
 
 
 
@@ -14,11 +15,8 @@ import Title from '../shared/UIElements/Title';
 const CreateBlog = () => {
     const EDITOR_HOLDER_ID = 'editorjs';
     const dispatch = useDispatch();
-    //Carga inicial de blog. Si hay algo cargado, deberia mostrarlo.
     const blogCargado = useSelector(store => store.blogs)
-    /* con redux, estos estados son obsoletos */
     const editorInstance = useRef();
-    //let blogUsable = undefined;
     const [blogUsable, setBlogUsable] = useState(null)
 
     //Cargar blog => default o cargado
@@ -100,8 +98,12 @@ const CreateBlog = () => {
         e.preventDefault()
     }
 
-    const onAddTitle = (tituloDevuelto) => {
-
+    const addEditorHandler = async() => {
+        try {
+            dispatch(updateEditorAccion(await editorInstance.current.saver.save()))
+        } catch (error) {
+            console.log("Error guardando editor >:c ", error)
+        }
     }
 
     //variables
@@ -115,13 +117,17 @@ const CreateBlog = () => {
                             imagenInput={blogUsable.imgPortada}
                             descripcionInput={blogUsable.descripcion}
                         />
-                        {/* <TagsCreate /> */}
+                        <TagsCreate />
                     </div>
                     <div className="editorJS__container">
-                        <div className="editorJS" id={EDITOR_HOLDER_ID}></div>
+                        <div 
+                            className="editorJS"
+                            id={EDITOR_HOLDER_ID}
+                            onBlur={addEditorHandler}
+                        ></div>
                     </div>
-                    <button>Clean</button>
-                    {/* <ButtonMain tipo={blogUsable.tipo}/>*/}
+                    <button className="btn btn-success btn-lg">Limpiar todo</button>
+                    <ButtonMain tipo={blogUsable.tipo} />
                 </form>
             </div>
         </div>

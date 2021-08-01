@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 
 import {IoAddCircle, IoCloseSharp} from 'react-icons/io5';
+import { updateTagsAccion } from '../../../redux/blogsDucks';
 
 const TagsCreate = (props) => {
     const [cantidadTags,setCantidadTags] = useState([]);
     const [valorTag, setValorTag] = useState("");
     const [estilosFix,setEstilosFix] = useState("")
 
+    const dispatch = useDispatch();
+
+
+    useEffect(()=>{
+        console.log("Loop guardarTags?")
+        const guardarTags = () => {
+            dispatch(updateTagsAccion(cantidadTags))
+        }
+        guardarTags()
+    },[cantidadTags])
 
     const addTargetHandler = () => {
         if(valorTag !== ""){
@@ -34,7 +46,8 @@ const TagsCreate = (props) => {
 
     const deleteTagHandler = (index) => {
         let tags = [...cantidadTags];
-        let tagEliminado = tags.splice(index,1);
+        //let tagEliminado = tags.splice(index,1);
+        tags.splice(index,1);
         setCantidadTags(tags);
     }
 
