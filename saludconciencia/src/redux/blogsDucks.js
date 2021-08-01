@@ -168,7 +168,7 @@ export const leerBlogsPublicarAccion = () => async(dispatch) => {
         //console.log("Sin Get => ", await db.collection('blogs').orderBy('fecha').limit(cantidad) )
         //cargaInicial = db.collection('blogs').orderBy('fecha').limit(10);
         //first = query(collection(db2, "blogs"), orderBy("fecha", "desc"), limit(limite));
-        first = db.collection('blogs').orderBy('fecha','asc').limit(limite);
+        first = db.collection('blogs').orderBy('fecha','desc').limit(limite);
         //documentSnapshots = await getDocs(first);
         documentSnapshots = await first.get()
         lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1]
