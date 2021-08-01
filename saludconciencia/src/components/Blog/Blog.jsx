@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import RecentBlogs from './RecentBlogs'
 import LatestBlogs from './LatestBlogs'
+import { cargarMasBlogsAccion, leerBlogsAccion, leerBlogsPublicarAccion } from '../../redux/blogsDucks'
 
 const DUMMY_BLOGS = [
     {
@@ -130,33 +132,66 @@ const DUMMY_BLOGS = [
 
 const Blog = () => {
     let clipBlogs;
-    const [latestBlog, setLatestBlog] = useState(null);
+    
+    const dispatch = useDispatch()
+    const blogsFirebase = useSelector(store => store.blogs.blogsPublished)   //Regresa un array
+    const [blogsHelper, setBlogsHelper] = useState(null)
+    const [blogsRecent, setBlogsRecent] = useState(null)
+    const [blogsLatest, setBlogsLatest] = useState(null)
+    let blogsLet = null;
+    let blogsLetAux = null;
+    
+
 
     useEffect(()=>{
-        clipBlogs = DUMMY_BLOGS.slice(2);
-        setLatestBlog(clipBlogs);
-        console.log(latestBlog);
-    },[clipBlogs])
+        const cargarBlogs = () => {
+            dispatch(leerBlogsPublicarAccion())
+        }
 
-    return (
+        const stringifyFirebase = () => {
+            setBlogsHelper(JSON.parse(JSON.stringify(blogsFirebase)))
+        }
+        
+        const splitArrays = () => {
+            if(blogsHelper.length <= 2 && blogsRecent === null){
+                setBlogsRecent([...blogsHelper])
+            } else if (blogsHelper.length > 2 && blogsRecent === null && blogsLatest === null){
+                blogsLet = [...blogsHelper]         
+                blogsLetAux = blogsLet.splice(2)    //Deberia tener los 2 primeros y blogsLet quedarse con los demas
+                setBlogsRecent([...blogsLetAux])
+                setBlogsLatest([...blogsLet])
+            }
+        }
+        
+        if(blogsFirebase === undefined){
+            cargarBlogs()
+        } else if(blogsHelper === null){
+            stringifyFirebase()
+        } else if(blogsHelper !== null){
+            //Ya cambio
+            console.log("blogsHelper => ", blogsHelper)
+            splitArrays()
+        }
+    },[blogsFirebase, blogsHelper, blogsLet, blogsRecent, blogsLetAux])
+
+    useEffect(()=>{
+        console.log("blogsHelper useEffect => ", blogsLet)
+    },[blogsLet])
+
+    return blogsFirebase !== undefined ? (
         <div className="container-md container-sm-fluid mt-3" data-bs-spy="scroll" data-bs-target="#navbar-spy">
             <div className="d-flex flex-column">
-                <RecentBlogs 
-                    key={DUMMY_BLOGS[0].id}
-                    urlUno={DUMMY_BLOGS[0].url}
-                    titleUno={DUMMY_BLOGS[0].title}
-                    authorUno={DUMMY_BLOGS[0].author}
-                    dateUno={DUMMY_BLOGS[0].date}
-                    tagsUno={DUMMY_BLOGS[0].tags}
-                    urlDos={DUMMY_BLOGS[1].url}
-                    titleDos={DUMMY_BLOGS[1].title}
-                    authorDos={DUMMY_BLOGS[1].author}
-                    dateDos={DUMMY_BLOGS[1].date}
-                    tagsDos={DUMMY_BLOGS[1].tags}
-                />
                 {
-                    latestBlog ? (
-                        <LatestBlogs items={latestBlog} />
+                    blogsRecent !== null && (
+                        <RecentBlogs 
+                            //key={blogsRecent[0].id}
+                            //blogs = {blogsRecent}
+                        />
+                    )
+                }
+                {
+                    blogsLatest !== null ? (
+                        <LatestBlogs items={blogsLatest} />
                     ) : (
                         "Cargando..."
                     )
@@ -164,6 +199,12 @@ const Blog = () => {
                 
 
                 <button className="masBlogs mt-3">Cargar más</button>
+            </div>
+        </div>
+    ) : (
+        <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+            <div className="spinner-border" role="status" style={{width: "3rem", height: "3rem"}}>
+                <span className="visually-hidden">Cargando...</span>
             </div>
         </div>
     )

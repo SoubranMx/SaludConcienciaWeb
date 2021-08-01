@@ -44,6 +44,7 @@ const ButtonMain = (props) => {
                 uidNano = nanoid();
                 dispatch(updateUidAccion(uidNano))
                 dispatch(publicarNuevoBlogAccion(uidNano))
+                props.onEnviar(true)
             }
         }
     }

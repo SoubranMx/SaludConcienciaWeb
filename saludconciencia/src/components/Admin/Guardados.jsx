@@ -22,13 +22,16 @@ const Guardados = () => {
             Una vez dentro, vuelve a hacer dispatch que modifica a blogsCargados, y a su vez,
             setea blogs con esa info actualizada, por lo que se renderiza el nuevo conjunto.
     */
-   
+
     useEffect(()=>{
         const cargarBlogs = () => {
             dispatch(leerBlogsAccion("guardados"))
             setBlogs(blogsCargados)
         }
-        blogs === null || eliminado === true && cargarBlogs()
+        if(blogs === null || eliminado === true){
+            cargarBlogs()
+        }
+        //blogs === null || eliminado === true && cargarBlogs() //Que pedo con esto? funcionaba bien, pero de repente no quiso.
     },[blogsCargados, blogs, eliminado])
 
     const updateAfterDeleteButtonPressed = (respuesta) => {
