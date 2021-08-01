@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {FiSave, FiUpload} from 'react-icons/fi';
-import { guardarNuevoBlogAccion, updateFechaAccion, updateUidAccion } from '../../../redux/blogsDucks';
+import { guardarNuevoBlogAccion, updateFechaAccion, updateUidAccion, publicarNuevoBlogAccion} from '../../../redux/blogsDucks';
 import { nanoid } from 'nanoid';
 
 const ButtonMain = (props) => {
@@ -25,6 +25,7 @@ const ButtonMain = (props) => {
                 uidNano = nanoid();
                 dispatch(updateUidAccion(uidNano))
                 dispatch(guardarNuevoBlogAccion(uidNano))
+                props.onEnviar(true)
             }
         }
     }
@@ -42,7 +43,7 @@ const ButtonMain = (props) => {
                 dispatch(updateFechaAccion(Date.now()))
                 uidNano = nanoid();
                 dispatch(updateUidAccion(uidNano))
-                dispatch(guardarNuevoBlogAccion(uidNano))
+                dispatch(publicarNuevoBlogAccion(uidNano))
             }
         }
     }

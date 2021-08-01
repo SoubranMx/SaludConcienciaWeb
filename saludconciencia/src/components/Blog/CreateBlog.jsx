@@ -23,6 +23,7 @@ const CreateBlog = () => {
     useEffect(()=>{
         const cargarBlog = () => {
             if(blogCargado.blogUpdate === undefined){       //No hay blog cargado?
+
                 setBlogUsable({...blogCargado.blog})          //usar blog default
             } else {
                 setBlogUsable({...blogCargado.blogUpdate})    //usar blog cargado
@@ -111,6 +112,9 @@ const CreateBlog = () => {
         setBlogUsable(null)
     }
 
+    const enviarClean = (respuesta) => {
+        respuesta && cleanAll()
+    }
     //variables
     return blogUsable !== null ? (
         <div className="blogContainer">
@@ -122,7 +126,7 @@ const CreateBlog = () => {
                             imagenInput={blogUsable.imgPortada}
                             descripcionInput={blogUsable.descripcion}
                         />
-                        <TagsCreate />
+                        <TagsCreate tags={[...blogUsable.tags]}/>
                     </div>
                     <div className="editorJS__container">
                         <div 
@@ -132,7 +136,10 @@ const CreateBlog = () => {
                         ></div>
                     </div>
                     <button className="btn btn-success btn-lg" onClick={cleanAll}>Limpiar todo</button>
-                    <ButtonMain tipo={blogUsable.tipo} />
+                    <ButtonMain 
+                        tipo={blogUsable.tipo}
+                        onEnviar={enviarClean}
+                    />
                 </form>
             </div>
         </div>

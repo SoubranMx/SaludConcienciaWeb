@@ -8,6 +8,14 @@ const Title = (props) => {
 
     const dispatch = useDispatch()
 
+    useEffect(()=>{
+        const mostrarImagenAlCargarBlog = () => {
+            setUrlImagen(props.imagenInput)
+            !props.imagenInput.trim() ? setShowPreview('preview-off') : setShowPreview('preview-on')
+        }
+        mostrarImagenAlCargarBlog()
+    },[props.imagenInput])
+
     const addTitleBlur = (e) => {
         console.log(e.target.value)
         dispatch(updateTituloAccion(e.target.value))
@@ -22,6 +30,11 @@ const Title = (props) => {
         } else {
             setShowPreview("preview-on")
         }
+    }
+
+    const showImage = (e) => {
+        setUrlImagen(e.target.value)
+        !e.target.value.trim() ? setShowPreview("preview-off") : setShowPreview("preview-on")
     }
 
     const addDescripcionBlur = (e) => {
@@ -47,6 +60,7 @@ const Title = (props) => {
                         type="text"
                         className="headerTitle__imgPortada-input"
                         onBlur={addImgBlur}
+                        onChange={showImage}
                         defaultValue={props.imagenInput}
                     />
                 </div>

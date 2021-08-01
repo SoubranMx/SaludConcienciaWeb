@@ -4,7 +4,7 @@ import 'moment/locale/es-mx'
 import { useDispatch } from 'react-redux'
 
 import Tags from '../Tags/Tags'
-import { editarBlogGuardadoAccion } from '../../redux/blogsDucks'
+import { editarBlogGuardadoAccion, eliminarBlogGuardadoAccion } from '../../redux/blogsDucks'
 import { useHistory } from 'react-router-dom'
 
 const PlaceGuardados = (props) => {
@@ -28,6 +28,11 @@ const PlaceGuardados = (props) => {
         history.push('/admin/crearBlog')
     }
 
+    const eliminarBlogHandler = () => {
+        dispatch(eliminarBlogGuardadoAccion(props.uid))
+        props.onEliminar(true)
+    }
+
     return (
         <div className="col-12 col-md-6 col-lg-4 mb-2">
             <div className="card h-100">
@@ -49,6 +54,7 @@ const PlaceGuardados = (props) => {
                     <h6 className="card-subtitle text-muted mb-2">{props.autor}</h6>
                     <p className="card-text">{props.descripcion}</p>
                     <button className="btn btn-outline-primary" onClick={editarBlogHandler}>Editar</button>
+                    <button className="btn btn-outline-danger" onClick={eliminarBlogHandler}>Eliminar</button>
                 </div>
                 <div className="card-footer">
                     <small className="text-muted">Fecha Guardado: {moment(props.fecha).format("dddd, DD[/]MM[/]YY")}</small>

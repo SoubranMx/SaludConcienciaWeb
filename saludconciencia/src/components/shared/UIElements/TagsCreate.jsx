@@ -5,12 +5,11 @@ import {IoAddCircle, IoCloseSharp} from 'react-icons/io5';
 import { updateTagsAccion } from '../../../redux/blogsDucks';
 
 const TagsCreate = (props) => {
-    const [cantidadTags,setCantidadTags] = useState([]);
+    const [cantidadTags,setCantidadTags] = useState([...props.tags]);
     const [valorTag, setValorTag] = useState("");
     const [estilosFix,setEstilosFix] = useState("")
 
     const dispatch = useDispatch();
-
 
     useEffect(()=>{
         console.log("Loop guardarTags?")

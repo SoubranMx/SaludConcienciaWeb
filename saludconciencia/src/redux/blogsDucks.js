@@ -81,6 +81,18 @@ export default function blogsReducer (state = dataInicial, action){
 }
 //Acciones
 
+//////////////////////////////////////////////////////////////////
+////    ELIMINAR
+export const eliminarBlogGuardadoAccion = (id) => async(dispatch) => {
+    try {
+        await db.collection('guardados').doc(id).delete()
+    } catch (error) {
+        console.log("Error al eliminar guardado. => ", error)
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+////    AGREGAR
 export const guardarNuevoBlogAccion = (id) => async(dispatch, getState) => {
     const blogAGuardar = getState().blogs.blog
     try {
@@ -105,6 +117,9 @@ export const publicarNuevoBlogAccion = (id) => async(dispatch, getState) => {
     }
 }
 
+//////////////////////////////////////////////////////////////////
+////    LEER
+
 export const leerBlogsAccion = (coleccion) => async(dispatch) => {
     try {
         const res = await db.collection(coleccion).get();
@@ -121,8 +136,9 @@ export const leerBlogsAccion = (coleccion) => async(dispatch) => {
     }
 }
 
+//////////////////////////////////////////////////////////////////
+////    CARGAS
 export const editarBlogGuardadoAccion = (blogCargado) => dispatch => {
-    console.log("Blog antes del dispatch => ", blogCargado)
     dispatch({
         type: CARGAR_BLOG_INFO_UPDATE_SAVED,
         payload: {
@@ -132,6 +148,8 @@ export const editarBlogGuardadoAccion = (blogCargado) => dispatch => {
     })
 }
 
+//////////////////////////////////////////////////////////////////
+////    UPDATES
 export const updateTituloAccion = (tituloUpdate) => dispatch => {
     dispatch({
         type: UPDATE_TITULO_EXITO,
