@@ -15,15 +15,16 @@ import { auth } from '../../firebase';
 const Admin = (props) => {
     
     const [contenido,setContenido] = useState(null);
+    let rutas = useParams();
     
     useEffect(()=>{
         if(!auth.currentUser){
+            console.log("Porque entra? => ", auth.currentUser)
             props.history.push('/')
         }
     },[props.history])
 
     
-    let rutas = useParams();
 
     React.useEffect( () => {
         console.log("ruta Admin => ",rutas)

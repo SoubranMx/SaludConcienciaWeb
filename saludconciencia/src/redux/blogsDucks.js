@@ -1,4 +1,4 @@
-import { db, db2 } from "../firebase";
+import { db } from "../firebase";
 
 //import { collection, query, orderBy, startAfter, limit, getDocs } from "../firebase";
 
@@ -38,14 +38,14 @@ const dataInicial = {
     //types
     const LEER_BLOGS_EXITO = "LEER_BLOGS_EXITO";                // Para mostrar blogs en /blogs o admin/blogs
     const LEER_BLOGS_PUBLICAR_EXITO = "LEER_BLOGS_PUBLICAR_EXITO";                // Para mostrar blogs en /blogs o admin/blogs
-    const CARGAR_BLOGS_EXITO = "CARGAR_BLOGS_EXITO";            // Para cuando se carga un blog para edicion o creacion
     const GUARDAR_BLOGS_EXITO = "GUARDAR_BLOGS_EXITO";          // Para guardar blogs en firebase cuando se selecciona guardar
     const UPDATE_TO_SAVE_EXITO = "UPDATE_TO_SAVE_EXITO";        // Para updatear blogs en firebase cuando se selecciono un blog guardado
     const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";    // Para updatear blogs en firebase cuando se selecciono un blog posteado
     const PUBLICAR_BLOG_EXITO = "PUBLICAR_BLOG_EXITO";          // Para subir un blog en firebase cuando se selecciona publicar
     const CARGAR_MAS_BLOGS = "CARGAR_MAS_BLOGS";                // Para cargar mas blogs cuando se presiona el boton "cargar mas" en /blogs o /admin/blogs
     const CARGAR_BLOG_INFO_UPDATE_SAVED = "CARGAR_BLOG_INFO_UPDATE_SAVED";  // Para cuando se manda a llamar Editar en guardados
-    const CLEAR_DATA = "CLEAR_DATA"
+    const CLEAR_DATA = "CLEAR_DATA";
+    const BORRAR_BLOG_GUARDADO_EXITO = "BORRAR_BLOG_GUARDADO_EXITO"
 
     const UPDATE_TITULO_EXITO = "UPDATE_TITULO_EXITO";
     //const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO";
@@ -86,6 +86,8 @@ export default function blogsReducer (state = dataInicial, action){
                     editor: action.payload.blog.editor
                 }
             }
+        case BORRAR_BLOG_GUARDADO_EXITO:
+            return {...state, blogs: action.payload}
         case PUBLICAR_BLOG_EXITO:
             return {...dataInicial}
         case UPDATE_TITULO_EXITO:
@@ -113,6 +115,15 @@ export default function blogsReducer (state = dataInicial, action){
 export const eliminarBlogGuardadoAccion = (id) => async(dispatch) => {
     try {
         await db.collection('guardados').doc(id).delete()
+        const res = await db.collection('guardados').orderBy('fecha','desc').get();
+        let blogs = []
+        res.forEach((doc)=>{
+            blogs.push({docId: doc.id, data: doc.data()})
+        })
+        dispatch({
+            type: BORRAR_BLOG_GUARDADO_EXITO,
+            payload: blogs
+        })
     } catch (error) {
         console.log("Error al eliminar guardado. => ", error)
     }
@@ -149,7 +160,7 @@ export const publicarNuevoBlogAccion = (id) => async(dispatch, getState) => {
 
 export const leerBlogsAccion = (coleccion) => async(dispatch) => {
     try {
-        const res = await db.collection(coleccion).get();
+        const res = await db.collection(coleccion).orderBy('fecha','desc').get();
         let blogs = []
         res.forEach((doc)=>{
             blogs.push({docId: doc.id, data: doc.data()})

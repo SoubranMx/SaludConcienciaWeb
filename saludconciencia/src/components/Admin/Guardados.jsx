@@ -5,12 +5,13 @@ import { leerBlogsAccion } from '../../redux/blogsDucks'
 import PlaceGuardados from './PlaceGuardados'
 
 const Guardados = () => {
-    const [eliminado, setEliminado] = useState(false)
+    //const [eliminado, setEliminado] = useState(false)
 
     const dispatch = useDispatch()
     const blogsCargados = useSelector(store => store.blogs.blogs)  //array
 
     const [blogs, setBlogs] = useState(null)
+    let aux;
 
     /*
         Se encarga de actualizar y mostrar los blogs guardados seleccionados desde useSelector
@@ -25,14 +26,19 @@ const Guardados = () => {
 
     useEffect(()=>{
         const cargarBlogs = () => {
-            dispatch(leerBlogsAccion("guardados"))
             setBlogs(blogsCargados)
         }
-        if(blogs === null || eliminado === true){
+        if(blogsCargados !== undefined){
             cargarBlogs()
         }
-        //blogs === null || eliminado === true && cargarBlogs() //Que pedo con esto? funcionaba bien, pero de repente no quiso.
-    },[blogsCargados, blogs, eliminado])
+    },[blogsCargados])
+
+    useEffect(()=>{
+        const cargaInicial = () => {
+            dispatch(leerBlogsAccion('guardados'))
+        }
+        cargaInicial()
+    },[])
 
     const updateAfterDeleteButtonPressed = (respuesta) => {
         console.log(respuesta)
@@ -57,7 +63,7 @@ const Guardados = () => {
                             <div className="row">
                                 <div className="card-group">
                                     {
-                                        blogs !== null ?
+                                        (blogs !== null && blogs !== undefined) ? 
                                             blogs.map(item => (
                                                 <PlaceGuardados
                                                     key={item.docId}
@@ -73,11 +79,14 @@ const Guardados = () => {
                                                 />
                                             ))
                                         : (
+                                            blogs === undefined ? (
                                             <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
                                                 <div className="spinner-border" role="status" style={{width: "3rem", height: "3rem"}}>
                                                     <span className="visually-hidden">Cargando...</span>
                                                 </div>
-                                            </div>
+                                            </div>) : (
+                                                <div>No hay blogs guardados.</div>
+                                            )
                                         )
                                     }
                                 </div>

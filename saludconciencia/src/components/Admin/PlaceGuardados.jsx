@@ -30,7 +30,7 @@ const PlaceGuardados = (props) => {
 
     const eliminarBlogHandler = () => {
         dispatch(eliminarBlogGuardadoAccion(props.uid))
-        props.onEliminar(true)
+        //props.onEliminar(true)
     }
 
     return (

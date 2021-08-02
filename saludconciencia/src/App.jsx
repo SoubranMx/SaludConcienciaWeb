@@ -5,7 +5,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import {auth, db} from './firebase';
+import {auth} from './firebase';
 
 
 
@@ -18,7 +18,7 @@ import Inicio from './components/Pages/Inicio'
 import Admin from './components/Admin/Admin';
 import Ejemplo from './Ejemplo';
 import Login from './components/Admin/Login';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 
 const App = (props) => {
 
@@ -44,7 +44,7 @@ const App = (props) => {
       }
     }
     redirigir()
-  },[firebaseUser])
+  },[firebaseUser, props.history])
 
   return firebaseUser !== false ? (
     <div>
