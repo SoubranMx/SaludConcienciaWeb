@@ -14,7 +14,8 @@ const AdminIndex = (props) => {
 
     return (
         <div>
-            <button className="btn btn-warning" onClick={cerrarSesion}>Cerrar Sesión</button>
+            <h1>Salud Conciencia Version 0.1.0</h1>
+            <button className="btn btn-warning mt-3" onClick={cerrarSesion}>Cerrar Sesión</button>
         </div>
     )
 }

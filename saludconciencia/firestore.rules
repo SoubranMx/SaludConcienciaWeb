@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	match /blogs/{document} {
+    	allow read: if true
+    	//allow read,write: if request.auth != null && request.auth.uid == "KtfYlAFGCgScByOZgDxkYlgP1Sv1";
+  	}
+    match /referenciasBlogs/{document}{
+    	allow read: if true
+    }
+    match /referenciasTags/{document}{
+    	allow read: if true
+    }
+    match /{document=**} {
+      allow read, write: if request.auth != null && (request.auth.uid == "KtfYlAFGCgScByOZgDxkYlgP1Sv1" || request.auth.uid == "KXXjj3ko7OVMnow8boP38UMep803");
+      
+    }
+  }
+}
