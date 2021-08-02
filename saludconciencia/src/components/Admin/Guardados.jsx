@@ -5,7 +5,6 @@ import { leerBlogsAccion } from '../../redux/blogsDucks'
 import PlaceGuardados from './PlaceGuardados'
 
 const Guardados = () => {
-    //const [eliminado, setEliminado] = useState(false)
 
     const dispatch = useDispatch()
     const blogsCargados = useSelector(store => store.blogs.blogs)  //array
@@ -14,14 +13,13 @@ const Guardados = () => {
     let aux;
 
     /*
-        Se encarga de actualizar y mostrar los blogs guardados seleccionados desde useSelector
-        1.  Si se carga la pagina, blogs es null, por tanto entra a cargarBlogs.
-            Una vez dentro, el dispatch modifica a blogsCargados, y una vez modificados,
-            se setea blogs con esa info, de modo que blogs ya no es null y se renderean.
-
-        2.  Si se elimina un blog, eliminado pasa a true, por lo que entra a cargarBlogs.
-            Una vez dentro, vuelve a hacer dispatch que modifica a blogsCargados, y a su vez,
-            setea blogs con esa info actualizada, por lo que se renderiza el nuevo conjunto.
+        Mecanismo de carga:
+        1. Primera carga de pagina: se leen los blogs de redux
+        2. Se observa el comportamiento de blogsCargados. Si es distinto de undefined,
+        se cargan los blogs en setBlogs.
+        Cuando se elimina algun blog, en el dispatch de borrar se actualiza el payload
+        y, por tanto, se actualiza blogsCargados, volviendo a cargar en setBlogs, lo que
+        re renderiza la pagina.
     */
 
     useEffect(()=>{
@@ -39,11 +37,6 @@ const Guardados = () => {
         }
         cargaInicial()
     },[])
-
-    const updateAfterDeleteButtonPressed = (respuesta) => {
-        console.log(respuesta)
-        respuesta ? setEliminado(true) : setEliminado(false)
-    }
 
     return (
         <div className="container">
@@ -75,7 +68,6 @@ const Guardados = () => {
                                                     tags={item.data.tags}
                                                     descripcion={item.data.descripcion}
                                                     editor={item.data.editor}
-                                                    onEliminar={updateAfterDeleteButtonPressed}
                                                 />
                                             ))
                                         : (
