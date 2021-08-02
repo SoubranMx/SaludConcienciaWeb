@@ -19,7 +19,6 @@ const Admin = (props) => {
     
     useEffect(()=>{
         if(!auth.currentUser){
-            console.log("Porque entra? => ", auth.currentUser)
             props.history.push('/')
         }
     },[props.history])

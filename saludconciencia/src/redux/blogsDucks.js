@@ -2,8 +2,8 @@ import { db } from "../firebase";
 
 //import { collection, query, orderBy, startAfter, limit, getDocs } from "../firebase";
 
-let first, documentSnapshots, lastVisible, next;
-let limite = 10;
+//let first, documentSnapshots, lastVisible, next;
+//let limite = 10;
 
 // Query the first page of docs
 // let first = query(collection(db, "cities"), orderBy("population"), limit(25));
@@ -37,7 +37,7 @@ const dataInicial = {
 
     //types
     const LEER_BLOGS_EXITO = "LEER_BLOGS_EXITO";                // Para mostrar blogs en /blogs o admin/blogs
-    const LEER_BLOGS_PUBLICAR_EXITO = "LEER_BLOGS_PUBLICAR_EXITO";                // Para mostrar blogs en /blogs o admin/blogs
+    const LEER_BLOGS_PUBLICADOS_EXITO = "LEER_BLOGS_PUBLICAR_EXITO";                // Para mostrar blogs en /blogs o admin/blogs
     const GUARDAR_BLOGS_EXITO = "GUARDAR_BLOGS_EXITO";          // Para guardar blogs en firebase cuando se selecciona guardar
     const UPDATE_TO_SAVE_EXITO = "UPDATE_TO_SAVE_EXITO";        // Para updatear blogs en firebase cuando se selecciono un blog guardado
     const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";    // Para updatear blogs en firebase cuando se selecciono un blog posteado
@@ -60,10 +60,10 @@ const dataInicial = {
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
         //PUBLIC
-        case LEER_BLOGS_PUBLICAR_EXITO:
-            return {...state, blogsPublished: action.payload}
+        case LEER_BLOGS_PUBLICADOS_EXITO:
+            return {...state, blogsPublished: action.payload.blogs, lastVisible: action.payload.lastVisible}
         case CARGAR_MAS_BLOGS:
-            return {...state, blogs: action.payload}
+            return {...state, blogsPublished: [...state.blogsPublished, ...action.payload.blogs], lastVisible: action.payload.lastVisible}
         
         //ADMIN
         case GUARDAR_BLOGS_EXITO:
@@ -174,62 +174,48 @@ export const leerBlogsAccion = (coleccion) => async(dispatch) => {
     }
 }
 
-export const leerBlogsPublicarAccion = () => async(dispatch) => {
+export const leerBlogsPublicarAccion = (limite=10) => async(dispatch) => {
     try {
-        //console.log("Sin Get => ", await db.collection('blogs').orderBy('fecha').limit(cantidad) )
-        //cargaInicial = db.collection('blogs').orderBy('fecha').limit(10);
-        //first = query(collection(db2, "blogs"), orderBy("fecha", "desc"), limit(limite));
-        first = db.collection('blogs').orderBy('fecha','desc').limit(limite);
-        //documentSnapshots = await getDocs(first);
-        documentSnapshots = await first.get()
-        lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1]
-        //const res = await db.collection('blogs').orderBy("fecha",'desc').limit(cantidad);
+        let first = db.collection('blogs')
+            .orderBy('fecha','desc')
+            .limit(limite)
+        let documentSnapshots = await first.get()
+        let lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1]
         let blogs = []
-        // console.log("first => ", first)
-        // console.log("documentSnapshots => ", documentSnapshots)
-        // console.log("lastVisible => ", lastVisible)
         documentSnapshots.forEach((doc)=>{
-            // console.log("Document snaptshot doc => ", doc)
-            // console.log("Document snaptshot id => ", doc.id)
-            // console.log("Document snaptshot data => ", doc.data())
             blogs.push({docId: doc.id, data: doc.data()})
         })
         dispatch({
-            type: LEER_BLOGS_PUBLICAR_EXITO,
-            payload: blogs
+            type: LEER_BLOGS_PUBLICADOS_EXITO,
+            payload: {
+                blogs,
+                lastVisible
+            }
         })
     } catch (error) {
         console.log("Error al leer blogs => ",error)
     }
 }
 
-export const cargarMasBlogsAccion = () => async(dispatch, getState) => {
-    // try {
-    //     // next = query(collection(db2, "blogs"),
-    //     //         orderBy("fecha"),
-    //     //         startAfter(lastVisible),
-    //     //         limit(limite));
-    //     next = db.collection.orderBy('fecha', 'desc').startAfter(lastVisible).limit(limite)
-    //     //documentSnapshots = await getDocs(next);
-    //     documentSnapshots = await next.get();
-    //     console.log("next => ", next)
-    //     console.log("documentSnapshots => ", documentSnapshots)
-    //     console.log("lastVisible => ", lastVisible)
-    //     lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-    //     //const res = await db.collection('blogs').get().orderBy('fecha').limit(limite)
-    //     let blogs = []
-    //     documentSnapshots.forEach((doc)=>{
-    //         console.log("Document snaptshot doc mas => ", doc)
-    //         blogs.push({docId: doc.id, data: doc.data()})
-    //     })
-
-    //     dispatch({
-    //         type: CARGAR_MAS_BLOGS,
-    //         payload: blogs
-    //     })
-    // } catch (error) {
-    //     console.log("Error al cargar mas blogs => ", error)
-    // }
+export const cargarMasBlogsAccion = (limite=10) => async(dispatch, getState) => {
+    try {
+        let next = db.collection('blogs')
+                .orderBy('fecha','desc')
+                .startAfter(getState().blogs.lastVisible)
+                .limit(limite)
+        let documentSnapshots = await next.get()
+        let lastVisible = documentSnapshots.docs[documentSnapshots.docs.length - 1]
+        let blogs = []
+        documentSnapshots.forEach((doc)=>{
+            blogs.push({docId: doc.id, data: doc.data()})
+        })
+        dispatch({
+            type: CARGAR_MAS_BLOGS,
+            payload: {blogs, lastVisible}
+        })
+    } catch (error) {
+        console.log("Error al cargar mas blogs => ", error)
+    }
 }
 
 //////////////////////////////////////////////////////////////////

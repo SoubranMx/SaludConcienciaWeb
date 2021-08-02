@@ -178,9 +178,14 @@ const Blog = () => {
         console.log("blogsHelper useEffect => ", blogsLet)
     },[blogsLet])
 
+
+    const cargarMasBlogsHandler = () => {
+        dispatch(cargarMasBlogsAccion())
+    }
+
     return blogsFirebase !== undefined ? (
         <div className="container-md container-sm-fluid mt-3" data-bs-spy="scroll" data-bs-target="#navbar-spy">
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column blogBoxShadow">
                 {
                     blogsRecent !== null && (
                         <RecentBlogs 
@@ -198,7 +203,7 @@ const Blog = () => {
                 }
                 
 
-                <button className="masBlogs mt-3">Cargar más</button>
+                <button className="masBlogs mt-3" onClick={cargarMasBlogsHandler}>Cargar más</button>
             </div>
         </div>
     ) : (

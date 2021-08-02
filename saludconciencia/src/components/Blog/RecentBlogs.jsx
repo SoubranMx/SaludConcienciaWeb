@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { auth } from '../../firebase'
 
 
 const RecentBlogs = (props) => {
 
     const blogs = useSelector(store=>store.blogs.blogsPublished)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(()=>{
         console.log("Blog 1 =>",blogs[0])
         console.log("Blog 2 =>",blogs[1])
     },[blogs])
+
+    useEffect(()=>{
+        if(!auth.currentUser){
+            setIsLoggedIn(true)
+        }
+    },[])
 
     return (
         <div className="image-container">
