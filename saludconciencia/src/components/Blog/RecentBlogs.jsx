@@ -5,12 +5,11 @@ import { auth } from '../../firebase'
 
 const RecentBlogs = (props) => {
 
+    //En teoria ya deberia existir si se manda a llamar blogsRecent
     const blogs = useSelector(store=>store.blogs.blogsPublished)
+
+    //Para mostrar botones de edicion o borrado
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    useEffect(()=>{
-        console.log("Blog 1 =>",blogs[0])
-        console.log("Blog 2 =>",blogs[1])
-    },[blogs])
 
     useEffect(()=>{
         if(!auth.currentUser){
