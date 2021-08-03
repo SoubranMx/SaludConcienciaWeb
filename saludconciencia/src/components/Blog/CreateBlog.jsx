@@ -15,30 +15,30 @@ import { clearAllAccion, updateEditorAccion } from '../../redux/blogsDucks';
 const CreateBlog = () => {
     const EDITOR_HOLDER_ID = 'editorjs';
     const dispatch = useDispatch();
-    const blogCargado = useSelector(store => store.blogs)
+    const blogCargado = useSelector(store => store.blogs.blog)
     const editorInstance = useRef();
     const [blogUsable, setBlogUsable] = useState(null)
 
     //Cargar blog => default o cargado
     useEffect(()=>{
         const cargarBlog = () => {
-            if(blogCargado.blogUpdate === undefined){       //No hay blog cargado?
+            setBlogUsable({...blogCargado})
+            // if(blogCargado.blogUpdate === undefined){       //No hay blog cargado?
 
-                setBlogUsable({...blogCargado.blog})          //usar blog default
-            } else {
-                setBlogUsable({...blogCargado.blogUpdate})    //usar blog cargado
-            }
+            //     setBlogUsable({...blogCargado.blog})          //usar blog default
+            // } else {
+            //     setBlogUsable({...blogCargado.blogUpdate})    //usar blog cargado
+            // }
         }
-        blogUsable === null && cargarBlog()    //Solo si blogUsable es undefined, su valor inicial
+        blogUsable === null && cargarBlog()    //Solo si blogUsable es null, su valor inicial
     },[blogCargado, blogUsable])
 
     useEffect(() => {
         if (!editorInstance.current) {
-            if(blogCargado.blogUpdate === undefined){
+            if(blogCargado.editor === {}){
                 initEditor({});
             } else {
-                //editorCargado(blogCargado.blogUpdate.editor);
-                initEditor(blogCargado.blogUpdate.editor)
+                initEditor(blogCargado.editor)
             }
         }
     }, [editorInstance]);
@@ -143,6 +143,7 @@ const CreateBlog = () => {
                     <button className="btn btn-success btn-lg" onClick={cleanAll}>Limpiar todo</button>
                     <ButtonMain 
                         tipo={blogUsable.tipo}
+                        idBlog={blogUsable.uid}
                         onEnviar={enviarClean}
                     />
                 </form>

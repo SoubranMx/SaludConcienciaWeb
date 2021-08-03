@@ -1,24 +1,4 @@
-import { db } from "../firebase";
-
-//import { collection, query, orderBy, startAfter, limit, getDocs } from "../firebase";
-
-//let first, documentSnapshots, lastVisible, next;
-//let limite = 10;
-
-// Query the first page of docs
-// let first = query(collection(db, "cities"), orderBy("population"), limit(25));
-// let documentSnapshots = await getDocs(first);
-
-// // Get the last visible document
-// let lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
-// console.log("last", lastVisible);
-
-// // Construct a new query starting at this document,
-// // get the next 25 cities.
-// let next = query(collection(db, "cities"),
-//     orderBy("population"),
-//     startAfter(lastVisible),
-//     limit(25));
+import { db, storage } from "../firebase";
 
 //Constantes
 
@@ -36,13 +16,13 @@ const dataInicial = {
 }
 
     //types
-    const LEER_BLOGS_EXITO = "LEER_BLOGS_EXITO";                // Para mostrar blogs en /blogs o admin/blogs
-    const LEER_BLOGS_PUBLICADOS_EXITO = "LEER_BLOGS_PUBLICAR_EXITO";                // Para mostrar blogs en /blogs o admin/blogs
-    const GUARDAR_BLOGS_EXITO = "GUARDAR_BLOGS_EXITO";          // Para guardar blogs en firebase cuando se selecciona guardar
-    const UPDATE_TO_SAVE_EXITO = "UPDATE_TO_SAVE_EXITO";        // Para updatear blogs en firebase cuando se selecciono un blog guardado
-    const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";    // Para updatear blogs en firebase cuando se selecciono un blog posteado
-    const PUBLICAR_BLOG_EXITO = "PUBLICAR_BLOG_EXITO";          // Para subir un blog en firebase cuando se selecciona publicar
-    const CARGAR_MAS_BLOGS = "CARGAR_MAS_BLOGS";                // Para cargar mas blogs cuando se presiona el boton "cargar mas" en /blogs o /admin/blogs
+    const LEER_BLOGS_EXITO = "LEER_BLOGS_EXITO";                            // Para mostrar blogs en /blogs o admin/blogs
+    const LEER_BLOGS_PUBLICADOS_EXITO = "LEER_BLOGS_PUBLICAR_EXITO";        // Para mostrar blogs en /blogs o admin/blogs
+    const GUARDAR_BLOGS_EXITO = "GUARDAR_BLOGS_EXITO";                      // Para guardar blogs en firebase cuando se selecciona guardar
+    const UPDATE_TO_SAVE_EXITO = "UPDATE_TO_SAVE_EXITO";                    // Para updatear blogs en firebase cuando se selecciono un blog guardado
+    const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";                // Para updatear blogs en firebase cuando se selecciono un blog posteado
+    const PUBLICAR_BLOG_EXITO = "PUBLICAR_BLOG_EXITO";                      // Para subir un blog en firebase cuando se selecciona publicar
+    const CARGAR_MAS_BLOGS = "CARGAR_MAS_BLOGS";                            // Para cargar mas blogs cuando se presiona el boton "cargar mas" en /blogs o /admin/blogs
     const CARGAR_BLOG_INFO_UPDATE_SAVED = "CARGAR_BLOG_INFO_UPDATE_SAVED";  // Para cuando se manda a llamar Editar en guardados
     const CLEAR_DATA = "CLEAR_DATA";
     const BORRAR_BLOG_GUARDADO_EXITO = "BORRAR_BLOG_GUARDADO_EXITO"
@@ -75,7 +55,7 @@ export default function blogsReducer (state = dataInicial, action){
         case CARGAR_BLOG_INFO_UPDATE_SAVED:
             return {
                 ...state,
-                blogUpdate: {
+                blog: {
                     tipo: action.payload.tipo,
                     uid: action.payload.blog.uid,
                     titulo: action.payload.blog.titulo,
@@ -219,7 +199,7 @@ export const cargarMasBlogsAccion = (limite=10) => async(dispatch, getState) => 
 }
 
 //////////////////////////////////////////////////////////////////
-////    CARGAS
+////    EDICION GUARDADO O PUBLICADO
 export const editarBlogGuardadoAccion = (blogCargado) => dispatch => {
     dispatch({
         type: CARGAR_BLOG_INFO_UPDATE_SAVED,

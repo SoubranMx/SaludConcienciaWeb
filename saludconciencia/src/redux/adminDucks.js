@@ -1,4 +1,4 @@
-import { auth, firebase, db, storage } from "../firebase"
+import { auth, db, storage } from "../firebase"
 //data inicial
 //esta data inicial no cambia, lo que cambia es el state
 const dataInicial = {

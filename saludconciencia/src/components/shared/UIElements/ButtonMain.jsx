@@ -9,10 +9,12 @@ const ButtonMain = (props) => {
 
     const dispatch = useDispatch();
     const blogAValidar = useSelector(store => store.blogs.blog)
+    //const blogCargado = useSelector(store => store.blogs.blogUpdate)
     let uidNano;
 
     const saveHandler = () => {
-        //props.onSave(0)
+
+        //blogAValidar deberia tener o un blog default o uno ya cargado.
         if(!blogAValidar.titulo.trim()){
             console.log("Titulo vacio")
             //Titulo vacio
@@ -21,11 +23,20 @@ const ButtonMain = (props) => {
                 console.log("Imagen Vacia")
             }else{
                 console.log("Ready to go!")
-                dispatch(updateFechaAccion(Date.now()))
-                uidNano = nanoid();
-                dispatch(updateUidAccion(uidNano))
-                dispatch(guardarNuevoBlogAccion(uidNano))
-                props.onEnviar(true)
+                if(blogAValidar.uid === ""){    //id vacio
+                    dispatch(updateFechaAccion(Date.now()))
+                    uidNano = nanoid();
+                    dispatch(updateUidAccion(uidNano))
+                    dispatch(guardarNuevoBlogAccion(uidNano))
+                    props.onEnviar(true)
+                } else {
+                    //Ya existe un id
+                    dispatch(updateFechaAccion(Date.now()))
+                    //uidNano = nanoid();
+                    //dispatch(updateUidAccion(uidNano))
+                    dispatch(guardarNuevoBlogAccion(blogAValidar.uid))
+                    props.onEnviar(true)
+                }
             }
         }
     }
