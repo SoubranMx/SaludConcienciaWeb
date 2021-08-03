@@ -9,7 +9,6 @@ const ButtonMain = (props) => {
 
     const dispatch = useDispatch();
     const blogAValidar = useSelector(store => store.blogs.blog)
-    //const blogCargado = useSelector(store => store.blogs.blogUpdate)
     let uidNano;
 
     const saveHandler = () => {
@@ -32,8 +31,6 @@ const ButtonMain = (props) => {
                 } else {
                     //Ya existe un id
                     dispatch(updateFechaAccion(Date.now()))
-                    //uidNano = nanoid();
-                    //dispatch(updateUidAccion(uidNano))
                     dispatch(guardarNuevoBlogAccion(blogAValidar.uid))
                     props.onEnviar(true)
                 }

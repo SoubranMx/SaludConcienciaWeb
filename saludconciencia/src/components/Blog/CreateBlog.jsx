@@ -23,12 +23,6 @@ const CreateBlog = () => {
     useEffect(()=>{
         const cargarBlog = () => {
             setBlogUsable({...blogCargado})
-            // if(blogCargado.blogUpdate === undefined){       //No hay blog cargado?
-
-            //     setBlogUsable({...blogCargado.blog})          //usar blog default
-            // } else {
-            //     setBlogUsable({...blogCargado.blogUpdate})    //usar blog cargado
-            // }
         }
         blogUsable === null && cargarBlog()    //Solo si blogUsable es null, su valor inicial
     },[blogCargado, blogUsable])
@@ -143,7 +137,6 @@ const CreateBlog = () => {
                     <button className="btn btn-success btn-lg" onClick={cleanAll}>Limpiar todo</button>
                     <ButtonMain 
                         tipo={blogUsable.tipo}
-                        idBlog={blogUsable.uid}
                         onEnviar={enviarClean}
                     />
                 </form>
