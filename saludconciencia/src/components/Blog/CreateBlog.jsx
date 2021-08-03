@@ -34,15 +34,20 @@ const CreateBlog = () => {
 
     useEffect(() => {
         if (!editorInstance.current) {
-            initEditor();
+            if(blogCargado.blogUpdate === undefined){
+                initEditor({});
+            } else {
+                //editorCargado(blogCargado.blogUpdate.editor);
+                initEditor(blogCargado.blogUpdate.editor)
+            }
         }
     }, [editorInstance]);
  
-    const initEditor = () => {
+    const initEditor = (editorUsable) => {
         const editor = new EditorJS({
             holder: 'editorjs',
             placeholder: "Escribe algo!",
-    
+            data: editorUsable,
             onReady: () => {
                 editorInstance.current = editor;
                 new EDITOR_JS_TOOLS.dragDrop(editor);
