@@ -8,6 +8,7 @@ import SidebarAdmin from './Sidebar_Admin';
 import Blog from '../Blog/Blog';
 import AdminIndex from './AdminIndex';
 import { auth } from '../../firebase';
+import Perfil from './Perfil';
 
 
 
@@ -48,9 +49,12 @@ const Admin = (props) => {
                     case 'guardados':
                         setContenido((<Guardados />))
                         break;
+
+                    case 'perfil':
+                        setContenido((<Perfil />))
+                        break;
                     
                     default:
-                        //setContenido(null)
                         setContenido((<AdminIndex />))
                         break;
                 }

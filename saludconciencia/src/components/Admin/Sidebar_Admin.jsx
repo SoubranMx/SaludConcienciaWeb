@@ -46,7 +46,7 @@ const SidebarAdmin = () => {
                     <img src={logo} alt="Logo Salud Conciencia" className="sidebar__header-logo" />
                     <img src={logo_sm} alt="Logo Salud Conciencia" className="sidebar__header-logo-sm" />
                     <div className="sidebar__header-icon icon-settings">
-                        <NavLink to="/admin"><FiSettings className="sidebar__header-icon-item"/></NavLink>
+                        <NavLink to="/admin/perfil"><FiSettings className="sidebar__header-icon-item"/></NavLink>
                     </div>
                 </div>
                 <ul className="side-nav">
