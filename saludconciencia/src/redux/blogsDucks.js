@@ -4,6 +4,7 @@ import { db, storage } from "../firebase";
 
 const dataInicial = {
     blog: {
+        tipo: "nuevo",
         uid: "",
         autor: "Julián Uriarte",
         titulo: "",
@@ -32,13 +33,16 @@ const dataInicial = {
     const UPDATE_DESCRIPCION_EXITO = "UPDATE_DESCRIPCION_EXITO";
     const UPDATE_TAGS_EXITO = "UPDATE_TAGS_EXITO";
     const UPDATE_IMAGEN_EXITO = "UPDATE_IMAGEN_EXITO";
+    const UPLOAD_IMGPORTADA_EXITO = "UPLOAD_IMGPORTADA_EXITO";
     const UPDATE_FECHA_EXITO = "UPDATE_FECHA_EXITO";
     const UPDATE_EDITOR_EXITO = "UPDATE_EDITOR_EXITO";
     const UPDATE_UID_EXITO = "UPDATE_UID_EXITO";
-    
+    const LOADING = "LOADING"
 //Reducer
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
+        case LOADING:
+            return {...state, loading: true}
         //PUBLIC
         case LEER_BLOGS_PUBLICADOS_EXITO:
             return {...state, blogsPublished: action.payload.blogs, lastVisible: action.payload.lastVisible}
@@ -76,6 +80,8 @@ export default function blogsReducer (state = dataInicial, action){
             return {...state, blog: {...state.blog, descripcion: action.payload}}
         case UPDATE_IMAGEN_EXITO:
             return {...state, blog: {...state.blog, imgPortada: action.payload}}
+        case UPLOAD_IMGPORTADA_EXITO:
+            return {...state, loading: false, blog: {...state.blog, imgPortada: action.payload}}
         case UPDATE_FECHA_EXITO:
             return {...state, blog: {...state.blog, fecha: action.payload}}
         case UPDATE_UID_EXITO:
@@ -224,6 +230,27 @@ export const updateImagenAccion = (imagenUpdate) => dispatch => {
         type: UPDATE_IMAGEN_EXITO,
         payload: imagenUpdate
     })
+}
+
+export const uploadImgPortadaAccion = (imagen) => async(dispatch, getState) => {
+    dispatch({
+        type: LOADING
+    })
+
+    const {uid} = getState().blogs.blog;
+
+    try {
+        const imagenRef = await storage.ref().child("blogs").child(uid).child("img_portada")
+        await imagenRef.put(imagen)
+        const imagenURL = await imagenRef.getDownloadURL()
+
+        dispatch({
+            type: UPLOAD_IMGPORTADA_EXITO,
+            payload: imagenURL
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export const updateDescripcionAccion = (descripcionUpdate) => dispatch => {

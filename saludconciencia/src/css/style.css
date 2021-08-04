@@ -315,17 +315,17 @@ html {
       justify-content: flex-start;
       margin: 1.5rem 0; }
     .headerTitle__imgPortada-title {
-      flex: 1;
       align-self: center;
       font-size: 2rem;
       font-weight: 600;
       text-transform: uppercase;
       text-align: center;
-      padding: 0 2.5rem; }
+      padding: 0 2.5rem;
+      flex: 0 0 20%; }
     .headerTitle__imgPortada-input {
       font-size: 2rem;
       text-align: center;
-      flex: 0 0 70%;
+      flex: 0 0 80%;
       align-self: center;
       background-color: #f0eeee;
       border: none;
@@ -341,7 +341,8 @@ html {
   .headerTitle__descripcion {
     flex: 1;
     display: flex;
-    justify-content: flex-start; }
+    justify-content: flex-start;
+    margin-top: 2rem; }
     .headerTitle__descripcion-title {
       flex: 1;
       align-self: center;

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { updateDescripcionAccion, updateImagenAccion, updateTituloAccion } from '../../../redux/blogsDucks';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateDescripcionAccion, updateImagenAccion, updateTituloAccion, uploadImgPortadaAccion } from '../../../redux/blogsDucks';
 
 const Title = (props) => {
     const [showPreview, setShowPreview] = useState("preview-off");
     const [urlImagen, setUrlImagen] = useState("")
+    const [error, setError] = useState(false)
+    const [errorMsg, setErrorMsg] = useState("")
 
     const dispatch = useDispatch()
+    const loading = useSelector(store => store.blogs.loading)
+    const imgUrl = useSelector(store => store.blogs.blog.imgPortada)
 
     useEffect(()=>{
         const mostrarImagenAlCargarBlog = () => {
@@ -15,6 +19,22 @@ const Title = (props) => {
         }
         mostrarImagenAlCargarBlog()
     },[props.imagenInput])
+
+
+    useEffect(()=>{
+        if(urlImagen === ""){
+            setShowPreview("preview-off")
+        }else{
+            setShowPreview("preview-on")
+        }
+    },[urlImagen])
+
+    useEffect(()=> {
+        const updateImg = () => {
+            setUrlImagen(imgUrl)
+        }
+        updateImg()
+    },[imgUrl])
 
     const addTitleBlur = (e) => {
         console.log(e.target.value)
@@ -30,6 +50,27 @@ const Title = (props) => {
         } else {
             setShowPreview("preview-on")
         }
+    }
+
+    const uploadImg = async(imagen) => {
+        const imagenPortada = imagen.target.files[0]
+        console.log(imagenPortada)
+        if(imagenPortada === undefined){
+            setErrorMsg("No se seleccionó una imagen")
+            setError(true)
+            setUrlImagen("")
+            return
+        }
+        if(imagenPortada.type === "image/png" || imagenPortada.type === "image/jpg" || imagenPortada.type === "image/jpeg"){
+            dispatch(uploadImgPortadaAccion(imagen.target.files[0]))
+            setError(false)
+            //setUrlImagen(imgUrl)
+        }else{
+            setErrorMsg("Solo archivos .png o .jpg")
+            setError(true)
+            setUrlImagen("")
+        }
+        //setUrlImagen(imgUrl)
     }
 
     const showImage = (e) => {
@@ -56,17 +97,43 @@ const Title = (props) => {
             <div className="headerTitle__imgPortada">
                 <div className="headerTitle__imgPortada-top">
                     <span className="headerTitle__imgPortada-title">Portada</span>
-                    <input 
+                    <div>
+                        <input 
+                            type="file"
+                            className="form-control"
+                            id="imgPortadaUpload"
+                            style={{display: 'none'}}
+                            onChange={e=>uploadImg(e)}
+                            disabled={loading}
+                        />
+                        <label 
+                            htmlFor="imgPortadaUpload" 
+                            className={loading ? 'btn btn-dark disabled' : 'btn btn-dark'}
+                        >
+                            Subir imagen
+                        </label>
+                    </div>
+                    {/* <input 
                         type="text"
                         className="headerTitle__imgPortada-input"
                         onBlur={addImgBlur}
                         onChange={showImage}
                         defaultValue={props.imagenInput}
-                    />
+                    /> */}
                 </div>
-                <div className={`headerTitle__imgPortada-down ${showPreview}`}>
-                    <img src={urlImagen} alt="Img Preview" className="imgPreview"/>
-                </div>
+                {
+                    loading === true ? 
+                    <div className="card-body">
+                        <div className="d-flex justify-content-center my-3">
+                            <div className="spinner-border" role="status">
+                                <span className="sr-only">Cargando...</span>
+                            </div>
+                        </div>
+                    </div> :
+                    <div className={`headerTitle__imgPortada-down ${showPreview}`}>
+                        <img src={urlImagen} alt="Img Preview" className="imgPreview"/>
+                    </div>
+                }
             </div>
             <div className="headerTitle__descripcion">
                 <span className="headerTitle__descripcion-title">

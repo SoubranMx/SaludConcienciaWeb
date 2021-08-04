@@ -22,11 +22,11 @@ const ButtonMain = (props) => {
                 console.log("Imagen Vacia")
             }else{
                 console.log("Ready to go!")
-                if(blogAValidar.uid === ""){    //id vacio
+                if(blogAValidar.tipo === "nuevo"){    //id vacio
                     dispatch(updateFechaAccion(Date.now()))
-                    uidNano = nanoid();
-                    dispatch(updateUidAccion(uidNano))
-                    dispatch(guardarNuevoBlogAccion(uidNano))
+                    // uidNano = nanoid();
+                    // dispatch(updateUidAccion(uidNano))
+                    dispatch(guardarNuevoBlogAccion(blogAValidar.uid))
                     props.onEnviar(true)
                 } else {
                     //Ya existe un id

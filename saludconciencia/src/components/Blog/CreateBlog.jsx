@@ -2,12 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import EditorJS from '@editorjs/editorjs';
 import {db} from '../../firebase'
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 
 import { EDITOR_JS_TOOLS } from './tools';
 import ButtonMain from '../shared/UIElements/ButtonMain';
 import TagsCreate from '../shared/UIElements/TagsCreate';
 import Title from '../shared/UIElements/Title';
-import { clearAllAccion, updateEditorAccion } from '../../redux/blogsDucks';
+import { clearAllAccion, updateEditorAccion, updateUidAccion } from '../../redux/blogsDucks';
 
 
 
@@ -26,6 +27,16 @@ const CreateBlog = () => {
         }
         blogUsable === null && cargarBlog()    //Solo si blogUsable es null, su valor inicial
     },[blogCargado, blogUsable])
+
+    useEffect(()=>{
+        const iniciarUid = () => {
+            dispatch(updateUidAccion(nanoid()))
+        }
+        if(blogUsable !== null){
+            if(blogUsable.tipo === "nuevo")
+                iniciarUid()
+        }
+    },[blogUsable])
 
     useEffect(() => {
         if (!editorInstance.current) {

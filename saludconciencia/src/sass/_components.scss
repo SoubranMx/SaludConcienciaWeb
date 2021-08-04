@@ -506,19 +506,20 @@
         }
 
         &-title{
-            flex: 1;
+            //flex: 1;
             align-self: center;
             font-size: 2rem;
             font-weight: 600;
             text-transform: uppercase;
             text-align: center;
             padding: 0 2.5rem;
+            flex: 0 0 20%;
         }
 
         &-input{
             font-size: 2rem;
             text-align: center;
-            flex: 0 0 70%;
+            flex: 0 0 80%;
             align-self: center;
             background-color: $color-gray-light-3;
             border: none;
@@ -542,6 +543,7 @@
         flex: 1;
         display: flex;
         justify-content: flex-start;
+        margin-top: 2rem;
         &-title{
             flex: 1;
             align-self: center;
