@@ -61,14 +61,19 @@ const Title = (props) => {
             setUrlImagen("")
             return
         }
-        if(imagenPortada.type === "image/png" || imagenPortada.type === "image/jpg" || imagenPortada.type === "image/jpeg"){
-            dispatch(uploadImgPortadaAccion(imagen.target.files[0]))
-            setError(false)
-            //setUrlImagen(imgUrl)
+        if(imagenPortada.size <= 1000000){ //Menor o igual a 1MB
+            if(imagenPortada.type === "image/png" || imagenPortada.type === "image/jpg" || imagenPortada.type === "image/jpeg"){
+                dispatch(uploadImgPortadaAccion(imagen.target.files[0]))
+                setError(false)
+                //setUrlImagen(imgUrl)
+            }else{
+                setErrorMsg("Solo archivos .png o .jpg")
+                setError(true)
+                setUrlImagen("")
+            }
         }else{
-            setErrorMsg("Solo archivos .png o .jpg")
+            setErrorMsg("Archivos menores o iguales a 1 MB.")
             setError(true)
-            setUrlImagen("")
         }
         //setUrlImagen(imgUrl)
     }
@@ -113,14 +118,13 @@ const Title = (props) => {
                             Subir imagen
                         </label>
                     </div>
-                    {/* <input 
-                        type="text"
-                        className="headerTitle__imgPortada-input"
-                        onBlur={addImgBlur}
-                        onChange={showImage}
-                        defaultValue={props.imagenInput}
-                    /> */}
                 </div>
+                {
+                    error &&
+                    <div className="alert alert-warning mt-3 text-center">
+                        {errorMsg}
+                    </div>
+                }
                 {
                     loading === true ? 
                     <div className="card-body">
