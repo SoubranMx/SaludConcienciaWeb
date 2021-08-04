@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import { auth } from '../../firebase'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -20,7 +19,7 @@ const Login = (props) => {
         if(activo){
             props.history.push('/admin')
         }
-    },[activo])
+    },[activo,props])
 
     const procesarDatos = e => {
         e.preventDefault()

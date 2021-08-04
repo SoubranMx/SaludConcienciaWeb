@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateDescripcionAccion, updateImagenAccion, updateTituloAccion, uploadImgPortadaAccion } from '../../../redux/blogsDucks';
+import { updateDescripcionAccion,
+    updateTituloAccion,
+    uploadImgPortadaAccion } from '../../../redux/blogsDucks';
 
 const Title = (props) => {
     const [showPreview, setShowPreview] = useState("preview-off");
@@ -39,17 +41,6 @@ const Title = (props) => {
     const addTitleBlur = (e) => {
         console.log(e.target.value)
         dispatch(updateTituloAccion(e.target.value))
-    }
-
-    const addImgBlur = (e) => {
-        console.log(e.target.value)
-        dispatch(updateImagenAccion(e.target.value))
-        setUrlImagen(e.target.value)
-        if(!e.target.value.trim()){
-            setShowPreview("preview-off")
-        } else {
-            setShowPreview("preview-on")
-        }
     }
 
     const uploadImg = async(imagen) => {

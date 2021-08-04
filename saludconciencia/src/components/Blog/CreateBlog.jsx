@@ -36,7 +36,7 @@ const CreateBlog = () => {
             if(blogUsable.tipo === "nuevo")
                 iniciarUid()
         }
-    },[blogUsable])
+    },[blogUsable, dispatch])
 
     useEffect(() => {
         if (!editorInstance.current) {
@@ -46,7 +46,7 @@ const CreateBlog = () => {
                 initEditor(blogCargado.editor)
             }
         }
-    }, [editorInstance]);
+    }, [editorInstance, blogCargado]);
  
     const initEditor = (editorUsable) => {
         const editor = new EditorJS({

@@ -2,14 +2,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {FiSave, FiUpload} from 'react-icons/fi';
-import { guardarNuevoBlogAccion, updateFechaAccion, updateUidAccion, publicarNuevoBlogAccion, eliminarBlogGuardadoAlPublicarAccion} from '../../../redux/blogsDucks';
-import { nanoid } from 'nanoid';
+import { guardarNuevoBlogAccion,
+    updateFechaAccion,
+    publicarNuevoBlogAccion,
+    eliminarBlogGuardadoAlPublicarAccion} from '../../../redux/blogsDucks';
 
 const ButtonMain = (props) => {
 
     const dispatch = useDispatch();
     const blogAValidar = useSelector(store => store.blogs.blog)
-    let uidNano;
 
     const saveHandler = () => {
 
@@ -21,7 +22,6 @@ const ButtonMain = (props) => {
             if(!blogAValidar.imgPortada.trim()){
                 console.log("Imagen Vacia")
             }else{
-                console.log("Ready to go!")
                 if(blogAValidar.tipo === "nuevo"){
                     dispatch(updateFechaAccion(Date.now()))
                     dispatch(guardarNuevoBlogAccion(blogAValidar.uid))
@@ -37,7 +37,6 @@ const ButtonMain = (props) => {
     }
 
     const publishHandler = () => {
-        //props.onPublish(1)
         if(!blogAValidar.titulo.trim()){
             console.log("Titulo vacio")
             //Titulo vacio

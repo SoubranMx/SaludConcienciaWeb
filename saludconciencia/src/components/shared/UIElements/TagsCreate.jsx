@@ -17,7 +17,7 @@ const TagsCreate = (props) => {
             dispatch(updateTagsAccion(cantidadTags))
         }
         guardarTags()
-    },[cantidadTags])
+    },[cantidadTags, dispatch])
 
     const addTargetHandler = () => {
         if(valorTag !== ""){
