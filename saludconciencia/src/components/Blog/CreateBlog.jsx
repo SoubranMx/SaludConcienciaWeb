@@ -8,7 +8,7 @@ import { EDITOR_JS_TOOLS } from './tools';
 import ButtonMain from '../shared/UIElements/ButtonMain';
 import TagsCreate from '../shared/UIElements/TagsCreate';
 import Title from '../shared/UIElements/Title';
-import { clearAllAccion, updateEditorAccion, updateUidAccion } from '../../redux/blogsDucks';
+import { clearAllAccion, updateAutorAccion, updateEditorAccion, updateUidAccion } from '../../redux/blogsDucks';
 
 
 
@@ -20,6 +20,14 @@ const CreateBlog = () => {
     const editorInstance = useRef();
     const [blogUsable, setBlogUsable] = useState(null)
 
+    //Cargar autor email al redux
+    useEffect(()=>{
+        const cargaAutor = () => {
+            dispatch(updateAutorAccion())
+        }
+        cargaAutor()
+    },[])
+    
     //Cargar blog => default o cargado
     useEffect(()=>{
         const cargarBlog = () => {
@@ -28,6 +36,7 @@ const CreateBlog = () => {
         blogUsable === null && cargarBlog()    //Solo si blogUsable es null, su valor inicial
     },[blogCargado, blogUsable])
 
+    //Inicia el uid para los blogs nuevos
     useEffect(()=>{
         const iniciarUid = () => {
             dispatch(updateUidAccion(nanoid()))
@@ -38,16 +47,8 @@ const CreateBlog = () => {
         }
     },[blogUsable, dispatch])
 
+    //Hace la carga del editor con la data inicial o la data cargada
     useEffect(() => {
-        // if (!editorInstance.current) {
-        //     if(blogCargado !== undefined){
-        //         if(blogCargado.editor === {}){
-        //             initEditor({});
-        //         } else {
-        //             initEditor(blogCargado.editor)
-        //         }
-        //     }
-        // }
         const iniciarEditor = () => {
             if(blogUsable !== null){  //Se cargó algo de useSelector y se cargo al blogUsable
                 if(blogUsable.tipo === "nuevo"){

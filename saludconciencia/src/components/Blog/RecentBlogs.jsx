@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { auth } from '../../firebase'
+import { auth, db } from '../../firebase'
 
 
 const RecentBlogs = (props) => {
@@ -11,16 +11,30 @@ const RecentBlogs = (props) => {
     //Para mostrar botones de edicion o borrado
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+    const [autor1, setAutor1] = useState("")
+    const [autor2, setAutor2] = useState("")
+
     useEffect(()=>{
-        if(!auth.currentUser){
-            setIsLoggedIn(true)
+        const cargarAutorRecent = async() => {
+            if(blogs[0] !== undefined && blogs[0] !== null){
+                const displayName = await db.collection('admin').doc(blogs[0].data.autor).get();
+                //console.log("displayName auth1 => ", displayName.data().displayName)
+                setAutor1(displayName.data().displayName)
+            }
+            if(blogs[1] !== undefined){
+                const displayName2 = await db.collection('admin').doc(blogs[1].data.autor).get();
+                setAutor2(displayName2.data().displayName)
+            }
         }
-    },[])
+        if(blogs !== undefined){
+            cargarAutorRecent()
+        }
+    },[blogs])
 
     return (
         <div className="image-container">
             { 
-                blogs[0] !== null ? (
+                blogs[0] !== null && blogs[0] !== undefined ? (
                     <div className="image-container-first">
                         <img className="imageCard" src={blogs[0].data.imgPortada} alt="" />
                         <div className="image-container__info">
@@ -33,14 +47,20 @@ const RecentBlogs = (props) => {
                             </div>
                             <h3 className="image-container__info-title">{blogs[0].data.titulo}</h3>
                             <div className="image-container__info__details">
-                                <h3 className="image-container__info-author">Por: {blogs[0].data.autor}</h3>
+                                <h3 className="image-container__info-author">
+                                    {
+                                        autor1 !== "" && (
+                                            `Por: ${autor1}`
+                                        )
+                                    }
+                                </h3>
                             </div>
                         </div>
                     </div>
                 ) : (null)
             }
             {
-                blogs[1] !== null ? (
+                blogs[1] !== null && blogs[1] !== undefined ? (
                     <div className="image-container-second">
                         <img className="imageCard" src={blogs[1].data.imgPortada} alt="" />
                         <div className="image-container__info">
@@ -53,7 +73,13 @@ const RecentBlogs = (props) => {
                             </div>
                             <h3 className="image-container__info-title">{blogs[1].data.titulo}</h3>
                             <div className="image-container__info__details">
-                                <h3 className="image-container__info-author">Por: {blogs[1].data.autor}</h3>
+                                <h3 className="image-container__info-author">
+                                    {
+                                        autor2 !== "" && (
+                                            `Por: ${autor2}`
+                                        )
+                                    }
+                                </h3>
                             </div>
                         </div>
                     </div>

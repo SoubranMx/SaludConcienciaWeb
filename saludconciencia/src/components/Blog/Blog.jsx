@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import RecentBlogs from './RecentBlogs'
 import LatestBlogs from './LatestBlogs'
 import { cargarMasBlogsAccion, leerBlogsPublicarAccion } from '../../redux/blogsDucks'
+import {db} from '../../firebase'
 
 const Blog = () => {
     const dispatch = useDispatch()
@@ -11,8 +12,7 @@ const Blog = () => {
     
     //Empiezan en false para mostrar spinner de carga.
     const [blogsRecent, setBlogsRecent] = useState(false)
-    const [blogsLatest, setBlogsLatest] = useState(false)
-    
+    const [blogsLatest, setBlogsLatest] = useState(false)    
 
     //Carga inicial de los blogs
     useEffect(()=>{
@@ -33,9 +33,10 @@ const Blog = () => {
             setBlogsLatest(false)
             setBlogsRecent(true)
         }
+
         if(blogsFirebase !== undefined && blogsFirebase !== null){  //Asegura que se han cargado ya
             if(blogsFirebase.length <= 2){
-                console.log("Hay menos o igual a 2 blogs")
+                console.log("Hay menos o igual a 2 blogs => ", blogsFirebase)
                 actualizarBlogsRecientesOnly()  //Solo activa blogs Recientes
             } else {    //Hay por lo menos 3 blogs en redux
                 console.log("Hay por lo menos 3 blogs")
@@ -72,11 +73,10 @@ const Blog = () => {
                         // <LatestBlogs items={blogsLatest} />
                         <LatestBlogs />
                     ) : (
-                        "No hay mas que 2 blogs div"
+                        <div className="mt-3 text-center"><b>No hay más blogs a mostrar</b></div>
                     )
                 }
                 
-
                 <button className="masBlogs mt-3" onClick={cargarMasBlogsHandler}>Cargar más</button>
             </div>
         </div>

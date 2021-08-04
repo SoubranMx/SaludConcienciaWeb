@@ -1,11 +1,11 @@
 import { db, storage, auth } from "../firebase";
 
-let emailDB = "";
-auth.onAuthStateChanged( user => {
-    if(user){
-        emailDB = auth.currentUser.email
-    }
-})
+// let emailDB = "";
+// auth.onAuthStateChanged( user => {
+//     if(user){
+//         emailDB = auth.currentUser.email
+//     }
+// })
 
 
 //Constantes
@@ -14,7 +14,7 @@ const dataInicial = {
     blog: {
         tipo: "nuevo",
         uid: "",
-        autor: emailDB,
+        autor: "",
         titulo: "",
         descripcion: "",
         tags: [],
@@ -38,7 +38,7 @@ const dataInicial = {
     const BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO = "BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO"
 
     const UPDATE_TITULO_EXITO = "UPDATE_TITULO_EXITO";
-    //const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO";
+    const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO";
     const UPDATE_DESCRIPCION_EXITO = "UPDATE_DESCRIPCION_EXITO";
     const UPDATE_TAGS_EXITO = "UPDATE_TAGS_EXITO";
     const UPDATE_IMAGEN_EXITO = "UPDATE_IMAGEN_EXITO";
@@ -46,7 +46,8 @@ const dataInicial = {
     const UPDATE_FECHA_EXITO = "UPDATE_FECHA_EXITO";
     const UPDATE_EDITOR_EXITO = "UPDATE_EDITOR_EXITO";
     const UPDATE_UID_EXITO = "UPDATE_UID_EXITO";
-    const LOADING = "LOADING"
+    const LOADING = "LOADING";
+    const ERROR_AUTOR = "ERROR_AUTOR";
 //Reducer
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
@@ -102,6 +103,10 @@ export default function blogsReducer (state = dataInicial, action){
             return {...state, blog: {...state.blog, editor: {...action.payload}}}
         case UPDATE_TAGS_EXITO:
             return {...state, blog: {...state.blog, tags: [...action.payload]}}
+        case UPDATE_AUTOR_EXITO:
+            return {...state, blog: {...state.blog, autor: action.payload}}
+        case ERROR_AUTOR:
+            return {...state}
         default:
             return state;
     }
@@ -347,4 +352,23 @@ export const clearAllAccion = () => dispatch => {
     dispatch({
         type: CLEAR_DATA
     })
+}
+
+export const updateAutorAccion = () => async(dispatch) => {
+    let emailDB = "";
+    if(localStorage.getItem('admin')){
+        emailDB = JSON.parse(localStorage.getItem('admin'))
+        emailDB = emailDB.email
+    }
+
+    if(emailDB !== "") {
+        dispatch({
+            type: UPDATE_AUTOR_EXITO,
+            payload: emailDB
+        })
+    } else {
+        dispatch({
+            type: ERROR_AUTOR
+        })
+    }
 }
