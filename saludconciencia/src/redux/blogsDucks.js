@@ -98,8 +98,40 @@ export default function blogsReducer (state = dataInicial, action){
 
 //////////////////////////////////////////////////////////////////
 ////    ELIMINAR
-export const eliminarBlogGuardadoAccion = (id) => async(dispatch) => {
+const deleteFile = (pathToFile, fileName) => {
+    const ref = storage.ref(pathToFile);
+    console.log("pathToFile => ", ref)
+    const childRef = ref.child(fileName);
+    childRef.delete()
+}
+
+const deleteFolderContents = (path,id) => {
+    console.log("pathToFolder 1 => ", path)
+    const ref = storage.ref(path);
+    console.log("pathToFolder 2 => ", ref)
+    ref.listAll()
+        .then(dir => {
+            dir.items.forEach(fileRef => {
+                console.log("ref => ", ref.fullPath, "fileRefName => ", fileRef.name)
+                deleteFile(ref.fullPath, fileRef.name);
+            });
+            dir.prefixes.forEach(folderRef => {
+                deleteFolderContents(folderRef.fullPath);
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const eliminarBlogGuardadoAccion = (id) => async(dispatch,getState) => {
+    
     try {
+        
+        //eliminar tambien las imagenes de ese blog
+        const folderPath = storage.ref().child('blogs').child(id).fullPath
+        deleteFolderContents(folderPath,id)
+
         await db.collection('guardados').doc(id).delete()
         const res = await db.collection('guardados').orderBy('fecha','desc').get();
         let blogs = []

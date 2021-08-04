@@ -28,6 +28,6 @@ const db = firebase.firestore()
 const auth = firebase.auth()
 const storage = firebase.storage()
 
-export {firebase, db, auth, storage}
+export { firebase, db, auth, storage }
 
 //export {collection, query, orderBy, startAfter, limit, getDocs}

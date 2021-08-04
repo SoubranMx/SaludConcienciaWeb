@@ -62,7 +62,7 @@ const ButtonMain = (props) => {
     return (
         <div className="footerButtons">
             {
-                props.tipo === "guardado" || props.tipo === undefined ? (
+                props.tipo === "guardado" || props.tipo === "nuevo" ? (
                     <div className="footerButtons__save" onClick={saveHandler}>
                         <button className="footerButtons__btn footerButtons__btn-save" type="button">
                             <FiSave className="footerButtons__save-icon" />
@@ -79,7 +79,7 @@ const ButtonMain = (props) => {
                 )
             }
             {
-                props.tipo === "guardado" || props.tipo === undefined ? (
+                props.tipo === "guardado" || props.tipo === "nuevo" ? (
                     <div className="footerButtons__publish" onClick={publishHandler}>
                         <button className="footerButtons__btn footerButtons__btn-publish" type="submit">
                             <FiUpload className="footerButtons__publish-icon" />
