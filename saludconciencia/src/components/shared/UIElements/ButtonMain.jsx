@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import {FiSave, FiUpload} from 'react-icons/fi';
-import { guardarNuevoBlogAccion, updateFechaAccion, updateUidAccion, publicarNuevoBlogAccion} from '../../../redux/blogsDucks';
+import { guardarNuevoBlogAccion, updateFechaAccion, updateUidAccion, publicarNuevoBlogAccion, eliminarBlogGuardadoAlPublicarAccion} from '../../../redux/blogsDucks';
 import { nanoid } from 'nanoid';
 
 const ButtonMain = (props) => {
@@ -22,10 +22,8 @@ const ButtonMain = (props) => {
                 console.log("Imagen Vacia")
             }else{
                 console.log("Ready to go!")
-                if(blogAValidar.tipo === "nuevo"){    //id vacio
+                if(blogAValidar.tipo === "nuevo"){
                     dispatch(updateFechaAccion(Date.now()))
-                    // uidNano = nanoid();
-                    // dispatch(updateUidAccion(uidNano))
                     dispatch(guardarNuevoBlogAccion(blogAValidar.uid))
                     props.onEnviar(true)
                 } else {
@@ -47,12 +45,16 @@ const ButtonMain = (props) => {
             if(!blogAValidar.imgPortada.trim()){
                 console.log("Imagen Vacia")
             }else{
-                console.log("Ready to go!")
-                dispatch(updateFechaAccion(Date.now()))
-                uidNano = nanoid();
-                dispatch(updateUidAccion(uidNano))
-                dispatch(publicarNuevoBlogAccion(uidNano))
-                props.onEnviar(true)
+                if(blogAValidar.tipo === 'nuevo'){
+                    console.log("Ready to go!")
+                    dispatch(updateFechaAccion(Date.now()))
+                    dispatch(publicarNuevoBlogAccion(blogAValidar.uid))
+                    props.onEnviar(true)
+                } else {
+                    dispatch(eliminarBlogGuardadoAlPublicarAccion(blogAValidar.uid))
+                    dispatch(publicarNuevoBlogAccion(blogAValidar.uid))
+                    props.onEnviar(true)
+                }
             }
         }
     }
@@ -69,14 +71,7 @@ const ButtonMain = (props) => {
                             Guardar
                         </button>
                     </div>
-                ) : (
-                    <div className="footerButtons__save" onClick={()=>{}}>
-                        <button className="footerButtons__btn footerButtons__btn-save" type="button">
-                            <FiSave className="footerButtons__save-icon" />
-                            Eliminar
-                        </button>
-                    </div>
-                )
+                ) : null
             }
             {
                 props.tipo === "guardado" || props.tipo === "nuevo" ? (
