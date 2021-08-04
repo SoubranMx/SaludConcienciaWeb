@@ -15,9 +15,10 @@ const AdminIndex = (props) => {
     return (
         <div>
             <div className="update__info">
-                <h1 className="update__info-version">Salud Conciencia Version 0.1.1</h1>
+                <h1 className="update__info-version">Salud Conciencia Version 0.1.2</h1>
                 <p>Cambios de la versión</p>
                 <ul className="update__info__cambios">
+                    <li className="update__info__cambios-item">El editor ahora no muestra duplicados.</li>
                     <li className="update__info__cambios-item">El editor ahora muestra la información guardada al hacer click en editar desde guardados.</li>
                     <li className="update__info__cambios-item">Se añadió la página de Perfil donde se puede cambiar la foto a mostrarse en los blogs. Puede seleccionar archivos desde la PC. Se accede al hacer click al engrane en la barra de admin.</li>
                     <li className="update__info__cambios-item">Ahora no se crean más blogs al editar y guardar un blog guardado previamente.</li>

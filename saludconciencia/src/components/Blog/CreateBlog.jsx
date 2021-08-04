@@ -39,14 +39,29 @@ const CreateBlog = () => {
     },[blogUsable, dispatch])
 
     useEffect(() => {
-        if (!editorInstance.current) {
-            if(blogCargado.editor === {}){
-                initEditor({});
-            } else {
-                initEditor(blogCargado.editor)
+        // if (!editorInstance.current) {
+        //     if(blogCargado !== undefined){
+        //         if(blogCargado.editor === {}){
+        //             initEditor({});
+        //         } else {
+        //             initEditor(blogCargado.editor)
+        //         }
+        //     }
+        // }
+        const iniciarEditor = () => {
+            if(blogUsable !== null){  //Se cargó algo de useSelector y se cargo al blogUsable
+                if(blogUsable.tipo === "nuevo"){
+                    initEditor({})
+                } else {
+                    initEditor(blogUsable.editor)
+                }
             }
         }
-    }, [editorInstance, blogCargado]);
+        if(!editorInstance.current){
+            //No se ha cargado el editor ya?
+            iniciarEditor()
+        }
+    }, [editorInstance, blogUsable]);
  
     const initEditor = (editorUsable) => {
         const editor = new EditorJS({
