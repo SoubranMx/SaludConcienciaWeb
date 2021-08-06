@@ -62,22 +62,22 @@ const App = (props) => {
         <Route path='/blog/:anio/:mes/:dia/:titulo' exact>
           <BuscarBlog />
         </Route>
-        <Route path='/asesorias' firebaseUser={firebaseUser}>
+        <Route path='/asesorias' >
           <Asesorias />
         </Route>
-        <Route path='/podcast' firebaseUser={firebaseUser}>
+        <Route path='/podcast' >
           <Podcast />
         </Route>
-        <Route path='/blog' firebaseUser={firebaseUser}>
+        <Route path='/blog' >
           <Blog />
         </Route>
-        <Route path='/para-ti' firebaseUser={firebaseUser}>
+        <Route path='/para-ti' >
           <ParaTi />
         </Route>
-        <Route path='/login' firebaseUser={firebaseUser}>
+        <Route path='/login' >
           <Login />
         </Route>
-        <Route path='/admin' firebaseUser={firebaseUser}>
+        <Route path='/admin' >
           <Admin />
         </Route>
         <Route path='/reset'>

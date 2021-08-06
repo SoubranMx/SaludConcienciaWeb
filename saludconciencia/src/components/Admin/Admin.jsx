@@ -1,3 +1,7 @@
+/**
+ * Admin Component
+ * @module AdminComponent
+ */
 import React, {useState, useEffect} from 'react';
 import { withRouter, useParams } from 'react-router-dom';
 
@@ -13,10 +17,18 @@ import BuscarBlog from '../Blog/BuscarBlog';
 
 
 
-
+/**
+ * Componente
+ * @param {*} props 
+ * @returns 
+ */
 const Admin = (props) => {
     
     const [contenido,setContenido] = useState(null);
+    /**
+     * Parámetros pasados desde URL
+     * @type {{anio: string, ruta: string}}
+     */
     let rutas = useParams();
     
     useEffect(()=>{
