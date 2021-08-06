@@ -1,6 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { withRouter } from 'react-router-dom'
+import { auth } from '../../firebase'
 
-const Asesorias = () => {
+const Asesorias = (props) => {
+    useEffect(()=>{
+        if(!auth.currentUser){
+            props.history.push('/admin')
+        }
+    },[props.history])
     return (
         <div>
             Asesorias
@@ -8,4 +15,4 @@ const Asesorias = () => {
     )
 }
 
-export default Asesorias
+export default withRouter(Asesorias)

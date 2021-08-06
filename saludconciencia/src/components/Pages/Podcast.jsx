@@ -1,6 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { withRouter } from 'react-router-dom'
+import { auth } from '../../firebase'
 
-const Podcast = () => {
+const Podcast = (props) => {
+    useEffect(()=>{
+        if(!auth.currentUser){
+            props.history.push('/admin')
+        }
+    },[props.history])
     return (
         <div>
             Podcast
@@ -8,4 +15,4 @@ const Podcast = () => {
     )
 }
 
-export default Podcast
+export default withRouter(Podcast)
