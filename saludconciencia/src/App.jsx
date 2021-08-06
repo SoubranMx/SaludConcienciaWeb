@@ -16,8 +16,8 @@ import Podcast from './components/Pages/Podcast'
 import Blog from './components/Blog/Blog'
 import Inicio from './components/Pages/Inicio'
 import Admin from './components/Admin/Admin';
-import Ejemplo from './Ejemplo';
 import Login from './components/Admin/Login';
+import BuscarBlog from './components/Blog/BuscarBlog';
 //import { useSelector } from 'react-redux';
 
 const App = (props) => {
@@ -37,14 +37,14 @@ const App = (props) => {
     fetchUser()
   },[])
 
-  useEffect(()=>{
-    const redirigir = () => {
-      if(firebaseUser){
-        props.history.push('/admin')
-      }
-    }
-    redirigir()
-  },[firebaseUser, props.history])
+  // useEffect(()=>{
+  //   const redirigir = () => {
+  //     if(firebaseUser){
+  //       props.history.push('/admin')
+  //     }
+  //   }
+  //   redirigir()
+  // },[firebaseUser, props.history])
 
   return firebaseUser !== false ? (
     <div>
@@ -52,38 +52,39 @@ const App = (props) => {
         firebaseUser ? null : <Navbar />
       }
       <Switch>
-        <Route path='/admin/blog/:anio/:mes/:dia/:titulo' >
+        <Route path='/admin/blog/:anio/:mes/:dia/:titulo' exact>
+          {/* <BuscarBlog /> */}
           <Admin />
         </Route>
         <Route path='/admin/:ruta'>
           <Admin />
         </Route>
-        <Route path='/blog/:anio/:mes/:dia/:titulo'>
-          <Ejemplo />
+        <Route path='/blog/:anio/:mes/:dia/:titulo' exact>
+          <BuscarBlog />
         </Route>
-        <Route path='/asesorias'>
+        <Route path='/asesorias' firebaseUser={firebaseUser}>
           <Asesorias />
         </Route>
-        <Route path='/podcast'>
+        <Route path='/podcast' firebaseUser={firebaseUser}>
           <Podcast />
         </Route>
-        <Route path='/blog'>
+        <Route path='/blog' firebaseUser={firebaseUser}>
           <Blog />
         </Route>
-        <Route path='/para-ti'>
+        <Route path='/para-ti' firebaseUser={firebaseUser}>
           <ParaTi />
         </Route>
-        <Route path='/login'>
+        <Route path='/login' firebaseUser={firebaseUser}>
           <Login />
         </Route>
-        <Route path='/admin' >
+        <Route path='/admin' firebaseUser={firebaseUser}>
           <Admin />
         </Route>
         <Route path='/reset'>
           reset
         </Route>
         <Route path='/' exact>
-          <Inicio />
+          <Inicio firebaseUser={firebaseUser}/>
         </Route>
         <Redirect to="/" />
       </Switch>

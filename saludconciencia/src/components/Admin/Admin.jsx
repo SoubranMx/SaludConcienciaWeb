@@ -9,6 +9,7 @@ import Blog from '../Blog/Blog';
 import AdminIndex from './AdminIndex';
 import { auth } from '../../firebase';
 import Perfil from './Perfil';
+import BuscarBlog from '../Blog/BuscarBlog';
 
 
 
@@ -31,6 +32,7 @@ const Admin = (props) => {
         if (rutas !== null){
             if (rutas.anio !== undefined) {
                 //setContenido => showblog component
+                <BuscarBlog />
             } else {
                 // No se accedio a un blog especifico
                 switch (rutas.ruta) {

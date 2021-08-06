@@ -48,6 +48,9 @@ const dataInicial = {
     const UPDATE_UID_EXITO = "UPDATE_UID_EXITO";
     const LOADING = "LOADING";
     const ERROR_AUTOR = "ERROR_AUTOR";
+    //Show blog
+    const BLOG_ENCONTRADO_SHOW = "BLOG_ENCONTRADO_SHOW";
+    const BLOG_ENCONTRADO_ERROR = "BLOG_ENCONTRADO_ERROR";
 //Reducer
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
@@ -106,7 +109,11 @@ export default function blogsReducer (state = dataInicial, action){
         case UPDATE_AUTOR_EXITO:
             return {...state, blog: {...state.blog, autor: action.payload}}
         case ERROR_AUTOR:
-            return {...state}
+            return { ...state }
+        case BLOG_ENCONTRADO_SHOW:
+            return {...state, blogShow: {...action.payload}}
+        case BLOG_ENCONTRADO_ERROR:
+            return {...state, blogShow: false}
         default:
             return state;
     }
@@ -201,6 +208,38 @@ export const publicarNuevoBlogAccion = (id) => async(dispatch, getState) => {
     }
 }
 
+export const crearReferenciasBlogPublicadoAccion = (id,fecha,titulo) => async(dispatch, getState) => {
+    const agregarPalabrasClave = (titulo) => {
+        /**
+         * Aca se separa el titulo en una matriz de strings, luego se eliminan las preposiciones
+         * para dejar solo palabras clave y se agregan a un campo palabrasClave en firebase
+         */
+    }
+    /**
+     * Basicamente, crea la estructura collection = "referenciasBlog"
+     * Cada documento tiene la fecha del dia en que se publicó, pues sera usada esta parte para 
+     * mostrar un blog al acceder a /blog/anio/mes/dia/titulo.
+     * Ejemplo, ya estando en referenciasBlog: '2021/09/20', '2021/09/23', ...
+     * 
+     * Cada documento constará de tres campos: blogs, palabrasClave y fecha
+     * blogs: [{uid:titulo},{uid:titulo},...] asi hasta la cantidad de blogs publicados ese día. En general, no creo que se publiquen más de 2 al dia por persona*
+     * palabrasClave: ["cada","palabra","clave","que","se","obtenga","de","cada","blog","publicado"]
+     * fecha: el numero obtenido con Date.now() que servirá para ordenar la consulta por fecha.
+     * 
+     * De esta manera, se podra hacer una busqueda simplona mediante palabras clave, querys y limits. Es lo que hay.
+     * 
+     * Args: 
+     * id (string)      => uid del blog publicado, necesario dentro del campo blogs: [{uid:}]
+     * titulo (string)  => titulo del blog publicado, en lowercase, necesario en el campo blogs: [{uid:titulo}]
+     * fecha (number)   => fecha a formatear con momentjs, de forma YYYY-MM-DD en un string. 
+     *                     Necesaria para agregar cada documento a la coleccion y para el campo fecha
+     * 
+     */
+
+
+
+}
+
 //////////////////////////////////////////////////////////////////
 ////    LEER
 
@@ -261,6 +300,65 @@ export const cargarMasBlogsAccion = (limite=10) => async(dispatch, getState) => 
         })
     } catch (error) {
         console.log("Error al cargar mas blogs => ", error)
+    }
+}
+
+export const obtenerBlogPublicadoShowAccion = (fechaFormateada, tituloParams) => async(dispatch) => {
+    /**
+     * Se encarga de buscar un blog publicado para mostrarlo en la pagina.
+     * Args:
+     * fechaFormateada => se usa para buscar en referenciasBlog por documento
+     * tituloParams => se usa para obtener dentro del documento(fecha) el campo blogs
+     *                  y de ahi matchear que cada uno de los items dentro de blogs,
+     *                  su campo titulo sea igual a este tituloParams. Ambos, en lower case
+     * 
+     * Si el titulo se encuentra, se regresa el uid, con ese uid, se busca en la coleccion blogs con ese uid
+     * Si no lo encuentra, regresa un error para mostrar en pantalla. Si lo encuentra, hace un dispatch de ese
+     * documento encontrado.
+     * 
+     * Dispatchs:
+     *  exito => type: BLOG_ENCONTRADO_SHOW, payload: blogAMostrar.data() => return {...state, blogSow = action.payload }
+     *  error => type: BLOG_ENCONTRADO_ERROR, => return {...state, blogShow = false }
+     */
+    try {
+        const busquedaBlog = await db.collection('referenciasBlog').doc(fechaFormateada).get()
+        let ref = db.collection('blogs')
+        let buscarBlogDB
+        let uidRef = null
+        if (busquedaBlog.exists){ //Si existe el doc en referenciasBlog con la fecha formateada
+            busquedaBlog.data().blogs.forEach(item => {
+                //recorre el campo blogs: {uid: uid, titulo: titulo} y le asigna a uidRef el uid si lo encontrase
+                if(item.titulo === tituloParams)
+                    uidRef = item.uid
+            })
+            if(uidRef !== null && uidRef !== undefined){    //Se encontro el titulo en referenciasBlog
+                buscarBlogDB = await ref.doc(uidRef).get()
+                if(buscarBlogDB.exists){ //Existe tambien en blogs publicados
+                    dispatch({
+                        type: BLOG_ENCONTRADO_SHOW,
+                        payload: buscarBlogDB.data()
+                    })
+                } else {    //No existe en blogs publicados, pero si en referenciasBlog
+                    dispatch({
+                        type: BLOG_ENCONTRADO_ERROR
+                    })
+                }
+            } else { //No encontro el titulo en referenciasBlog
+                dispatch({
+                    type: BLOG_ENCONTRADO_ERROR
+                })
+            }
+        } else {
+            //No existe el doc en referenciasBlog con la fecha formateada
+            dispatch({
+                type: BLOG_ENCONTRADO_ERROR
+            })
+        }
+    } catch (error) {
+        console.log("catch error => ",error)
+        dispatch({
+            type: BLOG_ENCONTRADO_ERROR
+        })
     }
 }
 
