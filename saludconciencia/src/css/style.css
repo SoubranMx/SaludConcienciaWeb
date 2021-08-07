@@ -489,7 +489,7 @@ html {
   margin-top: -15rem;
   background-color: #fff;
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 -23px 25px, rgba(0, 0, 0, 0.08) 0 -2px 2px 0;
   padding: 3rem 6rem;
   display: flex;
   flex-direction: column; }
@@ -544,18 +544,28 @@ html {
 
 .showBlog__main {
   z-index: 4;
-  font-family: 'Poppins'; }
+  font-family: 'Poppins';
+  font-size: 1rem; }
 
 .showBlog__article__post {
   background-color: #fff;
   position: relative;
   padding: 0rem 6rem;
-  font-size: 1.8rem; }
+  font-size: 1.5rem; }
+  .showBlog__article__post-item {
+    margin-bottom: 2rem; }
 
 .content-width {
   max-width: 992px;
   margin-left: auto;
   margin-right: auto; }
+
+.article__img {
+  display: flex;
+  flex-direction: column; }
+  .article__img > span {
+    font-size: 1.2rem;
+    color: #757575; }
 
 .header {
   font-family: "Poppins", sans-serif;
@@ -627,7 +637,8 @@ html {
   box-shadow: #26394d 0px 20px 30px -10px; }
 
 .showBlog__contenido {
-  position: relative; }
+  position: relative;
+  background-color: aliceblue; }
 
 /*
     BOOTSTRAP CHANGE

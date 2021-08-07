@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import { db, storage } from '../../firebase'
+import { db } from '../../firebase'
 import moment from 'moment'
 
 const BlogHeader = (props) => {
