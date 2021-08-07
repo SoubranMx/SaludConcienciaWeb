@@ -4,7 +4,7 @@ import { auth } from '../../firebase'
 
 const ParaTi = (props) => {
     useEffect(()=>{
-        if(!auth.currentUser){
+        if(auth.currentUser){
             props.history.push('/admin')
         }
     },[props.history])

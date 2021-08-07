@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { obtenerBlogPublicadoShowAccion } from '../../redux/blogsDucks'
+import ShowBlog from './ShowBlog'
 
 const BuscarBlog = (props) => {
     const blogAMostrar = useSelector(store => store.blogs.blogShow)
@@ -47,11 +48,11 @@ const BuscarBlog = (props) => {
     return blogExists === true ? (
         <div className="showBlog__container">
             {/* SIEMPRE deberia poder mostrar un blog si este existe */}
-            Si hubo blog a mostrar
+            <ShowBlog blog={blog} />
         </div>
     ) : (
-        <div>
-            No hay blog a mostrar
+        <div className="showBlog__error">
+            <h2>No se encontró el blog :c</h2>
         </div>
     )
 }

@@ -28,6 +28,7 @@ const dataInicial = {
     const LEER_BLOGS_EXITO = "LEER_BLOGS_EXITO";                            // Para mostrar blogs en /blogs o admin/blogs
     const LEER_BLOGS_PUBLICADOS_EXITO = "LEER_BLOGS_PUBLICAR_EXITO";        // Para mostrar blogs en /blogs o admin/blogs
     const GUARDAR_BLOGS_EXITO = "GUARDAR_BLOGS_EXITO";                      // Para guardar blogs en firebase cuando se selecciona guardar
+    const GUARDAR_BLOGS_ERROR = "GUARDAR_BLOGS_ERROR";
     // const UPDATE_TO_SAVE_EXITO = "UPDATE_TO_SAVE_EXITO";                    // Para updatear blogs en firebase cuando se selecciono un blog guardado
     // const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";                // Para updatear blogs en firebase cuando se selecciono un blog posteado
     const PUBLICAR_BLOG_EXITO = "PUBLICAR_BLOG_EXITO";                      // Para subir un blog en firebase cuando se selecciona publicar
@@ -77,7 +78,9 @@ export default function blogsReducer (state = dataInicial, action){
         case CREAR_TAG_REFERENCIA_EXITO:
             return {...state, blog: {...state.blog, error: false}}
         case GUARDAR_BLOGS_EXITO:
-            return {...dataInicial}
+            return {...dataInicial, errorGuardar: false}
+        case GUARDAR_BLOGS_ERROR:
+            return {...dataInicial, errorGuardar: true}
         case CLEAR_DATA:
             return {...dataInicial}
         case LEER_BLOGS_EXITO:
@@ -102,9 +105,9 @@ export default function blogsReducer (state = dataInicial, action){
         case BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO:
             return {...dataInicial}
         case PUBLICAR_BLOG_EXITO:
-            return {...dataInicial, errorPublish: false}
+            return {...dataInicial, errorPublicar: false}
         case PUBLICAR_BLOG_ERROR:
-            return {...state, errorPublish: true}
+            return {...state, errorPublicar: true}
         case UPDATE_TITULO_EXITO:
             return {...state, blog: {...state.blog, titulo: action.payload}}
         case UPDATE_DESCRIPCION_EXITO:
@@ -208,6 +211,9 @@ export const guardarNuevoBlogAccion = (id) => async(dispatch, getState) => {
         })
     } catch (error) {
         console.log("Error al guardar :x ", error)
+        dispatch({
+            type: GUARDAR_BLOGS_ERROR
+        })
     }
 }
 
