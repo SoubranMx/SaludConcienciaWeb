@@ -1,11 +1,21 @@
+/**
+ * Documentación para el ducks de Administración
+ * @module AdminDucks 
+ */
 import { auth, db, storage } from "../firebase"
 //data inicial
 //esta data inicial no cambia, lo que cambia es el state
+/**
+ * @type {{loading: boolean, activo: boolean}} - State Inicial
+ */
 const dataInicial = {
     loading: false,
     activo: false
 }
     //types
+    /**
+     * @type {String} loading - desactiva botones cuando se esta logeando
+     */
     const LOADING_LOGIN = "LOADING_LOGIN"
     const LOGIN_ERROR = "LOGIN_ERROR"
     const LOGIN_EXITO = "LOGIN_EXITO"

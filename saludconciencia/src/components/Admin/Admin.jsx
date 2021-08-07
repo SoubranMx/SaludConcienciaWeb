@@ -20,27 +20,35 @@ import BuscarBlog from '../Blog/BuscarBlog';
 /**
  * Componente
  * @param {*} props 
- * @returns 
+ * @returns (
+ * <SidebarAdmin />
+ * )
  */
 const Admin = (props) => {
-    
+
+    /**
+     * @typedef {<Blog />, <CreateBlog />, <CrearPodcast />, <Guardados />, <Perfil />, <AdminIndex />} Contenido
+     */
     const [contenido,setContenido] = useState(null);
     /**
      * Parámetros pasados desde URL
      * @type {{anio: string, ruta: string}}
      */
     let rutas = useParams();
+    const [showAdmin, setShowAdmin] = useState(false);
     
     useEffect(()=>{
         if(!auth.currentUser){
             props.history.push('/')
+        }else{
+            setShowAdmin(true)
         }
     },[props.history])
 
     
 
     React.useEffect( () => {
-        console.log("ruta Admin => ",rutas)
+        //console.log("ruta Admin => ",rutas)
         if (rutas !== null){
             if (rutas.anio !== undefined) {
                 //setContenido => showblog component
@@ -78,7 +86,7 @@ const Admin = (props) => {
         }
     },[rutas])
 
-    return (
+    return showAdmin && (
         <div className="content">
             <SidebarAdmin />
             <div id="navbar-spy" className="overflow-scroll content__main">

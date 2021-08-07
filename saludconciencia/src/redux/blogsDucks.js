@@ -28,14 +28,19 @@ const dataInicial = {
     const LEER_BLOGS_EXITO = "LEER_BLOGS_EXITO";                            // Para mostrar blogs en /blogs o admin/blogs
     const LEER_BLOGS_PUBLICADOS_EXITO = "LEER_BLOGS_PUBLICAR_EXITO";        // Para mostrar blogs en /blogs o admin/blogs
     const GUARDAR_BLOGS_EXITO = "GUARDAR_BLOGS_EXITO";                      // Para guardar blogs en firebase cuando se selecciona guardar
-    const UPDATE_TO_SAVE_EXITO = "UPDATE_TO_SAVE_EXITO";                    // Para updatear blogs en firebase cuando se selecciono un blog guardado
-    const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";                // Para updatear blogs en firebase cuando se selecciono un blog posteado
+    // const UPDATE_TO_SAVE_EXITO = "UPDATE_TO_SAVE_EXITO";                    // Para updatear blogs en firebase cuando se selecciono un blog guardado
+    // const UPDATE_TO_POSTED_EXITO = "UPDATE_TO_POSTED_EXITO";                // Para updatear blogs en firebase cuando se selecciono un blog posteado
     const PUBLICAR_BLOG_EXITO = "PUBLICAR_BLOG_EXITO";                      // Para subir un blog en firebase cuando se selecciona publicar
+    const PUBLICAR_BLOG_ERROR = "PUBLICAR_BLOG_ERROR";
     const CARGAR_MAS_BLOGS = "CARGAR_MAS_BLOGS";                            // Para cargar mas blogs cuando se presiona el boton "cargar mas" en /blogs o /admin/blogs
     const CARGAR_BLOG_INFO_UPDATE_SAVED = "CARGAR_BLOG_INFO_UPDATE_SAVED";  // Para cuando se manda a llamar Editar en guardados
     const CLEAR_DATA = "CLEAR_DATA";
-    const BORRAR_BLOG_GUARDADO_EXITO = "BORRAR_BLOG_GUARDADO_EXITO"
-    const BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO = "BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO"
+    const BORRAR_BLOG_GUARDADO_EXITO = "BORRAR_BLOG_GUARDADO_EXITO";
+    const BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO = "BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO";
+    const CREAR_REFERENCIA_BLOG_PUBLICADO_EXITO = "CREAR_REFERENCIA_BLOG_PUBLICADO_EXITO";
+    const CREAR_REFERENCIA_BLOG_PUBLICADO_ERROR = "CREAR_REFERENCIA_BLOG_PUBLICADO_ERROR";
+    const CREAR_TAG_REFERENCIA_EXITO = "CREAR_TAG_REFERENCIA_EXITO";
+    const CREAR_TAG_REFERENCIA_ERROR = "CREAR_TAG_REFERENCIA_EXITO";
 
     const UPDATE_TITULO_EXITO = "UPDATE_TITULO_EXITO";
     const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO";
@@ -63,6 +68,14 @@ export default function blogsReducer (state = dataInicial, action){
             return {...state, blogsPublished: [...state.blogsPublished, ...action.payload.blogs], lastVisible: action.payload.lastVisible}
         
         //ADMIN
+        case CREAR_REFERENCIA_BLOG_PUBLICADO_ERROR:
+            return {...state, blog: {...state.blog}}
+        case CREAR_REFERENCIA_BLOG_PUBLICADO_EXITO:
+            return {...state}
+        case CREAR_TAG_REFERENCIA_ERROR:
+            return {...state, blog: {...state.blog, error: true}}
+        case CREAR_TAG_REFERENCIA_EXITO:
+            return {...state, blog: {...state.blog, error: false}}
         case GUARDAR_BLOGS_EXITO:
             return {...dataInicial}
         case CLEAR_DATA:
@@ -89,7 +102,9 @@ export default function blogsReducer (state = dataInicial, action){
         case BORRAR_BLOG_GUARDADO_AL_PUBLICAR_EXITO:
             return {...dataInicial}
         case PUBLICAR_BLOG_EXITO:
-            return {...dataInicial}
+            return {...dataInicial, errorPublish: false}
+        case PUBLICAR_BLOG_ERROR:
+            return {...state, errorPublish: true}
         case UPDATE_TITULO_EXITO:
             return {...state, blog: {...state.blog, titulo: action.payload}}
         case UPDATE_DESCRIPCION_EXITO:
@@ -196,8 +211,18 @@ export const guardarNuevoBlogAccion = (id) => async(dispatch, getState) => {
     }
 }
 
+/**
+ * Publica un blog a firebase, ya venga de guardados o sea nuevo.
+ * @param {String} id id proveniente de nanoid que se guardara en el state
+ * 
+ */
 export const publicarNuevoBlogAccion = (id) => async(dispatch, getState) => {
+    /**
+     * Referencia al estado para ser seteado en firebase. Se cambia su tipo por 'publicado', ya venga de 'guardado' o 'nuevo'
+     * @type {{tipo: String, uid: String, tags: Array<String>, editor: Object, fecha: number, descripcion: String, auotr: String, titulo: String, imgPortada: String}} blogAPublicar
+     */
     const blogAPublicar = getState().blogs.blog
+    blogAPublicar.tipo = 'publicado'
     try {
         await db.collection('blogs').doc(id).set(blogAPublicar)
         dispatch({
@@ -205,16 +230,13 @@ export const publicarNuevoBlogAccion = (id) => async(dispatch, getState) => {
         })
     } catch (error) {
         console.log("Error al publicar >:c ", error)
+        dispatch({
+            type: PUBLICAR_BLOG_ERROR
+        })
     }
 }
 
-export const crearReferenciasBlogPublicadoAccion = (id,fecha,titulo) => async(dispatch, getState) => {
-    const agregarPalabrasClave = (titulo) => {
-        /**
-         * Aca se separa el titulo en una matriz de strings, luego se eliminan las preposiciones
-         * para dejar solo palabras clave y se agregan a un campo palabrasClave en firebase
-         */
-    }
+export const crearReferenciasBlogPublicadoAccion = (id,fechaFormateada, fechaNumber,titulo) => async(dispatch, getState) => {
     /**
      * Basicamente, crea la estructura collection = "referenciasBlog"
      * Cada documento tiene la fecha del dia en que se publicó, pues sera usada esta parte para 
@@ -230,14 +252,103 @@ export const crearReferenciasBlogPublicadoAccion = (id,fecha,titulo) => async(di
      * 
      * Args: 
      * id (string)      => uid del blog publicado, necesario dentro del campo blogs: [{uid:}]
-     * titulo (string)  => titulo del blog publicado, en lowercase, necesario en el campo blogs: [{uid:titulo}]
+     * titulo (string)  => titulo del blog publicado, en lowercase, necesario en el campo blogs: [{uid: id, titulo:titulo}]
      * fecha (number)   => fecha a formatear con momentjs, de forma YYYY-MM-DD en un string. 
      *                     Necesaria para agregar cada documento a la coleccion y para el campo fecha
      * 
      */
+    const arrayRemove = (arr, value) => { 
+        return arr.filter(ele => {
+            return ele != value; 
+        });
+    }
+    let regex1 = /\s+/gi;   //Quita espacios en blanco
+    let regex2 = /[.:;,/+:;,?¿!¡]/gi;   //Quita signos de puntuacion y otros
+    let tituloLowerCaseSinEspacios = titulo.replace(regex2, '');
+    tituloLowerCaseSinEspacios = tituloLowerCaseSinEspacios.toLowerCase()//Deberia tener solo espacios y lowercase
+    /**
+     * Array de strings que contiene las palabras a guardar
+     * @type {Array<String>} palabras
+     */
+    let palabras = []
+    let palabrasAux = []
+    palabrasAux = tituloLowerCaseSinEspacios.split(regex1)  //palabrasAux deberia tener el titulo separado por espacios, como ["la",'verdadera','razón' ...]
+    palabrasAux.forEach( palabra => {
+        if(!palabras.includes(palabra))
+            palabras.push(palabra)
+    });
+    let referenciaAGuardar = {
+        blogs: [{uid: id, titulo: tituloLowerCaseSinEspacios}],
+        fecha: fechaNumber,
+        palabrasClave: palabras
+    }
+    let referenciaGuardada = []
+    //Para este punto, palabras tiene todo el titulo dividido en palabras unicas
+    
+    //let existeFecha = false;
+    try {
+        const existeFecha = await db.collection('referenciasBlog').doc(fechaFormateada).get()
+        if(existeFecha.exists){ //Ya se publico un blog con la misma fecha => update
+            existeFecha.data().palabrasClave.forEach(palabra => {
+                if(palabras.includes(palabra)){
+                    palabras = arrayRemove(palabras, palabra)
+                }
+            })
+            //palabras ahora deberia tener un listado de palabras unicas, teniendo en cuenta las que ya estaban guardadas
+            palabras = [...palabras, ...existeFecha.data().palabrasClave]
+            //Ahora palabras debe tener tanto las palabras guardadas, como las nuevas
+
+            referenciaGuardada = existeFecha.data().blogs
+            referenciaAGuardar.blogs = [...referenciaAGuardar.blogs, ...referenciaGuardada]
+            referenciaAGuardar.palabrasClave = palabras
+            await db.collection('referenciasBlog').doc(fechaFormateada).set(referenciaAGuardar)
+            dispatch({
+                type: CREAR_REFERENCIA_BLOG_PUBLICADO_EXITO
+            })
+        } else {    //Aun no se ha publicado nada en este dia => set
+            await db.collection('referenciasBlog').doc(fechaFormateada).set(JSON.parse(JSON.stringify(referenciaAGuardar)))
+            dispatch({
+                type: CREAR_REFERENCIA_BLOG_PUBLICADO_EXITO
+            })
+        }
+        
+    } catch (error) {
+        console.log("Error en crear referencia Blog => ",error)
+        console.log("uid => ", id, "fechaFormat => ", fechaFormateada, "fechaNumber => ", fechaNumber, "titulo => ", titulo)
+        console.log("tags => ", getState().blogs.blog.tag)
+        dispatch({
+            type: CREAR_REFERENCIA_BLOG_PUBLICADO_ERROR
+        })
+    }
 
 
+}
 
+export const crearTagsReferenciasAccion = (id) => async(dispatch, getState) => {
+    const ref = db.collection('referenciasTag');
+    let res;
+    console.log("id enviado => ", id)
+    try {
+        getState().blogs.blog.tags.forEach(async tag => {
+            res = await ref.doc(tag).get()
+            if(res.exists){
+                ref.doc(tag).update({
+                    blogs: [...res.data().blogs, {uid: id}]
+                })
+            } else {
+                ref.doc(tag).set({blogs: [{uid: id}]})
+            }
+            dispatch({
+                type: CREAR_TAG_REFERENCIA_EXITO
+            })
+        })
+    } catch (error) {
+        console.log(error)
+        console.log("tags => ", getState().blogs.blog.tags)
+        dispatch({
+            type: CREAR_TAG_REFERENCIA_ERROR
+        })
+    }
 }
 
 //////////////////////////////////////////////////////////////////
