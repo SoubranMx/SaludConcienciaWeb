@@ -23,7 +23,7 @@ html {
       flex: 0 0 100%;
       justify-content: space-evenly;
       padding: 1rem 0; } }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) and (width: 769px) {
     .user-nav {
       display: block;
       padding-top: 2rem;
@@ -144,31 +144,47 @@ html {
         border-radius: 10px;
         cursor: pointer;
         color: #fff;
-        margin-top: .5rem; }
+        margin-top: .5rem;
+        transition: all .2s; }
         .image-container__info-tags-item:not(:last-child) {
           margin-right: 2rem; }
         .image-container__info-tags-item:first-child {
           margin-left: auto; }
         .image-container__info-tags-item:last-child {
           margin-right: auto; }
+        .image-container__info-tags-item:hover {
+          background-color: #007fd4; }
     .image-container__info-title {
       font-family: "Poppins",sans-serif;
-      font-size: 1.5rem;
-      margin: 0 auto;
-      margin-top: 5px;
-      padding-left: 2rem; }
+      font-size: 1.8rem;
+      margin: 1rem auto;
+      cursor: pointer; }
     .image-container__info__details {
       font-family: "Poppins", sans-serif;
       margin: 0 auto; }
     .image-container__info-author {
       font-size: 1rem; }
+      .image-container__info-author > span {
+        cursor: pointer; }
     .image-container__info-date {
       font-size: .6rem; }
+    .image-container__info-link:link, .image-container__info-link:visited {
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      align-self: center; }
+      .image-container__info-link:link:hover, .image-container__info-link:visited:hover {
+        color: #d9d9d9; }
 
 .imageCard {
   height: 30rem;
   width: 100%;
-  object-fit: cover; }
+  object-fit: cover;
+  cursor: pointer;
+  opacity: .85;
+  transition: all .2s; }
+  .imageCard:hover {
+    opacity: 1; }
 
 .card-image {
   position: relative;
@@ -183,6 +199,8 @@ html {
     align-content: flex-end; }
     .card-image__tags-item {
       margin-right: 1rem; }
+      .card-image__tags-item:hover {
+        background-color: #007fd4; }
   .card-image__img {
     height: 100%; }
 
@@ -513,13 +531,13 @@ html {
       .showBlog__header__autor__info-fecha {
         color: #757575; }
       .showBlog__header__autor__info-name > span {
-        font-weight: 600; }
+        font-weight: 400; }
   .showBlog__header__tags {
     display: flex;
     align-items: center; }
     .showBlog__header__tags-item {
       border-radius: 100px;
-      background-color: #0070BA;
+      background-color: #00BE00;
       padding: .5rem 1.5rem;
       color: #fff;
       text-transform: uppercase;
@@ -529,7 +547,7 @@ html {
       .showBlog__header__tags-item:not(:first-child) {
         margin-left: 2rem; }
       .showBlog__header__tags-item:hover {
-        background-color: #007fd4; }
+        background-color: #00d800; }
 
 .showBlog__contenido__portada {
   width: 100%;

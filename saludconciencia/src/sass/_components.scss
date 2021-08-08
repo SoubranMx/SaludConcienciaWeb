@@ -32,7 +32,7 @@
     }
 
     //Navbar collapse
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 768px) and (width: 769px) {
         display: block;
         padding-top: 2rem;
         padding-bottom: 0;
@@ -225,6 +225,7 @@
                 cursor: pointer;
                 color: #fff;
                 margin-top: .5rem;
+                transition: all .2s;
                 
                 &:not(:last-child) {
                     margin-right: 2rem;
@@ -237,15 +238,18 @@
                 &:last-child {
                     margin-right: auto;
                 }
+
+                &:hover {
+                    background-color: lighten($color-primary-blue, 5%);
+                }
             }
         }
 
         &-title {
             font-family: "Poppins",sans-serif;
-            font-size: 1.5rem;
-            margin: 0 auto;
-            margin-top: 5px;
-            padding-left: 2rem;
+            font-size: 1.8rem;
+            margin: 1rem auto;
+            cursor: pointer;
         }
 
         &__details {
@@ -255,11 +259,27 @@
 
         &-author {
             font-size: 1rem;
+            & > span {
+                cursor: pointer;
+            }
         }
 
         &-date {
             font-size: .6rem;
         }
+
+        &-link:link,
+        &-link:visited {
+            text-decoration: none;
+            color: #fff;
+            text-align: center;
+            align-self: center;
+
+            &:hover {
+                color: darken(#fff,15%);
+            }
+        }
+        
     }
 }
 
@@ -267,6 +287,12 @@
     height: 30rem;
     width: 100%;
     object-fit: cover;
+    cursor: pointer;
+    opacity: .85;
+    transition: all .2s;
+    &:hover {
+        opacity: 1;
+    }
 }
     ///////////////////////////////////////////////////////
     // Tags y cards
@@ -286,6 +312,9 @@
 
             &-item {
                 margin-right: 1rem;
+                &:hover {
+                    background-color: lighten($color-primary-blue, 5%);
+                }
             }
         }
 
@@ -817,7 +846,7 @@
             &-name > span{
                 //text-transform: uppercase;
                 //font-size: 2rem;
-                font-weight: 600;
+                font-weight: 400;
             }
         }
     }
@@ -828,7 +857,8 @@
 
         &-item {
             border-radius: 100px;
-            background-color: $color-primary-blue;
+            background-color: $color-primary-green;
+            
             padding: .5rem 1.5rem;
             color: #fff;
             text-transform: uppercase;
@@ -839,7 +869,7 @@
                 margin-left: 2rem;
             }
             &:hover{
-                background-color: lighten($color-primary-blue, 5%);
+                background-color: lighten($color-primary-green, 5%);
             }
         }
     }

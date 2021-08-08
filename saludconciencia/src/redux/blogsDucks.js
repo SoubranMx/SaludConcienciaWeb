@@ -222,13 +222,19 @@ export const guardarNuevoBlogAccion = (id) => async(dispatch, getState) => {
  * @param {String} id id proveniente de nanoid que se guardara en el state
  * 
  */
-export const publicarNuevoBlogAccion = (id) => async(dispatch, getState) => {
+export const publicarNuevoBlogAccion = (id, fechaFormateada) => async(dispatch, getState) => {
     /**
      * Referencia al estado para ser seteado en firebase. Se cambia su tipo por 'publicado', ya venga de 'guardado' o 'nuevo'
      * @type {{tipo: String, uid: String, tags: Array<String>, editor: Object, fecha: number, descripcion: String, auotr: String, titulo: String, imgPortada: String}} blogAPublicar
      */
     const blogAPublicar = getState().blogs.blog
     blogAPublicar.tipo = 'publicado'
+    let linkBlog = fechaFormateada;
+    let tituloCGuiones = getState().blogs.blog.titulo.toLowerCase()
+    tituloCGuiones = tituloCGuiones.replace(/\s+/gi,'')
+    tituloCGuiones = tituloCGuiones.replace(/[.,;:/+¿?¡!]/gi,'')
+    linkBlog.concat('/',tituloCGuiones)
+    blogAPublicar.link = linkBlog;
     try {
         await db.collection('blogs').doc(id).set(blogAPublicar)
         dispatch({

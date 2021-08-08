@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { auth, db } from '../../firebase'
+import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 
 const RecentBlogs = (props) => {
@@ -36,7 +38,7 @@ const RecentBlogs = (props) => {
             { 
                 blogs[0] !== null && blogs[0] !== undefined ? (
                     <div className="image-container-first">
-                        <img className="imageCard" src={blogs[0].data.imgPortada} alt="" />
+                        <Link to={`/blog/${blogs[0].data.link}`} className="image-container__info-link"><img className="imageCard" src={blogs[0].data.imgPortada} alt="" /></Link>
                         <div className="image-container__info">
                             <div className="image-container__info-tags">
                                 {
@@ -45,16 +47,19 @@ const RecentBlogs = (props) => {
                                     ))
                                 }
                             </div>
-                            <h3 className="image-container__info-title">{blogs[0].data.titulo}</h3>
-                            <div className="image-container__info__details">
+                            <Link to={`/blog/${blogs[0].data.link}`} className="image-container__info-link">
+                                <h3 className="image-container__info-title">{blogs[0].data.titulo}</h3>
+                            </Link>
+                            {/* <div className="image-container__info__details">
                                 <h3 className="image-container__info-author">
+                                    Por: &nbsp;
                                     {
                                         autor1 !== "" && (
-                                            `Por: ${autor1}`
+                                            <span>{autor1}</span>
                                         )
                                     }
                                 </h3>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 ) : (null)
