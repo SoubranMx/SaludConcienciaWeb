@@ -13,7 +13,7 @@ service cloud.firestore {
     }
     match /{document=**} {
       allow read, write: if request.auth != null && (request.auth.uid == "KtfYlAFGCgScByOZgDxkYlgP1Sv1" || request.auth.uid == "KXXjj3ko7OVMnow8boP38UMep803");
-      
+      allow read: if true;  //Por el momento, cualquier otra ruta puede ser leida sin auth.
     }
   }
 }

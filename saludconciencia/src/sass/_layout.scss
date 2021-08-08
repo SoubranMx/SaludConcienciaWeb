@@ -111,4 +111,8 @@
 .showBlog__contenido {
     position: relative;
     background-color: aliceblue;
+    @media screen and (max-width: 576px) {
+        display: flex;
+        flex-direction: column;
+    }
 }

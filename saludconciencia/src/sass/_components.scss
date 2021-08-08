@@ -24,7 +24,7 @@
         flex: 0 0 auto;
     }
 
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width: 992px) and (min-width: 768px) {
         //order: -1;
         flex: 0 0 100%;
         justify-content: space-evenly;
@@ -32,10 +32,12 @@
     }
 
     //Navbar collapse
-    @media screen and (max-width: 768px) and (width: 769px) {
+    //Problema con 769px
+    @media screen and (max-width: 767px) {
         display: block;
         padding-top: 2rem;
         padding-bottom: 0;
+        flex-direction: column;
     }
 
     & > * {
@@ -833,6 +835,10 @@
     padding: 3rem 6rem;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 576px) {
+        padding: 3rem 3rem;
+        margin: 0;
+    }
 
     &__title{
         font-family: 'Lexend';
@@ -893,11 +899,15 @@
 .showBlog__contenido__portada {
     width: 100%;
     height: 45rem;
-    
+    @media screen and (max-width: 576px) {
+        height: auto;
+        margin: 0rem 0rem !important;
+    }
     &-img {
         width: 100%;
         max-height: 100%;
         object-fit: cover;
+        object-position: 50% 35%;
         //position: absolute;
         top: 0;
         left: 0;
@@ -918,8 +928,15 @@
     position: relative;
     padding: 0rem 6rem;
     font-size: 1.5rem;
+    @media screen and (max-width: 576px) {
+        padding: 0rem 3rem;
+    }
     &-item {
         margin-bottom: 2rem;
+        word-break: break-word;
+        @media screen and (max-width: 576px) {
+            text-align: justify !important;
+        }
     }
 }
 
