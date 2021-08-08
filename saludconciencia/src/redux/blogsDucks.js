@@ -231,9 +231,12 @@ export const publicarNuevoBlogAccion = (id, fechaFormateada) => async(dispatch, 
     blogAPublicar.tipo = 'publicado'
     let linkBlog = fechaFormateada;
     let tituloCGuiones = getState().blogs.blog.titulo.toLowerCase()
-    tituloCGuiones = tituloCGuiones.replace(/\s+/gi,'')
+    console.log("Titulo obtenido del getState => ", tituloCGuiones)
+    tituloCGuiones = tituloCGuiones.replace(/\s+/gi,'_')
     tituloCGuiones = tituloCGuiones.replace(/[.,;:/+¿?¡!]/gi,'')
-    linkBlog.concat('/',tituloCGuiones)
+    console.log("Titulo con regex => ", tituloCGuiones)
+    linkBlog = linkBlog.concat('/',tituloCGuiones)
+    console.log("Link completo => ",linkBlog)
     blogAPublicar.link = linkBlog;
     try {
         await db.collection('blogs').doc(id).set(blogAPublicar)
@@ -271,7 +274,7 @@ export const crearReferenciasBlogPublicadoAccion = (id,fechaFormateada, fechaNum
      */
     const arrayRemove = (arr, value) => { 
         return arr.filter(ele => {
-            return ele != value; 
+            return ele !== value; 
         });
     }
     let regex1 = /\s+/gi;   //Quita espacios en blanco

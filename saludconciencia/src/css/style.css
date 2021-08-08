@@ -153,7 +153,8 @@ html {
         .image-container__info-tags-item:last-child {
           margin-right: auto; }
         .image-container__info-tags-item:hover {
-          background-color: #007fd4; }
+          background-color: #007fd4;
+          border-radius: 10px; }
     .image-container__info-title {
       font-family: "Poppins",sans-serif;
       font-size: 1.8rem;
@@ -188,21 +189,32 @@ html {
 
 .card-image {
   position: relative;
-  min-height: 15rem; }
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column; }
   @media screen and (max-width: 768px) {
     .card-image {
       max-height: 34rem; } }
   .card-image__tags {
+    position: unset !important;
+    margin-top: -10%;
     display: flex;
     align-items: flex-end;
     flex-wrap: wrap;
     align-content: flex-end; }
     .card-image__tags-item {
       margin-right: 1rem; }
-      .card-image__tags-item:hover {
-        background-color: #007fd4; }
   .card-image__img {
     height: 100%; }
+
+.card-link {
+  cursor: pointer; }
+  .card-link:visited, .card-link:link {
+    text-decoration: none;
+    color: black;
+    transition: all .2s; }
+    .card-link:visited:hover, .card-link:link:hover {
+      color: #757575; }
 
 .side-nav {
   font-size: 1.4rem;

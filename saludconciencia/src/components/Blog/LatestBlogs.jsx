@@ -64,6 +64,7 @@ const LatestBlogs = (props) => {
                             fecha={blog.data.fecha}
                             tags={blog.data.tags}
                             descripcion={blog.data.descripcion}
+                            link={blog.data.link}
                         />
                     ))
                 }

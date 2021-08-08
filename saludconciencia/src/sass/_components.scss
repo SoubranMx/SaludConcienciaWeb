@@ -241,6 +241,7 @@
 
                 &:hover {
                     background-color: lighten($color-primary-blue, 5%);
+                    border-radius: 10px;
                 }
             }
         }
@@ -299,12 +300,16 @@
     .card-image {
         position: relative;
         min-height: 15rem;
+        display: flex;
+        flex-direction: column;
 
         @media screen and (max-width: 768px) {
             max-height: 34rem;
         }
 
         &__tags {
+            position: unset !important;
+            margin-top: -10%;
             display: flex;
             align-items: flex-end;
             flex-wrap: wrap;
@@ -312,14 +317,24 @@
 
             &-item {
                 margin-right: 1rem;
-                &:hover {
-                    background-color: lighten($color-primary-blue, 5%);
-                }
             }
         }
 
         &__img {
             height: 100%;
+        }
+    }
+
+    .card-link {
+        cursor: pointer;
+        &:visited,
+        &:link {
+            text-decoration: none;
+            color: black;
+            transition: all .2s;
+            &:hover {
+                color: rgb(117,117,117);
+            }
         }
     }
 
@@ -919,6 +934,6 @@
     flex-direction: column;
     & > span {
         font-size: 1.2rem;
-        color: rgb(117,117,117)
+        color: rgb(117,117,117);
     }
 }

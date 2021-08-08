@@ -67,7 +67,7 @@ const RecentBlogs = (props) => {
             {
                 blogs[1] !== null && blogs[1] !== undefined ? (
                     <div className="image-container-second">
-                        <img className="imageCard" src={blogs[1].data.imgPortada} alt="" />
+                        <Link to={`/blog/${blogs[1].data.link}`} className="image-container__info-link"><img className="imageCard" src={blogs[1].data.imgPortada} alt="" /></Link>
                         <div className="image-container__info">
                             <div className="image-container__info-tags">
                                 {
@@ -76,8 +76,10 @@ const RecentBlogs = (props) => {
                                     ))
                                 }
                             </div>
-                            <h3 className="image-container__info-title">{blogs[1].data.titulo}</h3>
-                            <div className="image-container__info__details">
+                            <Link to={`/blog/${blogs[1].data.link}`} className="image-container__info-link">
+                                <h3 className="image-container__info-title">{blogs[1].data.titulo}</h3>
+                            </Link>
+                            {/* <div className="image-container__info__details">
                                 <h3 className="image-container__info-author">
                                     {
                                         autor2 !== "" && (
@@ -85,7 +87,7 @@ const RecentBlogs = (props) => {
                                         )
                                     }
                                 </h3>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 ) : (null)
