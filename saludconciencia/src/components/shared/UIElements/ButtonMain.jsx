@@ -75,7 +75,7 @@ const ButtonMain = (props) => {
                     dispatch(publicarNuevoBlogAccion(blogAValidar.uid, moment(Date.now()).format("YYYY[/]MM[/]DD")))
                     props.onEnviar(true)
                 } else {    //Tipo guardado o publicado
-                    if(blogAValidar.tipo === 'guardados')
+                    if(blogAValidar.tipo === 'guardado')
                         dispatch(eliminarBlogGuardadoAlPublicarAccion(blogAValidar.uid))
                     dispatch(crearReferenciasBlogPublicadoAccion(blogAValidar.id, moment(Date.now()).format("YYYY[-]MM[-]DD"), Date.now(), blogAValidar.titulo))
                     dispatch(crearTagsReferenciasAccion(blogAValidar.uid))

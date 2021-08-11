@@ -38,7 +38,7 @@ const ShowBlog = (props) => {
                                         
                                         if(showImageCaption){
                                             return (
-                                                <figure className="showBlog__article__post-item article__img">
+                                                <figure className="showBlog__article__post-item article__img" key={block.id}>
                                                     <img src={block.data.url} style={{maxWidth: "100%", maxHeight: "auto"}}/>
                                                     <span
                                                         dangerouslySetInnerHTML={{__html: block.data.caption}}
@@ -48,7 +48,7 @@ const ShowBlog = (props) => {
                                             )
                                         } else {
                                             return (
-                                                <figure className="showBlog__article__post-item article__img">
+                                                <figure className="showBlog__article__post-item article__img" key={block.id}>
                                                     <img src={block.data.url} style={{maxWidth: "100%", maxHeight: "auto"}}/>
                                                 </figure>
                                             )
@@ -57,17 +57,17 @@ const ShowBlog = (props) => {
                                     case "header":
                                         switch(block.data.level){
                                             case 1:
-                                                return (<h1 className="showBlog__article__post-item article__header">{block.data.text}</h1>)
+                                                return (<h1 className="showBlog__article__post-item article__header" key={block.id}>{block.data.text}</h1>)
                                             case 2:
-                                                return (<h2 className="showBlog__article__post-item article__header">{block.data.text}</h2>)
+                                                return (<h2 className="showBlog__article__post-item article__header" key={block.id}>{block.data.text}</h2>)
                                             case 3:
-                                                return (<h3 className="showBlog__article__post-item article__header">{block.data.text}</h3>)
+                                                return (<h3 className="showBlog__article__post-item article__header" key={block.id}>{block.data.text}</h3>)
                                             case 4:
-                                                return (<h4 className="showBlog__article__post-item article__header">{block.data.text}</h4>)
+                                                return (<h4 className="showBlog__article__post-item article__header" key={block.id}>{block.data.text}</h4>)
                                             case 5:
-                                                return (<h5 className="showBlog__article__post-item article__header">{block.data.text}</h5>)
+                                                return (<h5 className="showBlog__article__post-item article__header" key={block.id}>{block.data.text}</h5>)
                                             case 6:
-                                                return (<h6 className="showBlog__article__post-item article__header">{block.data.text}</h6>)
+                                                return (<h6 className="showBlog__article__post-item article__header" key={block.id}>{block.data.text}</h6>)
                                             default:
                                                 break;
                                         }

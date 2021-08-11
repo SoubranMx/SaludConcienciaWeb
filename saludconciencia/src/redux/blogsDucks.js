@@ -56,7 +56,10 @@ const dataInicial = {
     const ERROR_AUTOR = "ERROR_AUTOR";
     //Show blog
     const BLOG_ENCONTRADO_SHOW = "BLOG_ENCONTRADO_SHOW";
-    const BLOG_ENCONTRADO_ERROR = "BLOG_ENCONTRADO_ERROR";
+    const BLOG_ENCONTRADO_ERROR1 = "BLOG_ENCONTRADO_ERROR1";
+    const BLOG_ENCONTRADO_ERROR2 = "BLOG_ENCONTRADO_ERROR2";
+    const BLOG_ENCONTRADO_ERROR3 = "BLOG_ENCONTRADO_ERROR3";
+    const BLOG_ENCONTRADO_ERROR4 = "BLOG_ENCONTRADO_ERROR4";
 //Reducer
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
@@ -130,8 +133,11 @@ export default function blogsReducer (state = dataInicial, action){
             return { ...state }
         case BLOG_ENCONTRADO_SHOW:
             return {...state, blogShow: {...action.payload}}
-        case BLOG_ENCONTRADO_ERROR:
-            return {...state, blogShow: false}
+        case BLOG_ENCONTRADO_ERROR1:
+        case BLOG_ENCONTRADO_ERROR2:
+        case BLOG_ENCONTRADO_ERROR3:
+        case BLOG_ENCONTRADO_ERROR4:
+            return {...state, blogError: true}
         default:
             return state;
     }
@@ -465,25 +471,29 @@ export const obtenerBlogPublicadoShowAccion = (fechaFormateada, tituloParams) =>
                         payload: buscarBlogDB.data()
                     })
                 } else {    //No existe en blogs publicados, pero si en referenciasBlog
+                    console.log("Error no existe en blogs publicados, si en referenciasBlog => ", buscarBlogDB)
+                    console.log("buscarBlogDB.data => ", buscarBlogDB.data())
                     dispatch({
-                        type: BLOG_ENCONTRADO_ERROR
+                        type: BLOG_ENCONTRADO_ERROR1
                     })
                 }
             } else { //No encontro el titulo en referenciasBlog
+                console.log("No existe en referenciasBlog, uidRef => ", uidRef)
                 dispatch({
-                    type: BLOG_ENCONTRADO_ERROR
+                    type: BLOG_ENCONTRADO_ERROR2
                 })
             }
         } else {
             //No existe el doc en referenciasBlog con la fecha formateada
+            console.log("Error => ", )
             dispatch({
-                type: BLOG_ENCONTRADO_ERROR
+                type: BLOG_ENCONTRADO_ERROR3
             })
         }
     } catch (error) {
         console.log("catch error => ",error)
         dispatch({
-            type: BLOG_ENCONTRADO_ERROR
+            type: BLOG_ENCONTRADO_ERROR4
         })
     }
 }

@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { obtenerBlogPublicadoShowAccion } from '../../redux/blogsDucks'
+import { clearAllAccion, obtenerBlogPublicadoShowAccion } from '../../redux/blogsDucks'
 import ShowBlog from './ShowBlog'
 
 const BuscarBlog = (props) => {
     const blogAMostrar = useSelector(store => store.blogs.blogShow)
+    const blogError = useSelector(store => store.blogs.blogError)
     const dispatch = useDispatch()
 
     const [blogExists, setBlogExists] = useState(false) //parte en falso
@@ -45,16 +46,38 @@ const BuscarBlog = (props) => {
         }
     },[blogAMostrar])
     
-    return blogExists === true ? (
-        <div className="showBlog__container">
-            {/* SIEMPRE deberia poder mostrar un blog si este existe */}
-            <ShowBlog blog={blog} />
-        </div>
-    ) : (
-        <div className="showBlog__error">
-            <h2>No se encontró el blog :c</h2>
-        </div>
-    )
+
+    if(blogExists === true){
+        return (
+            <div className="showBlog__container">
+                {/* SIEMPRE deberia poder mostrar un blog si este existe */}
+                <ShowBlog blog={blog} />
+            </div>
+        )
+    } else {
+        if(blogError === undefined) {
+            return (
+                <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+                    <div className="spinner-border" role="status" style={{width: "3rem", height: "3rem"}}>
+                        <span className="visually-hidden">Cargando...</span>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div>No se encontró un blog :c</div>
+            )
+        }
+    }
+
+    // return blogExists === true ? (
+    // ) : (
+    //     {
+    //         blogAMostrar !== null ? (
+    //         ) : (
+    //         )
+    //     }
+    // )
 }
 
 export default BuscarBlog

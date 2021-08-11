@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import RecentBlogs from './RecentBlogs'
 import LatestBlogs from './LatestBlogs'
-import { cargarMasBlogsAccion, leerBlogsPublicarAccion } from '../../redux/blogsDucks'
+import { clearAllAccion, cargarMasBlogsAccion, leerBlogsPublicarAccion } from '../../redux/blogsDucks'
 import {db} from '../../firebase'
 
 const Blog = () => {
@@ -18,6 +18,7 @@ const Blog = () => {
     useEffect(()=>{
         const cargaInicial = () => {
             console.log("Carga Inicial")
+            dispatch(clearAllAccion())
             dispatch(leerBlogsPublicarAccion())
         }
         cargaInicial()

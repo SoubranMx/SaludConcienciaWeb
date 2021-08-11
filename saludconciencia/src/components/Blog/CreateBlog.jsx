@@ -42,8 +42,12 @@ const CreateBlog = () => {
             dispatch(updateUidAccion(nanoid()))
         }
         if(blogUsable !== null){
-            if(blogUsable.tipo === "nuevo")
-                iniciarUid()
+            console.log("blogUsable null")
+            if(blogUsable.tipo === "nuevo"){
+                console.log("blogUsable nuevo")
+                if(blogUsable.uid === "")
+                    iniciarUid()
+            }
         }
     },[blogUsable, dispatch])
 

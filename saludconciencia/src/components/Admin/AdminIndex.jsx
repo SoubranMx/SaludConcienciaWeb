@@ -15,15 +15,34 @@ const AdminIndex = (props) => {
     return (
         <div>
             <div className="update__info">
-                <h1 className="update__info-version">Salud Conciencia Version 0.5.0</h1>
-                <div class="accordion" id="accordionExample">
+                <h1 className="update__info-version">Salud Conciencia Version 0.5.1</h1>
+                <div className="accordion" id="accordionExample">
+
+                    <div className="accordion-item">
+                        <h2 className="accordion-header" id="headingThree">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                            Version 0.5.1
+                        </button>
+                        </h2>
+                        <div id="collapseThree" className="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <p>Cambios de la versión</p>
+                                <ul className="update__info__cambios">
+                                    <li className="update__info__cambios-item">Corregido un error al cargar los blogs y mostrarlos. Ahora no se quedan con el blog anteriormente visto.</li>
+                                    <li className="update__info__cambios-item">Hay un problema con guardar blogs y luego publicarlos. Por el momento, para que puedan encontrarlos debe publicarse uno nuevo cada vez. Es decir, que no venga de guardados. Se solucionará a la brevedad.</li>
+                                    <li className="update__info__cambios-item">Se muestra ahora correctamente el estado del blog. Al darle click a un blog, se mostrará un estado de carga momentaneo. De encontrarse el blog, se muestra el blog. De no encontrarse, se muestra un mensaje "no se encontró el blog :c".</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingOne">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             Version 0.5.0
                         </button>
                         </h2>
-                        <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div id="collapseOne" className="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <p>Cambios de la versión</p>
                                 <ul className="update__info__cambios">

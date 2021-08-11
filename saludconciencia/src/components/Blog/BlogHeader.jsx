@@ -25,8 +25,8 @@ const BlogHeader = (props) => {
         <header className="showBlog__header content-width">
             <div className="showBlog__header__tags">
                 {
-                    props.tags.map(tag => (
-                        <div className="showBlog__header__tags-item">{tag}</div>
+                    props.tags.map((tag, index) => (
+                        <div className="showBlog__header__tags-item" key={index}>{tag}</div>
                     ))
                 }
             </div>
