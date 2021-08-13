@@ -19,11 +19,12 @@
     align-self: stretch;
     justify-content: center;
     flex: 0 0 40%;
-
+    margin: 0 auto;
+    
     @media screen and (max-width: 1200px) {
         flex: 0 0 auto;
     }
-
+    
     @media screen and (max-width: 992px) and (min-width: 768px) {
         //order: -1;
         flex: 0 0 100%;
@@ -91,6 +92,7 @@
 
     &-item {
         //padding: 0 2rem;
+        margin-left: 1rem;
         @media screen and (min-width: 992px) {
             //padding: 0 1rem;
         }
