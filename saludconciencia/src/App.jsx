@@ -47,7 +47,7 @@ const App = (props) => {
   // },[firebaseUser, props.history])
 
   return firebaseUser !== false ? (
-    <div>
+    <div className="root2">
       {
         firebaseUser ? null : <Navbar />
       }

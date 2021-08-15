@@ -1,0 +1,23 @@
+// .index__container {
+//     scroll-snap-type: y mandatory;
+//     overflow-y: scroll;
+//     height: 100vh;   
+// }
+
+#root {
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+.index__slide {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > h1 {
+        color: white;
+    }
+}
