@@ -13,7 +13,9 @@ import familia_salud from './img/familia_salud.jpg'
 import alimentacion from './img/alimentacion.jpg'
 import asesoria from './img/asesoria_integral.jpg'
 import habitos from './img/habitos.jpg'
-import FaWhatsapp from 'react-icons/fa'
+//Iconos
+import {FaWhatsapp, FaInstagram, FaYoutube, FaTwitter} from 'react-icons/fa'
+import {IoLogoTiktok} from 'react-icons/io5'
 
 const Inicio = (props) => {
     useEffect(()=>{
@@ -169,8 +171,18 @@ const Inicio = (props) => {
             </div>
 
             {/* Slide 7 */}
-            <div className="index__slide" style={{backgroundColor: 'violet'}}>
-                <h1>Whatsapp</h1>
+            <div className="index__slide" >
+                <div className="index__slide__7">
+                    <div className="index__slide__7__textleft">
+                        <div className="index__slide__7__textleft-up lexend lexend__bold lexend__bold-50">
+                            Contáctanos
+                        </div>
+                        <div className="index__slide__7__textleft-down poppins poppins__regular poppins__regular-30">
+                            Concreta tu asesoría aquí
+                        </div>
+                    </div>
+                    <FaWhatsapp className="index__slide__7-logo" />
+                </div>
             </div>
 
             {/* Slide 8 */}
@@ -179,12 +191,46 @@ const Inicio = (props) => {
             </div>
 
             {/* Slide 9 */}
-            <div className="index__slide" style={{backgroundColor: 'chocolate'}}>
-                <h1>Contactanos</h1>
+            <div className="index__slide" >
+                <div className="index__slide__9">
+                    <div className="index__slide__9-img">
+                        <img src={contacto} alt="Contacto Salud Conciencia" />
+                    </div>
+                    <div className="index__slide__9__textright">
+                        <div className="index__slide__9__textright-top lexend lexend__bold lexend__bold-35 line-height-42">
+                            <span>¿Te gustaría saber más</span>
+                            <span>sobre algun tema</span>
+                            <span>en particular?</span>
+                        </div>
+                        <div className="index__slide__9__textright-mid poppins poppins__regular poppins__regular-30">
+                            <span>¡Contáctanos en nuestras</span>
+                            <span>redes sociales!</span>
+                        </div>
+                        <div className="index__slide__9__textright-down">
+                            <div className="index__icons"><Link to="/"><FaTwitter className="index__icons-item index__icons-item-twitter"/></Link></div>
+                            <div className="index__icons"><Link to="/"><IoLogoTiktok className="index__icons-item index__icons-item-tiktok"/></Link></div>
+                            <div className="index__icons">
+                                <Link to="/">
+                                    <svg width="0" height="0">
+                                        <radialGradient id="rg" r="150%" cx="30%" cy="107%">
+                                            <stop stop-color="#fdf497" offset="0" />
+                                            <stop stop-color="#fdf497" offset="0.05" />
+                                            <stop stop-color="#fd5949" offset="0.45" />
+                                            <stop stop-color="#d6249f" offset="0.6" />
+                                            <stop stop-color="#285AEB" offset="0.9" />
+                                        </radialGradient>
+                                    </svg>
+                                    <FaInstagram className="index__icons-item index__icons-item-instagram" />
+                                </Link>
+                            </div>
+                            <div className="index__icons"><Link to="/"><FaYoutube className="index__icons-item index__icons-item-youtube"/></Link></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Footer */}
-            <div className="index__slide" style={{backgroundColor: 'darksalmon'}}>
+            <div className="index" style={{backgroundColor: 'darksalmon'}}>
                 <h1>Gato</h1>
             </div>
         </div>

@@ -65,11 +65,11 @@ html {
       width: 2.25rem;
       fill: #00BE00; }
       .user__icons-item-icon-twitter:hover {
-        fill: #0070BA; }
+        fill: #1DA1F2; }
       .user__icons-item-icon-tiktok:hover {
         fill: #020023; }
       .user__icons-item-icon-instagram:hover {
-        fill: #833AB4; }
+        fill: url(#rg); }
       .user__icons-item-icon-youtube:hover {
         fill: red; }
 
