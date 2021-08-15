@@ -1,0 +1,129 @@
+@import './colors';
+
+.lexend {
+    font-family: 'Lexend', sans-serif;
+    &__bold {
+        font-weight: 700;
+        &-48 {
+            font-size: 6.4rem;
+        }
+        &-50{
+            font-size: 6.66rem;
+        }
+        &-35{
+            font-size: 4.66rem;
+        }
+        &-30{
+            font-size: 4rem;
+        }
+    }
+    &__light {
+        font-weight: 300;
+        &-39{
+            font-size: 5.2rem;
+        }
+        &-48{
+            font-size: 6.4rem;
+        }
+        &-57{
+            font-size: 7.6rem;
+        }
+    }
+
+    &__regular {
+        font-weight: 400;
+    }
+
+    &__semibold {
+        font-weight: 600;
+        &-16{
+            font-size: 2.13rem;
+        }
+        &-25{
+            font-size: 3.33rem;
+        }
+        &-15{
+            font-size: 2rem;
+        }
+        &-20{
+            font-size: 2.66rem;
+        }
+    }
+}
+
+.poppins {
+    font-family: 'Poppins', sans-serif;
+    &__light {
+        font-weight: 300;
+        &-20{
+            font-size: 2.66rem;
+        }
+        &-14{
+            font-size: 1.86rem;
+        }
+    }
+
+    &__regular {
+        font-weight: 400;
+        &-20{
+            font-size: 2.66rem;
+        }
+        &-30{
+            font-size: 4rem;
+        }
+        &-12{
+            font-size: 1.6rem;
+        }
+    }
+
+    &__medium {
+        font-weight: 500;
+        &-14{
+            font-size: 1.86rem;
+        }
+    }
+
+    &__semibold {
+        font-weight: 600;
+        &-15{
+            font-size: 2rem;    //15pts -> 20px
+        }
+    }
+}
+
+.line-height{
+    &-48{
+        line-height: 6.4rem;
+    }
+    &-42{
+        line-height: 5.6rem;
+    }
+    &-24{
+        line-height: 3.2rem;
+    }
+    &-16-8{
+        line-height: 2.24rem;
+    }
+    &-26-4{
+        line-height: 3.52rem;
+    }
+    &-36{
+        line-height: 4.8rem;
+    }
+}
+
+.text__green {
+    color: $color_text_green;
+}
+
+.text__gray {
+    color: $color_text_gray;
+}
+
+.text__blue {
+    color: $color_text_blue;
+}
+
+.text__black {
+    color : $color_text_dark;
+}

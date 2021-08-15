@@ -19,6 +19,7 @@ import Admin from './components/Admin/Admin';
 import Login from './components/Admin/Login';
 import BuscarBlog from './components/Blog/BuscarBlog';
 //import { useSelector } from 'react-redux';
+import './sass/_fonts.scss'
 
 const App = (props) => {
 
