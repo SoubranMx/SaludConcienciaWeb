@@ -230,9 +230,6 @@ const Inicio = (props) => {
             </div>
 
             {/* Footer */}
-            <div className="index" style={{backgroundColor: 'darksalmon'}}>
-                <h1>Gato</h1>
-            </div>
         </div>
     )
 }

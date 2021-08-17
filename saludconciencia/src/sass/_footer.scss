@@ -1,0 +1,230 @@
+.footer-index{
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 10rem;
+
+    &-up{
+        align-self: flex-end;
+        margin-right: 10rem;
+        flex: 0 0 50%;
+        padding: 5rem 0;
+        &:first-of-type div {
+            margin-bottom: 2rem;
+        }
+    }
+    
+    &-down{
+        background: #000;
+        color: #00BE00;
+        flex: 1;
+        padding: 5rem 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__menu__left {
+        display: flex;
+        &-1{
+            display: flex;
+            flex-direction: column;
+            margin-right: 10rem;
+            &-title{
+                margin-bottom: 3rem;
+            }
+            &-list{
+                display: flex;
+                flex-direction: column;
+                & > span {
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+
+        &-2{
+            display: flex;
+            flex-direction: column;
+            margin-right: 10rem;
+            &-title{
+                margin-bottom: 3rem;
+            }
+            &-list{
+                display: flex;
+                flex-direction: column;
+                & > span {
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+    }
+
+    &__menu__right{
+        margin-right: 5rem;
+        &-1, &-3{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__menu__icons{
+        $size: 5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-around;
+        &-item{
+            &-icon{
+                height: $size;
+                width: $size;
+                fill: #00BE00;
+                & > path {
+                    transition: fill .4s ease;
+                }
+
+                &-twitter {
+                    &:hover{
+                        fill: #1DA1F2;
+                    }
+                }
+                &-tiktok {
+                    &:hover{
+                        fill: #bfbfbf;
+                    }
+                }
+                &-youtube {
+                    &:hover{
+                        fill: #F00;
+                    }
+                }
+                &-instagram {
+                    &:hover{
+                        fill: url(#rg-footer);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer{
+    //scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 10rem;
+    &-up{
+        align-self: flex-end;
+        margin-right: 10rem;
+        flex: 0 0 50%;
+        padding: 5rem 0;
+        &:first-of-type div {
+            margin-bottom: 2rem;
+        }
+    }
+    
+    &-down{
+        background: #000;
+        color: #00BE00;
+        flex: 1;
+        padding: 5rem 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &__menu__left {
+        display: flex;
+        &-1{
+            display: flex;
+            flex-direction: column;
+            margin-right: 10rem;
+            &-title{
+                margin-bottom: 3rem;
+            }
+            &-list{
+                display: flex;
+                flex-direction: column;
+                & > span {
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+
+        &-2{
+            display: flex;
+            flex-direction: column;
+            margin-right: 10rem;
+            &-title{
+                margin-bottom: 3rem;
+            }
+            &-list{
+                display: flex;
+                flex-direction: column;
+                & > span {
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+    }
+
+    &__menu__right{
+        margin-right: 5rem;
+        &-1, &-3{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__menu__icons{
+        $size: 5rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-around;
+        &-item{
+            &-icon{
+                height: $size;
+                width: $size;
+                fill: #00BE00;
+                & > path {
+                    transition: fill .4s ease;
+                }
+
+                &-twitter {
+                    &:hover{
+                        fill: #1DA1F2;
+                    }
+                }
+                &-tiktok {
+                    &:hover{
+                        fill: #bfbfbf;
+                    }
+                }
+                &-youtube {
+                    &:hover{
+                        fill: #F00;
+                    }
+                }
+                &-instagram {
+                    &:hover{
+                        fill: url(#rg-footer);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.gato-logo{
+    position: absolute;
+    left: 5rem;
+    top: 3rem;
+}

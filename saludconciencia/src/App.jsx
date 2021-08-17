@@ -10,6 +10,7 @@ import {auth} from './firebase';
 
 
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Navbar/Footer';
 import Asesorias from './components/Pages/Asesorias'
 import ParaTi from './components/Pages/ParaTi'
 import Podcast from './components/Pages/Podcast'
@@ -89,6 +90,9 @@ const App = (props) => {
         </Route>
         <Redirect to="/" />
       </Switch>
+      {
+        firebaseUser ? null : <Footer />
+      }
     </div>
   ) : (
     <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
