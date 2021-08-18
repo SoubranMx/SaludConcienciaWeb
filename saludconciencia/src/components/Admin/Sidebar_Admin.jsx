@@ -14,6 +14,7 @@ import {RiArticleLine} from 'react-icons/ri';
 import logo from '../../resources/nav-logo.png';
 import logo_sm from '../../resources/nav-logo-sm.png';
 import { BiLogOut } from 'react-icons/bi';
+import '../../sass/_sidebar.scss';
 
 const SidebarAdmin = () => {
     const [linkActivo, setLinkActivo] = useState(["","","",""]);

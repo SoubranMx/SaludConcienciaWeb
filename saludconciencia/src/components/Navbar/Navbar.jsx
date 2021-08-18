@@ -8,7 +8,8 @@ import {FiMenu} from 'react-icons/fi';
 
 
 import nav_logo from '../../resources/nav-logo.png';
-import '../../css/style.css'
+//import '../../css/style.css'
+import '../../sass/_navbar.scss'
 
 const Navbar = () => {
     return (

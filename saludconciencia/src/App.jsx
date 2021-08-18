@@ -21,6 +21,7 @@ import Login from './components/Admin/Login';
 import BuscarBlog from './components/Blog/BuscarBlog';
 //import { useSelector } from 'react-redux';
 import './sass/_fonts.scss'
+import './css/style.css'
 
 const App = (props) => {
 

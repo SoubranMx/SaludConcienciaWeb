@@ -4,6 +4,8 @@ import { auth, db } from '../../firebase'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
+import '../../sass/_recentBlogs.scss'
+
 
 const RecentBlogs = (props) => {
 
@@ -50,16 +52,6 @@ const RecentBlogs = (props) => {
                             <Link to={`/blog/${blogs[0].data.link}`} className="image-container__info-link">
                                 <h3 className="image-container__info-title">{blogs[0].data.titulo}</h3>
                             </Link>
-                            {/* <div className="image-container__info__details">
-                                <h3 className="image-container__info-author">
-                                    Por: &nbsp;
-                                    {
-                                        autor1 !== "" && (
-                                            <span>{autor1}</span>
-                                        )
-                                    }
-                                </h3>
-                            </div> */}
                         </div>
                     </div>
                 ) : (null)
@@ -79,15 +71,6 @@ const RecentBlogs = (props) => {
                             <Link to={`/blog/${blogs[1].data.link}`} className="image-container__info-link">
                                 <h3 className="image-container__info-title">{blogs[1].data.titulo}</h3>
                             </Link>
-                            {/* <div className="image-container__info__details">
-                                <h3 className="image-container__info-author">
-                                    {
-                                        autor2 !== "" && (
-                                            `Por: ${autor2}`
-                                        )
-                                    }
-                                </h3>
-                            </div> */}
                         </div>
                     </div>
                 ) : (null)

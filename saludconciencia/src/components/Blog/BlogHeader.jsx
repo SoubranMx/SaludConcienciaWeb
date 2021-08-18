@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import { db } from '../../firebase'
 import moment from 'moment'
+import '../../sass/_blogHeader.scss'
 
 const BlogHeader = (props) => {
     const [displayName, setDisplayName] = useState("Julián Uriarte")

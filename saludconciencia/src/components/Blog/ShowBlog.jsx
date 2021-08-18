@@ -1,5 +1,6 @@
 import React from 'react'
 import BlogHeader from './BlogHeader'
+import '../../sass/_showBlog.scss'
 
 const ShowBlog = (props) => {
     
