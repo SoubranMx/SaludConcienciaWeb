@@ -31,10 +31,10 @@ const Inicio = (props) => {
             <div className="index__slide" >
                 <div className="index__slide__1-box">
                     <div className="index__slide__1__textleft">
-                        <div className="lexend lexend__bold lexend__bold-48 text__green index__slide__1__textleft-up line-height-42">
+                        <div className="lexend lexend__bold lexend__bold-60 text__green index__slide__1__textleft-up line-height-60">
                             <span>Tu Salud en </span><span>un solo lugar.</span>
                         </div>
-                        <div className="index__slide__1__textleft-mid poppins poppins__light poppins__light-20 text__gray line-height-24">
+                        <div className="index__slide__1__textleft-mid poppins poppins__light poppins__light-22-5 text__gray line-height-24">
                             <span>Recursos. Consejos. Asesorías.</span>
                             <span>Lo mejor de la ciencia, a tu servicio.</span>
                         </div>
@@ -80,7 +80,7 @@ const Inicio = (props) => {
                     </div>
                 </div>
                 <figure className="index__slide__2__figure">
-                    <img src={entrenamiento} alt="Chica haciendo yoga" className="index__slide__2__figure-img" />
+                    <img src={entrenamiento} alt="Chica haciendo yoga" className="index__slide__2__figure-img-2" />
                 </figure>
             </div>
 
@@ -114,20 +114,33 @@ const Inicio = (props) => {
                     </div>
                     <div className="index__slide__5__down">
                         <div className="index__slide__5__card">
-                            <div className="index__slide__5__card-title-1 text__green lexend lexend__light lexend__light-39">Ejercicio</div>
+                            <div className="index__slide__5__card-title-1 text__green lexend lexend__regular lexend__regular-39">
+                                <Link to="/" className="index__slide__5__card-title-1-link">
+                                    Ejercicio
+                                </Link>
+                            </div>
                             <figure className="index__slide__5__card__container">
-                                <img src={ejercicio} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                                <Link to="/">
+                                    <img src={ejercicio} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                                </Link>
                                 <div className="index__slide__5__card-body-green poppins poppins__medium poppins__medium-14">
                                     <span>Entrenamientos para gimnasio o la sala de tu casa.</span>
                                     <span>No hay problema, tenemos una rutina para ti.</span>
                                 </div>
                             </figure>
+
                         </div>
 
                         <div className="index__slide__5__card">
-                            <div className="index__slide__5__card-title-2 text__blue lexend lexend__light lexend__light-39">Hábitos</div>
+                            <div className="index__slide__5__card-title-2 text__blue lexend lexend__regular lexend__regular-39">
+                                <Link to="/" className="index__slide__5__card-title-2-link">
+                                    Hábitos
+                                </Link>
+                            </div>
                             <figure className="index__slide__5__card__container">
-                                <img src={habitos} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                                <Link to="/">
+                                    <img src={habitos} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                                </Link>
                                 <div className="index__slide__5__card-body-blue poppins poppins__medium poppins__medium-14">
                                     <span>¿Crees que la salud solo es dieta y ejercicio?</span>
                                     <span>Abordamos otros aspectos de tu vida que son clave para una vida saludable.</span>
@@ -136,9 +149,15 @@ const Inicio = (props) => {
                         </div>
 
                         <div className="index__slide__5__card">
-                            <div className="index__slide__5__card-title-3 text__black lexend lexend__light lexend__light-39">Alimentación</div>
+                            <div className="index__slide__5__card-title-3 text__black lexend lexend__regular lexend__regular-39">
+                                <Link to="/" className="index__slide__5__card-title-3-link">
+                                    Alimentación
+                                </Link>
+                            </div>
                             <figure className="index__slide__5__card__container">
-                                <img src={alimentacion} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                                <Link to="/">
+                                    <img src={alimentacion} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                                </Link>
                                 <div className="index__slide__5__card-body-black poppins poppins__medium poppins__medium-14">
                                     <span>Basta de comer chayote hervido.</span>
                                     <span>Una asesoría nutricional humana, realista y personalizada a tus gustos.</span>
@@ -170,8 +189,8 @@ const Inicio = (props) => {
                 </div> 
             </div>
 
-            {/* Slide 7 */}
-            <div className="index__slide" >
+            {/* Slide 7 Por ahora no*/}
+            {/* <div className="index__slide" >
                 <div className="index__slide__7">
                     <div className="index__slide__7__textleft">
                         <div className="index__slide__7__textleft-up lexend lexend__bold lexend__bold-50">
@@ -183,7 +202,7 @@ const Inicio = (props) => {
                     </div>
                     <FaWhatsapp className="index__slide__7-logo" />
                 </div>
-            </div>
+            </div> */}
 
             {/* Slide 8 */}
             <div className="index__slide" style={{backgroundColor: 'lightcoral'}}>
@@ -198,12 +217,12 @@ const Inicio = (props) => {
                     </div>
                     <div className="index__slide__9__textright">
                         <div className="index__slide__9__textright-top lexend lexend__bold lexend__bold-35 line-height-42">
-                            <span>¿Te gustaría saber más</span>
-                            <span>sobre algun tema</span>
+                            <span>¿Te gustaría saber más </span>
+                            <span>sobre algún tema </span>
                             <span>en particular?</span>
                         </div>
                         <div className="index__slide__9__textright-mid poppins poppins__regular poppins__regular-30">
-                            <span>¡Contáctanos en nuestras</span>
+                            <span>¡Contáctanos en nuestras </span>
                             <span>redes sociales!</span>
                         </div>
                         <div className="index__slide__9__textright-down">

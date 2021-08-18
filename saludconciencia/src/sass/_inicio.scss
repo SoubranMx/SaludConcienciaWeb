@@ -25,6 +25,7 @@
     }
     //Temporal
     
+    //Slide 1
     &__1{
         &-box{
             display: flex;
@@ -68,13 +69,15 @@
                     text-decoration: none;
                     color: $color_text_dark;
                     &:hover{
-                        color: lighten($color_text_dark, 10%);
+                        color: $color_text_green;
+                        text-decoration: underline;
                     }
                 }
             }
         }
     }
 
+    //Slide 2 - 4
     &__2{
         &-box{
             display: flex;
@@ -93,12 +96,22 @@
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
+                //Objectposition para centrar a la chica
+                object-position: 96% 50%;
+            }
+            &-img-2{
+                flex: 1;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                //Centrar a la chica y la niña
+                object-position: 54% 50%;
             }
         }
 
         
         &__textleft {
-            flex: 0 0 50%;
+            flex: 0 0 45%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -127,29 +140,33 @@
                     text-decoration: none;
                     color: $color_text_dark;
                     &:hover{
-                        color: lighten($color_text_dark, 10%);
+                        color: $color_text_green;
+                        text-decoration: underline;
                     }
                 }
                 &-link-2:link,
                 &-link-2:visited {
                     text-decoration: none;
-                    color: $color_text_blue;
+                    color: $color_text_dark;
                     &:hover{
                         color: lighten($color_text_blue, 5%);
+                        text-decoration: underline;
                     }
                 }
                 &-link-3:link,
                 &-link-3:visited {
                     text-decoration: none;
-                    color: $color_text_green;
+                    color: $color_text_dark;
                     &:hover{
                         color: lighten($color_text_green, 5%);
+                        text-decoration: underline;
                     }
                 }
             }
         }
     }
 
+    //Slide 5
     &__5{
         height: 100%;
         width: 100%;
@@ -176,8 +193,8 @@
             display: flex;
             position: relative;
             &__container{
-                height: 44rem;
-                width: 30rem;
+                height: 48rem;
+                width: 35rem;
                 margin: 0;
                 padding: 0;
                 position: relative;
@@ -221,29 +238,67 @@
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
+                cursor: pointer;
+                opacity: .85;
+
+                transition: opacity .2s;
+                &:hover{
+                    opacity: 1;
+                }
             }
 
             &-title-1{
                 position: absolute;
                 bottom: 6rem;
-                left: -13rem;
+                left: -14rem;
                 transform: rotate(270deg);
+                &-link:link,
+                &-link:visited{
+                    text-decoration: none;
+                    color: inherit;
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: darken($color_text_green, 5%);
+                    }
+                }
             }
             &-title-2{
                 position: absolute;
-                bottom: 6rem;
+                bottom: 5rem;
                 left: -13rem;
                 transform: rotate(270deg);
+                &-link:link,
+                &-link:visited{
+                    text-decoration: none;
+                    color: inherit;
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: darken($color_text_blue, 5%);
+                    }
+                }
             }
             &-title-3{
                 position: absolute;
                 bottom: 12rem;
-                left: -18rem;
+                left: -19rem;
                 transform: rotate(270deg);
+                &-link:link,
+                &-link:visited{
+                    text-decoration: none;
+                    color: inherit;
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: lighten($color_text_dark, 5%);
+                    }
+                }
             }
         }
     }
 
+    //Slide 6
     &__6{
         &-box{
             display: flex;
@@ -282,13 +337,15 @@
                     text-decoration: none;
                     color: #BFBFBF;
                     &:hover{
-                        color: lighten(#BFBFBF, 10%);
+                        color: $color_text_green;
+                        text-decoration: underline;
                     }
                 }
             }
         }
     }
 
+    //Slide 7
     &__7{
         display: flex;
         justify-content: center;
@@ -332,6 +389,9 @@
         }
     }
 
+    //Falta slide 8
+
+    //Slide 9
     &__9{
         display: flex;
         justify-content: space-evenly;
@@ -372,6 +432,8 @@
             }
         }
     }
+
+    //Slide 10 es el footer, _footer.scss
 }
 
 .index__icons {

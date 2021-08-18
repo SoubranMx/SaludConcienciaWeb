@@ -4,50 +4,30 @@
     font-family: 'Lexend', sans-serif;
     &__bold {
         font-weight: 700;
-        &-48 {
-            font-size: 6.4rem;
-        }
-        &-50{
-            font-size: 6.66rem;
-        }
-        &-35{
-            font-size: 4.66rem;
-        }
-        &-30{
-            font-size: 4rem;
-        }
+        &-30{font-size: 4rem;}
+        &-35{font-size: 4.66rem;}
+        &-48 {font-size: 6.4rem;}
+        &-50{font-size: 6.66rem;}
+        &-60{font-size: 8rem;}
     }
     &__light {
         font-weight: 300;
-        &-39{
-            font-size: 5.2rem;
-        }
-        &-48{
-            font-size: 6.4rem;
-        }
-        &-57{
-            font-size: 7.6rem;
-        }
+        &-39{font-size: 5.2rem;}
+        &-48{font-size: 6.4rem;}
+        &-57{font-size: 7.6rem;}
     }
 
     &__regular {
         font-weight: 400;
+        &-39{font-size: 5.2rem;}
     }
 
     &__semibold {
         font-weight: 600;
-        &-16{
-            font-size: 2.13rem;
-        }
-        &-25{
-            font-size: 3.33rem;
-        }
-        &-15{
-            font-size: 2rem;
-        }
-        &-20{
-            font-size: 2.66rem;
-        }
+        &-16{font-size: 2.13rem;}
+        &-15{font-size: 2rem;}
+        &-20{font-size: 2.66rem;}
+        &-25{font-size: 3.33rem;}
     }
 }
 
@@ -55,61 +35,37 @@
     font-family: 'Poppins', sans-serif;
     &__light {
         font-weight: 300;
-        &-20{
-            font-size: 2.66rem;
-        }
-        &-14{
-            font-size: 1.86rem;
-        }
+        &-14{font-size: 1.86rem;}
+        &-20{font-size: 2.66rem;}
+        &-22-5{font-size: 3rem;}
     }
 
     &__regular {
         font-weight: 400;
-        &-20{
-            font-size: 2.66rem;
-        }
-        &-30{
-            font-size: 4rem;
-        }
-        &-12{
-            font-size: 1.6rem;
-        }
+        &-12{font-size: 1.6rem;}
+        &-20{font-size: 2.66rem;}
+        &-30{font-size: 4rem;}
     }
 
     &__medium {
         font-weight: 500;
-        &-14{
-            font-size: 1.86rem;
-        }
+        &-14{font-size: 1.86rem;}
     }
 
     &__semibold {
         font-weight: 600;
-        &-15{
-            font-size: 2rem;    //15pts -> 20px
-        }
+        &-15{font-size: 2rem;}    //15pts -> 20px
     }
 }
 
 .line-height{
-    &-48{
-        line-height: 6.4rem;
-    }
-    &-42{
-        line-height: 5.6rem;
-    }
-    &-24{
-        line-height: 3.2rem;
-    }
-    &-16-8{
-        line-height: 2.24rem;
-    }
-    &-26-4{
-        line-height: 3.52rem;
-    }
-    &-36{
-        line-height: 4.8rem;
-    }
+    &-16-8{line-height: 2.24rem;}
+    &-24{line-height: 3.2rem;}
+    &-26-4{line-height: 3.52rem;}
+    &-36{line-height: 4.8rem;}
+    &-42{line-height: 5.6rem;}
+    &-48{line-height: 6.4rem;}
+    &-60{line-height: 8rem;}
 }
 
 .text__green {
