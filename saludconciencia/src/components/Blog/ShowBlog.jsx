@@ -1,11 +1,37 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    TelegramShareButton,
+    TwitterShareButton,
+    WhatsappShareButton
+} from "react-share";
+import {
+    EmailIcon,
+    FacebookIcon,
+    TelegramIcon,
+    TwitterIcon,
+    WhatsappIcon,
+} from "react-share";
+import { Helmet } from 'react-helmet';
+import moment from 'moment';
+
 import BlogHeader from './BlogHeader'
 import '../../sass/_showBlog.scss'
 
 const ShowBlog = (props) => {
+    //Para los botones de social media
+    const socialIconSize = `4.0rem`;
+    const url = `https://saludconciencia.com.mx/blog/${props.blog.link}`;
+
+    const articulo = useRef(null)
+
+    useEffect(()=>{
+        articulo !== null && articulo.current.scrollIntoView({behavior: 'smooth'})
+    },[articulo])
     
     return (
-        <div className="showBlog__contenido">
+        <div className="showBlog__contenido" ref={articulo}>
             <figure className="showBlog__contenido__portada">
                 <img src={props.blog.imgPortada} alt="imagen portada" className="showBlog__contenido__portada-img"/>
             </figure>
@@ -91,9 +117,72 @@ const ShowBlog = (props) => {
                                 }
                             })
                         }
+                    
+                    {/* Social Share */}
+                    <article className="showBlog__share">
+                        <div className="showBlog__share-title">¡Comparte el blog!</div>
+                        <div className="showBlog__share__items">
+                            <FacebookShareButton
+                                url={url}
+                                quote={`¡Mira el blog de Salud Conciencia! | ${props.blog.titulo}`}
+                                hashtag={`${props.blog.tags.forEach((tag)=>{console.log(tag); return tag;})}`}
+                            >
+                                <FacebookIcon round={true} size={socialIconSize}/>
+                            </FacebookShareButton>
+
+                            <TwitterShareButton
+                                url={url}
+                                title={props.blog.titulo}
+                                via={`SaludConciencia`}
+                                hashtags={props.blog.tags}
+                                //related={array de cuentas?}
+                                
+                            >
+                                <TwitterIcon round={true} size={socialIconSize}/>
+                            </TwitterShareButton>
+
+                            <WhatsappShareButton
+                                url={url}
+                                title={props.blog.titulo}
+                                separator={" "}
+                            >
+                                <WhatsappIcon round={true} size={socialIconSize}/>
+                            </WhatsappShareButton>
+
+                            <TelegramShareButton
+                                url={url}
+                                title={props.blog.titulo}
+                            >
+                                <TelegramIcon round={true} size={socialIconSize}/>
+                            </TelegramShareButton>
+
+                            <EmailShareButton
+                                url={url}
+                                subject={`Salud Conciencia | ${props.blog.titulo}`}
+                                body={`Te comparto este articulo de Salud Conciencia`}
+                                separator={" "}
+                            >
+                                <EmailIcon round={true} size={socialIconSize}/>
+                            </EmailShareButton>
+                        </div>
+                    </article>
                     </div>
                 </article>
             </main>
+            <Helmet>
+                <title>{props.blog.titulo}</title>
+                <meta name="description" content={props.blog.descripcion} />
+                <meta property="og:locale" content="es_LA" />
+                <meta property="og:type" content="article" />
+                <meta property="og:title" content={`${props.blog.titulo} | Salud Conciencia`} />
+                <meta property="og:description" content={`${props.blog.descripcion} | Salud Conciencia`} />
+                <meta property="og:url" content={url} />
+                <meta property="og:site_name" content="Salud Conciencia" />
+                <meta property="og:image" content={props.blog.imgPortada} />
+                {/* <meta property="og:image:width" content="200" />
+                <meta property="og:image:height" content="200" /> */}
+                <meta property="og:article:published_time" content={moment(props.blog.fecha).format()} />
+            </Helmet>
         </div>
     )
 }
