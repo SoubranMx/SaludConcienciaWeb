@@ -5,20 +5,22 @@
 // }
 @import './colors';
 
-#root {
+.root2 {
     height: 100vh;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
+    //overflow: hidden;
 }
 
 .index__slide {
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     height: 100vh;
     width: 100%;
     display: flex;
     //Temporal
-    justify-content: center;
-    align-items: center;
+    // justify-content: center;
+    // align-items: center;
 
     & > h1 {
         color: white;

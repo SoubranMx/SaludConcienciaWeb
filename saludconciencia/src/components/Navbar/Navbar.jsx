@@ -14,7 +14,7 @@ import '../../sass/_navbar.scss'
 const Navbar = () => {
     return (
         <nav className="header sticky-top navbar navbar-expand-md">
-            <div className="container-fluid">
+            <div className="container-fluid header__content">
                 <NavLink className="navbar-brand" to="/">
                     <img src={nav_logo} alt="Salud Conciencia logo" className="logo" />
                 </NavLink>

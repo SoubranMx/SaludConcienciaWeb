@@ -24,6 +24,7 @@
     
     @media screen and (max-width: 1200px) {
         flex: 0 0 auto;
+
     }
     
     @media screen and (max-width: 992px) and (min-width: 768px) {
@@ -171,4 +172,8 @@
             transform: translateY(2px);
         }
     }
+}
+
+.header__content{
+    height: 100%;
 }

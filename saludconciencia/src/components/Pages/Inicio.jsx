@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 import { withRouter, Link } from 'react-router-dom'
 
 import { auth } from '../../firebase'
@@ -23,12 +23,58 @@ const Inicio = (props) => {
             props.history.push('/admin')
         }
     },[props.history])
+    
+    const slide1 = useRef(null)
+    const slide2 = useRef(null)
+    const slide3 = useRef(null)
+    const slide4 = useRef(null)
+    const slide5 = useRef(null)
+    const slide6 = useRef(null)
+    const slide7 = useRef(null)
+    const slide8 = useRef(null)
+    const slide9 = useRef(null)
+    
+    useEffect(()=>{
+        slide1 !== null && slide1.current.scrollIntoView({behavior: 'smooth'})
+    },[slide1])
 
+    const goToSlide = (slideActual) => {
+        switch(slideActual){
+            case 1:
+                slide2.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 2:
+                slide3.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 3:
+                slide4.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 4:
+                slide5.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 5:
+                slide6.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 6:
+                slide8.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 7:
+                slide8.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 8:
+                slide9.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                break;
+            case 9:
+                break;
+            default:
+                break;
+        }
+    }
     
     return (
         <div className="index__container">
             {/* Slide 1 */}
-            <div className="index__slide" >
+            <div className="index__slide" ref={slide1}>
                 <div className="index__slide__1-box">
                     <div className="index__slide__1__textleft">
                         <div className="lexend lexend__bold lexend__bold-60 text__green index__slide__1__textleft-up line-height-60">
@@ -39,7 +85,7 @@ const Inicio = (props) => {
                             <span>Lo mejor de la ciencia, a tu servicio.</span>
                         </div>
                         <div className="index__slide__1__textleft-down poppins poppins__semibold poppins__semibold-15">
-                            <Link to="/" className="index__slide__1__textleft-down-link"><span>Conoce más</span></Link>
+                            <Link to="/" className="index__slide__1__textleft-down-link" onClick={()=>goToSlide(1)}><span>Conoce más</span></Link>
                         </div>
                     </div>
                     <img src={presentacion_1} alt="Presentación del concepto" className="index__slide__1-img"/>
@@ -47,7 +93,7 @@ const Inicio = (props) => {
             </div>
 
             {/* Slide 2 */}
-            <div className="index__slide" >
+            <div className="index__slide" ref={slide2}>
                 <div className="index__slide__2__textleft">
                     <div className="lexend lexend__bold lexend__bold-48 text__black index__slide__2__textleft-up line-height-48">
                         <span>Ciencia para </span><span>tus oidos.</span>
@@ -57,7 +103,7 @@ const Inicio = (props) => {
                         <span>y relevante sobre tu salud.</span>
                     </div>
                     <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                        <Link to="/" className="index__slide__2__textleft-down-link-1"><span>Conoce más</span></Link>
+                        <Link to="/" className="index__slide__2__textleft-down-link-1" onClick={()=>goToSlide(2)}><span>Conoce más</span></Link>
                     </div>
                 </div>
                 <figure className="index__slide__2__figure">
@@ -66,7 +112,7 @@ const Inicio = (props) => {
             </div>
 
             {/* Slide 3 */}
-            <div className="index__slide" >
+            <div className="index__slide" ref={slide3}>
                 <div className="index__slide__2__textleft">
                     <div className="lexend lexend__bold lexend__bold-48 text__blue index__slide__2__textleft-up line-height-48">
                         <span>Entrena con</span><span>quien te</span><span>motiva.</span>
@@ -76,7 +122,7 @@ const Inicio = (props) => {
                         <span>guiados para toda la familia.</span>
                     </div>
                     <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                        <Link to="/" className="index__slide__2__textleft-down-link-2"><span>Conoce más</span></Link>
+                        <Link to="/" className="index__slide__2__textleft-down-link-2" onClick={()=>goToSlide(3)}><span>Conoce más</span></Link>
                     </div>
                 </div>
                 <figure className="index__slide__2__figure">
@@ -85,7 +131,7 @@ const Inicio = (props) => {
             </div>
 
             {/* Slide 4 */}
-            <div className="index__slide" >
+            <div className="index__slide" ref={slide4}>
                 <div className="index__slide__2__textleft">
                     <div className="lexend lexend__bold lexend__bold-48 text__green index__slide__2__textleft-up line-height-48">
                         <span>La mejor</span><span>manera de</span><span>cuidarte.</span>
@@ -96,7 +142,7 @@ const Inicio = (props) => {
                         <span>y amigable para ti.</span>
                     </div>
                     <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                        <Link to="/" className="index__slide__2__textleft-down-link-3"><span>Conoce más</span></Link>
+                        <Link to="/" className="index__slide__2__textleft-down-link-3" onClick={()=>goToSlide(4)}><span>Conoce más</span></Link>
                     </div>
                 </div>
                 <figure className="index__slide__2__figure">
@@ -105,7 +151,7 @@ const Inicio = (props) => {
             </div>
 
             {/* Slide 5 */}
-            <div className="index__slide" >
+            <div className="index__slide" ref={slide5}>
                 <div className="index__slide__5">
                     <div className="index__slide__5__top">
                         <div className="index__slide__5__top-box lexend lexend__light lexend__light-48 line-height-48">
@@ -174,7 +220,8 @@ const Inicio = (props) => {
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
-            }}>
+            }}
+            ref={slide6}>
                <div className="index__slide__6__textleft">
                     <div className="index__slide__6__textleft-up lexend lexend__bold lexend__bold-50 line-height-48">
                        <span>Asesoría Integral</span><span>en Salud</span>
@@ -184,7 +231,7 @@ const Inicio = (props) => {
                        <span>en un solo lugar, a un precio inmejorable</span>
                     </div>
                     <div className="index__slide__6__textleft-down poppins poppins__semibold poppins__semibold-15">
-                        <Link to="/" className="index__slide__6__textleft-down-link"><span>Conoce más</span></Link>
+                        <Link to="/" className="index__slide__6__textleft-down-link" onClick={()=>goToSlide(6)}><span>Conoce más</span></Link>
                     </div>
                 </div> 
             </div>
@@ -205,12 +252,12 @@ const Inicio = (props) => {
             </div> */}
 
             {/* Slide 8 */}
-            <div className="index__slide" style={{backgroundColor: 'lightcoral'}}>
+            <div className="index__slide" style={{backgroundColor: 'lightcoral'}} ref={slide8}>
                 <h1>Articulos</h1>
             </div>
 
             {/* Slide 9 */}
-            <div className="index__slide" >
+            <div className="index__slide" ref={slide9}>
                 <div className="index__slide__9">
                     <div className="index__slide__9-img">
                         <img src={contacto} alt="Contacto Salud Conciencia" />
@@ -232,11 +279,11 @@ const Inicio = (props) => {
                                 <Link to="/">
                                     <svg width="0" height="0">
                                         <radialGradient id="rg" r="150%" cx="30%" cy="107%">
-                                            <stop stop-color="#fdf497" offset="0" />
-                                            <stop stop-color="#fdf497" offset="0.05" />
-                                            <stop stop-color="#fd5949" offset="0.45" />
-                                            <stop stop-color="#d6249f" offset="0.6" />
-                                            <stop stop-color="#285AEB" offset="0.9" />
+                                            <stop stopColor="#fdf497" offset="0" />
+                                            <stop stopColor="#fdf497" offset="0.05" />
+                                            <stop stopColor="#fd5949" offset="0.45" />
+                                            <stop stopColor="#d6249f" offset="0.6" />
+                                            <stop stopColor="#285AEB" offset="0.9" />
                                         </radialGradient>
                                     </svg>
                                     <FaInstagram className="index__icons-item index__icons-item-instagram" />

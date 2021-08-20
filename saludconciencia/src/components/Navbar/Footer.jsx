@@ -36,7 +36,7 @@ const Footer = () => {
                             <span>Podcast</span>
                             <span>Artículos</span>
                             <span>Entrenamientos</span>
-                            <span>Novedades</span>
+                            <span>Eventos</span>
                             <span>Nuestra Historia</span>
                         </div>
                     </div>
