@@ -13,6 +13,7 @@ import familia_salud from './img/familia_salud.jpg'
 import alimentacion from './img/alimentacion.jpg'
 import asesoria from './img/asesoria_integral.jpg'
 import habitos from './img/habitos.jpg'
+
 //Iconos
 import {FaWhatsapp, FaInstagram, FaYoutube, FaTwitter} from 'react-icons/fa'
 import {IoLogoTiktok} from 'react-icons/io5'
@@ -33,9 +34,10 @@ const Inicio = (props) => {
     const slide7 = useRef(null)
     const slide8 = useRef(null)
     const slide9 = useRef(null)
+    const slide5MobileTitulo = useRef(null)
     
     useEffect(()=>{
-        slide1 !== null && slide1.current.scrollIntoView({behavior: 'smooth'})
+        //slide1 !== null && slide1.current.scrollIntoView({behavior: 'smooth'})
     },[slide1])
 
     const goToSlide = (slideActual) => {
@@ -50,7 +52,9 @@ const Inicio = (props) => {
                 slide4.current.scrollIntoView({behavior: 'smooth', block: 'start'})
                 break;
             case 4:
-                slide5.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                window.screen.width <= 576 ?
+                    slide5MobileTitulo.current.scrollIntoView({behavior: 'smooth'}) :
+                    slide5.current.scrollIntoView({behavior: 'smooth', block: 'start'})
                 break;
             case 5:
                 slide6.current.scrollIntoView({behavior: 'smooth', block: 'start'})
@@ -74,148 +78,236 @@ const Inicio = (props) => {
     return (
         <div className="index__container">
             {/* Slide 1 */}
-            <div className="index__slide" ref={slide1}>
+            <div className="index__slide__1" ref={slide1}>
                 <div className="index__slide__1-box">
                     <div className="index__slide__1__textleft">
-                        <div className="lexend lexend__bold lexend__bold-60 text__green index__slide__1__textleft-up line-height-60">
+                        <div className="lexend lexend__bold text__green index__slide__1__textleft-up">
                             <span>Tu Salud en </span><span>un solo lugar.</span>
                         </div>
-                        <div className="index__slide__1__textleft-mid poppins poppins__light poppins__light-22-5 text__gray line-height-24">
+                        <div className="index__slide__1__textleft-mid poppins poppins__light text__gray">
                             <span>Recursos. Consejos. Asesorías.</span>
                             <span>Lo mejor de la ciencia, a tu servicio.</span>
                         </div>
-                        <div className="index__slide__1__textleft-down poppins poppins__semibold poppins__semibold-15">
+                        <div className="index__slide__1__textleft-down poppins poppins__semibold">
                             <Link to="/" className="index__slide__1__textleft-down-link" onClick={()=>goToSlide(1)}><span>Conoce más</span></Link>
                         </div>
                     </div>
-                    <img src={presentacion_1} alt="Presentación del concepto" className="index__slide__1-img"/>
+                    <figure className="index__slide__1__figure">
+                        <img src={presentacion_1} alt="Presentación del concepto" className="index__slide__1__figure-img"/>
+                    </figure>
                 </div>
             </div>
 
             {/* Slide 2 */}
-            <div className="index__slide" ref={slide2}>
-                <div className="index__slide__2__textleft">
-                    <div className="lexend lexend__bold lexend__bold-48 text__black index__slide__2__textleft-up line-height-48">
-                        <span>Ciencia para </span><span>tus oidos.</span>
+            <div className="index__slide__2" ref={slide2}>
+                <div className="index__slide__2-box">
+                    <div className="index__slide__2__textleft">
+                        <div className="lexend lexend__bold text__black index__slide__2__textleft-up">
+                            <span className="index__slide__2__textleft-up-desktop-item">Ciencia para </span>
+                            <span className="index__slide__2__textleft-up-desktop-item">tus oidos.</span>
+                            <span className="index__slide__2__textleft-up-mobile">Ciencia para tus oidos.</span>
+                        </div>
+                        <div className="index__slide__2__textleft-mid poppins poppins__light text__gray">
+                            <span className="index__slide__2__textleft-mid-desktop-item">Escucha información fresca, útil</span>
+                            <span className="index__slide__2__textleft-mid-desktop-item">y relevante sobre tu salud.</span>
+                            <span className="index__slide__2__textleft-mid-mobile">Escucha información fresca, útil y relevante sobre tu salud.</span>
+                        </div>
+                        <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
+                            <Link to="/" className="index__slide__2__textleft-down-link-1" onClick={()=>goToSlide(2)}><span>Conoce más</span></Link>
+                        </div>
                     </div>
-                    <div className="index__slide__2__textleft-mid poppins poppins__light poppins__light-20 text__gray line-height-24">
-                        <span>Escucha información fresca, útil</span>
-                        <span>y relevante sobre tu salud.</span>
-                    </div>
-                    <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                        <Link to="/" className="index__slide__2__textleft-down-link-1" onClick={()=>goToSlide(2)}><span>Conoce más</span></Link>
-                    </div>
+                    <figure className="index__slide__2__figure">
+                        <img src={podcast} alt="Chica escuchando podcast" className="index__slide__2__figure-img" />
+                    </figure>
                 </div>
-                <figure className="index__slide__2__figure">
-                    <img src={podcast} alt="Chica escuchando podcast" className="index__slide__2__figure-img" />
-                </figure>
             </div>
 
             {/* Slide 3 */}
-            <div className="index__slide" ref={slide3}>
-                <div className="index__slide__2__textleft">
-                    <div className="lexend lexend__bold lexend__bold-48 text__blue index__slide__2__textleft-up line-height-48">
-                        <span>Entrena con</span><span>quien te</span><span>motiva.</span>
+            <div className="index__slide__2" ref={slide3}>
+                <div className="index__slide__2-box">
+                    <div className="index__slide__2__textleft">
+                        <div className="lexend lexend__bold text__blue index__slide__2__textleft-up">
+                            <span className="index__slide__2__textleft-up-desktop-item">Entrena con</span>
+                            <span className="index__slide__2__textleft-up-desktop-item">quien te</span>
+                            <span className="index__slide__2__textleft-up-desktop-item">motiva.</span>
+                            <span className="index__slide__2__textleft-up-mobile">Entrena con quien te motiva.</span>
+                        </div>
+                        <div className="index__slide__2__textleft-mid poppins poppins__light text__gray">
+                            <span className="index__slide__2__textleft-mid-desktop-item">Entrenamientos gratuitos y</span>
+                            <span className="index__slide__2__textleft-mid-desktop-item">guiados para toda la familia.</span>
+                            <span className="index__slide__2__textleft-mid-mobile">Entrenamientos gratuitos y guiados para toda la familia.</span>
+                        </div>
+                        <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
+                            <Link to="/" className="index__slide__2__textleft-down-link-2" onClick={()=>goToSlide(3)}><span>Conoce más</span></Link>
+                        </div>
                     </div>
-                    <div className="index__slide__2__textleft-mid poppins poppins__light poppins__light-20 text__gray line-height-24">
-                        <span>Entrenamientos gratuitos y</span>
-                        <span>guiados para toda la familia.</span>
-                    </div>
-                    <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                        <Link to="/" className="index__slide__2__textleft-down-link-2" onClick={()=>goToSlide(3)}><span>Conoce más</span></Link>
-                    </div>
+                    <figure className="index__slide__2__figure">
+                        <img src={entrenamiento} alt="Chica haciendo yoga" className="index__slide__2__figure-img-2" />
+                    </figure>
                 </div>
-                <figure className="index__slide__2__figure">
-                    <img src={entrenamiento} alt="Chica haciendo yoga" className="index__slide__2__figure-img-2" />
-                </figure>
             </div>
 
             {/* Slide 4 */}
-            <div className="index__slide" ref={slide4}>
-                <div className="index__slide__2__textleft">
-                    <div className="lexend lexend__bold lexend__bold-48 text__green index__slide__2__textleft-up line-height-48">
-                        <span>La mejor</span><span>manera de</span><span>cuidarte.</span>
+            <div className="index__slide__2" ref={slide4}>
+                <div className="index__slide__2-box">
+                    <div className="index__slide__2__textleft">
+                        <div className="lexend lexend__bold text__green index__slide__2__textleft-up">
+                            <span className="index__slide__2__textleft-up-desktop-item">La mejor</span>
+                            <span className="index__slide__2__textleft-up-desktop-item">manera de</span>
+                            <span className="index__slide__2__textleft-up-desktop-item">cuidarte.</span>
+                            <span className="index__slide__2__textleft-up-mobile">La mejor manera de cuidarte.</span>
+                        </div>
+                        <div className="index__slide__2__textleft-mid poppins poppins__light text__gray">
+                            <span className="index__slide__2__textleft-mid-desktop-item">Asesoría Integral en Salud,</span>
+                            <span className="index__slide__2__textleft-mid-desktop-item">un enfoque personalizado</span>
+                            <span className="index__slide__2__textleft-mid-desktop-item">y amigable para ti.</span>
+                            <span className="index__slide__2__textleft-mid-mobile">Asesoria Integral en Salud, un enfoque personalizado y amigable para ti.</span>
+                        </div>
+                        <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
+                            <Link to="/" className="index__slide__2__textleft-down-link-3" onClick={()=>goToSlide(4)}><span>Conoce más</span></Link>
+                        </div>
                     </div>
-                    <div className="index__slide__2__textleft-mid poppins poppins__light poppins__light-20 text__gray line-height-24">
-                        <span>Asesoría Integral en Salud,</span>
-                        <span>un enfoque personalizado</span>
-                        <span>y amigable para ti.</span>
-                    </div>
-                    <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                        <Link to="/" className="index__slide__2__textleft-down-link-3" onClick={()=>goToSlide(4)}><span>Conoce más</span></Link>
-                    </div>
+                    <figure className="index__slide__2__figure">
+                        <img src={familia_salud} alt="Chica haciendo yoga" className="index__slide__2__figure-img" />
+                    </figure>
                 </div>
-                <figure className="index__slide__2__figure">
-                    <img src={familia_salud} alt="Chica haciendo yoga" className="index__slide__2__figure-img" />
-                </figure>
             </div>
 
             {/* Slide 5 */}
-            <div className="index__slide" ref={slide5}>
-                <div className="index__slide__5">
-                    <div className="index__slide__5__top">
-                        <div className="index__slide__5__top-box lexend lexend__light lexend__light-48 line-height-48">
-                            ¿Cómo podemos ayudarte?
-                        </div>
+            <div className="index__slide__5" ref={slide5}>
+                <div className="index__slide__5__top">
+                    <div className="index__slide__5__top-box lexend lexend__light">
+                        ¿Cómo podemos ayudarte?
                     </div>
-                    <div className="index__slide__5__down">
-                        <div className="index__slide__5__card">
-                            <div className="index__slide__5__card-title-1 text__green lexend lexend__regular lexend__regular-39">
-                                <Link to="/" className="index__slide__5__card-title-1-link">
-                                    Ejercicio
-                                </Link>
-                            </div>
-                            <figure className="index__slide__5__card__container">
-                                <Link to="/">
-                                    <img src={ejercicio} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
-                                </Link>
-                                <div className="index__slide__5__card-body-green poppins poppins__medium poppins__medium-14">
-                                    <span>Entrenamientos para gimnasio o la sala de tu casa.</span>
-                                    <span>No hay problema, tenemos una rutina para ti.</span>
-                                </div>
-                            </figure>
-
+                </div>
+                <div className="index__slide__5__down">
+                    <div className="index__slide__5__card">
+                        <div className="index__slide__5__card-title-1 text__green lexend lexend__regular">
+                            <Link to="/" className="index__slide__5__card-title-1-link">
+                                Ejercicio
+                            </Link>
                         </div>
-
-                        <div className="index__slide__5__card">
-                            <div className="index__slide__5__card-title-2 text__blue lexend lexend__regular lexend__regular-39">
-                                <Link to="/" className="index__slide__5__card-title-2-link">
-                                    Hábitos
-                                </Link>
+                        <figure className="index__slide__5__card__container">
+                            <Link to="/">
+                                <img src={ejercicio} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                            </Link>
+                            <div className="index__slide__5__card-body-green poppins poppins__medium">
+                                <span className="index__slide__5__card-body-green-desktop">Entrenamientos para gimnasio o la sala de tu casa.</span>
+                                <span className="index__slide__5__card-body-green-desktop">No hay problema, tenemos una rutina para ti.</span>
+                                <span className="index__slide__5__card-body-green-mobile">Entrenamientos para gimnasio o la sala de tu casa. No hay problema, tenemos una rutina para ti.</span>
                             </div>
-                            <figure className="index__slide__5__card__container">
-                                <Link to="/">
-                                    <img src={habitos} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
-                                </Link>
-                                <div className="index__slide__5__card-body-blue poppins poppins__medium poppins__medium-14">
-                                    <span>¿Crees que la salud solo es dieta y ejercicio?</span>
-                                    <span>Abordamos otros aspectos de tu vida que son clave para una vida saludable.</span>
-                                </div>
-                            </figure>
-                        </div>
+                        </figure>
 
-                        <div className="index__slide__5__card">
-                            <div className="index__slide__5__card-title-3 text__black lexend lexend__regular lexend__regular-39">
-                                <Link to="/" className="index__slide__5__card-title-3-link">
-                                    Alimentación
-                                </Link>
-                            </div>
-                            <figure className="index__slide__5__card__container">
-                                <Link to="/">
-                                    <img src={alimentacion} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
-                                </Link>
-                                <div className="index__slide__5__card-body-black poppins poppins__medium poppins__medium-14">
-                                    <span>Basta de comer chayote hervido.</span>
-                                    <span>Una asesoría nutricional humana, realista y personalizada a tus gustos.</span>
-                                </div>
-                            </figure>
+                    </div>
+
+                    <div className="index__slide__5__card">
+                        <div className="index__slide__5__card-title-2 text__blue lexend lexend__regular">
+                            <Link to="/" className="index__slide__5__card-title-2-link">
+                                Hábitos
+                            </Link>
                         </div>
+                        <figure className="index__slide__5__card__container">
+                            <Link to="/">
+                                <img src={habitos} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                            </Link>
+                            <div className="index__slide__5__card-body-blue poppins poppins__medium">
+                                <span className="index__slide__5__card-body-blue-desktop">¿Crees que la salud solo es dieta y ejercicio?</span>
+                                <span className="index__slide__5__card-body-blue-desktop">Abordamos otros aspectos de tu vida que son clave para una vida saludable.</span>
+                                <span className="index__slide__5__card-body-blue-mobile">¿Crees que la salud solo es dieta y ejercicio? Abordamos otros aspectos de tu vida que son clave para una vida saludable.</span>
+                            </div>
+                        </figure>
+                    </div>
+
+                    <div className="index__slide__5__card">
+                        <div className="index__slide__5__card-title-3 text__black lexend lexend__regular">
+                            <Link to="/" className="index__slide__5__card-title-3-link">
+                                Alimentación
+                            </Link>
+                        </div>
+                        <figure className="index__slide__5__card__container">
+                            <Link to="/">
+                                <img src={alimentacion} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
+                            </Link>
+                            <div className="index__slide__5__card-body-black poppins poppins__medium">
+                                <span className="index__slide__5__card-body-black-desktop">Basta de comer chayote hervido.</span>
+                                <span className="index__slide__5__card-body-black-desktop">Una asesoría nutricional humana, realista y personalizada a tus gustos.</span>
+                                <span className="index__slide__5__card-body-black-mobile">Basta de comer chayote hervido. Una asesoria nutricional humana, realista y personalizada a tus gustos.</span>
+                            </div>
+                        </figure>
                     </div>
                 </div>
             </div>
 
-            {/* Slide 6 */}
-            <div className="index__slide" style={{
+            {/* Slide 5 Mobile 1  */}
+            <div className="index__slide__5-mobile" ref={slide5MobileTitulo}>
+                <div className="index__slide__5-mobile__titulo lexend lexend__light">
+                    ¿Cómo podemos ayudarte?
+                </div>
+                <div className="index__slide__5-mobile__card">
+                    <div className="index__slide__5-mobile__card-title-1 text__green lexend lexend__regular">
+                        <Link to="/" className="index__slide__5-mobile__card-title-1-link">
+                            Ejercicio
+                        </Link>
+                    </div>
+                    <figure className="index__slide__5-mobile__card__container">
+                        <Link to="/">
+                            <img src={ejercicio} alt="Chica preparandose para ejercitarse" className="index__slide__5-mobile__card-img" />
+                        </Link>
+                        <div className="index__slide__5-mobile__card-body-green poppins poppins__medium">
+                            <span>Entrenamientos para gimnasio o la sala de tu casa.</span>
+                            <span>No hay problema, tenemos una rutina para ti.</span>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+
+            <div className="index__slide__5-mobile">
+                <div className="index__slide__5-mobile__titulo lexend lexend__light">
+                    ¿Cómo podemos ayudarte?
+                </div>
+                <div className="index__slide__5-mobile__card">
+                    <div className="index__slide__5-mobile__card-title-1 text__blue lexend lexend__regular">
+                        <Link to="/" className="index__slide__5-mobile__card-title-2-link">
+                            Hábitos
+                        </Link>
+                    </div>
+                    <figure className="index__slide__5-mobile__card__container">
+                        <Link to="/">
+                            <img src={habitos} alt="Chica preparandose para ejercitarse" className="index__slide__5-mobile__card-img" />
+                        </Link>
+                        <div className="index__slide__5-mobile__card-body-blue poppins poppins__medium">
+                            <span>¿Crees que la salud solo es dieta y ejercicio?</span>
+                            <span>Abordamos otros aspectos de tu vida que son clave para una vida saludable.</span>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+
+            <div className="index__slide__5-mobile">
+                <div className="index__slide__5-mobile__titulo lexend lexend__light">
+                    ¿Cómo podemos ayudarte?
+                </div>
+                <div className="index__slide__5-mobile__card">
+                    <div className="index__slide__5-mobile__card-title-3 text__black lexend lexend__regular">
+                        <Link to="/" className="index__slide__5-mobile__card-title-3-link">
+                            Alimentación
+                        </Link>
+                    </div>
+                    <figure className="index__slide__5-mobile__card__container">
+                        <Link to="/">
+                            <img src={alimentacion} alt="Chica preparandose para ejercitarse" className="index__slide__5-mobile__card-img" />
+                        </Link>
+                        <div className="index__slide__5-mobile__card-body-black poppins poppins__medium">
+                            <span>Basta de comer chayote hervido.</span>
+                            <span>Una asesoría nutricional humana, realista y personalizada a tus gustos.</span>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+
+
+            {/* Slide 6 Tal vez eliminada*/}
+            {/* <div className="index__slide" style={{
                 backgroundImage: `url(${asesoria})`,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -234,7 +326,7 @@ const Inicio = (props) => {
                         <Link to="/" className="index__slide__6__textleft-down-link" onClick={()=>goToSlide(6)}><span>Conoce más</span></Link>
                     </div>
                 </div> 
-            </div>
+            </div> */}
 
             {/* Slide 7 Por ahora no*/}
             {/* <div className="index__slide" >
@@ -252,25 +344,27 @@ const Inicio = (props) => {
             </div> */}
 
             {/* Slide 8 */}
-            <div className="index__slide" style={{backgroundColor: 'lightcoral'}} ref={slide8}>
+            <div className="index__slide__8" style={{backgroundColor: 'lightcoral'}} ref={slide8}>
                 <h1>Articulos</h1>
             </div>
 
             {/* Slide 9 */}
-            <div className="index__slide" ref={slide9}>
+            <div className="index__slide__9" ref={slide9}>
                 <div className="index__slide__9">
                     <div className="index__slide__9-img">
                         <img src={contacto} alt="Contacto Salud Conciencia" />
                     </div>
                     <div className="index__slide__9__textright">
-                        <div className="index__slide__9__textright-top lexend lexend__bold lexend__bold-35 line-height-42">
+                        <div className="index__slide__9__textright-top lexend lexend__bold">
                             <span>¿Te gustaría saber más </span>
                             <span>sobre algún tema </span>
                             <span>en particular?</span>
+                            <span className="index__slide__9__textright-top-mobile lexend lexend__bold">¿Te gustaría saber más sobre algún tema en particular?</span>
                         </div>
-                        <div className="index__slide__9__textright-mid poppins poppins__regular poppins__regular-30">
+                        <div className="index__slide__9__textright-mid poppins poppins__regular">
                             <span>¡Contáctanos en nuestras </span>
                             <span>redes sociales!</span>
+                            <span className="index__slide__9__textright-mid-mobile poppins poppins__regular">¿Te gustaría saber más sobre algún tema en particular?</span>
                         </div>
                         <div className="index__slide__9__textright-down">
                             <div className="index__icons"><Link to="/"><FaTwitter className="index__icons-item index__icons-item-twitter"/></Link></div>
