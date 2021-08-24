@@ -1,0 +1,76 @@
+@import './colors';
+
+.index__slide__8{
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+
+    &__titulo{
+        position: relative;
+        height: 100%;
+        flex: 1;
+        &-text{
+            font-size: 7.6rem;
+            position: absolute;
+            transform-origin: top left;
+            top: 50%;
+            left: 0;
+            transform: rotate(270deg) translateX(-50%);
+            white-space: nowrap;
+        }
+    }
+
+    &__cards{
+        flex: 0 0 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        & > div {
+            width: 35rem;
+            min-height: 25rem;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        &-card1{
+            position: absolute;
+            top: 18%;
+            left: 5%;
+            & > div > div > h5 {
+                text-align: center;
+                color: $color_text_green;
+                font-size: 1.8rem;
+            }
+        }
+        &-card2{
+            position: absolute;
+            top: 38%;
+            left: 40%;
+            & > div > div > h5 {
+                text-align: center;
+                color: $color_text_blue;
+                font-size: 1.8rem;
+            }
+        }
+        &-card3{
+            position: absolute;
+            top: 58%;
+            left: 70%;
+            & > div > div > h5 {
+                text-align: center;
+                color: $color_text_dark;
+                font-size: 1.8rem;
+            }
+        }
+    }
+}
+
+.card__image{
+    opacity: .85;
+
+    &:hover{
+        opacity: 1;
+    }
+}

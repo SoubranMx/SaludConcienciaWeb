@@ -14,9 +14,11 @@ import alimentacion from './img/alimentacion.jpg'
 import asesoria from './img/asesoria_integral.jpg'
 import habitos from './img/habitos.jpg'
 
+
 //Iconos
 import {FaWhatsapp, FaInstagram, FaYoutube, FaTwitter} from 'react-icons/fa'
 import {IoLogoTiktok} from 'react-icons/io5'
+import ArticulosRecientes from './ArticulosRecientes'
 
 const Inicio = (props) => {
     useEffect(()=>{
@@ -344,10 +346,7 @@ const Inicio = (props) => {
             </div> */}
 
             {/* Slide 8 */}
-            <div className="index__slide__8" style={{backgroundColor: 'lightcoral'}} ref={slide8}>
-                <h1>Articulos</h1>
-            </div>
-
+            <ArticulosRecientes/>
             {/* Slide 9 */}
             <div className="index__slide__9" ref={slide9}>
                 <div className="index__slide__9">

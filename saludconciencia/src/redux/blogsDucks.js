@@ -60,6 +60,8 @@ const dataInicial = {
     const BLOG_ENCONTRADO_ERROR2 = "BLOG_ENCONTRADO_ERROR2";
     const BLOG_ENCONTRADO_ERROR3 = "BLOG_ENCONTRADO_ERROR3";
     const BLOG_ENCONTRADO_ERROR4 = "BLOG_ENCONTRADO_ERROR4";
+    //Index
+    const BLOGS_OBTENIDOS_RECIENTES_EXITO = "BLOGS_OBTENIDOS_RECIENTES_EXITO";
 //Reducer
 export default function blogsReducer (state = dataInicial, action){
     switch (action.type){
@@ -70,7 +72,8 @@ export default function blogsReducer (state = dataInicial, action){
             return {...state, blogsPublished: action.payload.blogs, lastVisible: action.payload.lastVisible}
         case CARGAR_MAS_BLOGS:
             return {...state, blogsPublished: [...state.blogsPublished, ...action.payload.blogs], lastVisible: action.payload.lastVisible}
-        
+        case BLOGS_OBTENIDOS_RECIENTES_EXITO:
+            return {...state, blogsInicio: [...action.payload]};
         //ADMIN
         case CREAR_REFERENCIA_BLOG_PUBLICADO_ERROR:
             return {...state, blog: {...state.blog}}
@@ -495,6 +498,22 @@ export const obtenerBlogPublicadoShowAccion = (fechaFormateada, tituloParams) =>
         dispatch({
             type: BLOG_ENCONTRADO_ERROR4
         })
+    }
+}
+
+export const leerBlogsParaInicioAccion = () => async (dispatch) => {
+    try {
+        const res = await db.collection('blogs').orderBy('fecha','desc').limit('3').get();
+        let blogs = []
+        res.forEach((doc)=>{
+            blogs.push({docId: doc.id, data: doc.data()})
+        })
+        dispatch({
+            type: BLOGS_OBTENIDOS_RECIENTES_EXITO,
+            payload: blogs
+        })
+    } catch (error) {
+        console.log("Error al traer los blogs recientes para inicio => ", error)
     }
 }
 
