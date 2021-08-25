@@ -11,16 +11,21 @@ import '../../sass/_footer.scss'
 const Footer = () => {
     const param = useLocation();
     const [footerMandatory, setFooterMandatory] = useState(`footer`)
+    const [footerGato, setFooterGato] = useState('gato-logo')
     useEffect(()=>{
-        if(param.pathname === "/")
+        if(param.pathname === "/"){
             setFooterMandatory('footer-index')
-        else
+            setFooterGato('gato-logo-index')
+        }
+        else{
             setFooterMandatory('footer')
+            setFooterGato('gato-logo')
+        }
     },[param])
 
     return (
         <div className={`${footerMandatory}`}>
-            <div className="footer-up">
+            <div className={`${footerMandatory}-up`}>
                 <div className="lexend lexend__bold lexend__bold-30">
                     Tu curiosidad te trajo hasta aquí.
                 </div>
@@ -28,11 +33,11 @@ const Footer = () => {
                     Gato aprueba
                 </div>
             </div>
-            <div className="footer-down text-green">
-                <div className="footer__menu__left">
-                    <div className="footer__menu__left-1">
-                        <div className="footer__menu__left-1-title lexend lexend__semibold lexend__semibold-15">Descubre</div>
-                        <div className="footer__menu__left-1-list poppins poppins__regular poppins__regular-12">
+            <div className={`${footerMandatory}-down text-green`}>
+                <div className={`${footerMandatory}__menu__left`}>
+                    <div className={`${footerMandatory}__menu__left-1`}>
+                        <div className={`${footerMandatory}__menu__left-1-title lexend lexend__semibold lexend__semibold-15`}>Descubre</div>
+                        <div className={`${footerMandatory}__menu__left-1-list poppins poppins__regular poppins__regular-12`}>
                             <span>Podcast</span>
                             <span>Artículos</span>
                             <span>Entrenamientos</span>
@@ -40,25 +45,26 @@ const Footer = () => {
                             <span>Nuestra Historia</span>
                         </div>
                     </div>
-                    <div className="footer__menu__left-2">
-                        <div className="footer__menu__left-2-title lexend lexend__semibold lexend__semibold-15">Servicios</div>
-                        <div className="footer__menu__left-2-list poppins poppins__regular poppins__regular-12">
+                    <div className={`${footerMandatory}__menu__left-2`}>
+                        <div className={`${footerMandatory}__menu__left-2-title lexend lexend__semibold lexend__semibold-15`}>Servicios</div>
+                        <div className={`${footerMandatory}__menu__left-2-list poppins poppins__regular poppins__regular-12`}>
                             <span>Asesorías de salud</span>
                             <span>Conferencias</span>
                             <span>Para Escuelas</span>
                             <span>Para Empresas</span>
                             <span>Colaboraciones</span>
+
                         </div>
                     </div>
                 </div>
-                <div className="footer__menu__right">
-                    <div className="footer__menu__right-1 lexend lexend__semibold lexend__semibold-20">
-                        <span>Síguenos en</span><span>redes sociales</span>
+                <div className={`${footerMandatory}__menu__right`}>
+                    <div className={`${footerMandatory}__menu__right-1 lexend lexend__semibold lexend__semibold-20`}>
+                        <span>Síguenos en&nbsp;</span><span>redes sociales</span>
                     </div>
-                    <div className="footer__menu__icons">
-                        <div className="footer__menu__icons-item"><Link to="/"><FaTwitter className="footer__menu__icons-item-icon footer__menu__icons-item-icon-twitter"/></Link></div>
-                        <div className="footer__menu__icons-item"><Link to="/"><IoLogoTiktok className="footer__menu__icons-item-icon footer__menu__icons-item-icon-tiktok"/></Link></div>
-                        <div className="footer__menu__icons-item">
+                    <div className={`${footerMandatory}__menu__icons`}>
+                        <div className={`${footerMandatory}__menu__icons-item`}><Link to="/"><FaTwitter className={`${footerMandatory}__menu__icons-item-icon ${footerMandatory}__menu__icons-item-icon-twitter`}/></Link></div>
+                        <div className={`${footerMandatory}__menu__icons-item`}><Link to="/"><IoLogoTiktok className={`${footerMandatory}__menu__icons-item-icon ${footerMandatory}__menu__icons-item-icon-tiktok`}/></Link></div>
+                        <div className={`${footerMandatory}__menu__icons-item`}>
                             <Link to="/">
                                 <svg width="0" height="0">
                                     <radialGradient id="rg-footer" r="150%" cx="30%" cy="107%">
@@ -69,21 +75,21 @@ const Footer = () => {
                                         <stop stopColor="#285AEB" offset="0.9" />
                                     </radialGradient>
                                 </svg>
-                                <FaInstagram className="footer__menu__icons-item-icon footer__menu__icons-item-icon-instagram" />
+                                <FaInstagram className={`${footerMandatory}__menu__icons-item-icon ${footerMandatory}__menu__icons-item-icon-instagram`} />
                             </Link>
                         </div>
-                        <div className="footer__menu__icons-item"><Link to="/"><FaYoutube className="footer__menu__icons-item-icon footer__menu__icons-item-icon-youtube"/></Link></div>
+                        <div className={`${footerMandatory}__menu__icons-item`}><Link to="/"><FaYoutube className={`${footerMandatory}__menu__icons-item-icon ${footerMandatory}__menu__icons-item-icon-youtube`}/></Link></div>
                     </div>
-                    <div className="footer__menu__right-3 lexend lexend__semibold lexend__semibold-20">
-                        <span>¿Quieres decirnos</span><span>algo?</span>
+                    <div className={`${footerMandatory}__menu__right-3 lexend lexend__semibold lexend__semibold-20`}>
+                        <span>¿Quieres decirnos&nbsp;</span><span>algo?</span>
                     </div>
-                    <div className="footer__menu__right-4 poppins poppins__regular poppins__regular-20">
+                    <div className={`${footerMandatory}__menu__right-4 poppins poppins__regular poppins__regular-20`}>
                         saludconciencia@outlook.es
                     </div>
                 </div>
             </div>
             {/* Gato png */}
-            <Gato className="gato-logo"/>
+            <Gato className={`${footerGato}`}/>
         </div>
     )
 }
