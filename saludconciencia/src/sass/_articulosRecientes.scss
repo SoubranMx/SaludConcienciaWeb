@@ -72,6 +72,31 @@
             @media screen and (max-width: 480px){
                 position: inherit;
             }
+            /* Portrait iPad Pro 12.9"*/
+            @media only screen 
+            and (min-device-width: 1024px) 
+            and (max-device-width: 1024px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                width: 42rem;
+            }
+            /* Portrait iPad Pro 10.5"*/
+            @media only screen 
+            and (min-device-width: 834px) 
+            and (max-device-width: 834px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                
+            }
+            /* Portrait iPad*/
+            @media only screen 
+            and (min-device-width: 768px) 
+            and (max-device-width: 768px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 1) {
+                width: 25rem;
+                min-height: 10rem;
+            }
             //iPhone 6/7/8 plus
             @media screen 
             and (max-width: 414px)
@@ -104,33 +129,60 @@
             position: absolute;
             top: 18%;
             left: 5%;
-                //iPhone 6/7/8 plus
-                @media screen 
-                and (max-width: 414px)
-                and (device-height: 736px){
-                    margin-top: 18%;
-                }
-                //Pixel 2
-                @media screen and (max-width: 411px) {
-                    margin-top: 25%;
-                }
-                //iPhone 6/7/8
-                @media screen 
-                and (max-width: 375px)
-                and (height: 667px){
-                    margin-top: 20%;
-                }
-                //iPhone X
-                @media screen and (max-width: 375px){
-                    
-                }
-                //Moto G4/Galaxy S5
-                @media screen and (max-width: 360px) {
-                    margin-top: 25%;
-                }
-                //iPhone 5
-                @media screen and (max-width: 320px){
-                }
+            /* Portrait iPad Pro 12.9"*/
+            @media only screen 
+            and (min-device-width: 1024px) 
+            and (max-device-width: 1024px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                top: 10%;
+                left: 2%;
+            }
+            /* Portrait iPad Pro 10.5"*/
+            @media only screen 
+            and (min-device-width: 834px) 
+            and (max-device-width: 834px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                top: 10%;
+                left: 5%;
+            }
+            /* Portrait iPad*/
+            @media only screen 
+            and (min-device-width: 768px) 
+            and (max-device-width: 768px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 1) {
+                top: 13%;
+                left: 5%;
+            }
+            //iPhone 6/7/8 plus
+            @media screen 
+            and (max-width: 414px)
+            and (device-height: 736px){
+                margin-top: 18%;
+            }
+            //Pixel 2
+            @media screen and (max-width: 411px) {
+                margin-top: 25%;
+            }
+            //iPhone 6/7/8
+            @media screen 
+            and (max-width: 375px)
+            and (height: 667px){
+                margin-top: 20%;
+            }
+            //iPhone X
+            @media screen and (max-width: 375px){
+                
+            }
+            //Moto G4/Galaxy S5
+            @media screen and (max-width: 360px) {
+                margin-top: 25%;
+            }
+            //iPhone 5
+            @media screen and (max-width: 320px){
+            }
             & > div > div > h5 {
                 text-align: center;
                 color: $color_text_green;
@@ -163,6 +215,33 @@
             position: absolute;
             top: 38%;
             left: 40%;
+            /* Portrait iPad Pro 12.9"*/
+            @media only screen 
+            and (min-device-width: 1024px) 
+            and (max-device-width: 1024px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                top: 40%;
+                left: 30%;
+            }
+            /* Portrait iPad Pro 10.5"*/
+            @media only screen 
+            and (min-device-width: 834px) 
+            and (max-device-width: 834px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                top: 40%;
+                left: 30%;
+            }
+            /* Portrait iPad*/
+            @media only screen 
+            and (min-device-width: 768px) 
+            and (max-device-width: 768px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 1) {
+                top: 43%;
+                left: 32%;
+            }
             //iPhone 6/7/8 plus
             @media screen 
             and (max-width: 414px)
@@ -222,6 +301,33 @@
             position: absolute;
             top: 58%;
             left: 70%;
+            /* Portrait iPad Pro 12.9"*/
+            @media only screen 
+            and (min-device-width: 1024px) 
+            and (max-device-width: 1024px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                top: 70%;
+                left: 50%;
+            }
+            /* Portrait iPad Pro 10.5"*/
+            @media only screen 
+            and (min-device-width: 834px) 
+            and (max-device-width: 834px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 2) {
+                top: 70%;
+                left: 52%;
+            }
+            /* Portrait iPad*/
+            @media only screen 
+            and (min-device-width: 768px) 
+            and (max-device-width: 768px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 1) {
+                top: 73%;
+                left: 60%;
+            }
             & > div > div > h5 {
                 text-align: center;
                 color: $color_text_dark;

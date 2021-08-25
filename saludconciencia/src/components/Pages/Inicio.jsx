@@ -170,7 +170,7 @@ const Inicio = (props) => {
                         </div>
                     </div>
                     <figure className="index__slide__2__figure">
-                        <img src={familia_salud} alt="Chica haciendo yoga" className="index__slide__2__figure-img" />
+                        <img src={familia_salud} alt="Familia saludable" className="index__slide__2__figure-img-3" />
                     </figure>
                 </div>
             </div>
