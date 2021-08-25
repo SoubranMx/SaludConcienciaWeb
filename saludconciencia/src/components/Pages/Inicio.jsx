@@ -349,41 +349,39 @@ const Inicio = (props) => {
             <ArticulosRecientes/>
             {/* Slide 9 */}
             <div className="index__slide__9" ref={slide9}>
-                <div className="index__slide__9">
-                    <div className="index__slide__9-img">
-                        <img src={contacto} alt="Contacto Salud Conciencia" />
+                <div className="index__slide__9-img">
+                    <img src={contacto} alt="Contacto Salud Conciencia" />
+                </div>
+                <div className="index__slide__9__textright">
+                    <div className="index__slide__9__textright-top lexend lexend__bold">
+                        <span className="index__slide__9__textright-top-desktop">¿Te gustaría saber más </span>
+                        <span className="index__slide__9__textright-top-desktop">sobre algún tema </span>
+                        <span className="index__slide__9__textright-top-desktop">en particular?</span>
+                        <span className="index__slide__9__textright-top-mobile">¿Te gustaría saber más sobre algún tema en particular?</span>
                     </div>
-                    <div className="index__slide__9__textright">
-                        <div className="index__slide__9__textright-top lexend lexend__bold">
-                            <span>¿Te gustaría saber más </span>
-                            <span>sobre algún tema </span>
-                            <span>en particular?</span>
-                            <span className="index__slide__9__textright-top-mobile lexend lexend__bold">¿Te gustaría saber más sobre algún tema en particular?</span>
+                    <div className="index__slide__9__textright-mid poppins poppins__regular">
+                        <span className="index__slide__9__textright-mid-desktop">¡Contáctanos en nuestras </span>
+                        <span className="index__slide__9__textright-mid-desktop">redes sociales!</span>
+                        <span className="index__slide__9__textright-mid-mobile poppins poppins__regular">¡Contáctanos en nuestras redes sociales!</span>
+                    </div>
+                    <div className="index__slide__9__textright-down">
+                        <div className="index__icons"><Link to="/"><FaTwitter className="index__icons-item index__icons-item-twitter"/></Link></div>
+                        <div className="index__icons"><Link to="/"><IoLogoTiktok className="index__icons-item index__icons-item-tiktok"/></Link></div>
+                        <div className="index__icons">
+                            <Link to="/">
+                                <svg width="0" height="0" style={{display: 'none'}}>
+                                    <radialGradient id="rg" r="150%" cx="30%" cy="107%">
+                                        <stop stopColor="#fdf497" offset="0" />
+                                        <stop stopColor="#fdf497" offset="0.05" />
+                                        <stop stopColor="#fd5949" offset="0.45" />
+                                        <stop stopColor="#d6249f" offset="0.6" />
+                                        <stop stopColor="#285AEB" offset="0.9" />
+                                    </radialGradient>
+                                </svg>
+                                <FaInstagram className="index__icons-item index__icons-item-instagram" />
+                            </Link>
                         </div>
-                        <div className="index__slide__9__textright-mid poppins poppins__regular">
-                            <span>¡Contáctanos en nuestras </span>
-                            <span>redes sociales!</span>
-                            <span className="index__slide__9__textright-mid-mobile poppins poppins__regular">¿Te gustaría saber más sobre algún tema en particular?</span>
-                        </div>
-                        <div className="index__slide__9__textright-down">
-                            <div className="index__icons"><Link to="/"><FaTwitter className="index__icons-item index__icons-item-twitter"/></Link></div>
-                            <div className="index__icons"><Link to="/"><IoLogoTiktok className="index__icons-item index__icons-item-tiktok"/></Link></div>
-                            <div className="index__icons">
-                                <Link to="/">
-                                    <svg width="0" height="0">
-                                        <radialGradient id="rg" r="150%" cx="30%" cy="107%">
-                                            <stop stopColor="#fdf497" offset="0" />
-                                            <stop stopColor="#fdf497" offset="0.05" />
-                                            <stop stopColor="#fd5949" offset="0.45" />
-                                            <stop stopColor="#d6249f" offset="0.6" />
-                                            <stop stopColor="#285AEB" offset="0.9" />
-                                        </radialGradient>
-                                    </svg>
-                                    <FaInstagram className="index__icons-item index__icons-item-instagram" />
-                                </Link>
-                            </div>
-                            <div className="index__icons"><Link to="/"><FaYoutube className="index__icons-item index__icons-item-youtube"/></Link></div>
-                        </div>
+                        <div className="index__icons"><Link to="/"><FaYoutube className="index__icons-item index__icons-item-youtube"/></Link></div>
                     </div>
                 </div>
             </div>

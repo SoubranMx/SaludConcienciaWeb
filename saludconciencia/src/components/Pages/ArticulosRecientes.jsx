@@ -16,10 +16,10 @@ const ArticulosRecientes = () => {
     useEffect(()=>{
         const cargarBlogs = () => {
             dispatch(leerBlogsParaInicioAccion())
-            setShowBlogs(true);
         }
-        slide8 !== null && cargarBlogs()
-    },[slide8])
+        slide8 !== null && cargarBlogs();
+        blogsInicio !== undefined && setShowBlogs(true);
+    },[slide8, blogsInicio])
 
     return (
         <div 

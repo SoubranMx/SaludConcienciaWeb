@@ -19,6 +19,37 @@
             left: 0;
             transform: rotate(270deg) translateX(-50%);
             white-space: nowrap;
+            //iPhone 6/7/8 plus
+            @media screen 
+            and (max-width: 414px)
+            and (device-height: 736px){
+                font-size: 6rem;
+            }
+            //Pixel 2
+            @media screen and (max-width: 411px) {
+                font-size: 6rem;
+            }
+            //iPhone 6/7/8
+            @media screen 
+            and (max-width: 375px)
+            and (height: 667px){
+                font-size: 5rem !important;
+            }
+            //iPhone X
+            @media screen and (max-width: 375px){
+                font-size: 6rem;
+            }
+            //Moto G4/Galaxy S5
+            @media screen and (max-width: 360px) {
+                font-size: 5rem;
+            }
+            //iPhone 5
+            @media screen and (max-width: 320px){
+                font-size: 5rem;
+            }
+            @media screen and (max-width: 480px){
+                display: flex;
+            }
         }
     }
 
@@ -28,30 +59,163 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        
+        @media screen and (max-width: 480px){
+            display: flex;
+            flex-direction: column;
+            position: unset;
+        }
         & > div {
             width: 35rem;
             min-height: 25rem;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            @media screen and (max-width: 480px){
+                position: inherit;
+            }
+            //iPhone 6/7/8 plus
+            @media screen 
+            and (max-width: 414px)
+            and (device-height: 736px){
+                width: 20rem;
+                min-height: 10rem;
+            }
+            //Pixel 2
+            @media screen and (max-width: 411px) {
+                width: 20rem;
+                min-height: 10rem;
+            }
+            //iPhone X
+            @media screen and (max-width: 375px){
+                
+            }
+            //Moto G4/Galaxy S5
+            @media screen and (max-width: 360px) {
+                width: 18rem;
+                min-height: 10rem;
+            }
+            //iPhone 5
+            @media screen and (max-width: 320px){
+                width: 15rem;
+                min-height: 10rem;
+            }
         }
 
         &-card1{
             position: absolute;
             top: 18%;
             left: 5%;
+                //iPhone 6/7/8 plus
+                @media screen 
+                and (max-width: 414px)
+                and (device-height: 736px){
+                    margin-top: 18%;
+                }
+                //Pixel 2
+                @media screen and (max-width: 411px) {
+                    margin-top: 25%;
+                }
+                //iPhone 6/7/8
+                @media screen 
+                and (max-width: 375px)
+                and (height: 667px){
+                    margin-top: 20%;
+                }
+                //iPhone X
+                @media screen and (max-width: 375px){
+                    
+                }
+                //Moto G4/Galaxy S5
+                @media screen and (max-width: 360px) {
+                    margin-top: 25%;
+                }
+                //iPhone 5
+                @media screen and (max-width: 320px){
+                }
             & > div > div > h5 {
                 text-align: center;
                 color: $color_text_green;
                 font-size: 1.8rem;
+                //iPhone 6/7/8 plus
+                @media screen 
+                and (max-width: 414px)
+                and (device-height: 736px){
+                    font-size: 1.4rem;
+                }
+                //Pixel 2
+                @media screen and (max-width: 411px) {
+                    font-size: 1.2rem;
+                }
+                //iPhone X
+                @media screen and (max-width: 375px){
+                    font-size: 1.2rem;
+                }
+                //Moto G4/Galaxy S5
+                @media screen and (max-width: 360px) {
+                    font-size: 1.2rem;
+                }
+                //iPhone 5
+                @media screen and (max-width: 320px){
+                    font-size: 1.2rem;
+                }
             }
         }
         &-card2{
             position: absolute;
             top: 38%;
             left: 40%;
+            //iPhone 6/7/8 plus
+            @media screen 
+            and (max-width: 414px)
+            and (device-height: 736px){
+                margin: 2rem 0;
+            }
+            //Pixel 2
+            @media screen and (max-width: 411px) {
+                margin: 2rem 0;
+            }
+            //iPhone 6/7/8
+            @media screen 
+            and (max-width: 375px)
+            and (height: 667px){
+                margin: 1rem 0 !important;
+            }
+            //iPhone X
+            @media screen and (max-width: 375px){
+                margin: 2rem 0;
+            }
+            //Moto G4/Galaxy S5
+            @media screen and (max-width: 360px) {
+                margin: 2rem 0;
+            }
+            //iPhone 5
+            @media screen and (max-width: 320px){
+                margin: 0.5rem 0;
+            }
             & > div > div > h5 {
                 text-align: center;
                 color: $color_text_blue;
                 font-size: 1.8rem;
+                //iPhone 6/7/8 plus
+                @media screen 
+                and (max-width: 414px)
+                and (device-height: 736px){
+                    font-size: 1.4rem;
+                }
+                //Pixel 2
+                @media screen and (max-width: 411px) {
+                    font-size: 1.2rem;
+                }
+                //iPhone X
+                @media screen and (max-width: 375px){
+                    
+                }
+                //Moto G4/Galaxy S5
+                @media screen and (max-width: 360px) {
+                    font-size: 1.2rem;
+                }
+                //iPhone 5
+                @media screen and (max-width: 320px){
+                }
             }
         }
         &-card3{
@@ -62,6 +226,28 @@
                 text-align: center;
                 color: $color_text_dark;
                 font-size: 1.8rem;
+                //iPhone 6/7/8 plus
+                @media screen 
+                and (max-width: 414px)
+                and (device-height: 736px){
+                    font-size: 1.4rem;
+                }
+                //Pixel 2
+                @media screen and (max-width: 411px) {
+                    font-size: 1.2rem;
+                }
+                //iPhone X
+                @media screen and (max-width: 375px){
+                    font-size: 1.2rem;
+                }
+                //Moto G4/Galaxy S5
+                @media screen and (max-width: 360px) {
+                    font-size: 1.2rem;
+                }
+                //iPhone 5
+                @media screen and (max-width: 320px){
+                    font-size: 1.2rem;
+                }
             }
         }
     }

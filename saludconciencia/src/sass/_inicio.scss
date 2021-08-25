@@ -554,6 +554,7 @@
         //iPhone 6/7/8 plus
         @media screen and (max-width: 414px){
             align-items: center;
+            justify-content: space-evenly;
         }
 
         &-top{
@@ -561,7 +562,7 @@
             flex-direction: column;
             font-size: 4.66rem;
             line-height: 5.6rem;
-            & > span {
+            &-desktop {
                 @media screen and (max-width: 480px){
                     display: none;
                 }
@@ -574,6 +575,39 @@
                 display: none;
                 font-size: 4.66rem;
                 line-height: 5.6rem;
+                text-align: center;
+                //iPhone 6/7/8 plus
+                @media screen 
+                and (max-width: 414px)
+                and (device-height: 736px){
+                    font-size: 4rem;
+                    line-height: 4rem;
+                }
+                //Pixel 2
+                @media screen and (max-width: 411px) {
+                    font-size: 4rem;
+                    line-height: 4rem;
+                }
+                //iPhone 6/7/8
+                @media screen 
+                and (max-width: 375px)
+                and (height: 667px){
+                    
+                }
+                //iPhone X
+                @media screen and (max-width: 375px){
+                    
+                }
+                //Moto G4/Galaxy S5
+                @media screen and (max-width: 360px) {
+                    font-size: 4rem;
+                    line-height: 4rem;
+                }
+                //iPhone 5
+                @media screen and (max-width: 320px){
+                    font-size: 3.5rem;
+                    line-height: 3.5rem;
+                }
                 @media screen and (max-width: 480px){
                     display: flex;
                 }
@@ -585,8 +619,51 @@
             flex-direction: column;
             margin-top: 2rem;
             font-size: 4rem;
+            @media screen and (max-width: 480px){
+                display: flex;
+                margin: 0;
+            }
+            &-desktop{
+                @media screen and (max-width: 480px){
+                    display: none;
+                }
+            }
             &-mobile{
                 display: none;
+                text-align: center;
+                @media screen and (max-width: 480px){
+                    display: flex;
+                }
+                //iPhone 6/7/8 plus
+                @media screen 
+                and (max-width: 414px)
+                and (device-height: 736px){
+                    font-size: 2.5rem;
+                }
+                //Pixel 2
+                @media screen and (max-width: 411px) {
+                    font-size: 2.5rem;
+                }
+                //iPhone 6/7/8
+                @media screen 
+                and (max-width: 375px)
+                and (height: 667px){
+                    
+                }
+                //iPhone X
+                @media screen and (max-width: 375px){
+                    
+                }
+                //Moto G4/Galaxy S5
+                @media screen and (max-width: 360px) {
+                    font-size: 2.5rem;
+                }
+                //iPhone 5
+                @media screen and (max-width: 320px){
+                    font-size: 2.5rem;
+                }
+                
+                
             }
         }
 
@@ -594,6 +671,31 @@
             display: flex;
             justify-content: space-between;
             margin-top: 10rem;
+            //iPhone 6/7/8 plus
+            @media screen 
+            and (max-width: 414px)
+            and (device-height: 736px){
+                margin: 0;
+            }
+            //Pixel 2
+            @media screen and (max-width: 411px) {
+                margin: 0;
+            }
+            //iPhone X
+            @media screen and (max-width: 375px){
+                margin: 0;
+            }
+            //Moto G4/Galaxy S5
+            @media screen and (max-width: 360px) {
+                margin: 0;
+            }
+            //iPhone 5
+            @media screen and (max-width: 320px){
+                margin: 0;
+            }
+            @media screen and (max-width: 480px){
+                display: flex;
+            }
         }
     }
 }
@@ -888,6 +990,45 @@
         height: $size;
         width: $size;
         fill: $color_text_green;
+        //iPhone 6/7/8 plus
+        @media screen 
+        and (max-width: 414px)
+        and (device-height: 736px){
+            height: 5rem;
+            width: 5rem;
+            margin: 0 2rem;
+        }
+        //Pixel 2
+        @media screen and (max-width: 411px) {
+            height: 4rem;
+            width: 4rem;
+            margin: 0 2rem;
+        }
+        //iPhone 6/7/8
+        @media screen 
+        and (max-width: 375px)
+        and (height: 667px){
+            height: 4rem;
+            width: 4rem;
+            margin: 0 2rem;
+        }
+        //iPhone X
+        @media screen and (max-width: 375px){
+            
+        }
+        //Moto G4/Galaxy S5
+        @media screen and (max-width: 360px) {
+            height: 4rem;
+            width: 4rem;
+            margin: 0 2rem;
+        }
+        //iPhone 5
+        @media screen and (max-width: 320px){
+            
+        }
+        @media screen and (max-width: 480px){
+            display: flex;
+        }
         & > path {
             //transition: fill .4s ease;
         }
@@ -921,3 +1062,4 @@
 path {
     transition: fill .4s ease;
 }
+
