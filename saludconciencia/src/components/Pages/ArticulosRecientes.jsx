@@ -17,9 +17,17 @@ const ArticulosRecientes = () => {
         const cargarBlogs = () => {
             dispatch(leerBlogsParaInicioAccion())
         }
-        slide8 !== null && cargarBlogs();
-        blogsInicio !== undefined && setShowBlogs(true);
-    },[slide8, blogsInicio])
+        if(blogsInicio === undefined){
+            console.log("1a y unica")
+            setShowBlogs(false);
+            cargarBlogs();
+        }else {
+            console.log("Aca no debe cargar mas db")
+            setShowBlogs(true);
+        }
+        //slide8 !== null && cargarBlogs();
+        //blogsInicio !== undefined && setShowBlogs(true);
+    },[blogsInicio])
 
     return (
         <div 

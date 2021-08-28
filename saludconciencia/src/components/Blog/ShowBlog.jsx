@@ -133,8 +133,8 @@ const ShowBlog = (props) => {
                             <TwitterShareButton
                                 url={url}
                                 title={props.blog.titulo}
-                                via={`SaludConciencia`}
-                                hashtags={props.blog.tags}
+                                via={`EjercicioCien`}
+                                // hashtags={props.blog.tags}
                                 //related={array de cuentas?}
                                 
                             >

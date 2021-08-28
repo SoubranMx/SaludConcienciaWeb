@@ -503,7 +503,7 @@ export const obtenerBlogPublicadoShowAccion = (fechaFormateada, tituloParams) =>
 
 export const leerBlogsParaInicioAccion = () => async (dispatch) => {
     try {
-        const res = await db.collection('blogs').orderBy('fecha','desc').limit('3').get();
+        const res = await db.collection('blogs').orderBy('fecha','desc').limit(3).get();
         let blogs = []
         res.forEach((doc)=>{
             blogs.push({docId: doc.id, data: doc.data()})
