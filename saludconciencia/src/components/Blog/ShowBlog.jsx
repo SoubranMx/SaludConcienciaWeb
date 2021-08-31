@@ -179,8 +179,8 @@ const ShowBlog = (props) => {
                 <meta property="og:description" content={`${props.blog.descripcion} | Salud Conciencia`} />
                 <meta property="og:image" content={props.blog.imgPortada} />
                 <meta property="og:site_name" content="Salud Conciencia" />
-                <meta property="og:image:width" content="200" />
-                <meta property="og:image:height" content="200" />
+                <meta property="og:image:width" content="640" />
+                <meta property="og:image:height" content="480" />
                 <meta property="og:article:published_time" content={moment(props.blog.fecha).format()} />
             </Helmet>
         </div>
