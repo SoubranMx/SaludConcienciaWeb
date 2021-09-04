@@ -115,7 +115,7 @@ const Inicio = (props) => {
                             <span className="index__slide__2__textleft-mid-mobile">Escucha información fresca, útil y relevante sobre tu salud.</span>
                         </div>
                         <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                            <Link to="/" className="index__slide__2__textleft-down-link-1" onClick={()=>goToSlide(2)}><span>Conoce más</span></Link>
+                            <Link to="/" className="index__slide__2__textleft-down-link-1" onClick={()=>goToSlide(2)}><span>Escúchanos Aquí.</span></Link>
                         </div>
                     </div>
                     <figure className="index__slide__2__figure">
@@ -140,7 +140,7 @@ const Inicio = (props) => {
                             <span className="index__slide__2__textleft-mid-mobile">Entrenamientos gratuitos y guiados para toda la familia.</span>
                         </div>
                         <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                            <Link to="/" className="index__slide__2__textleft-down-link-2" onClick={()=>goToSlide(3)}><span>Conoce más</span></Link>
+                            <Link to="/" className="index__slide__2__textleft-down-link-2" onClick={()=>goToSlide(3)}><span>Comienza Aquí.</span></Link>
                         </div>
                     </div>
                     <figure className="index__slide__2__figure">
@@ -365,7 +365,7 @@ const Inicio = (props) => {
                         <span className="index__slide__9__textright-mid-mobile poppins poppins__regular">¡Contáctanos en nuestras redes sociales!</span>
                     </div>
                     <div className="index__slide__9__textright-down">
-                        <div className="index__icons"><Link to="/"><FaTwitter className="index__icons-item index__icons-item-twitter"/></Link></div>
+                        <div className="index__icons"><a href="https://twitter.com/EjercicioCien" target="_blank" rel="noreferrer noopener"><FaTwitter className="index__icons-item index__icons-item-twitter"/></a></div>
                         <div className="index__icons"><Link to="/"><IoLogoTiktok className="index__icons-item index__icons-item-tiktok"/></Link></div>
                         <div className="index__icons">
                             <Link to="/">

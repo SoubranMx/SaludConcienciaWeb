@@ -58,6 +58,7 @@
         }
         @media screen and (max-width: 576px) {
             flex: 1;
+            padding: 1rem 3rem;
         }
         &-img{
             object-fit: cover;
@@ -244,13 +245,13 @@
             }
             @media screen and (max-width: 576px) {
                 padding: 5% 0;
-                font-size: 2rem;
+                font-size: 1.8rem;
                 line-height: 2rem;
             }
             //iPhone 5
             @media screen and (max-width: 320px){
                 padding: 4% 0;
-                font-size: 2rem;
+                font-size: 1.7rem;
                 line-height: 2rem;
             }
         }
@@ -928,7 +929,7 @@
         and (max-device-width: 1024px) 
         and (orientation: portrait) 
         and (-webkit-min-device-pixel-ratio: 2) {
-            padding: 25rem 0;
+            padding: 35rem 0;
         }
         /* Portrait iPad Pro 10.5"*/
         @media only screen 
@@ -944,6 +945,7 @@
         and (max-device-width: 768px) 
         and (orientation: portrait) 
         and (-webkit-min-device-pixel-ratio: 1) {
+            display: none;
             padding: 25rem 0;
         }
         //Pixel 2
@@ -964,6 +966,7 @@
         and (orientation: portrait) 
         and (-webkit-min-device-pixel-ratio: 2) {
             text-align: center;
+            padding-left: 2rem;
         }
         /* Portrait iPad Pro 10.5"*/
         @media only screen 
@@ -1046,6 +1049,14 @@
             flex-direction: column;
             margin-top: 2rem;
             font-size: 4rem;
+            /* Portrait iPad*/
+            @media only screen 
+            and (min-device-width: 768px) 
+            and (max-device-width: 768px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 1) {
+                margin: 25% 0;
+            }
             @media screen and (max-width: 480px){
                 display: flex;
                 margin: 0;
@@ -1098,6 +1109,14 @@
             display: flex;
             justify-content: space-between;
             margin-top: 10rem;
+            /* Portrait iPad*/
+            @media only screen 
+            and (min-device-width: 768px) 
+            and (max-device-width: 768px) 
+            and (orientation: portrait) 
+            and (-webkit-min-device-pixel-ratio: 1) {
+                margin: 0;
+            }
             //iPhone 6/7/8 plus
             @media screen 
             and (max-width: 414px)

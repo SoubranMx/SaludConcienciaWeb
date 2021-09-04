@@ -42,7 +42,7 @@ const ArticulosRecientes = () => {
         >
             <div className="index__slide__8__titulo lexend lexend__light">
                 <div className="index__slide__8__titulo-text">
-                    Artículos para ti.
+                    Artículos para ti
                 </div>
             </div>
             <div className="index__slide__8__cards">
