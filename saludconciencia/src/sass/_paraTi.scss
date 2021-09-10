@@ -1,0 +1,256 @@
+@import './_colors.scss';
+$color-gray-dark-3: #999;
+.paraTi__wrapper > div{
+    margin-bottom: 5rem;
+}
+
+.paraTi__slide1{
+    display: flex;
+    &__textleft{
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        padding-left: 3%;
+        &-up{
+            color: $color_text_green;
+            font-size: 4vw;
+            line-height: 5vw;
+        }
+        &-mid{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            color: $color_text_gray;
+            font-size: 2vw;
+            line-height: 2vw;
+            margin: 10% 0;
+        }
+        &-bot{
+            background-color: $color_text_green;
+            color: white;
+            //font-size: 3rem;
+            font-size: 2vw;
+            //padding: 2.5rem 2.5rem;
+            padding: 2vw 2vw;
+        }
+    }
+
+    &__img{
+        align-self: center;
+        height: 80%;
+        padding: 3% 3%;
+        & > img {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+.paraTi__slide2{
+    display: flex;
+
+    &__textleft{
+        flex: 0 0 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding-left: 3%;
+        padding-right: 10%;
+
+        &-up{
+            color: $color_text_green;
+            // font-size: 8rem;
+            // line-height: 9rem;
+            font-size: 5vw;
+            line-height: 6vw;
+            display: flex;
+            flex-direction: column;
+
+            margin-bottom: 5rem;
+        }
+
+        &-bot{
+            color: $color_text_gray;
+            // font-size: 4rem;
+            // line-height: 5rem;
+            font-size: 2vw;
+            line-height: 2.5vw;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    &__rightCard{
+        position: relative;
+        &-img{
+            & > img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        &-cardBody{
+            background-color: $color_text_green;
+            color: white;
+            width: 100%;
+
+            position: absolute;
+            bottom: 0;
+            left: -8%;
+
+            //box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+            //box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+            //box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            //box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            //box-shadow: 8px -9px 13px -6px #000000;
+            //box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+            //box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+            &-text{
+                display: flex;
+                flex-direction: column;
+                padding: 3% 5%;
+
+                &-main{
+                    font-size: 1.8vw;
+                }
+                &-author{
+                    font-size: 1.5vw;
+                    margin-top: 2rem;
+                }
+                &-info{
+                    font-size: 1.3vw;
+                }
+            }
+        }
+    }
+}
+
+.paraTi__slide3{}
+
+.paraTi__slide4{
+    display: flex;
+    flex-direction: column;
+    &-title{
+        font-size: 4vw;
+        color: $color_text_green;
+        align-self: center;
+        margin-bottom: 5rem;
+    }
+    &__cards{
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        $borderPx: 8px;
+        $gapSpan: 0vw;
+        &-itemboxBlack{
+            background-color: black;
+            border: $borderPx solid black;
+            color: white;
+            &:hover {
+                background-color: white;
+                color: black;
+                .paraTi__slide4__cards-front{
+                    display: none;
+                }
+                .paraTi__slide4__cards-back{
+                    display: flex;
+                    flex-direction: column;
+                    gap: $gapSpan;
+                }
+            }
+        }
+        &-itemboxGreen{
+            background-color: $color_text_green;
+            border: $borderPx solid $color_text_green;
+            color: white;
+            &:hover {
+                background-color: white;
+                color: black;
+                .paraTi__slide4__cards-front{
+                    display: none;
+                }
+                .paraTi__slide4__cards-back{
+                    display: flex;
+                    flex-direction: column;
+                    gap: $gapSpan;
+                }
+            }
+        }
+        &-itemboxGray{
+            background-color: $color-gray-dark-3;
+            border: $borderPx solid $color_gray-dark-3;
+            color: darken($color_text_gray, 10%);
+            &:hover {
+                background-color: white;
+                color: black;
+                .paraTi__slide4__cards-front{
+                    display: none;
+                }
+                .paraTi__slide4__cards-back{
+                    display: flex;
+                    flex-direction: column;
+                    gap: $gapSpan;
+                }
+            }
+        }
+        &-itemboxBlue{
+            background-color: $color_text_blue;
+            border: $borderPx solid $color_text_blue;
+            color: white;
+            &:hover {
+                background-color: white;
+                color: black;
+                .paraTi__slide4__cards-front{
+                    display: none;
+                }
+                .paraTi__slide4__cards-back{
+                    display: flex;
+                    flex-direction: column;
+                    gap: $gapSpan;
+                }
+            }
+        }
+
+        &-up{
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        &-down{
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        &-front{
+            font-size: 2vw;
+            text-align: center;
+        }
+        &-back{
+            display: none;
+            font-size: 1.2vw;
+            text-align: center;
+        }
+    }
+}
+
+.itembox{
+    width: 20vw;
+    height: 20vw;
+    padding: 2rem 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all .8s;
+    border-top-left-radius: 6vw;
+    border-bottom-right-radius: 6vw;
+}
+
+.paraTi__slide5{}

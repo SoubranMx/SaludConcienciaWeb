@@ -15,16 +15,36 @@ const AdminIndex = (props) => {
     return (
         <div>
             <div className="update__info">
-                <h1 className="update__info-version">Salud Conciencia Version 0.5.1</h1>
+                <h1 className="update__info-version">Salud Conciencia Version 0.7.1</h1>
                 <div className="accordion" id="accordionExample">
 
                     <div className="accordion-item">
+                        <h2 className="accordion-header" id="headingFour">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                            Version 0.7.1
+                        </button>
+                        </h2>
+                        <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <p>Cambios de la versión</p>
+                                <ul className="update__info__cambios">
+                                    <li className="update__info__cambios-item">Página de inicio se muestra adecuadamente en distintos dispositivos móviles.</li>
+                                    <li className="update__info__cambios-item">Corregido un error que hacia demasiadas peticiones al servidor, agotando las lecturas de ese día.</li>
+                                    <li className="update__info__cambios-item">Se añadieron botones para compartir contenido en redes sociales.</li>
+                                    <li className="update__info__cambios-item">Tanto Facebook, como Twitter y WhatsApp cargan una imágen estática desde el servidor cuando se comparte un blog o cualquier página del dominio.</li>
+                                    <li className="update__info__cambios-item">Se añadió correctamente un footer para cada página. Faltan links asociados. También escala correctamente con distintos tamaños de pantalla.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="accordion-item">
                         <h2 className="accordion-header" id="headingThree">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                             Version 0.5.1
                         </button>
                         </h2>
-                        <div id="collapseThree" className="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <p>Cambios de la versión</p>
                                 <ul className="update__info__cambios">

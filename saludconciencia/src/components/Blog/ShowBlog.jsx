@@ -30,6 +30,32 @@ const ShowBlog = (props) => {
         articulo !== null && articulo.current.scrollIntoView({behavior: 'smooth'})
     },[articulo])
     
+
+    const getSubListUnordered = (items) => {
+        let jsx;
+        items.map(item => {
+            jsx += <li className="article__unorderedList-subitem-item">
+                {item.content}
+                {item.items !== [] && <ul className="article__unorderedList-subitem">{getSubListUnordered(item.items)}</ul>}
+            </li>
+        })
+        return jsx;
+    }
+    
+    const getListsUnordered = (items) => {
+        /**
+         * items => { content: algo, items: [] | [{items}]}
+         */
+        let jsx;
+        items.map(item => {
+            jsx += <li className="article__unorderedList-item">
+                {item.content}
+                {item.items !== [] && <ul className="article__unorderedList-subitem"> {getSubListUnordered(item.items)} </ul>}
+            </li>
+        })
+        
+    }
+
     return (
         <div className="showBlog__contenido" ref={articulo}>
             <figure className="showBlog__contenido__portada">
@@ -101,6 +127,19 @@ const ShowBlog = (props) => {
                                         break;
 
                                     case "list":
+                                        block.data.map(item => {
+                                            if(item.style === "unordered"){
+                                                return(
+                                                    <ul className="showBlog__article__post-item article__unorderedList">
+                                                        {
+                                                            getListsUnordered(item.items)
+                                                        }
+                                                    </ul>
+                                                )
+                                            }else{
+
+                                            }
+                                        })
                                         return "List"
 
                                     case "quote":

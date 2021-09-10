@@ -606,3 +606,24 @@
         width: 25%;
     }
 }
+
+.footer__legal{
+    font-size: 1.3rem;
+    font-family: 'Lexend';
+    font-weight: 300;
+    text-align: center;
+    border-top: solid 2px white;
+    color: #00BE00;
+    background-color: #000;
+    &:hover{
+        .footer__legal__name {
+            display: none;
+        }
+        .footer__legal__contact{
+            display: block;
+        }
+    }
+    &__contact{
+        display: none;
+    }
+}

@@ -88,6 +88,14 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <div className="footer__legal">
+                <div className="footer__legal__name">
+                    &copy; 2021 por Uriel Soubran. Derechos reservados.
+                </div>
+                <div className="footer__legal__contact">
+                    Contacto: uriel.soubran@gmail.com
+                </div>
+            </div>
             {/* Gato png */}
             <Gato className={`${footerGato}`}/>
         </div>
