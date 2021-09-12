@@ -5,6 +5,12 @@ import { auth } from '../../firebase'
 import slide1_img from './img/paraTi_portada.jpg';
 import julian from './img/paraTi_Julian.jpg';
 import '../../sass/_paraTi.scss';
+//Imagenes Reviews
+import anayansiPhoto from './img/Anayansy-01x500.jpg'
+import danielaPhoto from './img/Daniela-01x500.jpg'
+import eduardoPhoto from './img/Eduardo-01x500.jpg'
+import mariaJosePhoto from './img/MariaJose-01x500.jpg'
+import soledadPhoto from './img/Soledad-01x500.jpg'
 
 const ParaTi = (props) => {
     useEffect(()=>{
@@ -31,9 +37,9 @@ const ParaTi = (props) => {
                         <span>Alimentación, Ejercicio y Hábitos en un sólo lugar.</span>
                         <span>Una experiencia única te ayuda a visibilizar y mejorar tu día a día.</span>
                     </div>
-                    <div className="paraTi__slide1__textleft-bot poppins poppins__semibold">
+                    <button className="paraTi__slide1__textleft-bot poppins poppins__semibold">
                         <span>Agenda tu asesoría</span>
-                    </div>
+                    </button>
                 </div>
                 <figure className="paraTi__slide1__img">
                     <img src={slide1_img} alt="Branding folleto" />
@@ -171,8 +177,77 @@ const ParaTi = (props) => {
             </div>
 
             {/* Slide 5 Opiniones*/}
-            <div className="paraTi__slide5"></div>
-
+            <div className="paraTi__slide5">
+                <div className="paraTi__slide5__title lexend lexend__bold">¿Qué opinan de la Asesoría Integral en Salud?</div>
+                <div className="paraTi__slide5-cards">
+                    <div className="paraTi__slide5-cards-top">
+                        <div className="reviewCard">
+                            <div className="reviewCard__top">
+                                <img src={anayansiPhoto} alt="Cliente" className="reviewCard__top-img"/>
+                                <span className="reviewCard__top-name poppins poppins__semibold">Anayansi, 35</span>
+                                <span className="reviewCard__top-occupation poppins poppins__regular">Ejecutiva</span>
+                                <div className="reviewCard__top-separator"></div>
+                            </div>
+                            <span className="reviewCard-review lexend lexend__semibold">
+                                "Nadie nunca me había dicho de la importancia de los horarios.
+                                Nadie me había explicado el estrés al que someto mi cuerpo [...] y porque a 
+                                pesar de yo creer que cuidaba mi alimentación estaba teniendo resultados contraproducentes."
+                            </span>
+                        </div>
+                        <div className="reviewCard">
+                            <div className="reviewCard__top">
+                                <img src={soledadPhoto} alt="Cliente" className="reviewCard__top-img"/>
+                                <span className="reviewCard__top-name poppins poppins__semibold">Soledad, 50</span>
+                                <span className="reviewCard__top-occupation poppins poppins__regular">Agente de Seguros</span>
+                                <div className="reviewCard__top-separator"></div>
+                            </div>
+                            <span className="reviewCard-review lexend lexend__semibold">
+                                "La asesoría es muy buena. Es sumamente sencilla y práctica con resultados prácticamente 
+                                desde un inicio ya que concientiza el cambio de hábitos de forma gradual y saludable, haciendo de esto 
+                                un cambio total de vida."
+                            </span>
+                        </div>
+                        <div className="reviewCard">
+                            <div className="reviewCard__top">
+                                <img src={mariaJosePhoto} alt="Cliente" className="reviewCard__top-img"/>
+                                <span className="reviewCard__top-name poppins poppins__semibold">María José, 25</span>
+                                <span className="reviewCard__top-occupation poppins poppins__regular">Doctora en Neurobiología</span>
+                                <div className="reviewCard__top-separator"></div>
+                            </div>
+                            <span className="reviewCard-review lexend lexend__semibold">
+                                "Me gustó entender cómo funciona mi cuerpo y con base en eso comprender cómo las rutinas 
+                                de ejercicio, la dieta y los hábitos de sueño me ayudan a llegar a mis objetivos."
+                            </span>
+                        </div>
+                    </div>
+                    <div className="paraTi__slide5-cards-bot">
+                        <div className="reviewCard">
+                            <div className="reviewCard__top">
+                                <img src={danielaPhoto} alt="Cliente" className="reviewCard__top-img"/>
+                                <span className="reviewCard__top-name poppins poppins__semibold">Daniela, 24</span>
+                                <span className="reviewCard__top-occupation poppins poppins__regular">Médico Cirujano</span>
+                                <div className="reviewCard__top-separator"></div>
+                            </div>
+                            <span className="reviewCard-review lexend lexend__semibold">
+                                "Es personalizada. No se siente como un plan genérico, realmente se nota la individualización. 
+                                Aparte siempre está pendiente de las dudas."
+                            </span>
+                        </div>
+                        <div className="reviewCard">
+                            <div className="reviewCard__top">
+                                <img src={eduardoPhoto} alt="Cliente" className="reviewCard__top-img"/>
+                                <span className="reviewCard__top-name poppins poppins__semibold">Eduardo, 25</span>
+                                <span className="reviewCard__top-occupation poppins poppins__regular">Arquitecto</span>
+                                <div className="reviewCard__top-separator"></div>
+                            </div>
+                            <span className="reviewCard-review lexend lexend__semibold">
+                                "Me gusta mucho la flexibilidad en cuanto a las rutinas de ejercicio y que éstas dependen 
+                                de dónde podemos hacer ejercicio y con qué."
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
