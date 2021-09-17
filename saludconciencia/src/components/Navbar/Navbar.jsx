@@ -25,8 +25,8 @@ const Navbar = () => {
                     <nav className="user-nav">
                         <NavLink className="user-nav__link" to="/" >Inicio</NavLink>
                         <NavLink className="user-nav__link" to="/blog" >Blog</NavLink>
-                        <NavLink className="user-nav__link" to="/podcast" >Podcast</NavLink>
                         <NavLink className="user-nav__link" to="/para-ti" >Para ti</NavLink>
+                        <NavLink className="user-nav__link" to="/contacto" >Contacto</NavLink>
                     </nav>
                     <div className="user__icons">
                         <div className="user__icons-item"><NavLink to="/"><FaTwitter className="user__icons-item-icon user__icons-item-icon-twitter"/></NavLink></div>

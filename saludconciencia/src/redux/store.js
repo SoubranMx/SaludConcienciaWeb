@@ -3,11 +3,13 @@ import thunk from 'redux-thunk'
 
 import blogsReducer from './blogsDucks'
 import adminReducer, {leerAdminActivoAccion} from './adminDucks';
+import contactoReducer from './contactoDucks';
 
 
 const rootReducer = combineReducers({
     blogs: blogsReducer,
-    admin: adminReducer
+    admin: adminReducer,
+    contacto: contactoReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

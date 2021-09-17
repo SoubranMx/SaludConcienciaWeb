@@ -19,6 +19,7 @@ import Inicio from './components/Pages/Inicio'
 import Admin from './components/Admin/Admin';
 import Login from './components/Admin/Login';
 import BuscarBlog from './components/Blog/BuscarBlog';
+import Contacto from './components/Pages/Contacto';
 //import { useSelector } from 'react-redux';
 import './sass/_fonts.scss'
 import './css/style.css'
@@ -70,6 +71,9 @@ const App = (props) => {
         </Route>
         <Route path='/podcast' >
           <Podcast />
+        </Route>
+        <Route path='/contacto' exact >
+          <Contacto />
         </Route>
         <Route path='/blog' >
           <Blog />
