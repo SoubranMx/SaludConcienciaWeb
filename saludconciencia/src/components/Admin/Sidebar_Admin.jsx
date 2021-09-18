@@ -5,7 +5,7 @@ import {
     FaYoutube,
 } from 'react-icons/fa';
 
-import {FiSettings, FiSave} from 'react-icons/fi';
+import {FiSettings, FiSave, FiMessageSquare} from 'react-icons/fi';
 import {IoPower} from 'react-icons/io5';
 import {MdCreate} from 'react-icons/md';
 import {RiArticleLine} from 'react-icons/ri';
@@ -23,7 +23,7 @@ const SidebarAdmin = () => {
     const itemActivo = {
         crearBlog: "crearBlog",
         guardado: "guardados",
-        podcast: "crearPodcast",
+        mensaje: "mensajes",
         blog: "blog"
     }
 
@@ -33,7 +33,7 @@ const SidebarAdmin = () => {
             setLinkActivo(["","","",""])
             rutas === itemActivo.crearBlog && setLinkActivo(["side-nav__item--active","","",""])
             rutas === itemActivo.guardado && setLinkActivo(["","side-nav__item--active","",""])
-            rutas === itemActivo.podcast && setLinkActivo(["","","side-nav__item--active",""])
+            rutas === itemActivo.mensaje && setLinkActivo(["","","side-nav__item--active",""])
             rutas === itemActivo.blog && setLinkActivo(["","","","side-nav__item--active"])
         } else {
             setLinkActivo(["","","",""]);
@@ -64,9 +64,9 @@ const SidebarAdmin = () => {
                         </NavLink>
                     </li>
                     <li className={`side-nav__item ${linkActivo[2]}`}>
-                        <NavLink to="/admin/crearPodcast" className={`side-nav__link`}>
-                            <FaYoutube className="side-nav__icon"/>
-                            <span>Crear Podcast</span>
+                        <NavLink to="/admin/mensajes" className={`side-nav__link`}>
+                            <FiMessageSquare className="side-nav__icon"/>
+                            <span>Mensajes</span>
                         </NavLink>
                     </li>
                     <li className={`side-nav__item ${linkActivo[3]}`}>

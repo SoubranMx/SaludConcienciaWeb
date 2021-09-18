@@ -14,6 +14,7 @@ import AdminIndex from './AdminIndex';
 import { auth } from '../../firebase';
 import Perfil from './Perfil';
 import BuscarBlog from '../Blog/BuscarBlog';
+import Mensajes from './Mensajes';
 
 
 
@@ -75,7 +76,11 @@ const Admin = (props) => {
                     case 'perfil':
                         setContenido((<Perfil />))
                         break;
-                    
+                        
+                    case 'mensajes':
+                        setContenido((<Mensajes />))
+                        break;
+
                     default:
                         setContenido((<AdminIndex />))
                         break;
