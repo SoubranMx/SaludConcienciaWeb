@@ -23,7 +23,7 @@ const Mensajes = () => {
         <div className="mensajeWrapper">
             <h1 className="mensajesTitle poppins poppins__semibold">Mensajes</h1>
             <div className="mensajesCards">
-                {console.log("mensajesDB => ", mensajesDB)}
+                {/* {console.log("mensajesDB => ", mensajesDB)} */}
                  {
                      mensajesDB !== undefined ? (
                          mensajesDB.length > 0 ? (
@@ -33,27 +33,29 @@ const Mensajes = () => {
                                         <>
                                             <div className="mensajeCard" id={loadedMsg.id}>
                                                 <div className="mensajeCardTitle">
-                                                    <div className="mensajeCardTitle__name">{loadedMsg.data.nombre}</div>
-                                                    <div className="mensajeCardTitle__date">{moment(loadedMsg.data.fecha).format("dddd, DD[/]MM[/]YY")}</div>
+                                                    <div className="mensajeCardTitle__left">
+                                                    <div className="mensajeCardTitle__left__name poppins poppins__regular">{loadedMsg.data.nombre}</div>
+                                                    <small className="mensajeCardTitle__left__date poppins poppins__light">{moment(loadedMsg.data.fecha).format("dddd, DD[/]MM[/]YY, h:mm a")}</small>
+                                                    </div>
                                                     <button 
-                                                        className="btn btn-danger"
+                                                        className="btn btn-danger mensajeBtn"
                                                         onClick={()=>{borrarMensaje(loadedMsg.id)}}
                                                     >
-                                                        <BsTrash />
+                                                        <BsTrash className="mensajesIcon"/>
                                                     </button>
                                                 </div>
                                                 <div className="mensajeCardInfo">
                                                     <p className="mensajeCardInfo-email">
-                                                        <span>Email:</span>
-                                                        <span>{loadedMsg.data.email}</span>
+                                                        <span className="lexend lexend__regular">Email:</span>
+                                                        <span className="lexend lexend__light">{loadedMsg.data.email}</span>
                                                     </p>
                                                     <p className="mensajeCardInfo-tel">
-                                                        <span>Teléfono:</span>
-                                                        <span>{loadedMsg.data.tel}</span>
+                                                        <span className="lexend lexend__regular">Teléfono:</span>
+                                                        <span className="lexend lexend__light">{loadedMsg.data.tel}</span>
                                                     </p>
                                                     <p className="mensajeCardInfo-mensaje">
-                                                        <span>Mensaje:</span>
-                                                        <span>{loadedMsg.data.mensaje}</span>
+                                                        <span className="lexend lexend__regular">Mensaje:</span>
+                                                        <span className="lexend lexend__light">{loadedMsg.data.mensaje}</span>
                                                     </p>
                                                 </div>
                                             </div>

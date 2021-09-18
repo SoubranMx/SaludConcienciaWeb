@@ -1,1 +1,88 @@
 @import './colors';
+
+
+.mensajeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mensajesTitle{
+    margin: 5rem 0;
+    color: $color_text_green;
+    font-size: 4rem;
+}
+
+.mensajesCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.mensajeCard {
+    border: 1px solid black;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+    &:hover{
+        box-shadow: rgba(17, 17, 26, 0.3) 0px 1px 0px, rgba(17, 17, 26, 0.3) 0px 8px 24px, rgba(17, 17, 26, 0.3) 0px 16px 48px;
+    }
+    width: 80%;
+    &Title{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        background-color: hsl(0, 0%, 20%);
+        color: #fff;
+        min-height: 5rem;
+        padding: 1.2rem 2rem;
+
+        &__left{
+            &__name{
+                font-size: 2.2rem;
+            }
+            &__date{
+                font-size: 1rem;
+            }
+        }
+    }
+
+    &Info{
+        display: flex;
+        flex-direction: column;
+        padding: 3rem;
+
+        & > p {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        & > p > :first-child{
+            flex: 1;
+            font-size: 1.25rem;
+        }
+
+        & > p > :last-child{
+            flex: 80%;
+            font-size: 1.25rem;
+        }
+
+        &-mensaje{
+            text-align: justify;
+        }
+    }
+}
+
+
+.mensajeBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.mensajesIcon {
+    text-align: center;
+    height: 2rem;
+    width: 2rem;
+}
