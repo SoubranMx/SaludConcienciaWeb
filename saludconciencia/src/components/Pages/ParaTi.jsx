@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { auth } from '../../firebase'
 
@@ -12,7 +12,15 @@ import eduardoPhoto from './img/Eduardo-01x500.jpg'
 import mariaJosePhoto from './img/MariaJose-01x500.jpg'
 import soledadPhoto from './img/Soledad-01x500.jpg'
 
+//slide3
+import slide3_1 from './img/diap3_1.jpg'
+import slide3_2 from './img/diap3_2.jpg'
+import slide3_3 from './img/diap3_3.jpg'
+
 const ParaTi = (props) => {
+    const paraTiTop = useRef(null);
+    const [cargado, setCargado] = useState(false)
+
     useEffect(()=>{
         if(auth.currentUser){
             props.history.push('/admin')
@@ -20,15 +28,23 @@ const ParaTi = (props) => {
     },[props.history])
 
     useEffect(()=>{
-       console.log("Width => ", window.screen.width)
-       console.log("Height => ", window.screen.height)
-       console.log("Pixels => ", window.screen.pixelDepth)
+        setCargado(true)
     },[])
     
-    return (
+    useEffect(()=>{
+        const scrollArriba = () => {
+            console.log("why not work => ", paraTiTop)
+            paraTiTop.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+            //window.scrollTo(0,0)
+        }
+        cargado === true && scrollArriba()
+        
+    },[cargado])
+
+    return cargado === true ? (
         <div className="paraTi__wrapper">
             {/* Slide 1 Agendar*/}
-            <div className="paraTi__slide1">
+            <div className="paraTi__slide1" ref={paraTiTop}>
                 <div className="paraTi__slide1__textleft">
                     <div className="paraTi__slide1__textleft-up lexend lexend__bold">
                         <span>Una asesoría humana y confiable para mejorar tu salud</span>
@@ -80,8 +96,36 @@ const ParaTi = (props) => {
                 </figure>
             </div>
             
-            {/* Slide 3 Pendiente*/}
-            <div className="paraTi__slide3"></div>
+            {/* Slide 3 Cards Presentacion*/}
+            <div className="paraTi__slide3">
+                <div className="paraTi__slide3__card">
+                    <figure className="paraTi__slide3__card-fig">
+                        <img className="paraTi__slide3__card-img" src={slide3_1} alt="Chica revisando laptop" />
+                    </figure>
+                    <p className="paraTi__slide3__card-titleGreen lexend lexend__bold">100% Online</p>
+                    <p className="paraTi__slide3__card-info poppins poppins__medium">
+                        Obtén tu asesoría desde casa, oficina o cualquier otro lugar con los horarios más accesibles.
+                    </p>
+                </div>
+                <div className="paraTi__slide3__card">
+                    <figure className="paraTi__slide3__card-fig">
+                        <img className="paraTi__slide3__card-img" src={slide3_2} alt="Observando plotters" />
+                    </figure>
+                    <p className="paraTi__slide3__card-titleBlack lexend lexend__bold">100% Integral</p>
+                    <p className="paraTi__slide3__card-info poppins poppins__medium">
+                        Rutina de ejercicio, dieta con conteo calórico y resumen de hábitos de salud completamente personalizadas.
+                    </p>
+                </div>
+                <div className="paraTi__slide3__card">
+                    <figure className="paraTi__slide3__card-fig">
+                        <img className="paraTi__slide3__card-img" src={slide3_3} alt="Chica con una idea" />
+                    </figure>
+                    <p className="paraTi__slide3__card-titleBlue lexend lexend__bold">100% Para Ti</p>
+                    <p className="paraTi__slide3__card-info poppins poppins__medium">
+                        Solucionaremos todas tus dudas e inquietudes gracias a nuestra estructura única de asesoría, dada en 2 sesiones.
+                    </p>
+                </div>
+            </div>
             
             {/* Slide 4 FAQ*/}
             <div className="paraTi__slide4">
@@ -247,6 +291,12 @@ const ParaTi = (props) => {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    ) : (
+        <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+            <div className="spinner-border" role="status" style={{width: "3rem", height: "3rem"}}>
+                <span className="visually-hidden">Cargando...</span>
             </div>
         </div>
     )

@@ -23,6 +23,7 @@ import Contacto from './components/Pages/Contacto';
 //import { useSelector } from 'react-redux';
 import './sass/_fonts.scss'
 import './css/style.css'
+import ScrollToTop from './components/Utilities/ScrollToTop';
 
 const App = (props) => {
 
@@ -73,7 +74,9 @@ const App = (props) => {
           <Podcast />
         </Route>
         <Route path='/contacto' exact >
-          <Contacto />
+          <ScrollToTop>
+            <Contacto />
+          </ScrollToTop>
         </Route>
         <Route path='/blog' >
           <Blog />

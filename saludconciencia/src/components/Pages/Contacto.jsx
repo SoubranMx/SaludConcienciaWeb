@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { enviarMensajeAccion, resetMensajeAccion } from '../../redux/contactoDucks';
 import '../../sass/_contacto.scss'
 
 const Contacto = () => {
 
+    const topContacto = useRef(null)
 
     const [email, setEmail] = useState('');
     const [nombre, setNombre] = useState('');
     const [telefono, setTelefono] = useState('');
     const [msg, setMsg] = useState('');
     const [error, setError] = useState(null);
+    const [cargado, setCargado] = useState(false)
 
     const dispatch = useDispatch()
     const loading = useSelector(store=>store.contacto.loading)
@@ -28,6 +30,16 @@ const Contacto = () => {
         }
         enviado === true && reset()
     }, [enviado])
+
+    useEffect(()=>{
+        setCargado(true)
+    },[])
+    useEffect(()=>{
+        const scrollTop = () => {
+            topContacto.current.scrollIntoView({block: 'end'})
+        }
+        cargado === true && scrollTop()
+    },[cargado])
 
     const enviarMensaje = (e) => {
         e.preventDefault();
@@ -62,7 +74,7 @@ const Contacto = () => {
     }
 
     return (
-        <div className="contactoWrapper">
+        <div className="contactoWrapper" ref={topContacto}>
             <form onSubmit={enviarMensaje} className="contactoForm">
                 <div className="contactoTitle lexend lexend__semibold">
                     <h1>¿Quieres dejarnos un mensaje?</h1>
