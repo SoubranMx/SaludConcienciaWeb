@@ -2,6 +2,7 @@ import { db } from "../firebase"
 
 const dataInicial = {
     loading: false,
+    enviado: false
 }
     //types
     const ENVIANDO_MENSAJE = "ENVIANDO_MENSAJE"
@@ -10,6 +11,7 @@ const dataInicial = {
     const MENSAJE_ERROR = "MENSAJE_ERROR"
     const ENVIAR_MENSAJE_EXITO = "ENVIAR_MENSAJE_EXITO"
     const LEER_MENSAJES_EXITO = "LEER_MENSAJES_EXITO"
+    const RESET_MENSAJE_EXITO = "RESET_MENSAJE"
     
 //reducer
 export default function contactoReducer(state = dataInicial, action) {
@@ -17,18 +19,20 @@ export default function contactoReducer(state = dataInicial, action) {
         case ENVIANDO_MENSAJE:
             return {...state, loading: true}
         case ENVIAR_MENSAJE_EXITO:
-            return state
+            return {...state, enviado: true, loading: false}
         case NOMBRE_ERROR:
         case EMAIL_ERROR:
         case MENSAJE_ERROR:
             return {...state, error: {}}
+        case RESET_MENSAJE_EXITO:
+            return state;
         default:
             return {...state}
     }
 }
 //acciones
  
-export const enviarMensajeAccion = (nombre, email, msg, fecha) => async (dispatch) => {
+export const enviarMensajeAccion = (nombre, email, telefono, msg, fecha) => async (dispatch) => {
     dispatch({
         type: ENVIANDO_MENSAJE
     })
@@ -36,15 +40,18 @@ export const enviarMensajeAccion = (nombre, email, msg, fecha) => async (dispatc
     const mensajeObj = {
         nombre: nombre,
         email: email,
+        tel: telefono,
         mensaje: msg,
         fecha: fecha
     }
 
     try {
         await db.collection('mensajes').doc().set(mensajeObj)
-        dispatch({
-            type: ENVIAR_MENSAJE_EXITO
-        })
+        setTimeout(()=>{
+            dispatch({
+                type: ENVIAR_MENSAJE_EXITO
+            })
+        }, 2000)
     } catch (error) {
         console.log("Error al enviar => ", error)
         dispatch({
@@ -55,4 +62,10 @@ export const enviarMensajeAccion = (nombre, email, msg, fecha) => async (dispatc
 
 export const leerMensajeAccion = () => async (dispatch) => {
 
+}
+
+export const resetMensajeAccion = () => dispatch => {
+    dispatch({
+        type: RESET_MENSAJE_EXITO
+    })
 }

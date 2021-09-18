@@ -1,9 +1,79 @@
+@import './colors';
 
 .contactoWrapper{
     display: flex;
     justify-content: center;
+    height: clamp(30rem, 60%, 120rem);
+    height: fit-content;
+    width: 100%;
+
+    margin-top: 10rem;
+    margin-bottom: 40rem;
+}
+
+.contactoErrorMsg {
+    padding: 2rem;
+    font-size: clamp(1.2rem, 50%, 2rem);
+    font-family: 'Lexend';
+    font-weight: 600;
+    color: hsl(0, 65%, 46%);
+    background-color: lightcoral;
+    margin: 2rem 0;
 }
 
 .contactoForm {
     //align-self: center;
+    border: 1px solid black;
+    height: auto;
+    width: 60%;
+    text-align: center;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+
+.contactoTitle {
+    color: $color_text_green;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    & > h1 {
+        font-size: clamp(3rem, 50%, 9rem);
+    }
+}
+
+.contactoBox {
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    margin-bottom: 3rem;
+    font-size: 1.3rem;
+    & > div {
+        display: flex;
+    }
+
+    & > div > span {
+        flex: 1;
+        align-self: center;
+        text-align: left;
+        color: darken($color_text_green, 5%);
+    }
+
+    & > div > input,
+    & > div > textarea {
+        flex: 50%;
+        font-size: 'Poppins';
+    }
+
+    & > div > textarea {
+        min-height: 10rem;
+    }
+}
+
+.btn__contacto {
+    color: #fff;
+    background-color: $color_text_green !important;
+    border-color: $color_text_green !important;
+    margin-bottom: 5%;
 }
