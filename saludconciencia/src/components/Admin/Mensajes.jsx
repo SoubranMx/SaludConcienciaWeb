@@ -5,7 +5,7 @@ import 'moment/locale/es-mx';
 import {BsTrash} from 'react-icons/bs';
 
 import '../../sass/_mensajes.scss';
-import { leerMensajeAccion } from '../../redux/contactoDucks';
+import { eliminarMensajeAccion, leerMensajeAccion } from '../../redux/contactoDucks';
 
 const Mensajes = () => {
     const mensajesDB = useSelector(store => store.contacto.mensajes)
@@ -16,7 +16,7 @@ const Mensajes = () => {
     },[])
 
     const borrarMensaje = (id) => {
-
+        dispatch(eliminarMensajeAccion(id))
     }
 
     return (

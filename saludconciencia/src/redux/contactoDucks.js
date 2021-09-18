@@ -33,7 +33,7 @@ export default function contactoReducer(state = dataInicial, action) {
         case LEER_MENSAJES_ERROR:
             return {...state, error: action.payload}
         case ELIMINAR_MENSAJE_EXITO:
-            return {...state}
+            return {...state, mensajes: action.payload}
         default:
             return {...state}
     }
@@ -91,8 +91,14 @@ export const leerMensajeAccion = () => async (dispatch) => {
 export const eliminarMensajeAccion = (id) => async (dispatch) => {
     try {
         await db.collection('mensajes').doc(id).delete()
+        let mensajesCargados = [];
+        const res = await db.collection('mensajes').orderBy('fecha','desc').get();
+        res.forEach((doc)=>{
+            mensajesCargados.push({id: doc.id, data: doc.data()})
+        })
         dispatch({
-            type: ELIMINAR_MENSAJE_EXITO
+            type: ELIMINAR_MENSAJE_EXITO,
+            payload: mensajesCargados
         })
     } catch (error) {
         console.log("Eliminar mensaje error => ", error)
