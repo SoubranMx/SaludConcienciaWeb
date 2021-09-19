@@ -74,8 +74,8 @@ const Contacto = () => {
     }
 
     return (
-        <div className="contactoWrapper" ref={topContacto} >
-            <form onSubmit={enviarMensaje} className="contactoForm">
+        <div className="contactoWrapper">
+            <form onSubmit={enviarMensaje} className="contactoForm" ref={topContacto}>
                 <div className="contactoTitle lexend lexend__semibold">
                     <h1>¿Quieres dejarnos un mensaje?</h1>
                     <h2>¡Te contactamos!</h2>
