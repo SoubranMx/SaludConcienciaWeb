@@ -15,16 +15,36 @@ const AdminIndex = (props) => {
     return (
         <div>
             <div className="update__info">
-                <h1 className="update__info-version">Salud Conciencia Version 0.7.1</h1>
+                <h1 className="update__info-version">Salud Conciencia Version 0.9.0</h1>
                 <div className="accordion" id="accordionExample">
 
                     <div className="accordion-item">
+                        <h2 className="accordion-header" id="headingFive">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                            Version 0.9.0
+                        </button>
+                        </h2>
+                        <div id="collapseFive" className="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <p>Cambios de la versión</p>
+                                <ul className="update__info__cambios">
+                                    <li className="update__info__cambios-item">Se hizo un cambio en el navbar: se sustituye podcast por contacto.</li>
+                                    <li className="update__info__cambios-item">La página de Para Ti ya está completa conforme a los diseños pedidos.</li>
+                                    <li className="update__info__cambios-item">Ahora se puede dejar mensajes en la página a través de Contacto. En realidad, se mandan muy rápido pero le he dado un retardo de 2 segundos para que tenga un poco de animación y las personas no se confundan si lo han mandado o no. Falta una animación de término para terminar de explicar que se ha mandado.</li>
+                                    <li className="update__info__cambios-item">Los mensajes que se dejan en Contacto ahora aparecen en la sección de Admin. Se sustituyó Crear Podcast, por mensajes. Aparecen por fecha. Por el momento, no son cambios en tiempo real, tendría que estar actualizando la página de vez en cuando.</li>
+                                    <li className="update__info__cambios-item">Se añadieron finalmente los links a las distintas redes sociales, tanto en inicio, en el navbar y en el footer.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="accordion-item">
                         <h2 className="accordion-header" id="headingFour">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
                             Version 0.7.1
                         </button>
                         </h2>
-                        <div id="collapseFour" className="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <p>Cambios de la versión</p>
                                 <ul className="update__info__cambios">
