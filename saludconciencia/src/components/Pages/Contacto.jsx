@@ -74,7 +74,7 @@ const Contacto = () => {
     }
 
     return (
-        <div className="contactoWrapper" ref={topContacto}>
+        <div className="contactoWrapper" ref={topContacto} >
             <form onSubmit={enviarMensaje} className="contactoForm">
                 <div className="contactoTitle lexend lexend__semibold">
                     <h1>¿Quieres dejarnos un mensaje?</h1>
@@ -144,7 +144,11 @@ const Contacto = () => {
                             <span className="spinner-border spinner-border-sm mr-2" role="status"></span>
                             &nbsp;Enviando...
                             </>
-                        ) : "Enviar"
+                        ) : (
+                            <span>
+                                Enviar
+                            </span>
+                        )
                     }
                 </button>
             </form>

@@ -7,8 +7,14 @@
     height: fit-content;
     width: 100%;
 
-    margin-top: 10rem;
-    margin-bottom: 40rem;
+    
+    padding-top: 10rem;
+    padding-bottom: 40rem;
+
+    background-image: url('../components/Pages/img/contactoBackground.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .contactoErrorMsg {
@@ -25,9 +31,13 @@
     //align-self: center;
     border: 1px solid black;
     height: auto;
-    width: 60%;
+    width: 70%;
     text-align: center;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+    background-color: #fff;
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border: 5px solid $color_text_blue;
 }
 
 .contactoTitle {
@@ -76,4 +86,55 @@
     background-color: $color_text_green !important;
     border-color: $color_text_green !important;
     margin-bottom: 5%;
+
+    &>span{
+        font-size: 1.2vw;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .contactoForm{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 992px) {
+    .contactoForm{
+        width: 90%;
+    }
+    .btn__contacto{
+        &>span{
+            font-size: 2vw;
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .contactoForm{
+        width: 90%;
+    }
+    .btn__contacto{
+        &>span{
+            font-size: 2.5vw;
+        }
+    }
+}
+@media screen and (max-width: 576px) {
+    .contactoForm{
+        width: 100%;
+        height: 100%;
+        border: unset;
+        border-top-left-radius: unset;
+        border-bottom-right-radius: unset;
+    }
+    .contactoWrapper{
+        padding: 0;
+        height: 100vh;
+    }
+    .contactoBox{
+        width: 90%;
+    }
+    .btn__contacto{
+        &>span{
+            font-size: 2rem;
+        }
+    }
 }

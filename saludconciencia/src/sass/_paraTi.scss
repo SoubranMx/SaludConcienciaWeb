@@ -166,14 +166,17 @@ $fs-600: 3rem;
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
+    align-content: stretch;
     height: 100vh;
     //padding-top: 25vh;
     margin: 20rem 0;
     &__card{
-        height: auto;
+        //height: auto;
+        height: 80%;
         flex: 0 0 23%;
         //width: 23%;
         margin-top: 10vh;
+        padding: 2rem 0;
 
         text-align: center;
         display: flex;
@@ -223,6 +226,7 @@ $fs-600: 3rem;
 .paraTi__slide4{
     display: flex;
     flex-direction: column;
+    margin: 30rem 0;
     &-title{
         font-size: 4vw;
         color: $color_text_green;
@@ -436,6 +440,14 @@ $fs-600: 3rem;
         --fs-slide3-title: 4rem;
         --fs-slide3-info: 2.5rem;
     }
+
+    .paraTi__slide3{
+        &__card{
+            &-info{
+                margin-top: 2rem;
+            }
+        }
+    }
 }
 @media screen and (max-width: 1200px){
     :root{
@@ -445,6 +457,16 @@ $fs-600: 3rem;
         --fs-slide5: 5vw;
         --fs-slide3-title: 3.6rem;
         --fs-slide3-info: 2.2rem;
+    }
+    .paraTi__slide3{
+        height: max-content;
+        &__card{
+            flex: 0 0 28%;
+            height: 60%;
+            &-info{
+                //height: 60%;
+            }
+        }
     }
 }
 @media screen and (max-width: 992px){
@@ -465,6 +487,12 @@ $fs-600: 3rem;
             }
         }
     }
+    .paraTi__slide3{
+        &__card{
+            flex: 0 0 30%;
+            height: 65%;
+        }
+    }
 
     .itembox{
         width: 20rem;
@@ -478,6 +506,20 @@ $fs-600: 3rem;
     .paraTi__slide5{
         &-cards > div {
             flex-wrap: wrap;
+        }
+    }
+    .paraTi__slide3{
+        height: auto;
+        flex-direction: column;
+        flex: 1;
+        align-items: center;
+        gap: 4rem;
+
+        &__card{
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+            border-radius: 50px;
+            width: 60%;
+            margin-top: 0;
         }
     }
 
@@ -541,6 +583,17 @@ $fs-600: 3rem;
             &-cardBody{
                 position: unset;
             }
+        }
+    }
+
+    .paraTi__slide3{
+        height: auto;
+        flex-direction: column;
+        flex: 1;
+        &__card{
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+            border-radius: 50px;
+            width: 95%;
         }
     }
 
