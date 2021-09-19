@@ -1524,6 +1524,9 @@
                 fill: #FF0000;
             }
         }
+        &-facebook:hover {
+            fill: #3B5998;
+        }
         &-instagram {
             & path {
                 fill: $color_text_green;

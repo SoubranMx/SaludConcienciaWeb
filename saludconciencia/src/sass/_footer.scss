@@ -204,6 +204,9 @@
                         fill: url(#rg-footer);
                     }
                 }
+                &-facebook:hover {
+                    fill: #3B5998;
+                }
             }
         }
     }
@@ -446,6 +449,9 @@
                     &:hover{
                         fill: url(#rg-footer);
                     }
+                }
+                &-facebook:hover {
+                    fill: #3B5998;
                 }
             }
         }

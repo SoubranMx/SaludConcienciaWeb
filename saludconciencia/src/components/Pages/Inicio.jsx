@@ -16,11 +16,19 @@ import habitos from './img/habitos.jpg'
 
 
 //Iconos
-import {FaWhatsapp, FaInstagram, FaYoutube, FaTwitter} from 'react-icons/fa'
+import {FaWhatsapp, FaInstagram, FaYoutube, FaTwitter, FaFacebook} from 'react-icons/fa'
 import {IoLogoTiktok} from 'react-icons/io5'
 import ArticulosRecientes from './ArticulosRecientes'
 
 const Inicio = (props) => {
+    const linksRS = {
+        twitter: "https://twitter.com/EjercicioCien",
+        facebook: "https://www.facebook.com/1saludconciencia",
+        instagram: "https://www.instagram.com/saludcon.ciencia/",
+        youtube: "https://www.youtube.com/channel/UCMU7Cs7WktzjDg5rOZdshDw",
+        tiktok: "https://www.tiktok.com/@salud_conciencia?lang=es"
+    }
+
     useEffect(()=>{
         if(auth.currentUser){
             props.history.push('/admin')
@@ -365,10 +373,10 @@ const Inicio = (props) => {
                         <span className="index__slide__9__textright-mid-mobile poppins poppins__regular">¡Contáctanos en nuestras redes sociales!</span>
                     </div>
                     <div className="index__slide__9__textright-down">
-                        <div className="index__icons"><a href="https://twitter.com/EjercicioCien" target="_blank" rel="noreferrer noopener"><FaTwitter className="index__icons-item index__icons-item-twitter"/></a></div>
-                        <div className="index__icons"><Link to="/"><IoLogoTiktok className="index__icons-item index__icons-item-tiktok"/></Link></div>
+                        <div className="index__icons"><a href={linksRS.twitter} target="_blank" rel="noreferrer noopener"><FaTwitter className="index__icons-item index__icons-item-twitter"/></a></div>
+                        <div className="index__icons"><a href={linksRS.tiktok} target="_blank" rel="noreferrer noopener"><IoLogoTiktok className="index__icons-item index__icons-item-tiktok"/></a></div>
                         <div className="index__icons">
-                            <Link to="/">
+                            <a href={linksRS.instagram} target="_blank" rel="noreferrer noopener">
                                 <svg width="0" height="0" style={{display: 'none'}}>
                                     <radialGradient id="rg" r="150%" cx="30%" cy="107%">
                                         <stop stopColor="#fdf497" offset="0" />
@@ -379,9 +387,10 @@ const Inicio = (props) => {
                                     </radialGradient>
                                 </svg>
                                 <FaInstagram className="index__icons-item index__icons-item-instagram" />
-                            </Link>
+                            </a>
                         </div>
-                        <div className="index__icons"><Link to="/"><FaYoutube className="index__icons-item index__icons-item-youtube"/></Link></div>
+                        <div className="index__icons"><a href={linksRS.youtube} target="_blank" rel="noreferrer noopener"><FaYoutube className="index__icons-item index__icons-item-youtube"/></a></div>
+                        <div className="index__icons"><a href={linksRS.facebook} target="_blank" rel="noreferrer noopener"><FaFacebook className="index__icons-item index__icons-item-facebook"/></a></div>
                     </div>
                 </div>
             </div>

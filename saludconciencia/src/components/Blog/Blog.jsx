@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import RecentBlogs from './RecentBlogs'
@@ -7,6 +7,7 @@ import { clearAllAccion, cargarMasBlogsAccion, leerBlogsPublicarAccion } from '.
 import {db} from '../../firebase'
 
 const Blog = () => {
+    const refToTop = useRef(null)
     const dispatch = useDispatch()
     const blogsFirebase = useSelector(store => store.blogs.blogsPublished)   //Regresa un array
     
@@ -43,6 +44,7 @@ const Blog = () => {
                 console.log("Hay por lo menos 3 blogs")
                 actualizarBlogs()   //Activa tanto blogs recientes como latest
             }
+            refToTop.current.scrollIntoView({behavior: 'smooth', block: 'end'})
         }
     },[blogsFirebase])
 
@@ -62,8 +64,8 @@ const Blog = () => {
     //blogsFirebase !== undefined => aun no se carga nada, se supone que useSelector siempre regresa algo despues de un dispatch?
     // si es undefined, muestra spinner.
     return blogsFirebase !== undefined ? (
-        <div className="container-md container-sm-fluid mt-3" data-bs-spy="scroll" data-bs-target="#navbar-spy">
-            <div className="d-flex flex-column blogBoxShadow">
+        <div className="container-md container-sm-fluid mt-3 mb-5" data-bs-spy="scroll" data-bs-target="#navbar-spy">
+            <div className="d-flex flex-column blogBoxShadow" ref={refToTop}>
                 {
                     blogsRecent !== false && (
                         <RecentBlogs />

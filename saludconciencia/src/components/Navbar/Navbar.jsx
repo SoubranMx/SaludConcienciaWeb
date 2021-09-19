@@ -10,8 +10,22 @@ import {FiMenu} from 'react-icons/fi';
 import nav_logo from '../../resources/nav-logo.png';
 //import '../../css/style.css'
 import '../../sass/_navbar.scss'
+/*
+https://twitter.com/EjercicioCien
+https://www.facebook.com/1saludconciencia
+https://www.instagram.com/saludcon.ciencia/
+https://www.youtube.com/channel/UCMU7Cs7WktzjDg5rOZdshDw
+https://www.tiktok.com/@salud_conciencia?lang=es
+*/
 
 const Navbar = () => {
+    const linksRS = {
+        twitter: "https://twitter.com/EjercicioCien",
+        facebook: "https://www.facebook.com/1saludconciencia",
+        instagram: "https://www.instagram.com/saludcon.ciencia/",
+        youtube: "https://www.youtube.com/channel/UCMU7Cs7WktzjDg5rOZdshDw",
+        tiktok: "https://www.tiktok.com/@salud_conciencia?lang=es"
+    }
     return (
         <nav className="header sticky-top navbar navbar-expand-md">
             <div className="container-fluid header__content">
@@ -29,10 +43,10 @@ const Navbar = () => {
                         <NavLink className="user-nav__link" to="/contacto" >Contacto</NavLink>
                     </nav>
                     <div className="user__icons">
-                        <div className="user__icons-item"><NavLink to="/"><FaTwitter className="user__icons-item-icon user__icons-item-icon-twitter"/></NavLink></div>
-                        <div className="user__icons-item"><NavLink to="/"><IoLogoTiktok className="user__icons-item-icon user__icons-item-icon-tiktok"/></NavLink></div>
+                        <div className="user__icons-item"><a href={linksRS.twitter} target="_blank" rel="noreferrer noopener"><FaTwitter className="user__icons-item-icon user__icons-item-icon-twitter"/></a></div>
+                        <div className="user__icons-item"><a href={linksRS.tiktok} target="_blank" rel="noreferrer noopener"><IoLogoTiktok className="user__icons-item-icon user__icons-item-icon-tiktok"/></a></div>
                         <div className="user__icons-item">
-                            <NavLink to="/">
+                            <a href={linksRS.instagram} target="_blank" rel="noreferrer noopener">
                                 <svg width="0" height="0">
                                     <radialGradient id="rg" r="150%" cx="30%" cy="107%">
                                         <stop stopColor="#fdf497" offset="0" />
@@ -43,9 +57,10 @@ const Navbar = () => {
                                     </radialGradient>
                                 </svg>
                                 <FaInstagram className="user__icons-item-icon user__icons-item-icon-instagram"/>
-                            </NavLink>
+                            </a>
                         </div>
-                        <div className="user__icons-item"><NavLink to="/"><FaYoutube className="user__icons-item-icon user__icons-item-icon-youtube"/></NavLink></div>
+                        <div className="user__icons-item"><a href={linksRS.youtube} target="_blank" rel="noreferrer noopener"><FaYoutube className="user__icons-item-icon user__icons-item-icon-youtube"/></a></div>
+                        <div className="user__icons-item"><a href={linksRS.facebook} target="_blank" rel="noreferrer noopener"><FaFacebook className="user__icons-item-icon user__icons-item-icon-facebook"/></a></div>
                     </div>
                     <form action="#" className="search search__form">
                         <input type="text" className="search__input" placeholder="Buscar"/>
