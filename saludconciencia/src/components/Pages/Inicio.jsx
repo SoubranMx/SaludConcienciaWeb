@@ -148,7 +148,7 @@ const Inicio = (props) => {
                             <span className="index__slide__2__textleft-mid-mobile">Entrenamientos gratuitos y guiados para toda la familia.</span>
                         </div>
                         <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                            <Link to="/" className="index__slide__2__textleft-down-link-2" onClick={()=>goToSlide(3)}><span>Comienza Aquí.</span></Link>
+                            <a href="https://youtube.com/playlist?list=PLdTB8tVWJU5jjqRSWFElLYnPBRaYjD18I" className="index__slide__2__textleft-down-link-2" target="_blank" rel="noreferrer noopener"><span>Comienza Aquí.</span></a>
                         </div>
                     </div>
                     <figure className="index__slide__2__figure">
@@ -174,7 +174,7 @@ const Inicio = (props) => {
                             <span className="index__slide__2__textleft-mid-mobile">Asesoria Integral en Salud, un enfoque personalizado y amigable para ti.</span>
                         </div>
                         <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                            <Link to="/" className="index__slide__2__textleft-down-link-3" onClick={()=>goToSlide(4)}><span>Conoce más</span></Link>
+                            <Link to="/para-ti" className="index__slide__2__textleft-down-link-3" onClick={()=>goToSlide(4)}><span>Conoce más</span></Link>
                         </div>
                     </div>
                     <figure className="index__slide__2__figure">
@@ -193,12 +193,12 @@ const Inicio = (props) => {
                 <div className="index__slide__5__down">
                     <div className="index__slide__5__card">
                         <div className="index__slide__5__card-title-1 text__green lexend lexend__regular">
-                            <Link to="/" className="index__slide__5__card-title-1-link">
+                            <Link to="/para-ti" className="index__slide__5__card-title-1-link">
                                 Ejercicio
                             </Link>
                         </div>
                         <figure className="index__slide__5__card__container">
-                            <Link to="/">
+                            <Link to="/para-ti">
                                 <img src={ejercicio} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
                             </Link>
                             <div className="index__slide__5__card-body-green poppins poppins__medium">
@@ -212,12 +212,12 @@ const Inicio = (props) => {
 
                     <div className="index__slide__5__card">
                         <div className="index__slide__5__card-title-2 text__blue lexend lexend__regular">
-                            <Link to="/" className="index__slide__5__card-title-2-link">
+                            <Link to="/para-ti" className="index__slide__5__card-title-2-link">
                                 Hábitos
                             </Link>
                         </div>
                         <figure className="index__slide__5__card__container">
-                            <Link to="/">
+                            <Link to="/para-ti">
                                 <img src={habitos} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
                             </Link>
                             <div className="index__slide__5__card-body-blue poppins poppins__medium">
@@ -230,12 +230,12 @@ const Inicio = (props) => {
 
                     <div className="index__slide__5__card">
                         <div className="index__slide__5__card-title-3 text__black lexend lexend__regular">
-                            <Link to="/" className="index__slide__5__card-title-3-link">
+                            <Link to="/para-ti" className="index__slide__5__card-title-3-link">
                                 Alimentación
                             </Link>
                         </div>
                         <figure className="index__slide__5__card__container">
-                            <Link to="/">
+                            <Link to="/para-ti">
                                 <img src={alimentacion} alt="Chica preparandose para ejercitarse" className="index__slide__5__card-img" />
                             </Link>
                             <div className="index__slide__5__card-body-black poppins poppins__medium">
@@ -255,12 +255,12 @@ const Inicio = (props) => {
                 </div>
                 <div className="index__slide__5-mobile__card">
                     <div className="index__slide__5-mobile__card-title-1 text__green lexend lexend__regular">
-                        <Link to="/" className="index__slide__5-mobile__card-title-1-link">
+                        <Link to="/para-ti" className="index__slide__5-mobile__card-title-1-link">
                             Ejercicio
                         </Link>
                     </div>
                     <figure className="index__slide__5-mobile__card__container">
-                        <Link to="/">
+                        <Link to="/para-ti">
                             <img src={ejercicio} alt="Chica preparandose para ejercitarse" className="index__slide__5-mobile__card-img" />
                         </Link>
                         <div className="index__slide__5-mobile__card-body-green poppins poppins__medium">
@@ -277,12 +277,12 @@ const Inicio = (props) => {
                 </div>
                 <div className="index__slide__5-mobile__card">
                     <div className="index__slide__5-mobile__card-title-1 text__blue lexend lexend__regular">
-                        <Link to="/" className="index__slide__5-mobile__card-title-2-link">
+                        <Link to="/para-ti" className="index__slide__5-mobile__card-title-2-link">
                             Hábitos
                         </Link>
                     </div>
                     <figure className="index__slide__5-mobile__card__container">
-                        <Link to="/">
+                        <Link to="/para-ti">
                             <img src={habitos} alt="Chica preparandose para ejercitarse" className="index__slide__5-mobile__card-img" />
                         </Link>
                         <div className="index__slide__5-mobile__card-body-blue poppins poppins__medium">
@@ -299,12 +299,12 @@ const Inicio = (props) => {
                 </div>
                 <div className="index__slide__5-mobile__card">
                     <div className="index__slide__5-mobile__card-title-3 text__black lexend lexend__regular">
-                        <Link to="/" className="index__slide__5-mobile__card-title-3-link">
+                        <Link to="/para-ti" className="index__slide__5-mobile__card-title-3-link">
                             Alimentación
                         </Link>
                     </div>
                     <figure className="index__slide__5-mobile__card__container">
-                        <Link to="/">
+                        <Link to="/para-ti">
                             <img src={alimentacion} alt="Chica preparandose para ejercitarse" className="index__slide__5-mobile__card-img" />
                         </Link>
                         <div className="index__slide__5-mobile__card-body-black poppins poppins__medium">

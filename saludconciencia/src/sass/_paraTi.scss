@@ -12,9 +12,9 @@ $fs-600: 3rem;
     --fs-subtitulos: 1.5vw;
     --fs-agenda: 2vw;
 
-    --fs-greenCard-main: 1.8vw;
-    --fs-greenCard-auth: 1.5vw;
-    --fs-greenCard-info: 1.3vw;
+    --fs-greenCard-main: 1.75vw;
+    --fs-greenCard-auth: 1.4vw;
+    --fs-greenCard-info: 1.2vw;
 
     --fs-reviewCard-name: 2.5rem;
     --fs-reviewCard-occupation: 1.7rem;
@@ -78,7 +78,7 @@ $fs-600: 3rem;
     &__img{
         align-self: center;
         height: 80%;
-        //padding: 3% 3%;
+        padding: 4%;
         & > img {
             width: 100%;
             height: auto;
@@ -125,7 +125,7 @@ $fs-600: 3rem;
 
     &__rightCard{
         position: relative;
-        padding: 2%;
+        padding: 3%;
         &-img{
             & > img {
                 width: 100%;
@@ -136,7 +136,7 @@ $fs-600: 3rem;
         &-cardBody{
             background-color: $color_text_green;
             color: white;
-            width: 100%;
+            width: 92%;
 
             position: absolute;
             bottom: 0;

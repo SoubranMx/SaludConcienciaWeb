@@ -45,7 +45,11 @@
     margin-top: 5%;
     margin-bottom: 5%;
     & > h1 {
-        font-size: clamp(3rem, 50%, 9rem);
+        font-size: clamp(4.5rem, 70%, 12rem);
+        //font-size: 3rem;
+    }
+    & > h2 {
+        font-size: 3rem;
     }
 }
 
@@ -72,7 +76,7 @@
 
     & > div > input,
     & > div > textarea {
-        flex: 50%;
+        flex: 70%;
         font-size: 'Poppins';
     }
 
@@ -86,6 +90,10 @@
     background-color: $color_text_green !important;
     border-color: $color_text_green !important;
     margin-bottom: 5%;
+
+    &:hover{
+        background-color: lighten($color_text_green, 4%) !important;
+    }
 
     &>span{
         font-size: 1.2vw;
@@ -131,7 +139,13 @@
     }
     .contactoBox{
         width: 90%;
+        
+        & > div > input,
+        & > div > textarea {
+            flex: 50%;
+        }
     }
+    
     .btn__contacto{
         &>span{
             font-size: 2rem;

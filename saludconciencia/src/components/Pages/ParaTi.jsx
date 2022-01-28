@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { auth } from '../../firebase'
 
 import slide1_img from './img/paraTi_portada.jpg';
@@ -53,9 +53,11 @@ const ParaTi = (props) => {
                         <span>Alimentación, Ejercicio y Hábitos en un sólo lugar.</span>
                         <span>Una experiencia única te ayuda a visibilizar y mejorar tu día a día.</span>
                     </div>
-                    <button className="paraTi__slide1__textleft-bot poppins poppins__semibold">
-                        <span>Agenda tu asesoría</span>
-                    </button>
+                    <Link to="/contacto">
+                        <button className="paraTi__slide1__textleft-bot poppins poppins__semibold">
+                            <span>Agenda tu asesoría</span>
+                        </button>
+                    </Link>
                 </div>
                 <figure className="paraTi__slide1__img">
                     <img src={slide1_img} alt="Branding folleto" />

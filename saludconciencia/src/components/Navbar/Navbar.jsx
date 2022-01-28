@@ -10,13 +10,6 @@ import {FiMenu} from 'react-icons/fi';
 import nav_logo from '../../resources/nav-logo.png';
 //import '../../css/style.css'
 import '../../sass/_navbar.scss'
-/*
-https://twitter.com/EjercicioCien
-https://www.facebook.com/1saludconciencia
-https://www.instagram.com/saludcon.ciencia/
-https://www.youtube.com/channel/UCMU7Cs7WktzjDg5rOZdshDw
-https://www.tiktok.com/@salud_conciencia?lang=es
-*/
 
 const Navbar = () => {
     const linksRS = {
@@ -62,12 +55,14 @@ const Navbar = () => {
                         <div className="user__icons-item"><a href={linksRS.youtube} target="_blank" rel="noreferrer noopener"><FaYoutube className="user__icons-item-icon user__icons-item-icon-youtube"/></a></div>
                         <div className="user__icons-item"><a href={linksRS.facebook} target="_blank" rel="noreferrer noopener"><FaFacebook className="user__icons-item-icon user__icons-item-icon-facebook"/></a></div>
                     </div>
-                    <form action="#" className="search search__form">
+                    
+                    {/* Falta hacer las busquedas */}
+                    {/* <form action="#" className="search search__form">
                         <input type="text" className="search__input" placeholder="Buscar"/>
                         <button className="search__button">
                             <BiSearch className="user__icons-item-icon"/>
                         </button>
-                    </form>
+                    </form> */}
                 </div>                
             </div>
         </nav>
