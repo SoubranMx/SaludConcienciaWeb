@@ -19,6 +19,7 @@ import habitos from './img/habitos.jpg'
 import {FaWhatsapp, FaInstagram, FaYoutube, FaTwitter, FaFacebook} from 'react-icons/fa'
 import {IoLogoTiktok} from 'react-icons/io5'
 import ArticulosRecientes from './ArticulosRecientes'
+import Carrousel from '../shared/UIElements/Carrousel'
 
 const Inicio = (props) => {
     const linksRS = {
@@ -87,6 +88,10 @@ const Inicio = (props) => {
     
     return (
         <div className="index__container">
+            {/* Slide 0 - Carrousel */}
+            <div className="index__slide__0">
+                <Carrousel/>
+            </div>
             {/* Slide 1 */}
             <div className="index__slide__1" ref={slide1}>
                 <div className="index__slide__1-box">
