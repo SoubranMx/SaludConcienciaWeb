@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Carousel } from 'react-responsive-carousel';
-import { uploadImgCarouselAccion } from '../../redux/carouselDucks';
+import { cargarImgCarouselAccion, uploadImgCarouselAccion } from '../../redux/carouselDucks';
 
 
 import '../../sass/_carouselJS.scss'
@@ -9,10 +9,16 @@ import '../../sass/_carouselJS.scss'
 const CarouselSelector = () => {
     //States
     const [isLoading, setIsLoading] = useState(false);
-
+    
+    
     const dispatch = useDispatch();
     const loading = useSelector(store => store.carousel.loading)
     const carouselActual = useSelector(store => store.carousel.carousel)
+    
+    useEffect(()=>{
+        console.log("Antes de cargar las imagenes => ");
+        dispatch(cargarImgCarouselAccion());
+    },[])
 
     //Funcs
     const uploadImg = async(imagen) => {
@@ -39,7 +45,7 @@ const CarouselSelector = () => {
         <div className='container carouselContainer'>
             <h1>Selección de imágenes del Carrusel</h1>
             <div className="carouselContainer__main">
-                {carouselActual.length !== 0 ? (
+                {carouselActual.length === 0 ? (
                     <div>No hay imágenes actualmente</div>
                 )
                 :(
@@ -47,8 +53,8 @@ const CarouselSelector = () => {
                         showThumbs={false}
                         showStatus={false}
                     >
-                        {carouselActual.map(img => (
-                            <div>
+                        {carouselActual.map((img,index) => (
+                            <div key={index}>
                                 <img src={img.imgURL} alt="" />
                             </div>
                         ))}
