@@ -4,12 +4,14 @@ import thunk from 'redux-thunk'
 import blogsReducer from './blogsDucks'
 import adminReducer, {leerAdminActivoAccion} from './adminDucks';
 import contactoReducer from './contactoDucks';
+import carouselReducer from './carouselDucks';
 
 
 const rootReducer = combineReducers({
     blogs: blogsReducer,
     admin: adminReducer,
-    contacto: contactoReducer
+    contacto: contactoReducer,
+    carousel: carouselReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

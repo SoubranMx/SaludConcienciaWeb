@@ -1,0 +1,10 @@
+.carouselContainer {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    &__main{
+        margin: 0 2rem;   
+    }
+}

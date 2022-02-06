@@ -9,6 +9,7 @@ import {FiSettings, FiSave, FiMessageSquare} from 'react-icons/fi';
 import {IoPower} from 'react-icons/io5';
 import {MdCreate} from 'react-icons/md';
 import {RiArticleLine} from 'react-icons/ri';
+import { BiCarousel } from "react-icons/bi";
 
 
 import logo from '../../resources/nav-logo.png';
@@ -24,19 +25,24 @@ const SidebarAdmin = () => {
         crearBlog: "crearBlog",
         guardado: "guardados",
         mensaje: "mensajes",
-        blog: "blog"
+        blog: "blog",
+        carousel: "carousel"
     }
 
     useEffect(()=>{
         if(rutas !== undefined ) {
             rutas = rutas.ruta
-            setLinkActivo(["","","",""])
-            rutas === itemActivo.crearBlog && setLinkActivo(["side-nav__item--active","","",""])
-            rutas === itemActivo.guardado && setLinkActivo(["","side-nav__item--active","",""])
-            rutas === itemActivo.mensaje && setLinkActivo(["","","side-nav__item--active",""])
-            rutas === itemActivo.blog && setLinkActivo(["","","","side-nav__item--active"])
+            // Se inicia como 5 cadenas vacías, para poder mantener un active de acuerdo a donde se está actualmente.
+            // Son 5 por la cantidad de itemActivo, si se añaden más, se deben cambiar manualmente ... un diseño un poco flojo, a decir verdad.
+            // Hasta este comentario, solo eran 4, no consideré que se podían añadir más módulos. Podría ser un dolor de culo después.
+            setLinkActivo(["","","","",""])
+            rutas === itemActivo.crearBlog && setLinkActivo(["side-nav__item--active","","","",""])
+            rutas === itemActivo.guardado && setLinkActivo(["","side-nav__item--active","","",""])
+            rutas === itemActivo.mensaje && setLinkActivo(["","","side-nav__item--active","",""])
+            rutas === itemActivo.blog && setLinkActivo(["","","","side-nav__item--active",""])
+            rutas === itemActivo.carousel && setLinkActivo(["","","","","side-nav__item--active"])
         } else {
-            setLinkActivo(["","","",""]);
+            setLinkActivo(["","","","",""]);
         }
     },[rutas])
 
@@ -51,28 +57,39 @@ const SidebarAdmin = () => {
                     </div>
                 </div>
                 <ul className="side-nav">
+                    {/**CREAR BLOG, lA[0] */}
                     <li className={`side-nav__item ${linkActivo[0]}`}>
                         <NavLink to="/admin/crearBlog" className={`side-nav__link`}>
                             <MdCreate className="side-nav__icon"/>
                             <span>Crear Blog</span>
                         </NavLink>
                     </li>
+                    {/**GUARDADOS lA[1] */}
                     <li className={`side-nav__item ${linkActivo[1]}`}>
                         <NavLink to="/admin/guardados" className={`side-nav__link`}>
                             <FiSave className="side-nav__icon"/>
                             <span>Guardados</span>
                         </NavLink>
                     </li>
+                    {/**MENSAJES lA[2] */}
                     <li className={`side-nav__item ${linkActivo[2]}`}>
                         <NavLink to="/admin/mensajes" className={`side-nav__link`}>
                             <FiMessageSquare className="side-nav__icon"/>
                             <span>Mensajes</span>
                         </NavLink>
                     </li>
+                    {/**BLOG lA[3] */}
                     <li className={`side-nav__item ${linkActivo[3]}`}>
                         <NavLink to="/admin/blog" className={`side-nav__link`}>
                             <RiArticleLine className="side-nav__icon side-nav__icon-article"/>
                             <span>Blogs</span>
+                        </NavLink>
+                    </li>
+                    {/**CAROUSEL lA[4] */}
+                    <li className={`side-nav__item ${linkActivo[4]}`}>
+                        <NavLink to="/admin/carousel" className={`side-nav__link`}>
+                            <BiCarousel className="side-nav__icon side-nav__icon-article"/>
+                            <span>Carrusel</span>
                         </NavLink>
                     </li>
                     <li className={`side-nav__item`}>

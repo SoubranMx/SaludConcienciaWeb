@@ -15,6 +15,7 @@ import { auth } from '../../firebase';
 import Perfil from './Perfil';
 import BuscarBlog from '../Blog/BuscarBlog';
 import Mensajes from './Mensajes';
+import CarouselSelector from './CarouselSelector';
 
 
 
@@ -46,6 +47,16 @@ const Admin = (props) => {
         }
     },[props.history])
 
+
+    /**
+     * Para añadir más módulos, basta con crear el componente y llamarlo en el switch.
+     * rutaNueva > saludconciencia.com.mx/admin/rutaNueva
+     * case 'rutaNueva':
+     *      setContenido((<nuevoComponente />))
+     *      break;
+     * 
+     * No olvidar agregarlo en imports.
+     */
     
 
     React.useEffect( () => {
@@ -79,6 +90,10 @@ const Admin = (props) => {
                         
                     case 'mensajes':
                         setContenido((<Mensajes />))
+                        break;
+
+                    case 'carousel':
+                        setContenido((<CarouselSelector /> ))
                         break;
 
                     default:
