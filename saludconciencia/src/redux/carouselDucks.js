@@ -4,7 +4,7 @@ const dataInicial = {
     uploading: false,
     uploaded: false,
     loading: undefined,
-    carousel: []
+    carousel: undefined
 }
     //types
     const CARGANDO_IMAGENES = "CARGANDO_IMAGENES";

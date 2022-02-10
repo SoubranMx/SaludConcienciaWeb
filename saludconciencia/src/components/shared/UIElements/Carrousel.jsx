@@ -18,32 +18,37 @@ const Carrousel = () => {
         dispatch(cargarImgCarouselAccion())
     },[])
 
-    return carousel.length === 0 ? (
-        <Carousel
-            showThumbs={false}
-            showStatus={false}
-        >
-            <div>
-                <img src={img1} alt="" />
+    return carousel === undefined ? (
+        <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+            <div className="spinner-border" role="status" style={{width: "3rem", height: "3rem"}}>
+                <span className="visually-hidden">Cargando...</span>
             </div>
-            {/* <div>
-                <img src={img4} alt="" />
-            </div>
-            <div>
-                <img src={img5} alt="" />
-            </div> */}
-        </Carousel>
+        </div>
     ):(
-        <Carousel
-            showThumbs={false}
-            showStatus={false}
-        >
-            {carousel.map((img,index) => (
-                <div key={index}>
-                    <img src={img.imgURL} alt="" />
+        carousel.length === 0 ? (
+            <Carousel
+                showThumbs={false}
+                showStatus={false}
+            >
+                <div>
+                    <img src={img1} alt="" />
                 </div>
-            ))}
-        </Carousel>
+            </Carousel>
+        ):
+        (
+            <Carousel
+                showThumbs={false}
+                showStatus={false}
+                autoPlay={true}
+                infiniteLoop={true}
+            >
+                {carousel.map((img,index) => (
+                    <div key={index}>
+                        <img src={img.imgURL} alt="" />
+                    </div>
+                ))}
+            </Carousel>
+        )
     );
 };
 

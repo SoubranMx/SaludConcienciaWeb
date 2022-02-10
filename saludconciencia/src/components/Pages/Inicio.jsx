@@ -36,6 +36,7 @@ const Inicio = (props) => {
         }
     },[props.history])
     
+    const slide0 = useRef(null)
     const slide1 = useRef(null)
     const slide2 = useRef(null)
     const slide3 = useRef(null)
@@ -53,6 +54,8 @@ const Inicio = (props) => {
 
     const goToSlide = (slideActual) => {
         switch(slideActual){
+            case 0:
+                slide1.current.scrollIntoView({behavior: 'smooth', block: 'start'})
             case 1:
                 slide2.current.scrollIntoView({behavior: 'smooth', block: 'start'})
                 break;
@@ -89,7 +92,7 @@ const Inicio = (props) => {
     return (
         <div className="index__container">
             {/* Slide 0 - Carrousel */}
-            <div className="index__slide__0">
+            <div className="index__slide__0" ref={slide0}>
                 <Carrousel/>
             </div>
             {/* Slide 1 */}
