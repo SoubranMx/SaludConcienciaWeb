@@ -71,8 +71,6 @@ const CarouselSelector = () => {
     }
 
     const onDeleteHandler = () => {
-        console.log("Item a borrar > ", carouselItemActivo)
-        
         dispatch(eliminarImgCarouselAccion(carouselItemActivo))
         setcarouselItemActivo(0)
     }

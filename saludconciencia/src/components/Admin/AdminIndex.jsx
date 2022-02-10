@@ -15,16 +15,34 @@ const AdminIndex = (props) => {
     return (
         <div>
             <div className="update__info">
-                <h1 className="update__info-version">Salud Conciencia Version 0.9.0</h1>
+                <h1 className="update__info-version">Salud Conciencia Version 1.1.0</h1>
                 <div className="accordion" id="accordionExample">
 
                     <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingSix">
+                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                Version 1.1.0
+                            </button>
+                            </h2>
+                            <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
+                                    <p>Cambios de la versión</p>
+                                    <ul className="update__info__cambios">
+                                        <li className="update__info__cambios-item">Se agregó el componente de Carrusel.</li>
+                                        <li className="update__info__cambios-item">El carrusel es visto en el inicio de la página y en la sección correspondiente en admin.</li>
+                                        <li className="update__info__cambios-item">En admin, pueden subirse imágenes desde la computadora y eliminar cualquiera seleccionada. Este cambio afecta tanto a la página de inicio como la de admin.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    <div className="accordion-item">
                         <h2 className="accordion-header" id="headingFive">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
                             Version 0.9.0
                         </button>
                         </h2>
-                        <div id="collapseFive" className="accordion-collapse collapse show" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                        <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <p>Cambios de la versión</p>
                                 <ul className="update__info__cambios">

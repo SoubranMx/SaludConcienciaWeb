@@ -3,7 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useDispatch, useSelector } from 'react-redux';
 
-import img1 from './img/loading.jpg';
+import img1 from './img/prueba1.png';
 import img2 from './img/prueba2.png';
 import img3 from './img/prueba3.png';
 import img4 from './img/prueba4.png';

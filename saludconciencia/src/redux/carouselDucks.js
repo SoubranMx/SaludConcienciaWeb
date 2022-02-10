@@ -79,7 +79,7 @@ export const eliminarImgCarouselAccion = (ordenImg) => async(dispatch, getState)
         await db.collection('carousel').doc(carouselActual[ordenImg].id).delete();
 
         //referencia al archivo mediante el nombre en carousel/nombre.ext
-        console.log(carouselActual[ordenImg].name)
+        //console.log(carouselActual[ordenImg].name)
         const imagenRef = storage.ref().child("carousel").child(carouselActual[ordenImg].name)
         //console.log(carouselActual[ordenImg].name)
         //Eliminamos de storage
@@ -147,7 +147,7 @@ export const cargarImgCarouselAccion = () => async(dispatch) => {
             imagenesCargadas.push({imgURL: doc.data().imgURL, orden: doc.data().orden, name: doc.data().name, id: doc.id})
         })
 
-        console.log(imagenesCargadas);
+        //console.log(imagenesCargadas);
         dispatch({
             type: CARGA_IMAGENES_EXITO,
             payload: imagenesCargadas
