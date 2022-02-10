@@ -3,7 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useDispatch, useSelector } from 'react-redux';
 
-import img1 from './img/prueba1.png';
+import img1 from './img/loading.jpg';
 import img2 from './img/prueba2.png';
 import img3 from './img/prueba3.png';
 import img4 from './img/prueba4.png';
@@ -24,14 +24,14 @@ const Carrousel = () => {
             showStatus={false}
         >
             <div>
-                <img src={img3} alt="" />
+                <img src={img1} alt="" />
             </div>
-            <div>
+            {/* <div>
                 <img src={img4} alt="" />
             </div>
             <div>
                 <img src={img5} alt="" />
-            </div>
+            </div> */}
         </Carousel>
     ):(
         <Carousel
