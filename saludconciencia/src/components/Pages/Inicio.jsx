@@ -55,7 +55,7 @@ const Inicio = (props) => {
     const goToSlide = (slideActual) => {
         switch(slideActual){
             case 0:
-                slide1.current.scrollIntoView({behavior: 'smooth', block: 'start'})
+                slide0.current.scrollIntoView({behavior: 'smooth', block: 'start'})
             case 1:
                 slide2.current.scrollIntoView({behavior: 'smooth', block: 'start'})
                 break;
@@ -96,7 +96,7 @@ const Inicio = (props) => {
                 <Carrousel/>
             </div>
             {/* Slide 1 */}
-            <div className="index__slide__1" ref={slide1}>
+            {/* <div className="index__slide__1" ref={slide1}>
                 <div className="index__slide__1-box">
                     <div className="index__slide__1__textleft">
                         <div className="lexend lexend__bold text__green index__slide__1__textleft-up">
@@ -114,7 +114,7 @@ const Inicio = (props) => {
                         <img src={presentacion_1} alt="Presentación del concepto" className="index__slide__1__figure-img"/>
                     </figure>
                 </div>
-            </div>
+            </div> */}
 
             {/* Slide 2 */}
             <div className="index__slide__2" ref={slide2}>
@@ -131,7 +131,8 @@ const Inicio = (props) => {
                             <span className="index__slide__2__textleft-mid-mobile">Escucha información fresca, útil y relevante sobre tu salud.</span>
                         </div>
                         <div className="index__slide__2__textleft-down poppins poppins__semibold poppins__semibold-15">
-                            <Link to="/" className="index__slide__2__textleft-down-link-1" onClick={()=>goToSlide(2)}><span>Escúchanos Aquí.</span></Link>
+                            {/* <Link to="/" className="index__slide__2__textleft-down-link-1" onClick={()=>goToSlide(2)}><span>Escúchanos Aquí.</span></Link> */}
+                            <a href="https://open.spotify.com/show/1UbXMTAER9PxE0DZuRR3xy?si=c0877ac907324d3d" className="index__slide__2__textleft-down-link-1" target="_blank" rel="noreferrer noopener"><span>Escúchanos Aquí.</span></a>
                         </div>
                     </div>
                     <figure className="index__slide__2__figure">

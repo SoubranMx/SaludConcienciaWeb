@@ -22,13 +22,23 @@ const CarouselSelector = () => {
     useEffect(()=>{
         console.log("Antes de cargar las imagenes => ")
         dispatch(cargarImgCarouselAccion())
+        //console.log("cA => ", carouselActual)
     },[])
 
     useEffect(()=>{
         const loadCarousel = () => {
-            setCarouselActualState([...carouselActual])
+            //console.log(carouselActual)
+            //console.log(carouselActualState)
+            if(carouselActual.length !== 0){
+                setCarouselActualState([...carouselActual])
+            } else {
+                setCarouselActualState([])
+            }
         }
-        if(carouselActual === undefined || carouselActual!==carouselActualState)
+
+        // console.log("cA2 => ", carouselActual)
+        // console.log("cAS => ", carouselActualState)
+        if(carouselActual!==carouselActualState)
             loadCarousel()
     },[carouselActual])
 
@@ -75,7 +85,7 @@ const CarouselSelector = () => {
         setcarouselItemActivo(0)
     }
 
-    return isLoading === true ? (
+    return isLoading === true && carouselActualState === undefined ? (
         <div>Cargando ...</div>
     ):(
         <div className='container carouselContainer'>

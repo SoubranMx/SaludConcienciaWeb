@@ -3,8 +3,8 @@ import { db, storage, auth } from "../firebase";
 const dataInicial = {
     uploading: false,
     uploaded: false,
-    loading: undefined,
-    carousel: undefined
+    carousel: [],
+    loading: undefined
 }
     //types
     const CARGANDO_IMAGENES = "CARGANDO_IMAGENES";
