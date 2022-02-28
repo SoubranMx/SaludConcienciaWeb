@@ -5,13 +5,15 @@ import blogsReducer from './blogsDucks'
 import adminReducer, {leerAdminActivoAccion} from './adminDucks';
 import contactoReducer from './contactoDucks';
 import carouselReducer from './carouselDucks';
+import autoresReducer from './autoresDucks';
 
 
 const rootReducer = combineReducers({
     blogs: blogsReducer,
     admin: adminReducer,
     contacto: contactoReducer,
-    carousel: carouselReducer
+    carousel: carouselReducer,
+    autores: autoresReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

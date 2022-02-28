@@ -69,15 +69,6 @@ const BuscarBlog = (props) => {
             )
         }
     }
-
-    // return blogExists === true ? (
-    // ) : (
-    //     {
-    //         blogAMostrar !== null ? (
-    //         ) : (
-    //         )
-    //     }
-    // )
 }
 
 export default BuscarBlog

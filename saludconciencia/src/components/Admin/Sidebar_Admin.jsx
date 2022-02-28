@@ -10,6 +10,7 @@ import {IoPower} from 'react-icons/io5';
 import {MdCreate} from 'react-icons/md';
 import {RiArticleLine} from 'react-icons/ri';
 import { BiCarousel } from "react-icons/bi";
+import { FaUsers } from 'react-icons/fa';
 
 
 import logo from '../../resources/nav-logo.png';
@@ -26,7 +27,8 @@ const SidebarAdmin = () => {
         guardado: "guardados",
         mensaje: "mensajes",
         blog: "blog",
-        carousel: "carousel"
+        carousel: "carousel",
+        autor: "autores"
     }
 
     useEffect(()=>{
@@ -36,11 +38,12 @@ const SidebarAdmin = () => {
             // Son 5 por la cantidad de itemActivo, si se añaden más, se deben cambiar manualmente ... un diseño un poco flojo, a decir verdad.
             // Hasta este comentario, solo eran 4, no consideré que se podían añadir más módulos. Podría ser un dolor de culo después.
             setLinkActivo(["","","","",""])
-            rutas === itemActivo.crearBlog && setLinkActivo(["side-nav__item--active","","","",""])
-            rutas === itemActivo.guardado && setLinkActivo(["","side-nav__item--active","","",""])
-            rutas === itemActivo.mensaje && setLinkActivo(["","","side-nav__item--active","",""])
-            rutas === itemActivo.blog && setLinkActivo(["","","","side-nav__item--active",""])
-            rutas === itemActivo.carousel && setLinkActivo(["","","","","side-nav__item--active"])
+            rutas === itemActivo.crearBlog && setLinkActivo(["side-nav__item--active","","","","",""])
+            rutas === itemActivo.guardado && setLinkActivo(["","side-nav__item--active","","","",""])
+            rutas === itemActivo.mensaje && setLinkActivo(["","","side-nav__item--active","","",""])
+            rutas === itemActivo.blog && setLinkActivo(["","","","side-nav__item--active","",""])
+            rutas === itemActivo.carousel && setLinkActivo(["","","","","side-nav__item--active",""])
+            rutas === itemActivo.autor && setLinkActivo(["","","","","","side-nav__item--active"])
         } else {
             setLinkActivo(["","","","",""]);
         }
@@ -90,6 +93,13 @@ const SidebarAdmin = () => {
                         <NavLink to="/admin/carousel" className={`side-nav__link`}>
                             <BiCarousel className="side-nav__icon side-nav__icon-article"/>
                             <span>Carrusel</span>
+                        </NavLink>
+                    </li>
+                    {/**AUTORES lA[5] */}
+                    <li className={`side-nav__item ${linkActivo[5]}`}>
+                        <NavLink to="/admin/autores" className={`side-nav__link`}>
+                            <FaUsers className="side-nav__icon side-nav__icon-article"/>
+                            <span>Autores</span>
                         </NavLink>
                     </li>
                     <li className={`side-nav__item`}>

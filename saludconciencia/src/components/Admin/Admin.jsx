@@ -16,6 +16,7 @@ import Perfil from './Perfil';
 import BuscarBlog from '../Blog/BuscarBlog';
 import Mensajes from './Mensajes';
 import CarouselSelector from './CarouselSelector';
+import CreateUser from './CreateUser';
 
 
 
@@ -94,6 +95,9 @@ const Admin = (props) => {
 
                     case 'carousel':
                         setContenido((<CarouselSelector /> ))
+                        break;
+                    case 'autores':
+                        setContenido((<CreateUser />))
                         break;
 
                     default:

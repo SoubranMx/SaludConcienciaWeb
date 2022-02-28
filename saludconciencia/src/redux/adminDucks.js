@@ -98,6 +98,7 @@ export const leerAdminActivoAccion = () => (dispatch, getState) => {
 export const logoutAdminAccion = () => async (dispatch) => {
     auth.signOut(); //signOut de firebase
     localStorage.removeItem('admin')    //eliminar usuario del itemStorage para "cerrar sesion" localmente
+    localStorage.removeItem('autores')
     dispatch({
         type: LOGOUT_EXITO
     })

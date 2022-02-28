@@ -7,12 +7,14 @@ const BlogHeader = (props) => {
     const [displayName, setDisplayName] = useState("Julián Uriarte")
     const [urlAutorImg, setUrlAutorImg] = useState("")
     const [autor, setAutor] = useState("")
+    
     useEffect(() => {
         const cargaInicial = async() => {
             setAutor(await db.collection('admin').doc(props.autor).get())
         }
         cargaInicial()
     },[props.autor])
+
     useEffect(()=>{
         const cargarDatosAutor = () => {
             setDisplayName(autor.data().displayName)
