@@ -19,6 +19,10 @@ import moment from 'moment';
 import BlogHeader from './BlogHeader'
 import '../../sass/_showBlog.scss'
 
+/**
+ * 
+ * props => contiene el blog completo, blogShow => {uid, titulo, tipo, imgPortada, editor, link, descripcion, autor, tags, fecha}
+ */
 const ShowBlog = (props) => {
     //Para los botones de social media
     const socialIconSize = `4.0rem`;
@@ -26,10 +30,12 @@ const ShowBlog = (props) => {
 
     const articulo = useRef(null)
 
+
+
+
     useEffect(()=>{
         articulo !== null && articulo.current.scrollIntoView({behavior: 'smooth'})
     },[articulo])
-    
 
     const getSubListUnordered = (items) => {
         let jsx;
@@ -127,19 +133,19 @@ const ShowBlog = (props) => {
                                         break;
 
                                     case "list":
-                                        block.data.map(item => {
-                                            if(item.style === "unordered"){
-                                                return(
-                                                    <ul className="showBlog__article__post-item article__unorderedList">
-                                                        {
-                                                            getListsUnordered(item.items)
-                                                        }
-                                                    </ul>
-                                                )
-                                            }else{
+                                        // block.data.map(item => {
+                                        //     if(item.style === "unordered"){
+                                        //         return(
+                                        //             <ul className="showBlog__article__post-item article__unorderedList">
+                                        //                 {
+                                        //                     getListsUnordered(item.items)
+                                        //                 }
+                                        //             </ul>
+                                        //         )
+                                        //     }else{
 
-                                            }
-                                        })
+                                        //     }
+                                        // })
                                         return "List"
 
                                     case "quote":

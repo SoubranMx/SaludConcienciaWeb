@@ -4,11 +4,13 @@ const dataInicial = {
     loading: false,
     uploading: false,
     reload: false,
-    autoresExistentes: []
+    autoresExistentes: [],
+    autoresDeBlog: []
 }
     //types
     const AGREGAR_AUTOR_EXITO = "AGREGAR_AUTOR_EXITO"
     const LEER_AUTORES_EXISTENTES_EXITO = "LEER_AUTORES_EXISTENTES_EXITO"
+    const LEER_AUTORES_BLOG_EXITO = "LEER_AUTORES_BLOG_EXITO"
     const LOADING_AUTORES = "LOADING_AUTORES"
     const UPLOAD_IMG_AUTOR_EXITO = "UPLOAD_IMG_AUTOR_EXITO"
     const SUBIENDO_IMAGEN = "SUBIENDO_IMAGEN"
@@ -21,6 +23,8 @@ export default function autoresReducer(state = dataInicial, action) {
     switch(action.type){
         case AGREGAR_AUTOR_EXITO:
             return {...state, autoresExistentes: [...state.autoresExistentes, action.payload]}
+        case LEER_AUTORES_BLOG_EXITO:
+            return {...state, autoresDeBlog: [...action.payload]}
         case LEER_AUTORES_EXISTENTES_EXITO:
             return {...state, autoresExistentes: [...action.payload], loading: false}
         case SUBIENDO_IMAGEN:
@@ -160,4 +164,31 @@ export const reloadAutoresAccion = () => (dispatch) => {
     dispatch({
         type: RELOAD_AUTORES_FIN
     })
+}
+
+export const leerAutoresBlogAccion = (autoresEmail) => (dispatch, getState) => {
+    /**
+     * autoresEmail deberia tener un array con los emails de los que fueron autores del blog
+     * tipo autoresEmail = ["saludconciencia@outlook.es", "uriel_bee15@hotmail.com"] etc
+     * 
+     * autores debe tener un array de objetos 
+     * {
+     *  email: "email.com",
+     *  name: "Nombre Autor",
+     *  photoURL: "url.com"
+     * }
+     */
+    let autores = getState().autores.autoresExistentes;
+    let autoresHelper = {}
+    let autoresDelBlog = []
+    autoresEmail.forEach((emailRecibido, index) => {
+        autoresHelper = autores.find(autor => autor.email === emailRecibido)
+        autoresDelBlog.push(autoresHelper)
+    })
+
+    dispatch({
+        type: LEER_AUTORES_BLOG_EXITO,
+        payload: autoresDelBlog
+    })
+    
 }

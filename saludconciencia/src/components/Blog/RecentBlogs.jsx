@@ -19,19 +19,19 @@ const RecentBlogs = (props) => {
     const [autor2, setAutor2] = useState("")
 
     useEffect(()=>{
-        const cargarAutorRecent = async() => {
-            if(blogs[0] !== undefined && blogs[0] !== null){
-                const displayName = await db.collection('admin').doc(blogs[0].data.autor).get();
-                //console.log("displayName auth1 => ", displayName.data().displayName)
-                setAutor1(displayName.data().displayName)
-            }
-            if(blogs[1] !== undefined){
-                const displayName2 = await db.collection('admin').doc(blogs[1].data.autor).get();
-                setAutor2(displayName2.data().displayName)
-            }
-        }
+        // const cargarAutorRecent = async() => {
+        //     if(blogs[0] !== undefined && blogs[0] !== null){
+        //         const displayName = await db.collection('admin').doc(blogs[0].data.autor).get();
+        //         //console.log("displayName auth1 => ", displayName.data().displayName)
+        //         setAutor1(displayName.data().displayName)
+        //     }
+        //     if(blogs[1] !== undefined){
+        //         const displayName2 = await db.collection('admin').doc(blogs[1].data.autor).get();
+        //         setAutor2(displayName2.data().displayName)
+        //     }
+        // }
         if(blogs !== undefined){
-            cargarAutorRecent()
+            //cargarAutorRecent()
         }
     },[blogs])
 

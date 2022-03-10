@@ -2,27 +2,45 @@ import React, {useState,useEffect} from 'react'
 import { db } from '../../firebase'
 import moment from 'moment'
 import '../../sass/_blogHeader.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { leerAutoresAccion, leerAutoresBlogAccion } from '../../redux/autoresDucks'
 
 const BlogHeader = (props) => {
+
+    const dispatch = useDispatch()
+    const autorInfo = useSelector(store => store.autores.autoresExistentes)
+    const autoresDelBlog = useSelector(store => store.autores.autoresDeBlog)
+
+
     const [displayName, setDisplayName] = useState("Julián Uriarte")
     const [urlAutorImg, setUrlAutorImg] = useState("")
-    const [autor, setAutor] = useState("")
+    const [autorCargado, setAutorCargado] = useState(null)
     
     useEffect(() => {
-        const cargaInicial = async() => {
-            setAutor(await db.collection('admin').doc(props.autor).get())
+        const cargaInicial = () => {
+            dispatch(leerAutoresAccion())
         }
         cargaInicial()
     },[props.autor])
 
-    useEffect(()=>{
-        const cargarDatosAutor = () => {
-            setDisplayName(autor.data().displayName)
-            setUrlAutorImg(autor.data().photoUrl)
+    useEffect(() => {
+        const cargaInicial = async() => {
+            console.log("autorInfo Selector => ", autorInfo)
+            dispatch(leerAutoresBlogAccion(props.autor))
         }
-        if(autor !== "")
-            cargarDatosAutor()
-    },[autor])
+        // if(autorInfo.length !== 0 && autoresDelBlog.length === 0){
+        // }
+        // Si meto cargaInicial aqui, cuando se cambie a otro blog no se actualizan los autores, se queda con el primer visto.
+        cargaInicial()
+        
+        if(autoresDelBlog.length !== 0 && autorCargado === null){
+            console.log("autoresDelBlog Selector => ", autoresDelBlog)
+            console.log("autor State => ", autorCargado)
+            setAutorCargado(true)
+        }
+        console.log("autor State outside => ", autorCargado)
+    },[autorInfo, autoresDelBlog, autorCargado])
+
 
     return (
         <header className="showBlog__header content-width">
@@ -34,13 +52,27 @@ const BlogHeader = (props) => {
                 }
             </div>
             <h1 className="showBlog__header__title">{props.titulo}</h1>
-            <div className="showBlog__header__autor">
-                <img src={urlAutorImg} alt="Foto del autor" className="showBlog__header__autor-img"/>
-                <div className="showBlog__header__autor__info">
-                    <div className="showBlog__header__autor__info-name">Por: <span>{displayName}</span></div>
-                    <div className="showBlog__header__autor__info-fecha">{moment(props.fecha).format("LL")}</div>
-                </div>
+            <span className='showBlog__header__por'>Por: </span>
+
+            <div className={autoresDelBlog.length > 1 ? "showBlog__header__autor" : "showBlog__header__autorUnico"}>
+                {
+                    autorCargado === true && (
+                        autoresDelBlog.map((autor, index) => {
+                            console.log("autor a mostrar => ", autor)
+                            return(
+                                <div className="showBlog__header__autor-item" key={index}>
+                                    <img src={autor.photoURL} alt="Foto del autor" className="showBlog__header__autor-img"/>
+                                    <div className="showBlog__header__autor__info-name">
+                                        {autor.name}
+                                    </div>
+                                </div>
+                            )
+                        })
+                    )
+                }
             </div>
+
+            <div className="showBlog__header__fecha">{moment(props.fecha).format("LL")}</div>
         </header>
     )
 }
