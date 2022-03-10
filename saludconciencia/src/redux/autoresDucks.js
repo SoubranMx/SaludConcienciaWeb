@@ -34,7 +34,7 @@ export default function autoresReducer(state = dataInicial, action) {
         case LOADING_AUTORES:
             return {...state, loading: true}
         case RELOAD_AUTORES:
-            return {...state, reload: true}
+            return {...state, reload: true, autoresDeBlog: []}
         case RELOAD_AUTORES_FIN:
             return {...state, reload: false}
         default:
@@ -191,4 +191,10 @@ export const leerAutoresBlogAccion = (autoresEmail) => (dispatch, getState) => {
         payload: autoresDelBlog
     })
     
+}
+
+export const clearAutoresBlogAccion = () => (dispatch) => {
+    dispatch({
+        type: RELOAD_AUTORES
+    })
 }

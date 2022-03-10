@@ -25,20 +25,20 @@ const BlogHeader = (props) => {
 
     useEffect(() => {
         const cargaInicial = async() => {
-            console.log("autorInfo Selector => ", autorInfo)
+            // console.log("autorInfo Selector => ", autorInfo)
             dispatch(leerAutoresBlogAccion(props.autor))
         }
-        // if(autorInfo.length !== 0 && autoresDelBlog.length === 0){
-        // }
+        if(autorInfo.length !== 0 && autoresDelBlog.length === 0){
+            cargaInicial()
+        }
         // Si meto cargaInicial aqui, cuando se cambie a otro blog no se actualizan los autores, se queda con el primer visto.
-        cargaInicial()
         
         if(autoresDelBlog.length !== 0 && autorCargado === null){
-            console.log("autoresDelBlog Selector => ", autoresDelBlog)
-            console.log("autor State => ", autorCargado)
+            // console.log("autoresDelBlog Selector => ", autoresDelBlog)
+            // console.log("autor State => ", autorCargado)
             setAutorCargado(true)
         }
-        console.log("autor State outside => ", autorCargado)
+        // console.log("autor State outside => ", autorCargado)
     },[autorInfo, autoresDelBlog, autorCargado])
 
 
@@ -58,7 +58,7 @@ const BlogHeader = (props) => {
                 {
                     autorCargado === true && (
                         autoresDelBlog.map((autor, index) => {
-                            console.log("autor a mostrar => ", autor)
+                            // console.log("autor a mostrar => ", autor)
                             return(
                                 <div className="showBlog__header__autor-item" key={index}>
                                     <img src={autor.photoURL} alt="Foto del autor" className="showBlog__header__autor-img"/>

@@ -5,6 +5,7 @@ import RecentBlogs from './RecentBlogs'
 import LatestBlogs from './LatestBlogs'
 import { clearAllAccion, cargarMasBlogsAccion, leerBlogsPublicarAccion } from '../../redux/blogsDucks'
 import {db} from '../../firebase'
+import { clearAutoresBlogAccion } from '../../redux/autoresDucks'
 
 const Blog = () => {
     const refToTop = useRef(null)
@@ -21,6 +22,7 @@ const Blog = () => {
             console.log("Carga Inicial")
             dispatch(clearAllAccion())
             dispatch(leerBlogsPublicarAccion())
+            dispatch(clearAutoresBlogAccion())
         }
         cargaInicial()
     },[dispatch])
@@ -38,24 +40,24 @@ const Blog = () => {
 
         if(blogsFirebase !== undefined && blogsFirebase !== null){  //Asegura que se han cargado ya
             if(blogsFirebase.length <= 2){
-                console.log("Hay menos o igual a 2 blogs => ", blogsFirebase)
+                //console.log("Hay menos o igual a 2 blogs => ", blogsFirebase)
                 actualizarBlogsRecientesOnly()  //Solo activa blogs Recientes
             } else {    //Hay por lo menos 3 blogs en redux
-                console.log("Hay por lo menos 3 blogs")
+                //console.log("Hay por lo menos 3 blogs")
                 actualizarBlogs()   //Activa tanto blogs recientes como latest
             }
             refToTop.current.scrollIntoView({behavior: 'smooth', block: 'end'})
         }
     },[blogsFirebase])
 
-    useEffect(()=>{
-        if(blogsRecent === false && blogsLatest === false){
-            console.log("Carga Inicial en los estados")
-        } else {
-            console.log("BlogsRecent => ", blogsRecent)
-            console.log("BlogsLatest => ", blogsLatest)
-        }
-    },[blogsRecent, blogsLatest])
+    // useEffect(()=>{
+    //     if(blogsRecent === false && blogsLatest === false){
+    //         //console.log("Carga Inicial en los estados")
+    //     } else {
+    //         //console.log("BlogsRecent => ", blogsRecent)
+    //         //console.log("BlogsLatest => ", blogsLatest)
+    //     }
+    // },[blogsRecent, blogsLatest])
 
     const cargarMasBlogsHandler = () => {
         dispatch(cargarMasBlogsAccion())
