@@ -107,7 +107,7 @@ const CreateUser = () => {
           <div className="autor__main__agregar mt-5 text-center">
             <h3>Agregar más autores</h3>
             <form onSubmit={submitHandler} className="d-flex flex-column">
-              <div className="p-2">
+              <div className="p-2 autor__main__agregar-bloque">
                 <label htmlFor="email">Email</label>
                 <input 
                   type="email" 
@@ -116,7 +116,7 @@ const CreateUser = () => {
                   onChange={e=>setNewUserEmail(e.target.value)}
                   />
               </div>
-              <div className="p-2">
+              <div className="p-2 autor__main__agregar-bloque">
                 <label htmlFor="name">Nombre</label>
                 <input 
                   type="text" 
@@ -137,7 +137,7 @@ const CreateUser = () => {
               <div className="p-2">
                 <label 
                   htmlFor="imgUsuario"
-                  className='btn btn-dark'
+                  className='btn btn-success'
                 >
                   Subir imagen
                 </label>
@@ -153,7 +153,7 @@ const CreateUser = () => {
               </div>
               {errorMsg !== "" && (<p className='bg-danger text-white p-3'>{errorMsg}</p>)}
               {okMsg !== "" && ( <p className="bg-success text-white p-3">{okMsg}</p> )}
-              <button className={uploading ? "btn btn-dark disabled" : "btn btn-dark"}>Subir nuevo autor</button>
+              <button className={uploading ? "btn btn-dark disabled" : "btn btn-dark btn-lg"}>Subir nuevo autor</button>
             </form>
           </div>
       </div>
