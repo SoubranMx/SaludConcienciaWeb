@@ -14,7 +14,7 @@ const dataInicial = {
     blog: {
         tipo: "nuevo",
         uid: "",
-        autor: "",
+        autor: ["saludconciencia@outlook.es"],
         titulo: "",
         descripcion: "",
         tags: [],
@@ -607,21 +607,43 @@ export const clearAllAccion = () => dispatch => {
     })
 }
 
-export const updateAutorAccion = () => async(dispatch) => {
-    let emailDB = "";
-    if(localStorage.getItem('admin')){
-        emailDB = JSON.parse(localStorage.getItem('admin'))
-        emailDB = emailDB.email
+export const updateAutorAccion = (emailSelected) => async(dispatch, getState) => {
+    //let emailDB = "";
+    // if (getState().autores.autoresExistentes === []){
+    //     dispatch(leerAutores)
+    // }
+    // if(localStorage.getItem('admin')){
+        //     emailDB = JSON.parse(localStorage.getItem('admin'))
+        //     emailDB = emailDB.email
+        // }
+        
+    //let autores = getState().autores.autoresExistentes;
+    
+    // getState().autores.autoresExistentes.forEach((autor, index) => {
+    //     autoresEmail.push(autor.email)
+    // })
+    let authorsSelected = []
+
+    let thisAuthor = getState().blogs.blog.autor;
+
+    //array.find(element => element === nonExistentElement) => undefined
+    
+    if(thisAuthor.find(email => email === emailSelected) !== undefined){
+        authorsSelected = thisAuthor.filter(email => email !== emailSelected)
+    } else {
+        authorsSelected = [...thisAuthor, emailSelected]
     }
 
-    if(emailDB !== "") {
-        dispatch({
-            type: UPDATE_AUTOR_EXITO,
-            payload: emailDB
-        })
-    } else {
-        dispatch({
-            type: ERROR_AUTOR
-        })
-    }
+    dispatch({
+        type: UPDATE_AUTOR_EXITO,
+        payload: authorsSelected
+    })
+
+    // if(emailDB !== "") {
+    //     dispatch({
+    //         type: UPDATE_AUTOR_EXITO,
+    //         payload: emailDB
+    //     })
+    // } else {
+    // }
 }

@@ -5,7 +5,7 @@ import { updateDescripcionAccion,
     uploadImgPortadaAccion } from '../../../redux/blogsDucks';
 
 const Title = (props) => {
-    const [showPreview, setShowPreview] = useState("preview-off");
+    const [showPreview, setShowPreview] = useState("preview-off");  //Es una cadena porque es una className, en vez de usar true o false
     const [urlImagen, setUrlImagen] = useState("")
     const [error, setError] = useState(false)
     const [errorMsg, setErrorMsg] = useState("")

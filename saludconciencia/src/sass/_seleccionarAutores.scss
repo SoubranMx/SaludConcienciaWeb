@@ -1,0 +1,14 @@
+.headerTitle__authors{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    margin-top: 4rem;
+    // & > h2 {
+
+    // }
+}
+
+div > .selectedAuthor {
+    border: 2px solid #00BE00;
+}

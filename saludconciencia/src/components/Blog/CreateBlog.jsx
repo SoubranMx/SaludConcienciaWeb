@@ -9,6 +9,8 @@ import ButtonMain from '../shared/UIElements/ButtonMain';
 import TagsCreate from '../shared/UIElements/TagsCreate';
 import Title from '../shared/UIElements/Title';
 import { clearAllAccion, updateAutorAccion, updateEditorAccion, updateUidAccion } from '../../redux/blogsDucks';
+import { leerAutoresAccion } from '../../redux/autoresDucks';
+import SeleccionarAutores from './SeleccionarAutores';
 
 
 
@@ -17,16 +19,9 @@ const CreateBlog = () => {
     const EDITOR_HOLDER_ID = 'editorjs';
     const dispatch = useDispatch();
     const blogCargado = useSelector(store => store.blogs.blog)
+    //const autores = useSelector(store=>store.autores.autoresExistentes)
     const editorInstance = useRef();
     const [blogUsable, setBlogUsable] = useState(null)
-
-    //Cargar autor email al redux
-    useEffect(()=>{
-        const cargaAutor = () => {
-            dispatch(updateAutorAccion())
-        }
-        cargaAutor()
-    },[])
     
     //Cargar blog => default o cargado
     useEffect(()=>{
@@ -129,6 +124,12 @@ const CreateBlog = () => {
         e.preventDefault()
     }
 
+    const addAuthorHandler = (authors) => {
+        console.log("author added => ", authors);
+    }
+    const removeAuthorHandler = (author) => {
+        console.log("author removed => ", author);
+    }
     const addEditorHandler = async() => {
         try {
             dispatch(updateEditorAccion(await editorInstance.current.saver.save()))
@@ -157,6 +158,7 @@ const CreateBlog = () => {
                             descripcionInput={blogUsable.descripcion}
                         />
                         <TagsCreate tags={[...blogUsable.tags]}/>
+                        <SeleccionarAutores />
                     </div>
                     <div className="editorJS__container">
                         <div 
