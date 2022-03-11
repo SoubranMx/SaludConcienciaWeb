@@ -15,26 +15,49 @@ const AdminIndex = (props) => {
     return (
         <div>
             <div className="update__info">
-                <h1 className="update__info-version">Salud Conciencia Version 1.1.0</h1>
+                <h1 className="update__info-version">Salud Conciencia Version 1.2.0</h1>
                 <div className="accordion" id="accordionExample">
 
                     <div className="accordion-item">
-                            <h2 className="accordion-header" id="headingSix">
-                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                                Version 1.1.0
-                            </button>
-                            </h2>
-                            <div id="collapseSix" className="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                                <div className="accordion-body">
-                                    <p>Cambios de la versión</p>
-                                    <ul className="update__info__cambios">
-                                        <li className="update__info__cambios-item">Se agregó el componente de Carrusel.</li>
-                                        <li className="update__info__cambios-item">El carrusel es visto en el inicio de la página y en la sección correspondiente en admin.</li>
-                                        <li className="update__info__cambios-item">En admin, pueden subirse imágenes desde la computadora y eliminar cualquiera seleccionada. Este cambio afecta tanto a la página de inicio como la de admin.</li>
-                                    </ul>
-                                </div>
+                        <h2 className="accordion-header" id="headingSeven">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSix">
+                            Version 1.2.0
+                        </button>
+                        </h2>
+                        <div id="collapseSeven" className="accordion-collapse collapse show" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <p>Cambios de la versión</p>
+                                <ul className="update__info__cambios">
+                                    <li className="update__info__cambios-item">Se agregó compatibilidad con múltiples autores.</li>
+                                    <li className="update__info__cambios-item">El administrador puede dar de alta distintos autores en la sección autores (con nombre, foto y email)</li>
+                                    <li className="update__info__cambios-item">Estos autores serán seleccionables al momento de escribir un Blog.</li>
+                                    <li className="update__info__cambios-item">Los autores seleccionados aparecen con un borde verde. Por defecto está seleccionado el administrador (Julián Uriarte)</li>
+                                    <li className="update__info__cambios-item">Se seleccionan autores simplemente dando clic encima de la tarjeta del autor. Del mismo modo, si se da clic a un autor seleccionado, este se deseleccionará.</li>
+                                    <li className="update__info__cambios-item">Es posible que haya problemas si no hay autores seleccionados. Se resolverá en un futuro. Por tanto, cuidar que siempre haya por lo menos uno seleccionado.</li>
+                                    <li className="update__info__cambios-item">Estos cambios se ven reflejados en el blog. Se cambiaron los estilos para dar cábida a más autores.</li>
+                                    <li className="update__info__cambios-item">Se cambió el tamaño del Carrusel de la página inicial.</li>
+                                </ul>
                             </div>
                         </div>
+                    </div>
+
+                    <div className="accordion-item">
+                        <h2 className="accordion-header" id="headingSix">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                            Version 1.1.0
+                        </button>
+                        </h2>
+                        <div id="collapseSix" className="accordion-collapse collapsed" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <p>Cambios de la versión</p>
+                                <ul className="update__info__cambios">
+                                    <li className="update__info__cambios-item">Se agregó el componente de Carrusel.</li>
+                                    <li className="update__info__cambios-item">El carrusel es visto en el inicio de la página y en la sección correspondiente en admin.</li>
+                                    <li className="update__info__cambios-item">En admin, pueden subirse imágenes desde la computadora y eliminar cualquiera seleccionada. Este cambio afecta tanto a la página de inicio como la de admin.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingFive">

@@ -36,18 +36,20 @@ const Carrousel = () => {
             </Carousel>
         ):
         (
-            <Carousel
-                showThumbs={false}
-                showStatus={false}
-                autoPlay={true}
-                infiniteLoop={true}
-            >
-                {carousel.map((img,index) => (
-                    <div key={index}>
-                        <img src={img.imgURL} alt="" />
-                    </div>
-                ))}
-            </Carousel>
+            <div>
+                <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    autoPlay={true}
+                    infiniteLoop={true}
+                >
+                    {carousel.map((img,index) => (
+                        <div key={index}>
+                            <img src={img.imgURL} alt="" />
+                        </div>
+                    ))}
+                </Carousel>
+            </div>
         )
     );
 };
