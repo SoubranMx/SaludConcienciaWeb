@@ -93,7 +93,7 @@ const Inicio = (props) => {
         <div className="index__container">
             {/* Slide 0 - Carrousel */}
             <div className="index__slide__0" ref={slide0}>
-                <Carrousel/>
+                <Carrousel links={linksRS}/>
             </div>
             {/* Slide 1 */}
             {/* <div className="index__slide__1" ref={slide1}>

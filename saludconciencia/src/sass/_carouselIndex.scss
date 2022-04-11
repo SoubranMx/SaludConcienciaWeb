@@ -1,0 +1,76 @@
+@import './colors';
+
+.index__slide__0{
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    //Icons container
+    &__carousel-mobile{
+        display: none;
+    }
+
+}
+
+
+.carousel__mobile-index__icons{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    // & > a {
+    //     width: 100%;
+    //     height: 100%;
+    // }
+    &-item{
+        $size: 50%;
+        height: $size;
+        width: $size;
+        fill: $color_text_green;
+    }
+}
+
+.carousel-root > .carousel > .control-dots{
+    margin-bottom: 2%;
+}
+
+//Carousel container width
+.carousel-root{
+    width: 80%;
+}
+
+
+@media only screen and (max-width: 768px){
+    
+    //Carousel container width
+    .carousel-root{
+        width: 100%;
+    }
+
+    .index__slide__0{
+        height: auto;
+        &__carousel-mobile{
+            display: flex;
+            width: 100%;
+            margin: 10% 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 576px){
+
+    .index__slide__0{
+        height: auto;
+        margin-bottom: -25%;
+        &__carousel-mobile{
+            display: flex;
+            width: 100%;
+            margin: 10% 0;
+        }
+    }
+}
