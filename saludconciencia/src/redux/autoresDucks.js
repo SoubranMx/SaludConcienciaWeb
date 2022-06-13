@@ -17,6 +17,8 @@ const dataInicial = {
     const ERROR_SUBIENDO_IMAGEN = "ERROR_SUBIENDO_IMAGEN"
     const RELOAD_AUTORES = "RELOAD_AUTORES"
     const RELOAD_AUTORES_FIN = "RELOAD_AUTORES_FIN"
+    const ELIMINANDO_AUTOR = "ELIMINANDO_AUTOR"
+    const ELIMINANDO_AUTOR_EXITO = "ELIMINANDO_AUTOR_EXITO"
     
 //reducer
 export default function autoresReducer(state = dataInicial, action) {
@@ -37,6 +39,10 @@ export default function autoresReducer(state = dataInicial, action) {
             return {...state, reload: true, autoresDeBlog: []}
         case RELOAD_AUTORES_FIN:
             return {...state, reload: false}
+        case ELIMINANDO_AUTOR:
+            return {...state, loading: true}
+        case ELIMINANDO_AUTOR_EXITO:
+            return {...state, loading: false, autoresExistentes: [...action.payload]}
         default:
             return {...state}
     }
@@ -102,23 +108,22 @@ export const agregarAutoresAccion = (email, displayName, imagen) => async (dispa
  */
 export const leerAutoresAccion = () => async (dispatch) => {
     try {
-        const lsAutores = localStorage.getItem('autores')
+        //const lsAutores = localStorage.getItem('autores')
         let autorDB = []
         dispatch({
             type: LOADING_AUTORES
         })
 
-        if(lsAutores){
-            autorDB = JSON.parse(lsAutores)
-        }else{
-            const res = await db.collection('autores').get();
-            res.forEach((doc) => {
-                autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
-            })
+        //console.log("leerAutores else => ")
+        const res = await db.collection('autores').get();
+        res.forEach((doc) => {
+            autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
+        })
+        //console.log("leerAutores autorDB => ", autorDB)
 
-            //Guardamos en LS para no tener que leer a cada rato autores de Firestore
-            localStorage.setItem('autores', JSON.stringify(autorDB))
-        }
+        //Update> nunca quitaba localStorage, so ... si habian mas autores, no se encontraban en el deploy.
+        //Guardamos en LS para no tener que leer a cada rato autores de Firestore
+        //localStorage.setItem('autores', JSON.stringify(autorDB))
 
         dispatch({
             type: LEER_AUTORES_EXISTENTES_EXITO,
@@ -197,4 +202,30 @@ export const clearAutoresBlogAccion = () => (dispatch) => {
     dispatch({
         type: RELOAD_AUTORES
     })
+}
+
+export const eliminarAutorAccion = (email) => async(dispatch, getState) => {
+    try {
+        dispatch({
+            type: ELIMINANDO_AUTOR
+        })
+
+        //Eliminar de la coleccion
+        await db.collection("autores").doc(email).delete()
+        //Eliminar foto
+        await storage.ref().child('profile_images').child(email).child('foto_perfil.jpg').delete()
+
+        //Eliminar de autores existentes state
+        let newAutorDB = []
+        newAutorDB = getState().autores.autoresExistentes.filter((e)=>{return e.email!==email})
+        //console.log(newAutorDB)
+
+        dispatch({
+            type: ELIMINANDO_AUTOR_EXITO,
+            payload: newAutorDB
+        })
+
+    } catch (error) {
+        console.log("Error al eliminar autor => ", error)
+    }
 }

@@ -14,35 +14,39 @@ const BlogHeader = (props) => {
 
     const [displayName, setDisplayName] = useState("Julián Uriarte")
     const [urlAutorImg, setUrlAutorImg] = useState("")
-    const [autorCargado, setAutorCargado] = useState(null)
+    const [autorCargado, setAutorCargado] = useState(false)
+    const [cargaInicialAutor, setCargaInicialAutor] = useState(false)
     
     useEffect(() => {
         const cargaInicial = () => {
             dispatch(leerAutoresAccion())
+            setCargaInicialAutor(true)
         }
-        cargaInicial()
-    },[props.autor])
+        if(cargaInicialAutor === false)
+            cargaInicial()
+    },[props.autor, cargaInicialAutor])
 
     useEffect(() => {
         const cargaInicial = async() => {
-            // console.log("autorInfo Selector => ", autorInfo)
+            //console.log("autorInfo Selector => ", autorInfo)
             dispatch(leerAutoresBlogAccion(props.autor))
         }
-        if(autorInfo.length !== 0 && autoresDelBlog.length === 0){
+
+        if(autorInfo.length !== 0 && autoresDelBlog.length === 0 && cargaInicialAutor === true){
             cargaInicial()
         }
         // Si meto cargaInicial aqui, cuando se cambie a otro blog no se actualizan los autores, se queda con el primer visto.
         
-        if(autoresDelBlog.length !== 0 && autorCargado === null){
+        if(autoresDelBlog.length !== 0 && autorCargado === false && autoresDelBlog !== undefined){
             // console.log("autoresDelBlog Selector => ", autoresDelBlog)
             // console.log("autor State => ", autorCargado)
             setAutorCargado(true)
         }
         // console.log("autor State outside => ", autorCargado)
-    },[autorInfo, autoresDelBlog, autorCargado])
+    },[autorInfo, autoresDelBlog, autorCargado, cargaInicialAutor])
 
 
-    return (
+    return autorCargado === true &&  (
         <header className="showBlog__header content-width">
             <div className="showBlog__header__tags">
                 {
@@ -58,12 +62,13 @@ const BlogHeader = (props) => {
                 {
                     autorCargado === true && (
                         autoresDelBlog.map((autor, index) => {
-                            // console.log("autor a mostrar => ", autor)
+                            //console.log("autor a mostrar => ", autor)
                             return(
                                 <div className="showBlog__header__autor-item" key={index}>
-                                    <img src={autor.photoURL} alt="Foto del autor" className="showBlog__header__autor-img"/>
+                                    <img src={autor !== undefined && autor.photoURL} alt="Foto del autor" className="showBlog__header__autor-img"/>
                                     <div className="showBlog__header__autor__info-name">
-                                        {autor.name}
+                                        <span>{autor.name}</span>
+                                        <span>{autor.email}</span>
                                     </div>
                                 </div>
                             )

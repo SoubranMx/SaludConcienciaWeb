@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { agregarAutoresAccion, leerAutoresAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
+import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
 
 import "../../sass/_createUser.scss"
 
@@ -75,6 +75,11 @@ const CreateUser = () => {
     }
   }
 
+  const deleteAuthorHandler = (email) => {
+    console.log(email)
+    dispatch(eliminarAutorAccion(email))
+  }
+
   if(loading){
     return (
       <div className="container d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
@@ -98,6 +103,7 @@ const CreateUser = () => {
                     <img src={autor.photoURL} alt="" width="100px" height="100px" className="mb-3 rounded-circle"/>
                     <h5 className="card-title">{autor.name}</h5>
                     <p className="card-title">{autor.email}</p>
+                    {autor.name !== 'Julián Uriarte' && <button className='btn btn-sm btn-danger' onClick={()=>{deleteAuthorHandler(autor.email)}}>Eliminar</button>}
                   </div>
                 </div>
               ))

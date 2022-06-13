@@ -170,7 +170,7 @@ const ShowBlog = (props) => {
                             <FacebookShareButton
                                 url={url}
                                 quote={`¡Mira el blog de Salud Conciencia! | ${props.blog.titulo}`}
-                                hashtag={`${props.blog.tags.forEach((tag)=>{console.log(tag); return tag;})}`}
+                                hashtag={`${props.blog.tags.forEach((tag)=>{return tag;})}`}
                             >
                                 <FacebookIcon round={true} size={socialIconSize}/>
                             </FacebookShareButton>
