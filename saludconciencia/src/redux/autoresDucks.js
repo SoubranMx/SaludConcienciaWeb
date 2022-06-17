@@ -19,6 +19,7 @@ const dataInicial = {
     const RELOAD_AUTORES_FIN = "RELOAD_AUTORES_FIN"
     const ELIMINANDO_AUTOR = "ELIMINANDO_AUTOR"
     const ELIMINANDO_AUTOR_EXITO = "ELIMINANDO_AUTOR_EXITO"
+    const UPDATING_AUTOR = "UPDATING_AUTOR"
     
 //reducer
 export default function autoresReducer(state = dataInicial, action) {
@@ -33,16 +34,18 @@ export default function autoresReducer(state = dataInicial, action) {
             return {...state, uploading: true}
         case UPLOAD_IMG_AUTOR_EXITO:
             return {...state, uploading: false}
-        case LOADING_AUTORES:
-            return {...state, loading: true}
         case RELOAD_AUTORES:
             return {...state, reload: true, autoresDeBlog: []}
         case RELOAD_AUTORES_FIN:
             return {...state, reload: false}
-        case ELIMINANDO_AUTOR:
-            return {...state, loading: true}
         case ELIMINANDO_AUTOR_EXITO:
             return {...state, loading: false, autoresExistentes: [...action.payload]}
+
+        //Estado de carga o load
+        case UPDATING_AUTOR:
+        case LOADING_AUTORES:
+        case ELIMINANDO_AUTOR:
+            return {...state, loading: true}
         default:
             return {...state}
     }
@@ -117,7 +120,7 @@ export const leerAutoresAccion = () => async (dispatch) => {
         //console.log("leerAutores else => ")
         const res = await db.collection('autores').get();
         res.forEach((doc) => {
-            autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
+            autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl, id: doc.data().id})
         })
         //console.log("leerAutores autorDB => ", autorDB)
 
@@ -125,6 +128,28 @@ export const leerAutoresAccion = () => async (dispatch) => {
         //Guardamos en LS para no tener que leer a cada rato autores de Firestore
         //localStorage.setItem('autores', JSON.stringify(autorDB))
 
+        dispatch({
+            type: LEER_AUTORES_EXISTENTES_EXITO,
+            payload: autorDB
+        })
+    } catch (error) {
+        console.log("leerAutores errormsg => ", error)
+    }
+}
+
+export const leerAutoresEditablesAccion = () => async (dispatch) => {
+    try {
+        let autorDB = []
+        dispatch({
+            type: LOADING_AUTORES
+        })
+
+        const res = await db.collection('autores').get();
+        res.forEach((doc) => {
+            if(doc.data().name !== 'Julián Uriarte')
+                autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl, id:doc.data().id})
+        })
+        
         dispatch({
             type: LEER_AUTORES_EXISTENTES_EXITO,
             payload: autorDB
@@ -228,4 +253,23 @@ export const eliminarAutorAccion = (email) => async(dispatch, getState) => {
     } catch (error) {
         console.log("Error al eliminar autor => ", error)
     }
+}
+
+//UPDATES
+export const updateAuthorNameAccion = (email, nombre) => async (dispatch) => {
+    try {
+        dispatch({
+            type: LOAD
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch) => {
+
+}
+
+export const updateAuthorRRSS = (email, rrssNuevas) => async(dispatch) => {
+
 }

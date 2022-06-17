@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
+import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
+import { nanoid } from 'nanoid'
 
 import "../../sass/_createUser.scss"
 
 const CreateUser = () => {
-  let autorLengthPrev = 0, autorLengthNew = 0;
   const dispatch = useDispatch()
   const autoresAMostrar = useSelector(store => store.autores.autoresExistentes)
   const loading = useSelector(store => store.autores.loading)
@@ -19,10 +19,11 @@ const CreateUser = () => {
   const [newUserPhotoPreview, setNewUserPhotoPreview] = useState("")
   const [errorMsg, setErrorMsg] = useState("")
   const [okMsg, setOkMsg] = useState("")
+  const [modoEdicion, setModoEdicion] = useState(false)
 
   useEffect(()=>{
     const cargarAutores = () => {
-      dispatch(leerAutoresAccion())
+      dispatch(leerAutoresEditablesAccion())
     }
     if (autoresAMostrar.length === 0){
       //autorLengthPrev = autoresAMostrar.length
@@ -68,6 +69,48 @@ const CreateUser = () => {
     }
   }
 
+  const submitUpdateHandler = (e) => {
+    e.preventDefault()
+    if(newUserPhoto === undefined || newUserPhoto === ""){
+      setErrorMsg("No se seleccionó una imagen")
+      return
+    }
+    if(newUserEmail === undefined || newUserEmail === ""){
+      setErrorMsg("No se escribió un email")
+      return
+    }
+    if(newUserName === undefined || newUserName === ""){
+      setErrorMsg("No se escribió un nombre")
+      return
+    }
+
+    let authorUpdate = autoresAMostrar.find(autor => autor.email === newUserEmail)
+    //No se actualizó imagen (solo actualizaron nombre o rrss)
+    if(newUserPhoto === false){
+      if(authorUpdate.name !== newUserName){
+        console.log("Actualiza nombre => ", newUserName)
+      }
+
+    }
+    //Se quiere actualizar por lo menos la imagen
+    else{
+      if(authorUpdate.name !== newUserName){
+        console.log("Actualiza nombre e imagen=> ", newUserName)
+      }
+      if(newUserPhoto.size <= 1000000){
+        if(newUserPhoto.type === "image/png" || newUserPhoto.type === "image/jpg" || newUserPhoto.type === "image/jpeg"){
+          console.log("Actualizar imagen ok!")
+          
+        }else{
+          setErrorMsg("Solo archivos .png o .jpg")
+        }
+      }
+      else{
+        setErrorMsg('Solo imágenes menores a 1MB')
+      }
+    }
+  }
+
   const previewImgUsuarioHandler = (imagen) => {
     if(imagen.target.files[0] !== undefined){
       setNewUserPhoto(imagen.target.files[0])
@@ -78,6 +121,16 @@ const CreateUser = () => {
   const deleteAuthorHandler = (email) => {
     console.log(email)
     dispatch(eliminarAutorAccion(email))
+  }
+
+  const updateAuthorHandler = (email) => {
+    setModoEdicion(true)
+    let editAuthor = autoresAMostrar.find(autor => autor.email === email)
+    console.log(editAuthor)
+    setNewUserEmail(editAuthor.email)
+    setNewUserName(editAuthor.name)
+    setNewUserPhotoPreview(editAuthor.photoURL)
+    setNewUserPhoto(false)
   }
 
   if(loading){
@@ -103,24 +156,38 @@ const CreateUser = () => {
                     <img src={autor.photoURL} alt="" width="100px" height="100px" className="mb-3 rounded-circle"/>
                     <h5 className="card-title">{autor.name}</h5>
                     <p className="card-title">{autor.email}</p>
-                    {autor.name !== 'Julián Uriarte' && <button className='btn btn-sm btn-danger' onClick={()=>{deleteAuthorHandler(autor.email)}}>Eliminar</button>}
+                    <div className="d-flex justify-content-evenly">
+                      <button className='btn btn-sm btn-warning' onClick={()=>{updateAuthorHandler(autor.email)}}>Editar</button>
+                      <button className='btn btn-sm btn-danger' onClick={()=>{deleteAuthorHandler(autor.email)}}>Eliminar</button>
+                    </div>
                   </div>
                 </div>
               ))
             )
           }
           </div>
+
+          {/* FORMULARIO */}
           <div className="autor__main__agregar mt-5 text-center">
-            <h3>Agregar más autores</h3>
-            <form onSubmit={submitHandler} className="d-flex flex-column">
+            <h3>{modoEdicion ? 'Editar autor' : 'Agregar más autores'}</h3>
+            <form onSubmit={modoEdicion ? submitUpdateHandler : submitHandler} className="d-flex flex-column">
               <div className="p-2 autor__main__agregar-bloque">
                 <label htmlFor="email">Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  value={newUserEmail}
-                  onChange={e=>setNewUserEmail(e.target.value)}
+                {modoEdicion ? (
+                  <input 
+                    type="email" 
+                    id="email" 
+                    value={newUserEmail}
+                    disabled
                   />
+                ):(
+                  <input 
+                    type="email" 
+                    id="email" 
+                    value={newUserEmail}
+                    onChange={e=>setNewUserEmail(e.target.value)}
+                  />
+                )}
               </div>
               <div className="p-2 autor__main__agregar-bloque">
                 <label htmlFor="name">Nombre</label>
@@ -129,7 +196,7 @@ const CreateUser = () => {
                   id="name"
                   value={newUserName}
                   onChange={e=>setNewUserName(e.target.value)}
-                   />
+                />
               </div>
               <div className="p-2 preview">
                 {
@@ -140,12 +207,12 @@ const CreateUser = () => {
                   )
                 }
               </div>
-              <div className="p-2">
+              <div className="p-2 mb-5">
                 <label 
                   htmlFor="imgUsuario"
                   className='btn btn-success'
                 >
-                  Subir imagen
+                  {modoEdicion ? "Actualizar imagen" : "Subir imagen"}
                 </label>
                 <input 
                   type="file"
@@ -154,12 +221,15 @@ const CreateUser = () => {
                   style={{opacity: 0, display: "none"}}
                   onChange={e=>previewImgUsuarioHandler(e)}
                   accept=".jpg, .jpeg, .png"
-                  
                 />
               </div>
               {errorMsg !== "" && (<p className='bg-danger text-white p-3'>{errorMsg}</p>)}
               {okMsg !== "" && ( <p className="bg-success text-white p-3">{okMsg}</p> )}
-              <button className={uploading ? "btn btn-dark disabled" : "btn btn-dark btn-lg"}>Subir nuevo autor</button>
+              {modoEdicion ? (
+                <button className={uploading ? "btn btn-dark disabled" : "btn btn-warning btn-lg"} type='submit'>Editar autor</button>
+              ):(
+                <button className={uploading ? "btn btn-dark disabled" : "btn btn-dark btn-lg"} type='submit'>Subir nuevo autor</button>
+              )}
             </form>
           </div>
       </div>
