@@ -6,6 +6,12 @@
     &__agregar{
         border-top: 1px solid black;
         padding-top: 2rem;
+        //width: 70%;
+        display: flex;
+        flex-direction: column;
+        & > form {
+            margin: 0 30%;
+        }
     }
 }
 
@@ -16,4 +22,8 @@
     & > input {
         margin-left: 2rem;
     }
+}
+
+.redes_sociales-container{
+    //margin: 0 5%;
 }

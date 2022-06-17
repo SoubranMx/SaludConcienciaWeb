@@ -20,6 +20,7 @@ const CreateUser = () => {
   const [errorMsg, setErrorMsg] = useState("")
   const [okMsg, setOkMsg] = useState("")
   const [modoEdicion, setModoEdicion] = useState(false)
+  const [newRRSS, setNewRRSS] = useState({instagram:{link:''}, facebook:{link:''}, twitter:{link:''}})
 
   useEffect(()=>{
     const cargarAutores = () => {
@@ -189,36 +190,75 @@ const CreateUser = () => {
           </div>
 
           {/* FORMULARIO */}
-          <div className="autor__main__agregar mt-5 text-center">
-            <h3>{modoEdicion ? 'Editar autor' : 'Agregar más autores'}</h3>
+          <div className="autor__main__agregar text-center mt-5">
+            <h2>{modoEdicion ? 'Editar autor' : 'Agregar más autores'}</h2>
             <form onSubmit={modoEdicion ? submitUpdateHandler : submitHandler} className="d-flex flex-column">
-              <div className="p-2 autor__main__agregar-bloque">
-                <label htmlFor="email">Email</label>
+              <div className="p-2 mb-3">
+                <label htmlFor="email" className='form-label fs-4'>Email</label>
                 {modoEdicion ? (
                   <input 
                     type="email" 
-                    id="email" 
+                    id="email"
+                    className='form-control text-center'
                     value={newUserEmail}
+                    placeholder="ejemplo@ejemplo.com"
                     disabled
                   />
                 ):(
                   <input 
                     type="email" 
-                    id="email" 
+                    id="email"
+                    className='form-control text-center'
                     value={newUserEmail}
                     onChange={e=>setNewUserEmail(e.target.value)}
+                    placeholder="ejemplo@ejemplo.com"
                   />
                 )}
               </div>
-              <div className="p-2 autor__main__agregar-bloque">
-                <label htmlFor="name">Nombre</label>
+              <div className="p-2 mb-3">
+                <label htmlFor="name" className='form-label fs-4'>Nombre</label>
                 <input 
                   type="text" 
                   id="name"
+                  className='form-control text-center'
                   value={newUserName}
                   onChange={e=>setNewUserName(e.target.value)}
+                  placeholder="Juan Perez"
                 />
               </div>
+              <br />
+              <div className='mb-3 fs-3 fw-semibold'>Redes Sociales</div>
+              <div className='redes_sociales-container'>
+                  <label htmlFor='id_instagram' className='form-label'>Instagram</label>
+                  <input 
+                    type="text" 
+                    id='id_instagram'
+                    className='form-control mb-3 text-center'
+                    value={newRRSS.instagram.link}
+                    onChange={e=>setNewRRSS({...newRRSS, instagram: {link: e.target.value}})}
+                    placeholder='Opcional'
+                  />
+                  <label htmlFor='id_facebook' className='form-label'>Facebook</label>
+                  <input 
+                    type="text" 
+                    id='id_facebook'
+                    className='form-control mb-3 text-center'
+                    value={newRRSS.facebook.link}
+                    onChange={e=>setNewRRSS({...newRRSS, facebook: {link: e.target.value}})}
+                    placeholder='Opcional'
+                  />
+                  <label htmlFor='id_twitter' className='form-label'>Twitter</label>
+                  <input 
+                    type="text" 
+                    id='id_twitter'
+                    className='form-control mb-3 text-center'
+                    value={newRRSS.twitter.link}
+                    onChange={e=>setNewRRSS({...newRRSS, twitter: {link: e.target.value}})}
+                    placeholder='Opcional'
+                  />
+              </div>
+
+
               <div className="p-2 preview">
                 {
                   newUserPhotoPreview === "" ? (
