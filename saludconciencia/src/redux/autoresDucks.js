@@ -21,6 +21,8 @@ const dataInicial = {
     const ELIMINANDO_AUTOR_EXITO = "ELIMINANDO_AUTOR_EXITO"
     const UPDATING_AUTOR = "UPDATING_AUTOR"
     const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO"
+    const RELOAD_PAGE = "RELOAD_PAGE"
+    const RELOAD_PAGE_FIN = "RELOAD_PAGE_FIN"
     
 //reducer
 export default function autoresReducer(state = dataInicial, action) {
@@ -34,7 +36,7 @@ export default function autoresReducer(state = dataInicial, action) {
         case SUBIENDO_IMAGEN:
             return {...state, uploading: true}
         case UPLOAD_IMG_AUTOR_EXITO:
-            return {...state, uploading: false, }
+            return {...state, uploading: false}
         case RELOAD_AUTORES:
             return {...state, reload: true, autoresDeBlog: []}
         case RELOAD_AUTORES_FIN:
@@ -44,6 +46,10 @@ export default function autoresReducer(state = dataInicial, action) {
 
         case UPDATE_AUTOR_EXITO:
             return {...state, loading: false}
+        case RELOAD_PAGE:
+            return {...state, reload: true}
+        case RELOAD_PAGE_FIN:
+            return{...state, reload: false}
         //Estado de carga o load
         case UPDATING_AUTOR:
         case LOADING_AUTORES:
@@ -123,7 +129,7 @@ export const leerAutoresAccion = () => async (dispatch) => {
         //console.log("leerAutores else => ")
         const res = await db.collection('autores').get();
         res.forEach((doc) => {
-            autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl, id: doc.data().id})
+            autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
         })
         //console.log("leerAutores autorDB => ", autorDB)
 
@@ -150,7 +156,7 @@ export const leerAutoresEditablesAccion = () => async (dispatch) => {
         const res = await db.collection('autores').get();
         res.forEach((doc) => {
             if(doc.data().name !== 'Julián Uriarte')
-                autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl, id:doc.data().id})
+                autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
         })
         
         dispatch({
@@ -284,14 +290,40 @@ export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch, get
     try {
         //Eliminar foto anterior
         await storage.ref().child('profile_images').child(email).child('foto_perfil.jpg').delete()
-        
+        dispatch({
+            type: UPDATING_AUTOR
+        })
         //Subir nueva foto
+        //uploadImgAutorAccion(email, imagenNueva)
         dispatch({
             type: SUBIENDO_IMAGEN
         })
+        let imgName, imgType, imagenURL;
+        let autoresArray = []
+        let autorNuevo = []
+        if(imagenNueva.type === "image/png")
+            imgType = '.png'
+        if(imagenNueva.type === "image/jpg" || imagenNueva.type === "image/jpeg")
+            imgType = '.jpg'
         
-        uploadImgAutorAccion(email, imagenNueva)
-        
+        imgName = 'foto_perfil' + imgType
+        const imagenRef = storage.ref().child("profile_images").child(email).child(imgName)
+        await imagenRef.put(imagenNueva)
+        imagenURL = await imagenRef.getDownloadURL()
+        console.log(imagenURL)
+
+        autoresArray = getState().autores.autoresExistentes.filter(autor => autor.email !== email)
+        autorNuevo = getState().autores.autoresExistentes.filter(autor => autor.email === email)
+        autoresArray.push({
+            email: autorNuevo[0].email,
+            name: autorNuevo[0].name,
+            photoURL: imagenURL
+        })
+
+        dispatch({
+            type: UPLOAD_IMG_AUTOR_EXITO,
+            payload: autoresArray
+        })
         //Actualizar Firestore
         await db.collection('autores').doc(email).update({
             photoUrl: imagenURL
@@ -309,4 +341,15 @@ export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch, get
 
 export const updateAuthorRRSS = (email, rrssNuevas) => async(dispatch) => {
 
+}
+
+//Reload page
+export const reloadAuthorPage = () => (dispatch) => {
+    dispatch({
+        type: RELOAD_AUTORES
+    })
+
+    dispatch({
+        type: RELOAD_AUTORES_FIN
+    })
 }

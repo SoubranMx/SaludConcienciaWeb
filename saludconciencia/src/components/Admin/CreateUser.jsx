@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, updateAuthorImgAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
+import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, reloadAuthorPage, updateAuthorImgAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
 import { nanoid } from 'nanoid'
 
 import "../../sass/_createUser.scss"
@@ -30,6 +30,12 @@ const CreateUser = () => {
     }
   }, [autoresAMostrar])
 
+  useEffect(()=>{
+    if(reload === true){
+      dispatch(leerAutoresEditablesAccion())
+    }
+  }, [reload])
+
   const submitHandler = (e) => {
     e.preventDefault()
 
@@ -53,6 +59,7 @@ const CreateUser = () => {
         setOkMsg("Autor subido correctamente")
         setErrorMsg("")
         setTimeout(()=>{
+          dispatch(reloadAuthorPage())
           setOkMsg("")
           setNewUserEmail("")
           setNewUserName("")
@@ -107,6 +114,20 @@ const CreateUser = () => {
         setErrorMsg('Solo imágenes menores a 1MB')
       }
     }
+
+    setOkMsg("Autor actualizado correctamente")
+    setErrorMsg("")
+    setTimeout(()=>{
+      setOkMsg("")
+      setErrorMsg("")
+      setNewUserEmail("")
+      setNewUserName("")
+      setNewUserPhoto("")
+      setNewUserPhotoPreview("")
+      setModoEdicion(false)
+      dispatch(reloadAuthorPage())
+    },2000)
+
   }
 
   const previewImgUsuarioHandler = (imagen) => {
