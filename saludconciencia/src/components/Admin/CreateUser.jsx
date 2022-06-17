@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
+import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, updateAuthorImgAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
 import { nanoid } from 'nanoid'
 
 import "../../sass/_createUser.scss"
@@ -26,10 +26,8 @@ const CreateUser = () => {
       dispatch(leerAutoresEditablesAccion())
     }
     if (autoresAMostrar.length === 0){
-      //autorLengthPrev = autoresAMostrar.length
       cargarAutores()
     }
-    //if(autorLengthNew )
   }, [autoresAMostrar])
 
   const submitHandler = (e) => {
@@ -95,12 +93,12 @@ const CreateUser = () => {
     //Se quiere actualizar por lo menos la imagen
     else{
       if(authorUpdate.name !== newUserName){
-        console.log("Actualiza nombre e imagen=> ", newUserName)
+        console.log("Actualiza nombre => ", newUserName)
       }
       if(newUserPhoto.size <= 1000000){
         if(newUserPhoto.type === "image/png" || newUserPhoto.type === "image/jpg" || newUserPhoto.type === "image/jpeg"){
           console.log("Actualizar imagen ok!")
-          
+          dispatch(updateAuthorImgAccion(newUserEmail, newUserPhoto))
         }else{
           setErrorMsg("Solo archivos .png o .jpg")
         }

@@ -20,6 +20,7 @@ const dataInicial = {
     const ELIMINANDO_AUTOR = "ELIMINANDO_AUTOR"
     const ELIMINANDO_AUTOR_EXITO = "ELIMINANDO_AUTOR_EXITO"
     const UPDATING_AUTOR = "UPDATING_AUTOR"
+    const UPDATE_AUTOR_EXITO = "UPDATE_AUTOR_EXITO"
     
 //reducer
 export default function autoresReducer(state = dataInicial, action) {
@@ -33,7 +34,7 @@ export default function autoresReducer(state = dataInicial, action) {
         case SUBIENDO_IMAGEN:
             return {...state, uploading: true}
         case UPLOAD_IMG_AUTOR_EXITO:
-            return {...state, uploading: false}
+            return {...state, uploading: false, }
         case RELOAD_AUTORES:
             return {...state, reload: true, autoresDeBlog: []}
         case RELOAD_AUTORES_FIN:
@@ -41,6 +42,8 @@ export default function autoresReducer(state = dataInicial, action) {
         case ELIMINANDO_AUTOR_EXITO:
             return {...state, loading: false, autoresExistentes: [...action.payload]}
 
+        case UPDATE_AUTOR_EXITO:
+            return {...state, loading: false}
         //Estado de carga o load
         case UPDATING_AUTOR:
         case LOADING_AUTORES:
@@ -92,7 +95,7 @@ export const agregarAutoresAccion = (email, displayName, imagen) => async (dispa
         })
         //deberia tener los autores anteriores y el nuevo
         const autoresNuevo = getState().autores.autoresExistentes
-        console.log(autoresNuevo)
+        
         localStorage.setItem('autores', JSON.stringify(autoresNuevo))
         // dispatch({
         //     type: RELOAD_AUTORES
@@ -160,14 +163,14 @@ export const leerAutoresEditablesAccion = () => async (dispatch) => {
 }
 
 
-export const uploadImgAutorAccion = (email, imagen) => async(dispatch) => {
+export const uploadImgAutorAccion = (email, imagen) => async(dispatch, getState) => {
     dispatch({
         type: SUBIENDO_IMAGEN
     })
     let imgName, imgType, imagenURL;
+    let autoresArray = []
+    let autorNuevo = []
     try {
-        // let imgName;
-        // let imgType;
         if(imagen.type === "image/png")
             imgType = '.png'
         if(imagen.type === "image/jpg" || imagen.type === "image/jpeg")
@@ -178,9 +181,17 @@ export const uploadImgAutorAccion = (email, imagen) => async(dispatch) => {
         await imagenRef.put(imagen)
         imagenURL = await imagenRef.getDownloadURL()
 
+        autoresArray = getState().autores.autoresExistentes.filter(autor => autor.email !== email)
+        autorNuevo = getState().autores.autoresExistentes.filter(autor => autor.email === email)
+        autoresArray.push({
+            email: autorNuevo[0].email,
+            name: autorNuevo[0].name,
+            photoURL: imagenURL
+        })
+
         dispatch({
             type: UPLOAD_IMG_AUTOR_EXITO,
-            payload: imagenURL
+            payload: autoresArray
         })
     } catch (error) {
         dispatch({
@@ -259,14 +270,40 @@ export const eliminarAutorAccion = (email) => async(dispatch, getState) => {
 export const updateAuthorNameAccion = (email, nombre) => async (dispatch) => {
     try {
         dispatch({
-            type: LOAD
+            type: UPDATING_AUTOR
         })
+
     } catch (error) {
         console.log(error)
     }
 }
 
-export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch) => {
+
+export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch, getState) => {
+    
+    try {
+        //Eliminar foto anterior
+        await storage.ref().child('profile_images').child(email).child('foto_perfil.jpg').delete()
+        
+        //Subir nueva foto
+        dispatch({
+            type: SUBIENDO_IMAGEN
+        })
+        
+        uploadImgAutorAccion(email, imagenNueva)
+        
+        //Actualizar Firestore
+        await db.collection('autores').doc(email).update({
+            photoUrl: imagenURL
+        })
+        //Despachar
+        dispatch({
+            type: UPDATE_AUTOR_EXITO
+        })
+
+    } catch(error){
+        console.log(error)
+    }
 
 }
 
