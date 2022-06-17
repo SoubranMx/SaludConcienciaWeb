@@ -324,6 +324,7 @@ export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch, get
             type: UPLOAD_IMG_AUTOR_EXITO,
             payload: autoresArray
         })
+        
         //Actualizar Firestore
         await db.collection('autores').doc(email).update({
             photoUrl: imagenURL
