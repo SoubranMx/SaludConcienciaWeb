@@ -45,7 +45,7 @@ export default function autoresReducer(state = dataInicial, action) {
             return {...state, loading: false, autoresExistentes: [...action.payload]}
 
         case UPDATE_AUTOR_EXITO:
-            return {...state, loading: false}
+            return {...state, loading: false, autoresExistentes: [...action.payload]}
         case RELOAD_PAGE:
             return {...state, reload: true}
         case RELOAD_PAGE_FIN:
@@ -273,10 +273,26 @@ export const eliminarAutorAccion = (email) => async(dispatch, getState) => {
 }
 
 //UPDATES
-export const updateAuthorNameAccion = (email, nombre) => async (dispatch) => {
+export const updateAuthorNameAccion = (email, nombre) => async (dispatch, getState) => {
     try {
         dispatch({
             type: UPDATING_AUTOR
+        })
+        await db.collection('autores').doc(email).update({
+            name: nombre
+        })
+
+        let autoresArray = [], autorNuevo = []
+        autoresArray = getState().autores.autoresExistentes.filter(autor => autor.email !== email)
+        autorNuevo = getState().autores.autoresExistentes.filter(autor => autor.email === email)
+        autoresArray.push({
+            email: autorNuevo[0].email,
+            name: nombre,
+            photoURL: autorNuevo[0].photoUrl
+        })
+        dispatch({
+            type: UPDATE_AUTOR_EXITO,
+            payload: autoresArray
         })
 
     } catch (error) {
@@ -324,7 +340,7 @@ export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch, get
             type: UPLOAD_IMG_AUTOR_EXITO,
             payload: autoresArray
         })
-        
+
         //Actualizar Firestore
         await db.collection('autores').doc(email).update({
             photoUrl: imagenURL

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, reloadAuthorPage, updateAuthorImgAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
+import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, reloadAuthorPage, updateAuthorImgAccion, updateAuthorNameAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
 import { nanoid } from 'nanoid'
 
 import "../../sass/_createUser.scss"
@@ -93,8 +93,11 @@ const CreateUser = () => {
     //No se actualizó imagen (solo actualizaron nombre o rrss)
     if(newUserPhoto === false){
       if(authorUpdate.name !== newUserName){
-        console.log("Actualiza nombre => ", newUserName)
+        console.log("Actualiza solo nombre => ", newUserName)
+        dispatch(updateAuthorNameAccion(newUserEmail, newUserName))
       }
+
+      
 
     }
     //Se quiere actualizar por lo menos la imagen
@@ -145,7 +148,6 @@ const CreateUser = () => {
   const updateAuthorHandler = (email) => {
     setModoEdicion(true)
     let editAuthor = autoresAMostrar.find(autor => autor.email === email)
-    console.log(editAuthor)
     setNewUserEmail(editAuthor.email)
     setNewUserName(editAuthor.name)
     setNewUserPhotoPreview(editAuthor.photoURL)
