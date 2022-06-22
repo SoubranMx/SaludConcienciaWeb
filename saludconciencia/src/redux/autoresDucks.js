@@ -61,10 +61,11 @@ export default function autoresReducer(state = dataInicial, action) {
 }
 //acciones
 
-export const agregarAutoresAccion = (email, displayName, imagen) => async (dispatch, getState) => {
+export const agregarAutoresAccion = (email, displayName, imagen, rrss) => async (dispatch, getState) => {
     dispatch({
         type: SUBIENDO_IMAGEN
     })
+    //Subiendo imagen
     let imgName, imgType, imagenURL;
     try {
         if(imagen.type === "image/png")
@@ -88,10 +89,12 @@ export const agregarAutoresAccion = (email, displayName, imagen) => async (dispa
         console.log(error)
     }
 
+    //Subir obj a Firestore
     const autorOBJ = {
         name: displayName,
         email: email,
-        photoUrl: imagenURL
+        photoUrl: imagenURL,
+        redes: rrss
     }
     try {
         await db.collection('autores').doc(email).set(autorOBJ)
@@ -100,9 +103,9 @@ export const agregarAutoresAccion = (email, displayName, imagen) => async (dispa
             payload: autorOBJ
         })
         //deberia tener los autores anteriores y el nuevo
-        const autoresNuevo = getState().autores.autoresExistentes
-        
-        localStorage.setItem('autores', JSON.stringify(autoresNuevo))
+        //Pensar mejor lo de localStorage
+        //const autoresNuevo = getState().autores.autoresExistentes
+        //localStorage.setItem('autores', JSON.stringify(autoresNuevo))
         // dispatch({
         //     type: RELOAD_AUTORES
         // })
@@ -129,7 +132,8 @@ export const leerAutoresAccion = () => async (dispatch) => {
         //console.log("leerAutores else => ")
         const res = await db.collection('autores').get();
         res.forEach((doc) => {
-            autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
+            //autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
+            autorDB.push({email: doc.id, ...doc.data()})
         })
         //console.log("leerAutores autorDB => ", autorDB)
 
@@ -155,8 +159,9 @@ export const leerAutoresEditablesAccion = () => async (dispatch) => {
 
         const res = await db.collection('autores').get();
         res.forEach((doc) => {
-            if(doc.data().name !== 'Julián Uriarte')
-                autorDB.push({email: doc.id, name: doc.data().name, photoURL: doc.data().photoUrl})
+            if(doc.data().name !== 'Julián Uriarte'){
+                autorDB.push({email: doc.id, ...doc.data()})
+            }
         })
         
         dispatch({
@@ -246,7 +251,7 @@ export const clearAutoresBlogAccion = () => (dispatch) => {
     })
 }
 
-export const eliminarAutorAccion = (email) => async(dispatch, getState) => {
+export const eliminarAutorAccion = (email, imgUrl) => async(dispatch, getState) => {
     try {
         dispatch({
             type: ELIMINANDO_AUTOR
@@ -255,7 +260,18 @@ export const eliminarAutorAccion = (email) => async(dispatch, getState) => {
         //Eliminar de la coleccion
         await db.collection("autores").doc(email).delete()
         //Eliminar foto
-        await storage.ref().child('profile_images').child(email).child('foto_perfil.jpg').delete()
+        let storageRef = storage.ref()
+        let imgRef = storageRef.child('profile_images').child(email)
+        //Leo de la url el string foto_perfil y veo donde empieza en toda la url
+        let stringStart = imgUrl.indexOf('foto_perfil')
+        //substring => +12 a +15, should be png or jpg
+        let imgType = imgUrl.substring(stringStart + 12, stringStart + 15)
+        //console.log("substring => ", imgType)
+        if(imgType === 'png')
+            await imgRef.child(`foto_perfil.${imgType}`).delete()
+        else
+            await imgRef.child(`foto_perfil.${imgType}`).delete()
+
 
         //Eliminar de autores existentes state
         let newAutorDB = []
@@ -356,8 +372,33 @@ export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch, get
 
 }
 
-export const updateAuthorRRSS = (email, rrssNuevas) => async(dispatch) => {
+export const updateAuthorRRSS = (email, rrssNuevas) => async(dispatch, getState) => {
 
+    try {
+        dispatch({
+            type: UPDATING_AUTOR
+        })
+        await db.collection('autores').doc(email).update({
+            redes: rrssNuevas
+        })
+
+        let autoresArray = [], autorNuevo = []
+        autoresArray = getState().autores.autoresExistentes.filter(autor => autor.email !== email)
+        autorNuevo = getState().autores.autoresExistentes.filter(autor => autor.email === email)
+        autoresArray.push({
+            email: autorNuevo[0].email,
+            name: autorNuevo[0].nombre,
+            photoUrl: autorNuevo[0].photoUrl,
+            redes: rrssNuevas
+        })
+        dispatch({
+            type: UPDATE_AUTOR_EXITO,
+            payload: autoresArray
+        })
+
+    } catch (error) {
+        console.log("Error al updateAuthorRRSS => ", error)
+    }
 }
 
 //Reload page

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, reloadAuthorPage, updateAuthorImgAccion, updateAuthorNameAccion, uploadImgAutorAccion } from '../../redux/autoresDucks'
+import { agregarAutoresAccion, eliminarAutorAccion, leerAutoresEditablesAccion, reloadAuthorPage, updateAuthorImgAccion, updateAuthorNameAccion, updateAuthorRRSS, uploadImgAutorAccion } from '../../redux/autoresDucks'
 import { nanoid } from 'nanoid'
 
 import "../../sass/_createUser.scss"
@@ -55,7 +55,7 @@ const CreateUser = () => {
 
     if(newUserPhoto.size <= 1000000){
       if(newUserPhoto.type === "image/png" || newUserPhoto.type === "image/jpg" || newUserPhoto.type === "image/jpeg"){
-        dispatch(agregarAutoresAccion(newUserEmail, newUserName, newUserPhoto))
+        dispatch(agregarAutoresAccion(newUserEmail, newUserName, newUserPhoto, newRRSS))
         //dispatch(uploadImgAutorAccion(newUserEmail, newUserPhoto))
         setOkMsg("Autor subido correctamente")
         setErrorMsg("")
@@ -66,6 +66,7 @@ const CreateUser = () => {
           setNewUserName("")
           setNewUserPhoto("")
           setNewUserPhotoPreview("")
+          setNewRRSS({instagram:{link:''}, facebook:{link:''}, twitter:{link:''}})
         },2000)
       }else{
         setErrorMsg("Solo archivos .png o .jpg")
@@ -98,6 +99,11 @@ const CreateUser = () => {
         dispatch(updateAuthorNameAccion(newUserEmail, newUserName))
       }
 
+      if(authorUpdate.redes !== newRRSS){
+        console.log('Cambiamos redes')
+        dispatch(updateAuthorRRSS(newUserEmail, newRRSS))
+      }
+
       
 
     }
@@ -128,6 +134,7 @@ const CreateUser = () => {
       setNewUserName("")
       setNewUserPhoto("")
       setNewUserPhotoPreview("")
+      setNewRRSS({instagram:{link:''}, facebook:{link:''}, twitter:{link:''}})
       setModoEdicion(false)
       dispatch(reloadAuthorPage())
     },2000)
@@ -141,9 +148,9 @@ const CreateUser = () => {
     }
   }
 
-  const deleteAuthorHandler = (email) => {
-    console.log(email)
-    dispatch(eliminarAutorAccion(email))
+  const deleteAuthorHandler = (email, imgUrl) => {
+    console.log("Eliminar autor con email => ", email, imgUrl)
+    dispatch(eliminarAutorAccion(email, imgUrl))
   }
 
   const updateAuthorHandler = (email) => {
@@ -151,7 +158,8 @@ const CreateUser = () => {
     let editAuthor = autoresAMostrar.find(autor => autor.email === email)
     setNewUserEmail(editAuthor.email)
     setNewUserName(editAuthor.name)
-    setNewUserPhotoPreview(editAuthor.photoURL)
+    setNewUserPhotoPreview(editAuthor.photoUrl)
+    setNewRRSS(editAuthor.redes)
     setNewUserPhoto(false)
   }
 
@@ -175,12 +183,12 @@ const CreateUser = () => {
               autoresAMostrar.map((autor, index) => (
                 <div className="card" key={index} style={{width: "18rem"}}>
                   <div className="card-body">
-                    <img src={autor.photoURL} alt="" width="100px" height="100px" className="mb-3 rounded-circle"/>
+                    <img src={autor.photoUrl} alt="" width="100px" height="100px" className="mb-3 rounded-circle"/>
                     <h5 className="card-title">{autor.name}</h5>
                     <p className="card-title">{autor.email}</p>
                     <div className="d-flex justify-content-evenly">
                       <button className='btn btn-sm btn-warning' onClick={()=>{updateAuthorHandler(autor.email)}}>Editar</button>
-                      <button className='btn btn-sm btn-danger' onClick={()=>{deleteAuthorHandler(autor.email)}}>Eliminar</button>
+                      <button className='btn btn-sm btn-danger' onClick={()=>{deleteAuthorHandler(autor.email, autor.photoURL)}}>Eliminar</button>
                     </div>
                   </div>
                 </div>
