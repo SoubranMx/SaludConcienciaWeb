@@ -316,7 +316,6 @@ export const updateAuthorNameAccion = (email, nombre) => async (dispatch, getSta
     }
 }
 
-
 export const updateAuthorImgAccion = (email, imagenNueva) => async(dispatch, getState) => {
     
     try {

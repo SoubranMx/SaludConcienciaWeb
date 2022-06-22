@@ -131,7 +131,7 @@ export default function blogsReducer (state = dataInicial, action){
         case UPDATE_TAGS_EXITO:
             return {...state, blog: {...state.blog, tags: [...action.payload]}}
         case UPDATE_AUTOR_EXITO:
-            return {...state, blog: {...state.blog, autor: action.payload}}
+            return {...state, blog: {...state.blog, autor: [...action.payload]}}
         case ERROR_AUTOR:
             return { ...state }
         case BLOG_ENCONTRADO_SHOW:
@@ -608,42 +608,29 @@ export const clearAllAccion = () => dispatch => {
 }
 
 export const updateAutorAccion = (emailSelected) => async(dispatch, getState) => {
-    //let emailDB = "";
-    // if (getState().autores.autoresExistentes === []){
-    //     dispatch(leerAutores)
-    // }
-    // if(localStorage.getItem('admin')){
-        //     emailDB = JSON.parse(localStorage.getItem('admin'))
-        //     emailDB = emailDB.email
-        // }
-        
-    //let autores = getState().autores.autoresExistentes;
     
-    // getState().autores.autoresExistentes.forEach((autor, index) => {
-    //     autoresEmail.push(autor.email)
-    // })
+    //Un array con los emails seleccionados
     let authorsSelected = []
 
+    //Obtiene al autor actual del blog, un arreglo de emails
     let thisAuthor = getState().blogs.blog.autor;
-
-    //array.find(element => element === nonExistentElement) => undefined
+    thisAuthor.forEach(autorEmail => authorsSelected.push(autorEmail))
     
+    //obtiene al autor seleccionado. Si se lo encuentra, entonces lo quita. Si no lo encuentra, lo agrega.
     if(thisAuthor.find(email => email === emailSelected) !== undefined){
+        console.log("Quitamos al autor", authorsSelected)
         authorsSelected = thisAuthor.filter(email => email !== emailSelected)
+        console.log("Quitamos al autor", authorsSelected)
     } else {
+        console.log("Agregamos al autor", authorsSelected)
         authorsSelected = [...thisAuthor, emailSelected]
+        console.log("Agregamos al autor", authorsSelected)
     }
+
+    console.log("Autores seleccionados => ", authorsSelected)
 
     dispatch({
         type: UPDATE_AUTOR_EXITO,
         payload: authorsSelected
     })
-
-    // if(emailDB !== "") {
-    //     dispatch({
-    //         type: UPDATE_AUTOR_EXITO,
-    //         payload: emailDB
-    //     })
-    // } else {
-    // }
 }
