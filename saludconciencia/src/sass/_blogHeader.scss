@@ -10,10 +10,6 @@
     padding: 3rem 6rem;
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 576px) {
-        padding: 3rem 3rem;
-        margin: 0;
-    }
 
     &__title{
         font-family: 'Lexend';
@@ -28,9 +24,9 @@
         //flex-direction: column;
         //justify-content: space-around;
         justify-content: space-evenly;
-        align-items: center;
         &-item{
             display: flex;
+            align-items: center;
         }
         &-img{
             width: 5rem;
@@ -46,18 +42,17 @@
                 
                 display: flex;
                 flex-direction: column;
+
                 //align-items: center;
                 & > :last-child(){
                     gap: 1rem;
                 }
             }
-        }
-        /* Portrait iPad*/
-        @media only screen and (max-width: 576px){
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 2rem;
+            &-redes{
+                align-self: center;
+                display: flex;
+                flex-wrap: wrap;
+            }
         }
     }
 
@@ -98,5 +93,51 @@
     &__por{
         font-size: 1.5rem;
 
+    }
+}
+
+.showBlogAuthorIcon{
+    height: 2.25rem;
+    width: 2.25rem;
+
+    &-fa{
+        fill:#3B5998;
+    }
+    &-ig{
+        fill: pink;
+    }
+    &-tw{
+        fill:#1DA1F2;
+    }
+
+    &-link{
+        margin: 0 1rem;
+    }
+}
+
+
+@media only screen and (max-width: 576px){
+
+    .showBlog__header__autor__info-redes{
+        justify-content: center;
+    }
+
+    .showBlogAuthorIcon{
+        &-link{
+            margin: 5px 5px;
+        }
+    }
+
+    .showBlog__header{
+        padding: 3rem 3rem;
+        margin: 0;
+
+        /* Portrait iPad*/
+        &__autor{
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+        }
     }
 }

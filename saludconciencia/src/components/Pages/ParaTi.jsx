@@ -33,7 +33,7 @@ const ParaTi = (props) => {
     
     useEffect(()=>{
         const scrollArriba = () => {
-            console.log("why not work => ", paraTiTop)
+            //console.log("why not work => ", paraTiTop)
             paraTiTop.current.scrollIntoView({behavior: 'smooth', block: 'start'})
             //window.scrollTo(0,0)
         }

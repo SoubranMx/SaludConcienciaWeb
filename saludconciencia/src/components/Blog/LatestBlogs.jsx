@@ -45,10 +45,7 @@ const LatestBlogs = (props) => {
         }
     },[blogs,blogsLength, aux])
 
-    useEffect(()=>{
-        console.log("BlogsLatest Inicializacion")
-    },[])
-
+    
     return (
         <div className="row mt-3">
             <div className="card-group">

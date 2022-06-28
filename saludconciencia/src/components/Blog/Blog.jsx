@@ -19,7 +19,7 @@ const Blog = () => {
     //Carga inicial de los blogs
     useEffect(()=>{
         const cargaInicial = () => {
-            console.log("Carga Inicial")
+            //console.log("Carga Inicial")
             dispatch(clearAllAccion())
             dispatch(leerBlogsPublicarAccion())
             dispatch(clearAutoresBlogAccion())

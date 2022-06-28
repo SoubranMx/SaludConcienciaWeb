@@ -5,6 +5,8 @@ import '../../sass/_blogHeader.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { leerAutoresAccion, leerAutoresBlogAccion } from '../../redux/autoresDucks'
 
+import { FaInstagram, FaFacebook, FaTwitter } from 'react-icons/fa';
+
 const BlogHeader = (props) => {
 
     const dispatch = useDispatch()
@@ -62,13 +64,32 @@ const BlogHeader = (props) => {
                 {
                     autorCargado === true && (
                         autoresDelBlog.map((autor, index) => {
-                            //console.log("autor a mostrar => ", autor)
                             return(
                                 <div className="showBlog__header__autor-item" key={index}>
-                                    <img src={autor !== undefined && autor.photoURL} alt="Foto del autor" className="showBlog__header__autor-img"/>
+                                    <img src={autor !== undefined && autor.photoUrl} alt="Foto del autor" className="showBlog__header__autor-img"/>
                                     <div className="showBlog__header__autor__info-name">
                                         <span>{autor.name}</span>
                                         <span>{autor.email}</span>
+                                    </div>
+                                    <div className='showBlog__header__autor__info-redes'>
+                                        {
+                                            autor.redes.facebook.link !== '' &&
+                                            <a href={autor.redes.facebook.link} target="_blank" rel="noreferrer noopener" className='showBlogAuthorIcon-link'>
+                                                <FaFacebook className='showBlogAuthorIcon showBlogAuthorIcon-fa'/>
+                                            </a>
+                                        }
+                                        {
+                                            autor.redes.instagram.link.length !== 0 &&
+                                            <a href={autor.redes.instagram.link} target="_blank" rel="noreferrer noopener" className='showBlogAuthorIcon-link'>
+                                                <FaInstagram className='showBlogAuthorIcon showBlogAuthorIcon-ig'/>
+                                            </a>
+                                        }
+                                        {
+                                            autor.redes.twitter.link !== '' &&
+                                            <a href={autor.redes.twitter.link} target="_blank" rel="noreferrer noopener" className='showBlogAuthorIcon-link'>
+                                                <FaTwitter className='showBlogAuthorIcon showBlogAuthorIcon-tw'/>
+                                            </a>
+                                        }
                                     </div>
                                 </div>
                             )

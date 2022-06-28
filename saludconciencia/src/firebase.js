@@ -29,7 +29,7 @@ const firebaseConfigTest = {
     appId: "1:930841760288:web:7c85c1b521381e0e422245"
 }
 
-const firebaseConfig = firebaseConfigTest;
+const firebaseConfig = firebaseConfigDeploy;
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

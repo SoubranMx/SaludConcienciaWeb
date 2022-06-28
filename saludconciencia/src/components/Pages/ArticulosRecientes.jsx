@@ -18,11 +18,11 @@ const ArticulosRecientes = () => {
             dispatch(leerBlogsParaInicioAccion())
         }
         if(blogsInicio === undefined){
-            console.log("1a y unica")
+            //console.log("1a y unica")
             setShowBlogs(false);
             cargarBlogs();
         }else {
-            console.log("Aca no debe cargar mas db")
+            //console.log("Aca no debe cargar mas db")
             setShowBlogs(true);
         }
         //slide8 !== null && cargarBlogs();

@@ -15,16 +15,43 @@ const AdminIndex = (props) => {
     return (
         <div>
             <div className="update__info">
-                <h1 className="update__info-version">Salud Conciencia Version 1.2.0</h1>
+                <h1 className="update__info-version">Salud Conciencia Version 1.2.1</h1>
+                <br />
                 <div className="accordion" id="accordionExample">
+
+                <div className="accordion-item">
+                        <h2 className="accordion-header" id="headingEight">
+                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseSix">
+                            Version 1.2.1
+                        </button>
+                        </h2>
+                        <div id="collapseEight" className="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                            <div className="accordion-body">
+                                <p>Cambios de la versión</p>
+                                <ul className="update__info__cambios">
+                                    <li className="update__info__cambios-item">Se agregó funcionalidad extra a crear autores.</li>
+                                    <li className="update__info__cambios-item">Los autores ahora pueden ser modificados, se añadió un botón editar.</li>
+                                    <li className="update__info__cambios-item">Por defecto, el autor Julián no podrá ser modificado en autores. Tendría que hacerlo en su propio "perfil" (en el engrane)</li>
+                                    <li className="update__info__cambios-item">Se añaden 3 redes sociales opcionales: facebook, twitter e instagram. Son links a cada perfil.</li>
+                                    <li className="update__info__cambios-item">Dependiendo de las redes que tenga un autor, se mostrarán en el Blog en forma de íconos de la red social que tienen asignado.</li>
+                                </ul>
+                                <br />
+                                <p>Bugs:</p>
+                                <ul className="update__info__cambios">
+                                    <li className="update__info__cambios-item">En ocasiones, el apartado de Crear Blog no mostrará al autor por defecto (Julián). Si se desea quitarlo para poner otro autor o autores, basta con recargar la página para que aparezca.</li>
+                                    <li className="update__info__cambios-item">Una vez que se publica un blog, los autores desaparecen en el apartado de Crear Blog. Recargar la página soluciona el error.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingSeven">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSix">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSix">
                             Version 1.2.0
                         </button>
                         </h2>
-                        <div id="collapseSeven" className="accordion-collapse collapse show" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                        <div id="collapseSeven" className="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <p>Cambios de la versión</p>
                                 <ul className="update__info__cambios">
@@ -43,11 +70,11 @@ const AdminIndex = (props) => {
 
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingSix">
-                        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                        <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
                             Version 1.1.0
                         </button>
                         </h2>
-                        <div id="collapseSix" className="accordion-collapse collapsed" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                        <div id="collapseSix" className="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
                                 <p>Cambios de la versión</p>
                                 <ul className="update__info__cambios">
